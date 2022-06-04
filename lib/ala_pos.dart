@@ -1,5 +1,4 @@
 import 'package:ala_pos/routes/route_page.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,8 +14,6 @@ class AlaApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Ala Pos",
         useInheritedMediaQuery: true,
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
       );
     });
   }

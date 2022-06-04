@@ -1,2 +1,2 @@
 export 'color_foundation.dart';
-export 'themes/themes.dart';
+export 'text_style_foundation.dart';
