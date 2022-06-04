@@ -1,7 +1,9 @@
 library atomic_design;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'atomic_design.dart';
+export 'atoms/atoms.dart';
+export 'foundations/foundations.dart';
+export 'molecules/molecules.dart';
+export 'organisms/organisms.dart';
+export 'templates/templates.dart';
+export 'tokens/tokens.dart';
