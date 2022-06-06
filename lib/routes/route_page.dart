@@ -7,22 +7,23 @@ import 'package:go_router/go_router.dart';
 part "route_name.dart";
 
 final initRouter = GoRouter(
-  initialLocation: Route.Register,
+  initialLocation: RouteName.SplashScreen,
   routes: [
     GoRoute(
-      path: Route.SplashScreen,
+      path: RouteName.SplashScreen,
       builder: (context, state) => const SplashScreenPage(),
     ),
     GoRoute(
-      path: Route.Login,
+      path: RouteName.Login,
       builder: (context, state) => const LoginPage(),
+      name: RouteName.Login,
     ),
     GoRoute(
-      path: Route.Register,
+      path: RouteName.Register,
       builder: (context, state) => const RegisterPage(),
     ),
     GoRoute(
-      path: Route.HomePos,
+      path: RouteName.HomePos,
       builder: (context, state) => const HomePage(),
     ),
   ],

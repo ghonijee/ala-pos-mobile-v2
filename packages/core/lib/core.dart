@@ -6,10 +6,11 @@
 // https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
 library core;
 
-import 'core_platform_interface.dart';
+import 'package:core/themes/base_theme.dart';
+
+export 'styles/app_spacing.dart';
+export 'themes/base_theme.dart';
 
 class Core {
-  Future<String?> getPlatformVersion() {
-    return CorePlatform.instance.getPlatformVersion();
-  }
+  static get themeLight => BaseTheme.light;
 }

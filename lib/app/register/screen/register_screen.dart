@@ -1,5 +1,7 @@
+import 'package:ala_pos/routes/route_page.dart';
 import 'package:atomic_design/atomic_design.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -94,7 +96,7 @@ class RegisterScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               child: Text(
-                "Daftar",
+                "DAFTAR",
                 style: TextStyle(color: Colors.white, fontSize: 12.sp),
               ),
               style: ElevatedButton.styleFrom(
@@ -107,7 +109,9 @@ class RegisterScreen extends StatelessWidget {
             ),
             Center(
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).go(RouteName.Login);
+                },
                 child: Text(
                   "Sudah punya akun? masuk disini.",
                   style: TextStyle(
