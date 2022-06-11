@@ -10,6 +10,12 @@ import 'package:core/themes/base_theme.dart';
 
 export 'styles/app_spacing.dart';
 export 'themes/base_theme.dart';
+export 'connections/connections.dart';
+export 'core.dart';
+export 'helpers/helpers.dart';
+export 'styles/styles.dart';
+export 'themes/themes.dart';
+export 'utils/utils.dart';
 
 class Core {
   static get themeLight => BaseTheme.light;

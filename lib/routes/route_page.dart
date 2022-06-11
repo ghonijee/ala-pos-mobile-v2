@@ -1,7 +1,7 @@
-import 'package:ala_pos/app/home/screen/home_page.dart';
-import 'package:ala_pos/app/login/screens/login_page.dart';
-import 'package:ala_pos/app/register/screen/register_page.dart';
-import 'package:ala_pos/app/splashscreen/screens/splashscreen_page.dart';
+import 'package:ala_pos/presentation/home/screen/home_page.dart';
+import 'package:ala_pos/presentation/login/screens/login_page.dart';
+import 'package:ala_pos/presentation/register/screen/register_page.dart';
+import 'package:ala_pos/presentation/splashscreen/screens/splashscreen_page.dart';
 import 'package:go_router/go_router.dart';
 
 part "route_name.dart";

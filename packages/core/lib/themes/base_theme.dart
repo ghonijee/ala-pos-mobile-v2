@@ -18,7 +18,7 @@ class BaseTheme {
           color: AppColors.iconLight,
         ),
       ),
-      dividerTheme: DividerThemeData(),
+      dividerTheme: const DividerThemeData(color: AppColors.enableBorderLight),
       fontFamily: "Open Sans",
       textTheme: TextTheme(
         headline1: GoogleFonts.openSans(

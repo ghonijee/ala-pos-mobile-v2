@@ -1,79 +1,91 @@
-import 'package:ala_pos/app/login/cubit/login_cubit.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:atomic_design/atomic_design.dart';
-import 'package:atomic_design/foundations/foundations.dart';
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var cubit = context.read<LoginCubit>();
-
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: ColorFoundation.backgroundColorDark,
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl.sp),
+        padding: EdgeInsets.symmetric(horizontal: 20.sp),
         width: 100.w,
         height: 100.h,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 15.h,
+              height: 88.sp,
             ),
             Text(
-              "Selamat Datang!",
-              style: Theme.of(context).textTheme.headline4?.apply(color: Theme.of(context).colorScheme.surface),
+              "Daftar Sekarang!",
+              style: TextStyleFoundation.heading5
+                  .copyWith(color: ColorFoundation.textPrimaryDark),
             ),
             SizedBox(
-              height: AppSpacings.s.sp,
+              height: 8.sp,
             ),
             Text(
-              "Silahkan masuk terlebih dahulu untuk\nmenggunakan aplikasi Alapos!",
-              style: Theme.of(context).textTheme.subtitle1?.apply(color: Theme.of(context).colorScheme.surface),
+              "Dapatkan kemudahan untuk mengelola dan\nmonitoring usahamu",
+              style: TextStyleFoundation.caption
+                  .copyWith(color: ColorFoundation.textPrimaryDark),
             ),
             SizedBox(
-              height: AppSpacings.l.sp,
+              height: 32.sp,
             ),
             TextFormField(
-              style: Theme.of(context).textTheme.bodyText1?.apply(color: Theme.of(context).colorScheme.surface),
+              style: TextStyleFoundation.body2
+                  .copyWith(color: ColorFoundation.textPrimaryDark),
               decoration: InputDecoration(
                 label: Text(
-                  "Username / No HP",
-                  style: Theme.of(context).textTheme.bodyText2?.apply(color: Theme.of(context).colorScheme.surface),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.surface,
+                  "Username",
+                  style: TextStyleFoundation.caption.copyWith(
+                    color: ColorFoundation.textPrimaryDark,
                   ),
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.surface,
+                    color: ColorFoundation.enableBorderColorDark,
                   ),
                 ),
               ),
             ),
             SizedBox(
-              height: AppSpacings.m.sp,
+              height: 16.sp,
             ),
             TextFormField(
-              style: Theme.of(context).textTheme.bodyText1?.apply(color: Theme.of(context).colorScheme.surface),
+              style: TextStyleFoundation.body2
+                  .copyWith(color: ColorFoundation.textPrimaryDark),
+              decoration: InputDecoration(
+                label: Text(
+                  "No HP",
+                  style: TextStyleFoundation.caption.copyWith(
+                    color: ColorFoundation.textPrimaryDark,
+                  ),
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: ColorFoundation.enableBorderColorDark,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16.sp,
+            ),
+            TextFormField(
+              style: TextStyleFoundation.body2
+                  .copyWith(color: ColorFoundation.textPrimaryDark),
               obscureText: true,
               decoration: InputDecoration(
                 label: Text(
                   "Password",
-                  style: Theme.of(context).textTheme.bodyText2?.apply(color: Theme.of(context).colorScheme.surface),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: ColorFoundation.enableBorderColorDark,
+                  style: TextStyleFoundation.caption.copyWith(
+                    color: ColorFoundation.textPrimaryDark,
                   ),
                 ),
                 enabledBorder: UnderlineInputBorder(
@@ -87,11 +99,9 @@ class LoginScreen extends StatelessWidget {
               height: 24.sp,
             ),
             ElevatedButton(
-              onPressed: () {
-                cubit.signIn(username: "test", password: "test");
-              },
+              onPressed: () {},
               child: Text(
-                "MASUK",
+                "DAFTAR",
                 style: TextStyle(color: Colors.white, fontSize: 12.sp),
               ),
               style: ElevatedButton.styleFrom(
@@ -105,11 +115,10 @@ class LoginScreen extends StatelessWidget {
             Center(
               child: TextButton(
                 onPressed: () {
-                  context.go(RouteName.Login);
-                  // GoRouter.of(context).push(RouteName.Register);
+                  GoRouter.of(context).go(RouteName.Login);
                 },
                 child: Text(
-                  "Belum punya akun? daftar disini.",
+                  "Sudah punya akun? masuk disini.",
                   style: TextStyle(
                     color: Colors.white,
                   ),

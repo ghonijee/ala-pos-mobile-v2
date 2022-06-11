@@ -7,7 +7,11 @@
         {
             "name": "ala_pos",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--dart-define",
+                "ENV=.env",
+            ]
         },
         {
             "name": "ala_pos (profile mode)",

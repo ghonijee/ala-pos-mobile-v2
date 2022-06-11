@@ -1,4 +1,4 @@
-import 'package:ala_pos/app/register/screen/register_screen.dart';
+import 'package:ala_pos/presentation/register/screen/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
