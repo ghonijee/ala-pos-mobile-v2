@@ -10,8 +10,28 @@ class AuthRemoteSource {
 
   AuthRemoteSource(this.apiClient);
 
-  login(String username, String password) {
+  Future<ApiResponse> login(String username, String password, String deviceName) async {
     Dio dio = apiClient.instance();
+    try {
+      Response response = await dio.post(
+        "/mobile/sign-in",
+        data: {
+          "username": username,
+          "password": password,
+          "device_name": deviceName,
+        },
+      );
+
+      return SuccessResponse.fromJson(response.data);
+    } on DioError catch (e) {
+      if (kDebugMode) {
+        print(e.message);
+      }
+      rethrow;
+    } catch (e) {
+      print("test");
+      return FailedResponse(message: e.toString(), status: false);
+    }
   }
 
   register({required String username, required String phone, required String password}) {

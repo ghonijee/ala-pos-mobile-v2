@@ -15,12 +15,16 @@ class SplashScreenView extends StatelessWidget {
     return BlocConsumer<SplashCubit, SplashState>(
       listener: (context, state) {
         state.when(
-          loading: () {},
+          loading: () {
+            print("Loading Splash");
+          },
           loaded: (authStatus) {
+            print("Loaded");
+
             if (authStatus) {
-              GoRouter.of(context).go(RouteName.HomePos);
+              context.go(RouteName.HomePos);
             } else {
-              GoRouter.of(context).go(RouteName.Login);
+              context.go(RouteName.Login);
             }
           },
         );

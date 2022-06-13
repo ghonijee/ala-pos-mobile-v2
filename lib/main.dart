@@ -5,6 +5,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'services/service_locator.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   const String env = String.fromEnvironment("ENV", defaultValue: "notFound");
 
   await dotenv.load(fileName: env);

@@ -10,6 +10,7 @@ class BaseTheme {
         error: AppColors.errorLight,
         primary: AppColors.primary,
         secondary: AppColors.accent,
+        tertiary: AppColors.tertiary,
         surface: AppColors.surface,
       ),
       appBarTheme: const AppBarTheme(

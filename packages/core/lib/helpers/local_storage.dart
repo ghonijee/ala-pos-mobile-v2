@@ -7,7 +7,7 @@ class LocalStorage {
     storage.write(key: key, value: value);
   }
 
-  getValue(key) {
+  Future getValue(key) {
     return storage.read(key: key);
   }
 

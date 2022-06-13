@@ -15,14 +15,14 @@ final getIt = GetIt.instance;
 )
 @module
 abstract class RegisterModule {
-  @lazySingleton
-  Dio get dio => Dio();
+  // @lazySingleton
+  // Dio get dio => Dio();
 
   @singleton
   LocalStorage get localStorage => LocalStorage();
 
-  @lazySingleton
-  ApiClient get apiClient => ApiClient(dio: getIt(), baseUrl: dotenv.get("BASE_URL"));
+  @singleton
+  ApiClient get apiClient => ApiClient(dio: Dio(), baseUrl: dotenv.get("BASE_URL"));
 }
 
 void configureDependencies() {

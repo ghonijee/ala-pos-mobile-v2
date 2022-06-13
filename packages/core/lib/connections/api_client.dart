@@ -61,7 +61,9 @@ class ApiClient {
   Dio withToken({String token = ''}) {
     init();
     if (token.isEmpty) {
-      token = LocalStorage().getValue(Constant.token);
+      LocalStorage().getValue(Constant.token).then((value) {
+        token = value;
+      });
     }
     dio.options.headers["Authorization"] = token;
 
@@ -71,7 +73,9 @@ class ApiClient {
   Dio instance({String token = ''}) {
     init();
     if (token.isEmpty) {
-      token = LocalStorage().getValue(Constant.token);
+      LocalStorage().getValue(Constant.token).then((value) {
+        token = value ?? '';
+      });
     }
     return dio;
   }
