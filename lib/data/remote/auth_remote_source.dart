@@ -11,7 +11,7 @@ class AuthRemoteSource {
   AuthRemoteSource(this.apiClient);
 
   Future<ApiResponse> login(String username, String password, String deviceName) async {
-    Dio dio = apiClient.instance();
+    Dio dio = await apiClient.instance();
     try {
       Response response = await dio.post(
         "/mobile/sign-in",
@@ -21,7 +21,6 @@ class AuthRemoteSource {
           "device_name": deviceName,
         },
       );
-
       return SuccessResponse.fromJson(response.data);
     } on DioError catch (e) {
       if (kDebugMode) {
@@ -29,19 +28,19 @@ class AuthRemoteSource {
       }
       rethrow;
     } catch (e) {
-      print("test");
       return FailedResponse(message: e.toString(), status: false);
     }
   }
 
   register({required String username, required String phone, required String password}) {
-    Dio dio = apiClient.instance();
+    // Dio dio = apiClient.instance();
   }
 
   Future<ApiResponse> checkToken() async {
-    Dio dio = apiClient.instance();
+    Dio dio = await apiClient.instance();
     try {
-      Response response = await dio.post("/mobile/check-token");
+      print(dio.options.headers.toString());
+      Response response = await dio.get("/mobile/check-token");
       return SuccessResponse.fromJson(response.data);
     } on DioError catch (e) {
       if (kDebugMode) {

@@ -70,13 +70,12 @@ class ApiClient {
     return dio;
   }
 
-  Dio instance({String token = ''}) {
+  Future<Dio> instance() async {
     init();
-    if (token.isEmpty) {
-      LocalStorage().getValue(Constant.token).then((value) {
-        token = value ?? '';
-      });
-    }
+    var token = await LocalStorage().getValue(Constant.token);
+
+    dio.options.headers["Authorization"] = "Bearer $token";
+
     return dio;
   }
 }

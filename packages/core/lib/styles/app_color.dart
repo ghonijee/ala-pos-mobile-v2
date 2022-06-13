@@ -13,6 +13,7 @@ class AppColors {
   static const tertiary = BaseColor.brandAccent3;
   static const surface = BaseColor.whiteTrue;
 
+  static const fillTextField = BaseColor.whitePrimary;
   static const enableBorderDark = BaseColor.whitePrimary;
   static const enableBorderLight = BaseColor.greyPrimary;
   static const focusBorderDark = BaseColor.whiteTrue;

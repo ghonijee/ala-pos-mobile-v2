@@ -9,7 +9,7 @@ class BaseColor {
   static const brandAccent3 = Color(0xFFFF7C65);
   static const brandAccent4 = Color(0xFFFFB957);
   static const brandAccent5 = Color(0xFFF9F871);
-  static const brandAccent6 = Color(0xFFF303C96);
+  static const brandAccent6 = Color(0xFF303C96);
 
   // BlackColor
   static const blackPrimary = Color(0xFF131516);

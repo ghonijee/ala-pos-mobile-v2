@@ -18,10 +18,12 @@ class AuthRepository {
 
   Future<Either<FailureModel, AuthModel>> checkToken() async {
     try {
-      if (storage.getValue(Constant.token) == null) {
+      if (await storage.getValue(Constant.token) == null) {
         return Right(AuthModel(loggedStatus: false));
       }
       var response = await remoteSource.checkToken();
+      print(response.toString());
+
       if (response.status == true) {
         return Right(
           AuthModel(
@@ -34,8 +36,11 @@ class AuthRepository {
 
       return Right(AuthModel(loggedStatus: false));
     } on DioError catch (e) {
+      print(e.toString());
+
       return Left(FailureModel.serverError(e.message));
     } catch (e) {
+      print(e.toString());
       return Left(FailureModel.internalError(e.toString()));
     }
   }
@@ -57,7 +62,7 @@ class AuthRepository {
     } on DioError catch (e) {
       return Left(FailureModel.serverError(e.message));
     } catch (e) {
-      print(e);
+      // print(e);
       return Left(FailureModel.internalError(e.toString()));
     }
   }

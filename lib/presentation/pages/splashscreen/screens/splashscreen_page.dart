@@ -1,4 +1,4 @@
-import 'package:ala_pos/presentation/splashscreen/cubit/splash_cubit.dart';
+import 'package:ala_pos/presentation/pages/splashscreen/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';

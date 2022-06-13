@@ -7,6 +7,7 @@
 library core;
 
 import 'package:core/themes/base_theme.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 export 'styles/app_spacing.dart';
 export 'themes/base_theme.dart';
@@ -19,4 +20,8 @@ export 'utils/utils.dart';
 
 class Core {
   static get themeLight => BaseTheme.light;
+
+  static initLocalDB() async {
+    await Hive.initFlutter();
+  }
 }

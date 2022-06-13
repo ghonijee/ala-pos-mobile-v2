@@ -5,6 +5,29 @@ import 'package:sizer/sizer.dart';
 
 class BaseTheme {
   static final ThemeData light = ThemeData(
+      drawerTheme: const DrawerThemeData(backgroundColor: AppColors.sidebarLight),
+      primaryColorDark: AppColors.surface,
+      primaryColor: AppColors.primary,
+      backgroundColor: AppColors.backgroundLight,
+      disabledColor: AppColors.textSecondaryLight,
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: GoogleFonts.openSans(
+          color: AppColors.textSecondaryLight,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          letterSpacing: 0.5,
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.primary,
+          ),
+        ),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.enableBorderLight,
+          ),
+        ),
+      ),
       colorScheme: const ColorScheme.light(
         background: AppColors.backgroundLight,
         error: AppColors.errorLight,
@@ -13,10 +36,16 @@ class BaseTheme {
         tertiary: AppColors.tertiary,
         surface: AppColors.surface,
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         color: AppColors.primary,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: AppColors.iconLight,
+        ),
+        titleTextStyle: GoogleFonts.openSans(
+          color: AppColors.textPrimaryDark,
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.15,
         ),
       ),
       dividerTheme: const DividerThemeData(color: AppColors.enableBorderLight),
@@ -40,7 +69,7 @@ class BaseTheme {
           fontWeight: FontWeight.w400,
         ),
         headline4: GoogleFonts.openSans(
-          color: AppColors.textDefaultLight,
+          color: AppColors.textPrimaryLight,
           fontSize: 34,
           fontWeight: FontWeight.w400,
           letterSpacing: 0.25,

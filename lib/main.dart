@@ -1,4 +1,5 @@
 import 'package:ala_pos/ala_pos.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -12,6 +13,8 @@ void main() async {
   await dotenv.load(fileName: env);
 
   configureDependencies();
+
+  await Core.initLocalDB();
 
   runApp(const AlaApp());
 }

@@ -1,4 +1,4 @@
-import 'package:ala_pos/presentation/splashscreen/cubit/splash_cubit.dart';
+import 'package:ala_pos/presentation/pages/splashscreen/cubit/splash_cubit.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:atomic_design/foundations/foundations.dart';
 import 'package:flutter/material.dart';

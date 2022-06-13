@@ -1,6 +1,7 @@
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sizer/sizer.dart';
 
 class AlaApp extends StatelessWidget {
@@ -16,6 +17,13 @@ class AlaApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Ala Pos",
         useInheritedMediaQuery: true,
+        supportedLocales: [
+          Locale('en'),
+          Locale('id'),
+        ],
+        localizationsDelegates: [
+          FormBuilderLocalizations.delegate,
+        ],
       );
     });
   }
