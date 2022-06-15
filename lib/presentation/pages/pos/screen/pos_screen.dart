@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+
+import '../widgets/cart_widget.dart';
 
 class PosScreen extends HookWidget {
   const PosScreen({Key? key}) : super(key: key);
@@ -19,8 +22,8 @@ class PosScreen extends HookWidget {
       appBar: AppBar(
         title: Text("Alapos"),
       ),
-      body: SingleChildScrollView(
-        child: GestureDetector(
+      body: SlidingUpPanel(
+        body: GestureDetector(
           onTap: () {
             FocusScopeNode currentFocus = FocusScope.of(context);
             if (!currentFocus.hasPrimaryFocus) {
@@ -67,6 +70,7 @@ class PosScreen extends HookWidget {
                 ),
                 Expanded(
                   child: GridView.builder(
+                      itemCount: 20,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         crossAxisSpacing: AppSpacings.s.sp,
@@ -75,11 +79,48 @@ class PosScreen extends HookWidget {
                       itemBuilder: (context, index) {
                         return ProductContainer();
                       }),
-                )
+                ),
+                // Expanded(
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Icon(
+                //         Ionicons.cube_outline,
+                //         size: 40,
+                //       ),
+                //       SizedBox(
+                //         height: AppSpacings.m,
+                //       ),
+                //       Text(
+                //         "Silahkan\nScan / Cari Produk",
+                //         style: Theme.of(context).textTheme.bodyText2,
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ],
+                //   ),
+                // )
               ],
             ),
           ),
         ),
+        collapsed: Container(
+          padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl),
+          width: 100.w,
+          height: 8.h,
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Total ", style: Theme.of(context).primaryTextTheme.titleMedium),
+              Text("15.000 (3 Item)", style: Theme.of(context).primaryTextTheme.titleMedium),
+            ],
+          ),
+        ),
+        maxHeight: 100.h,
+        minHeight: true ? 8.h : 0,
+        panel: CartWidget(),
       ),
     );
   }
