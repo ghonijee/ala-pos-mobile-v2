@@ -16,6 +16,26 @@ class AuthRepository {
   LocalStorage storage;
   AuthRepository({required this.remoteSource, required this.storage});
 
+  Future<UserModel> get user async {
+    var userLogin = await storage.getValueJson(Constant.userLogin);
+    print(userLogin);
+    return UserModel.fromJson(userLogin);
+  }
+
+  signOut() async {
+    try {
+      await remoteSource.logout();
+      // Clear local storage Token
+      storage.clearAll(Constant.token);
+      // Clear local storage User Data
+      storage.clearAll(Constant.userLogin);
+
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future<Either<FailureModel, AuthModel>> checkToken() async {
     try {
       if (await storage.getValue(Constant.token) == null) {

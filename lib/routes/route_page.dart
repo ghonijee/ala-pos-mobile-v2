@@ -1,5 +1,5 @@
-import 'package:ala_pos/presentation/pages/home/screen/home_page.dart';
 import 'package:ala_pos/presentation/pages/login/screens/login_page.dart';
+import 'package:ala_pos/presentation/pages/pos/screen/pos_page.dart';
 import 'package:ala_pos/presentation/pages/register/screen/register_page.dart';
 import 'package:ala_pos/presentation/pages/splashscreen/screens/splashscreen_page.dart';
 import 'package:go_router/go_router.dart';
@@ -26,9 +26,9 @@ final initRouter = GoRouter(
       name: RouteName.Register,
     ),
     GoRoute(
-      path: RouteName.HomePos,
-      builder: (context, state) => const HomePage(),
-      name: RouteName.HomePos,
+      path: RouteName.Pos,
+      builder: (context, state) => const PosPage(),
+      name: RouteName.Pos,
     ),
   ],
 );

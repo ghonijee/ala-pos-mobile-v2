@@ -29,6 +29,7 @@ class BaseColor {
   static const whiteAccent5 = Color(0xFFA1A1A1);
 
   // GrayColor
+  static const greyLight3 = Color.fromARGB(255, 227, 236, 243);
   static const greyPrimary = Color(0xffB1BDC5);
   static const greyLight = Color(0xffD2D9DE);
   static const greyLightAccent = Color(0xffBBC6CD);

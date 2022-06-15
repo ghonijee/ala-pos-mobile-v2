@@ -22,7 +22,7 @@ class SplashScreenView extends StatelessWidget {
             print("Loaded");
 
             if (authStatus) {
-              context.go(RouteName.HomePos);
+              context.go(RouteName.Pos);
             } else {
               context.go(RouteName.Login);
             }

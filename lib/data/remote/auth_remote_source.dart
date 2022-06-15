@@ -36,10 +36,19 @@ class AuthRemoteSource {
     // Dio dio = apiClient.instance();
   }
 
+  Future<ApiResponse> logout() async {
+    Dio dio = await apiClient.instance();
+    try {
+      Response response = await dio.get("/mobile/logout");
+      return SuccessResponse.fromJson(response.data);
+    } on DioError catch (e) {
+      return FailedResponse.fromJson(e.response!.data);
+    }
+  }
+
   Future<ApiResponse> checkToken() async {
     Dio dio = await apiClient.instance();
     try {
-      print(dio.options.headers.toString());
       Response response = await dio.get("/mobile/check-token");
       return SuccessResponse.fromJson(response.data);
     } on DioError catch (e) {

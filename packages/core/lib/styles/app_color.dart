@@ -3,7 +3,7 @@ import 'base_color.dart';
 class AppColors {
   // Backgorund
   static const backgroundDark = BaseColor.brandPrimary;
-  static const backgroundLight = BaseColor.whitePrimary;
+  static const backgroundLight = BaseColor.brandBackground;
 
   static const sidebarLight = BaseColor.brandAccent6;
   static const sidebarDark = BaseColor.brandAccent6;
@@ -16,6 +16,7 @@ class AppColors {
   static const fillTextField = BaseColor.whitePrimary;
   static const enableBorderDark = BaseColor.whitePrimary;
   static const enableBorderLight = BaseColor.greyPrimary;
+  static const enableBackgroundLight = BaseColor.greyLight3;
   static const focusBorderDark = BaseColor.whiteTrue;
   static const focusBorderLight = BaseColor.brandAccent6;
 
@@ -37,4 +38,7 @@ class AppColors {
 
   // AppBar
   static const iconLight = BaseColor.whitePrimary;
+
+  // Container
+  static const emptyContainer = BaseColor.greyLight3;
 }

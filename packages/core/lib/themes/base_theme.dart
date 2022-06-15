@@ -1,4 +1,5 @@
 import 'package:core/styles/app_color.dart';
+import 'package:core/styles/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -11,18 +12,23 @@ class BaseTheme {
       backgroundColor: AppColors.backgroundLight,
       disabledColor: AppColors.textSecondaryLight,
       inputDecorationTheme: InputDecorationTheme(
+        // filled: true,
+        contentPadding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+        fillColor: AppColors.enableBackgroundLight,
         hintStyle: GoogleFonts.openSans(
           color: AppColors.textSecondaryLight,
-          fontSize: 16,
+          fontSize: 14,
           fontWeight: FontWeight.w400,
           letterSpacing: 0.5,
         ),
         focusedBorder: const UnderlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(AppSpacings.s)),
           borderSide: BorderSide(
             color: AppColors.primary,
           ),
         ),
         enabledBorder: const UnderlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(AppSpacings.s)),
           borderSide: BorderSide(
             color: AppColors.enableBorderLight,
           ),
@@ -35,6 +41,7 @@ class BaseTheme {
         secondary: AppColors.accent,
         tertiary: AppColors.tertiary,
         surface: AppColors.surface,
+        onSecondaryContainer: AppColors.emptyContainer,
       ),
       appBarTheme: AppBarTheme(
         color: AppColors.primary,

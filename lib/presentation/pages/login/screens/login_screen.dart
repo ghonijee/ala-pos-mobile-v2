@@ -25,7 +25,7 @@ class LoginScreen extends HookWidget {
             initial: () => null,
             loading: () => null,
             onSuccess: () {
-              context.go(RouteName.HomePos);
+              context.go(RouteName.Pos);
             },
             onFailure: (message) {
               var snackBar = SnackBar(
@@ -53,7 +53,10 @@ class LoginScreen extends HookWidget {
                     ),
                     Text(
                       "SELAMAT DATANG!",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(color: AppColors.primary),
+                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                     SizedBox(
                       height: AppSpacings.l.sp,
@@ -72,21 +75,9 @@ class LoginScreen extends HookWidget {
                         FormBuilderValidators.required(),
                       ]),
                       decoration: InputDecoration(
-                        filled: true,
-                        // fillColor: AppColors.fillTextField,
                         label: Text(
                           "Username / No HP",
                           style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppColors.primary,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppColors.enableBorderLight,
-                          ),
                         ),
                       ),
                     ),
@@ -102,20 +93,9 @@ class LoginScreen extends HookWidget {
                         FormBuilderValidators.minLength(8),
                       ]),
                       decoration: InputDecoration(
-                        filled: true,
                         label: Text(
                           "Password",
                           style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppColors.primary,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppColors.enableBorderLight,
-                          ),
                         ),
                       ),
                     ),
