@@ -21,6 +21,7 @@ mixin _$LoginState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() onSuccess,
+    required TResult Function() notHaveStore,
     required TResult Function(dynamic message) onFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$LoginState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$LoginState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$LoginState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_OnSuccess value) onSuccess,
+    required TResult Function(_NotHavestore value) notHaveStore,
     required TResult Function(_OnFailure value) onFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$LoginState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$LoginState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
     required TResult orElse(),
   }) =>
@@ -126,6 +132,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() onSuccess,
+    required TResult Function() notHaveStore,
     required TResult Function(dynamic message) onFailure,
   }) {
     return initial();
@@ -137,6 +144,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
   }) {
     return initial?.call();
@@ -148,6 +156,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
     required TResult orElse(),
   }) {
@@ -163,6 +172,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_OnSuccess value) onSuccess,
+    required TResult Function(_NotHavestore value) notHaveStore,
     required TResult Function(_OnFailure value) onFailure,
   }) {
     return initial(this);
@@ -174,6 +184,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
   }) {
     return initial?.call(this);
@@ -185,6 +196,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
     required TResult orElse(),
   }) {
@@ -241,6 +253,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() onSuccess,
+    required TResult Function() notHaveStore,
     required TResult Function(dynamic message) onFailure,
   }) {
     return loading();
@@ -252,6 +265,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
   }) {
     return loading?.call();
@@ -263,6 +277,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
     required TResult orElse(),
   }) {
@@ -278,6 +293,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_OnSuccess value) onSuccess,
+    required TResult Function(_NotHavestore value) notHaveStore,
     required TResult Function(_OnFailure value) onFailure,
   }) {
     return loading(this);
@@ -289,6 +305,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
   }) {
     return loading?.call(this);
@@ -300,6 +317,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
     required TResult orElse(),
   }) {
@@ -357,6 +375,7 @@ class _$_OnSuccess implements _OnSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() onSuccess,
+    required TResult Function() notHaveStore,
     required TResult Function(dynamic message) onFailure,
   }) {
     return onSuccess();
@@ -368,6 +387,7 @@ class _$_OnSuccess implements _OnSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
   }) {
     return onSuccess?.call();
@@ -379,6 +399,7 @@ class _$_OnSuccess implements _OnSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
     required TResult orElse(),
   }) {
@@ -394,6 +415,7 @@ class _$_OnSuccess implements _OnSuccess {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_OnSuccess value) onSuccess,
+    required TResult Function(_NotHavestore value) notHaveStore,
     required TResult Function(_OnFailure value) onFailure,
   }) {
     return onSuccess(this);
@@ -405,6 +427,7 @@ class _$_OnSuccess implements _OnSuccess {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
   }) {
     return onSuccess?.call(this);
@@ -416,6 +439,7 @@ class _$_OnSuccess implements _OnSuccess {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
     required TResult orElse(),
   }) {
@@ -428,6 +452,128 @@ class _$_OnSuccess implements _OnSuccess {
 
 abstract class _OnSuccess implements LoginState {
   const factory _OnSuccess() = _$_OnSuccess;
+}
+
+/// @nodoc
+abstract class _$$_NotHavestoreCopyWith<$Res> {
+  factory _$$_NotHavestoreCopyWith(
+          _$_NotHavestore value, $Res Function(_$_NotHavestore) then) =
+      __$$_NotHavestoreCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NotHavestoreCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$$_NotHavestoreCopyWith<$Res> {
+  __$$_NotHavestoreCopyWithImpl(
+      _$_NotHavestore _value, $Res Function(_$_NotHavestore) _then)
+      : super(_value, (v) => _then(v as _$_NotHavestore));
+
+  @override
+  _$_NotHavestore get _value => super._value as _$_NotHavestore;
+}
+
+/// @nodoc
+
+class _$_NotHavestore implements _NotHavestore {
+  const _$_NotHavestore();
+
+  @override
+  String toString() {
+    return 'LoginState.notHaveStore()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NotHavestore);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() onSuccess,
+    required TResult Function() notHaveStore,
+    required TResult Function(dynamic message) onFailure,
+  }) {
+    return notHaveStore();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
+    TResult Function(dynamic message)? onFailure,
+  }) {
+    return notHaveStore?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
+    TResult Function(dynamic message)? onFailure,
+    required TResult orElse(),
+  }) {
+    if (notHaveStore != null) {
+      return notHaveStore();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_OnSuccess value) onSuccess,
+    required TResult Function(_NotHavestore value) notHaveStore,
+    required TResult Function(_OnFailure value) onFailure,
+  }) {
+    return notHaveStore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
+    TResult Function(_OnFailure value)? onFailure,
+  }) {
+    return notHaveStore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
+    TResult Function(_OnFailure value)? onFailure,
+    required TResult orElse(),
+  }) {
+    if (notHaveStore != null) {
+      return notHaveStore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotHavestore implements LoginState {
+  const factory _NotHavestore() = _$_NotHavestore;
 }
 
 /// @nodoc
@@ -494,6 +640,7 @@ class _$_OnFailure implements _OnFailure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() onSuccess,
+    required TResult Function() notHaveStore,
     required TResult Function(dynamic message) onFailure,
   }) {
     return onFailure(message);
@@ -505,6 +652,7 @@ class _$_OnFailure implements _OnFailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
   }) {
     return onFailure?.call(message);
@@ -516,6 +664,7 @@ class _$_OnFailure implements _OnFailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? onSuccess,
+    TResult Function()? notHaveStore,
     TResult Function(dynamic message)? onFailure,
     required TResult orElse(),
   }) {
@@ -531,6 +680,7 @@ class _$_OnFailure implements _OnFailure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_OnSuccess value) onSuccess,
+    required TResult Function(_NotHavestore value) notHaveStore,
     required TResult Function(_OnFailure value) onFailure,
   }) {
     return onFailure(this);
@@ -542,6 +692,7 @@ class _$_OnFailure implements _OnFailure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
   }) {
     return onFailure?.call(this);
@@ -553,6 +704,7 @@ class _$_OnFailure implements _OnFailure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_OnSuccess value)? onSuccess,
+    TResult Function(_NotHavestore value)? notHaveStore,
     TResult Function(_OnFailure value)? onFailure,
     required TResult orElse(),
   }) {

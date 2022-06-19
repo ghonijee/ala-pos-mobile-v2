@@ -1,10 +1,9 @@
 import 'package:core/core.dart';
-import 'package:core/resource/api_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class AuthRemoteSource {
   ApiClient apiClient;
 
@@ -32,8 +31,26 @@ class AuthRemoteSource {
     }
   }
 
-  register({required String username, required String phone, required String password}) {
-    // Dio dio = apiClient.instance();
+  Future<ApiResponse> register(
+      {required String username, required String phone, required String password, required String deviceName}) async {
+    Dio dio = await apiClient.instance();
+    try {
+      Response registerResponse = await dio.post("/mobile/sign-up", data: {
+        "username": username,
+        "phone": phone,
+        "password": password,
+        "device_name": deviceName,
+      });
+
+      return SuccessResponse.fromJson(registerResponse.data);
+    } on DioError catch (e) {
+      if (kDebugMode) {
+        print(e.message);
+      }
+      rethrow;
+    } catch (e) {
+      return FailedResponse(message: e.toString(), status: false);
+    }
   }
 
   Future<ApiResponse> logout() async {

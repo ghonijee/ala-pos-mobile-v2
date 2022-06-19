@@ -4,9 +4,9 @@ part 'store_model.freezed.dart';
 part 'store_model.g.dart';
 
 @freezed
-class StoreModel {
+class StoreModel with _$StoreModel {
   factory StoreModel({
-    @JsonKey(name: 'id') required int id,
+    @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'name') required String name,
     @JsonKey(name: 'address') String? address,
     @JsonKey(name: 'phone') String? phone,
@@ -14,7 +14,7 @@ class StoreModel {
     @JsonKey(name: 'image_path') String? imagePath,
     @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name: 'updated_at') DateTime? updatedAt,
-    @JsonKey(name: 'laravel_through_key') required String laravelThroughKey,
+    @JsonKey(name: 'laravel_through_key') String? laravelThroughKey,
   }) = _StoreModel;
 
   factory StoreModel.fromJson(Map<String, dynamic> json) => _$StoreModelFromJson(json);

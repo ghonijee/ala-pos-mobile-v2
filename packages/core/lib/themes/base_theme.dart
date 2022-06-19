@@ -6,58 +6,59 @@ import 'package:sizer/sizer.dart';
 
 class BaseTheme {
   static final ThemeData light = ThemeData(
-      drawerTheme: const DrawerThemeData(backgroundColor: AppColors.sidebarLight),
-      primaryColorDark: AppColors.surface,
-      primaryColor: AppColors.primary,
-      backgroundColor: AppColors.backgroundLight,
-      disabledColor: AppColors.textSecondaryLight,
-      inputDecorationTheme: InputDecorationTheme(
-        // filled: true,
-        contentPadding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-        fillColor: AppColors.enableBackgroundLight,
-        hintStyle: GoogleFonts.openSans(
-          color: AppColors.textSecondaryLight,
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0.5,
-        ),
-        focusedBorder: const UnderlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(AppSpacings.s)),
-          borderSide: BorderSide(
-            color: AppColors.primary,
-          ),
-        ),
-        enabledBorder: const UnderlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(AppSpacings.s)),
-          borderSide: BorderSide(
-            color: AppColors.enableBorderLight,
-          ),
+    drawerTheme: const DrawerThemeData(backgroundColor: AppColors.sidebarLight),
+    primaryColorDark: AppColors.surface,
+    primaryColor: AppColors.primary,
+    backgroundColor: AppColors.backgroundLight,
+    disabledColor: AppColors.textSecondaryLight,
+    inputDecorationTheme: InputDecorationTheme(
+      // filled: true,
+      contentPadding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+      fillColor: AppColors.enableBackgroundLight,
+      hintStyle: GoogleFonts.openSans(
+        color: AppColors.textSecondaryLight,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.5,
+      ),
+      focusedBorder: const UnderlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(AppSpacings.s)),
+        borderSide: BorderSide(
+          color: AppColors.primary,
         ),
       ),
-      colorScheme: const ColorScheme.light(
-        background: AppColors.backgroundLight,
-        error: AppColors.errorLight,
-        primary: AppColors.primary,
-        secondary: AppColors.accent,
-        tertiary: AppColors.tertiary,
-        surface: AppColors.surface,
-        onSecondaryContainer: AppColors.emptyContainer,
-      ),
-      appBarTheme: AppBarTheme(
-        color: AppColors.primary,
-        iconTheme: const IconThemeData(
-          color: AppColors.iconLight,
-        ),
-        titleTextStyle: GoogleFonts.openSans(
-          color: AppColors.textPrimaryDark,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-          letterSpacing: 0.15,
+      enabledBorder: const UnderlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(AppSpacings.s)),
+        borderSide: BorderSide(
+          color: AppColors.enableBorderLight,
         ),
       ),
-      dividerTheme: const DividerThemeData(color: AppColors.enableBorderLight),
-      fontFamily: "Open Sans",
-      textTheme: TextTheme(
+    ),
+    colorScheme: const ColorScheme.light(
+      background: AppColors.backgroundLight,
+      error: AppColors.errorLight,
+      primary: AppColors.primary,
+      secondary: AppColors.accent,
+      tertiary: AppColors.tertiary,
+      surface: AppColors.surface,
+      onSecondaryContainer: AppColors.emptyContainer,
+    ),
+    appBarTheme: AppBarTheme(
+      color: AppColors.primary,
+      iconTheme: const IconThemeData(
+        color: AppColors.iconLight,
+      ),
+      titleTextStyle: GoogleFonts.openSans(
+        color: AppColors.textPrimaryDark,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.15,
+      ),
+    ),
+    dividerTheme: const DividerThemeData(color: AppColors.enableBorderLight),
+    fontFamily: "Open Sans",
+    textTheme: GoogleFonts.openSansTextTheme(
+      TextTheme(
         headline1: GoogleFonts.openSans(
           color: AppColors.textDefaultLight,
           fontSize: 96,
@@ -134,5 +135,7 @@ class BaseTheme {
           fontWeight: FontWeight.w400,
           letterSpacing: 1.5,
         ),
-      ));
+      ),
+    ),
+  );
 }

@@ -3,9 +3,6 @@ import 'package:ala_pos/domain/models/auth/login_model.dart';
 import 'package:ala_pos/domain/models/auth_model.dart';
 import 'package:ala_pos/domain/models/user_model.dart';
 import 'package:core/core.dart';
-import 'package:core/helpers/constant.dart';
-import 'package:core/resource/api_response.dart';
-import 'package:core/resource/failure_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -18,11 +15,10 @@ class AuthRepository {
 
   Future<UserModel> get user async {
     var userLogin = await storage.getValueJson(Constant.userLogin);
-    print(userLogin);
     return UserModel.fromJson(userLogin);
   }
 
-  signOut() async {
+  Future<bool> signOut() async {
     try {
       await remoteSource.logout();
       // Clear local storage Token
@@ -42,7 +38,6 @@ class AuthRepository {
         return Right(AuthModel(loggedStatus: false));
       }
       var response = await remoteSource.checkToken();
-      print(response.toString());
 
       if (response.status == true) {
         return Right(
@@ -56,11 +51,8 @@ class AuthRepository {
 
       return Right(AuthModel(loggedStatus: false));
     } on DioError catch (e) {
-      print(e.toString());
-
       return Left(FailureModel.serverError(e.message));
     } catch (e) {
-      print(e.toString());
       return Left(FailureModel.internalError(e.toString()));
     }
   }
@@ -74,9 +66,38 @@ class AuthRepository {
       }
 
       var userLogin = LoginModel.fromJson(response.data);
-      // var userLogin = LoginModel(userModel: UserModel(), personalAccessToken: "as");
       // Save Token
       storage.setValue(Constant.token, userLogin.personalAccessToken);
+      // Save data User
+      storage.setValue(Constant.userLogin, userLogin.userModel.toJson());
+      return Right(userLogin);
+    } on DioError catch (e) {
+      return Left(FailureModel.serverError(e.message));
+    } catch (e) {
+      // print(e);
+      return Left(FailureModel.internalError(e.toString()));
+    }
+  }
+
+  Future<Either<FailureModel, LoginModel>> signUp(
+      {required String username, required String password, required String phone}) async {
+    try {
+      var deviceInfo = await DeviceInfo().ios;
+      ApiResponse response = await remoteSource.register(
+        username: username,
+        password: password,
+        phone: phone,
+        deviceName: deviceInfo.model!,
+      );
+
+      if (!response.status!) {
+        return Left(FailureModel.serverError(response.message));
+      }
+
+      var userLogin = LoginModel.fromJson(response.data);
+      // Save Token
+      storage.setValue(Constant.token, userLogin.personalAccessToken);
+      // Save data User
       storage.setValue(Constant.userLogin, userLogin.userModel.toJson());
       return Right(userLogin);
     } on DioError catch (e) {

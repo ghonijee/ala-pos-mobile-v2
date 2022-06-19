@@ -8,7 +8,7 @@ part of 'store_model.dart';
 
 _$_StoreModel _$$_StoreModelFromJson(Map<String, dynamic> json) =>
     _$_StoreModel(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       name: json['name'] as String,
       address: json['address'] as String?,
       phone: json['phone'] as String?,
@@ -20,7 +20,7 @@ _$_StoreModel _$$_StoreModelFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
-      laravelThroughKey: json['laravel_through_key'] as String,
+      laravelThroughKey: json['laravel_through_key'] as String?,
     );
 
 Map<String, dynamic> _$$_StoreModelToJson(_$_StoreModel instance) =>

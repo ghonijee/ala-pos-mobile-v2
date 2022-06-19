@@ -1,4 +1,3 @@
-import 'package:ala_pos/presentation/pages/login/cubit/login_cubit.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:core/core.dart';
 import 'package:core/styles/styles.dart';
@@ -8,6 +7,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
+
+import '../cubit/login_cubit.dart';
 
 class LoginScreen extends HookWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class LoginScreen extends HookWidget {
         state.when(
             initial: () => null,
             loading: () => null,
+            notHaveStore: () => context.goNamed(RouteName.NewStoreForm),
             onSuccess: () {
               context.go(RouteName.Pos);
             },
@@ -37,7 +39,7 @@ class LoginScreen extends HookWidget {
       }),
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           body: SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl.sp),
@@ -53,20 +55,19 @@ class LoginScreen extends HookWidget {
                     ),
                     Text(
                       "SELAMAT DATANG!",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.bold,
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                            color: Theme.of(context).primaryColor,
                           ),
                     ),
                     SizedBox(
-                      height: AppSpacings.l.sp,
+                      height: AppSpacings.m.sp,
                     ),
                     Text(
                       "Silahkan masuk terlebih dahulu!\nselanjutnya mulai berjualan dengan Alapos.",
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
                     SizedBox(
-                      height: AppSpacings.xl.sp,
+                      height: AppSpacings.x4l.sp,
                     ),
                     TextFormField(
                       controller: username,
@@ -115,12 +116,12 @@ class LoginScreen extends HookWidget {
                         ),
                         orElse: () => Text(
                           "MASUK",
-                          style: Theme.of(context).textTheme.button?.copyWith(color: AppColors.textPrimaryDark),
+                          style: Theme.of(context).primaryTextTheme.button,
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: Theme.of(context).colorScheme.primary,
-                        textStyle: Theme.of(context).textTheme.button?.copyWith(color: AppColors.textPrimaryDark),
+                        textStyle: Theme.of(context).textTheme.button,
                         minimumSize: Size.fromHeight(40.sp),
                       ),
                     ),
@@ -131,13 +132,11 @@ class LoginScreen extends HookWidget {
                       child: TextButton(
                         onPressed: () {
                           context.go(RouteName.Register);
-                          // GoRouter.of(context).push(RouteName.Register);
                         },
                         child: Text(
                           "Belum punya akun? daftar disini.",
-                          style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                                color: AppColors.textDefaultLight,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).primaryColor),
                         ),
                       ),
                     ),
@@ -152,7 +151,7 @@ class LoginScreen extends HookWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 32.sp,
+                      height: 40.sp,
                     ),
                   ],
                 ),

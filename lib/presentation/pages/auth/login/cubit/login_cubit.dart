@@ -1,8 +1,8 @@
+import 'package:ala_pos/domain/repositories/store_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../domain/repositories/auth_repository.dart';
+import '../../../../../domain/repositories/auth_repository.dart';
 
 part 'login_state.dart';
 part 'login_cubit.freezed.dart';
@@ -10,8 +10,9 @@ part 'login_cubit.freezed.dart';
 @injectable
 class LoginCubit extends Cubit<LoginState> {
   final AuthRepository _authRepository;
+  final StoreRepository storeRepository;
 
-  LoginCubit(AuthRepository authRepository)
+  LoginCubit(AuthRepository authRepository, this.storeRepository)
       : _authRepository = authRepository,
         super(LoginState.initial());
 
@@ -24,10 +25,22 @@ class LoginCubit extends Cubit<LoginState> {
       signInAction.fold((failure) {
         emit(LoginState.onFailure(message: failure.message));
       }, (loginModel) {
-        emit(LoginState.onSuccess());
+        checkUserMainStore();
       });
     } catch (e) {
       emit(LoginState.onFailure(message: e.toString()));
     }
+  }
+
+  /// Check user login have main store or not
+  /// if not redirect to StoreForm
+  /// if have emit success and redirect to Home
+  void checkUserMainStore() async {
+    var result = await storeRepository.mainStore();
+    result.fold((l) {
+      emit(LoginState.notHaveStore());
+    }, (r) {
+      emit(LoginState.onSuccess());
+    });
   }
 }

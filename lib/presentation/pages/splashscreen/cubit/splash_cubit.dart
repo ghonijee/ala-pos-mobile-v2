@@ -1,4 +1,3 @@
-import 'package:ala_pos/domain/models/auth_model.dart';
 import 'package:ala_pos/domain/repositories/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

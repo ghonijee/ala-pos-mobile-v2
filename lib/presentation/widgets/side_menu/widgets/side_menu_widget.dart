@@ -80,7 +80,7 @@ class SideMenuView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              userModel.fullname!,
+                              userModel.username!,
                               style: Theme.of(context).textTheme.bodyText1!.copyWith(
                                     color: Theme.of(context).primaryColorDark,
                                     fontWeight: FontWeight.bold,
@@ -120,11 +120,11 @@ class SideMenuView extends StatelessWidget {
               SideMenuItemWidget(
                 title: "Keluar ",
                 onTap: () async {
-                  Navigator.pop(context);
                   var status = await sideMenuCubit.singOut();
                   if (status) {
                     context.go(RouteName.Login);
                   } else {
+                    context.pop();
                     var snackBar = SnackBar(
                       content: Text("Terjadi kesalahan"),
                     );

@@ -17,6 +17,7 @@ export 'helpers/helpers.dart';
 export 'styles/styles.dart';
 export 'themes/themes.dart';
 export 'utils/utils.dart';
+export 'resource/resource.dart';
 
 class Core {
   static get themeLight => BaseTheme.light;

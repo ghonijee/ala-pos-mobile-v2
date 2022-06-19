@@ -21,7 +21,7 @@ StoreModel _$StoreModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StoreModel {
   @JsonKey(name: 'id')
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'address')
@@ -37,7 +37,7 @@ mixin _$StoreModel {
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'laravel_through_key')
-  String get laravelThroughKey => throw _privateConstructorUsedError;
+  String? get laravelThroughKey => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +51,7 @@ abstract class $StoreModelCopyWith<$Res> {
           StoreModel value, $Res Function(StoreModel) then) =
       _$StoreModelCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'id') int id,
+      {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone') String? phone,
@@ -59,7 +59,7 @@ abstract class $StoreModelCopyWith<$Res> {
       @JsonKey(name: 'image_path') String? imagePath,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt,
-      @JsonKey(name: 'laravel_through_key') String laravelThroughKey});
+      @JsonKey(name: 'laravel_through_key') String? laravelThroughKey});
 }
 
 /// @nodoc
@@ -86,7 +86,7 @@ class _$StoreModelCopyWithImpl<$Res> implements $StoreModelCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -118,7 +118,7 @@ class _$StoreModelCopyWithImpl<$Res> implements $StoreModelCopyWith<$Res> {
       laravelThroughKey: laravelThroughKey == freezed
           ? _value.laravelThroughKey
           : laravelThroughKey // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -131,7 +131,7 @@ abstract class _$$_StoreModelCopyWith<$Res>
       __$$_StoreModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'id') int id,
+      {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone') String? phone,
@@ -139,7 +139,7 @@ abstract class _$$_StoreModelCopyWith<$Res>
       @JsonKey(name: 'image_path') String? imagePath,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt,
-      @JsonKey(name: 'laravel_through_key') String laravelThroughKey});
+      @JsonKey(name: 'laravel_through_key') String? laravelThroughKey});
 }
 
 /// @nodoc
@@ -168,7 +168,7 @@ class __$$_StoreModelCopyWithImpl<$Res> extends _$StoreModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ class __$$_StoreModelCopyWithImpl<$Res> extends _$StoreModelCopyWithImpl<$Res>
       laravelThroughKey: laravelThroughKey == freezed
           ? _value.laravelThroughKey
           : laravelThroughKey // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -209,7 +209,7 @@ class __$$_StoreModelCopyWithImpl<$Res> extends _$StoreModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_StoreModel implements _StoreModel {
   _$_StoreModel(
-      {@JsonKey(name: 'id') required this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'name') required this.name,
       @JsonKey(name: 'address') this.address,
       @JsonKey(name: 'phone') this.phone,
@@ -217,14 +217,14 @@ class _$_StoreModel implements _StoreModel {
       @JsonKey(name: 'image_path') this.imagePath,
       @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'updated_at') this.updatedAt,
-      @JsonKey(name: 'laravel_through_key') required this.laravelThroughKey});
+      @JsonKey(name: 'laravel_through_key') this.laravelThroughKey});
 
   factory _$_StoreModel.fromJson(Map<String, dynamic> json) =>
       _$$_StoreModelFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: 'name')
   final String name;
@@ -248,7 +248,7 @@ class _$_StoreModel implements _StoreModel {
   final DateTime? updatedAt;
   @override
   @JsonKey(name: 'laravel_through_key')
-  final String laravelThroughKey;
+  final String? laravelThroughKey;
 
   @override
   String toString() {
@@ -300,7 +300,7 @@ class _$_StoreModel implements _StoreModel {
 abstract class _StoreModel implements StoreModel {
   factory _StoreModel(
       {@JsonKey(name: 'id')
-          required final int id,
+          final int? id,
       @JsonKey(name: 'name')
           required final String name,
       @JsonKey(name: 'address')
@@ -316,14 +316,14 @@ abstract class _StoreModel implements StoreModel {
       @JsonKey(name: 'updated_at')
           final DateTime? updatedAt,
       @JsonKey(name: 'laravel_through_key')
-          required final String laravelThroughKey}) = _$_StoreModel;
+          final String? laravelThroughKey}) = _$_StoreModel;
 
   factory _StoreModel.fromJson(Map<String, dynamic> json) =
       _$_StoreModel.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
@@ -347,7 +347,7 @@ abstract class _StoreModel implements StoreModel {
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'laravel_through_key')
-  String get laravelThroughKey => throw _privateConstructorUsedError;
+  String? get laravelThroughKey => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_StoreModelCopyWith<_$_StoreModel> get copyWith =>
