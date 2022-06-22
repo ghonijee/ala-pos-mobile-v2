@@ -4,7 +4,7 @@ part 'product_model.freezed.dart';
 part 'product_model.g.dart';
 
 @freezed
-class ProductModel {
+class ProductModel with _$ProductModel {
   factory ProductModel({
     @JsonKey(name: "id") required int id,
     @JsonKey(name: "store_id") required String storeId,
