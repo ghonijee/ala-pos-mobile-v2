@@ -67,7 +67,7 @@ class FilterGroup {
   FilterGroup(this.filters, this.conjunction);
 
   factory FilterGroup.and(List<FilterData> data) => FilterGroup(data, "AND");
-  factory FilterGroup.or(List<FilterData> data) => FilterGroup(data, "OR");
+  factory FilterGroup.or(List<FilterData> data) => FilterGroup(data, "or");
 
   List call() {
     List builds = [];

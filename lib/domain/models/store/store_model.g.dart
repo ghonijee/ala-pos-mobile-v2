@@ -20,7 +20,7 @@ _$_StoreModel _$$_StoreModelFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
-      laravelThroughKey: json['laravel_through_key'] as String?,
+      laravelThroughKey: json['laravel_through_key'] as int?,
     );
 
 Map<String, dynamic> _$$_StoreModelToJson(_$_StoreModel instance) =>

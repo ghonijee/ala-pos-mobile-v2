@@ -42,5 +42,7 @@ class LoginCubit extends Cubit<LoginState> {
     }, (r) {
       emit(LoginState.onSuccess());
     });
+
+    // print()
   }
 }

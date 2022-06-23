@@ -19,7 +19,7 @@ mixin _$ListProductState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
     required TResult Function(List<ProductModel> data) loaded,
     required TResult Function() notFound,
   }) =>
@@ -27,7 +27,7 @@ mixin _$ListProductState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
   }) =>
@@ -35,7 +35,7 @@ mixin _$ListProductState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
     required TResult orElse(),
@@ -126,7 +126,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
     required TResult Function(List<ProductModel> data) loaded,
     required TResult Function() notFound,
   }) {
@@ -137,7 +137,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
   }) {
@@ -148,7 +148,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
     required TResult orElse(),
@@ -206,6 +206,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
   factory _$$_LoadingCopyWith(
           _$_Loading value, $Res Function(_$_Loading) then) =
       __$$_LoadingCopyWithImpl<$Res>;
+  $Res call({dynamic nextPage, dynamic fetchData});
 }
 
 /// @nodoc
@@ -217,60 +218,87 @@ class __$$_LoadingCopyWithImpl<$Res>
 
   @override
   _$_Loading get _value => super._value as _$_Loading;
+
+  @override
+  $Res call({
+    Object? nextPage = freezed,
+    Object? fetchData = freezed,
+  }) {
+    return _then(_$_Loading(
+      nextPage: nextPage == freezed ? _value.nextPage : nextPage,
+      fetchData: fetchData == freezed ? _value.fetchData : fetchData,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Loading implements _Loading {
-  const _$_Loading();
+  const _$_Loading({this.nextPage, this.fetchData});
+
+  @override
+  final dynamic nextPage;
+  @override
+  final dynamic fetchData;
 
   @override
   String toString() {
-    return 'ListProductState.loading()';
+    return 'ListProductState.loading(nextPage: $nextPage, fetchData: $fetchData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
+        (other.runtimeType == runtimeType &&
+            other is _$_Loading &&
+            const DeepCollectionEquality().equals(other.nextPage, nextPage) &&
+            const DeepCollectionEquality().equals(other.fetchData, fetchData));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(nextPage),
+      const DeepCollectionEquality().hash(fetchData));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
+      __$$_LoadingCopyWithImpl<_$_Loading>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
     required TResult Function(List<ProductModel> data) loaded,
     required TResult Function() notFound,
   }) {
-    return loading();
+    return loading(nextPage, fetchData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
   }) {
-    return loading?.call();
+    return loading?.call(nextPage, fetchData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(nextPage, fetchData);
     }
     return orElse();
   }
@@ -314,7 +342,14 @@ class _$_Loading implements _Loading {
 }
 
 abstract class _Loading implements ListProductState {
-  const factory _Loading() = _$_Loading;
+  const factory _Loading({final dynamic nextPage, final dynamic fetchData}) =
+      _$_Loading;
+
+  dynamic get nextPage => throw _privateConstructorUsedError;
+  dynamic get fetchData => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -384,7 +419,7 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
     required TResult Function(List<ProductModel> data) loaded,
     required TResult Function() notFound,
   }) {
@@ -395,7 +430,7 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
   }) {
@@ -406,7 +441,7 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
     required TResult orElse(),
@@ -506,7 +541,7 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
     required TResult Function(List<ProductModel> data) loaded,
     required TResult Function() notFound,
   }) {
@@ -517,7 +552,7 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
   }) {
@@ -528,7 +563,7 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
     TResult Function(List<ProductModel> data)? loaded,
     TResult Function()? notFound,
     required TResult orElse(),

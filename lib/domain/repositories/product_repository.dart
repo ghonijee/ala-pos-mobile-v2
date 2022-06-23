@@ -18,15 +18,15 @@ class ProductRepository {
       if (searchValue!.isNotEmpty) {
         filterQuery = filterQuery
           ..where(FilterGroup.or([
-            FilterData("name", searchValue),
-            FilterData("code", searchValue),
+            FilterData("name", searchValue, conjunction: 'contains'),
+            FilterData("code", searchValue, conjunction: 'contains'),
           ]));
       }
 
       ApiResponse response = await remoteSource.paginate(
         page: page.toString(),
         filter: filterQuery.build(),
-        take: 15,
+        take: 20,
         sortBy: 'name',
       );
 
@@ -41,7 +41,7 @@ class ProductRepository {
       }
 
       return Right(data);
-    } catch (e) {
+    } catch (e, stacktrace) {
       return Left(FailureModel.serverError(e.toString()));
     }
   }

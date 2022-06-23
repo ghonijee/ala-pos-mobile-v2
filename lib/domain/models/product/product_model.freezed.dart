@@ -23,7 +23,7 @@ mixin _$ProductModel {
   @JsonKey(name: "id")
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "store_id")
-  String get storeId => throw _privateConstructorUsedError;
+  int get storeId => throw _privateConstructorUsedError;
   @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "description")
@@ -60,7 +60,7 @@ abstract class $ProductModelCopyWith<$Res> {
       _$ProductModelCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "store_id") String storeId,
+      @JsonKey(name: "store_id") int storeId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "description") String description,
       @JsonKey(name: "price") int price,
@@ -106,7 +106,7 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
       storeId: storeId == freezed
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -164,7 +164,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: "id") int id,
-      @JsonKey(name: "store_id") String storeId,
+      @JsonKey(name: "store_id") int storeId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "description") String description,
       @JsonKey(name: "price") int price,
@@ -213,7 +213,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
       storeId: storeId == freezed
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -288,7 +288,7 @@ class _$_ProductModel implements _ProductModel {
   final int id;
   @override
   @JsonKey(name: "store_id")
-  final String storeId;
+  final int storeId;
   @override
   @JsonKey(name: "name")
   final String name;
@@ -384,7 +384,7 @@ abstract class _ProductModel implements ProductModel {
       {@JsonKey(name: "id")
           required final int id,
       @JsonKey(name: "store_id")
-          required final String storeId,
+          required final int storeId,
       @JsonKey(name: "name")
           required final String name,
       @JsonKey(name: "description")
@@ -416,7 +416,7 @@ abstract class _ProductModel implements ProductModel {
   int get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "store_id")
-  String get storeId => throw _privateConstructorUsedError;
+  int get storeId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;

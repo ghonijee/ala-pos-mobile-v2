@@ -14,7 +14,7 @@ class StoreModel with _$StoreModel {
     @JsonKey(name: 'image_path') String? imagePath,
     @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name: 'updated_at') DateTime? updatedAt,
-    @JsonKey(name: 'laravel_through_key') String? laravelThroughKey,
+    @JsonKey(name: 'laravel_through_key') int? laravelThroughKey,
   }) = _StoreModel;
 
   factory StoreModel.fromJson(Map<String, dynamic> json) => _$StoreModelFromJson(json);

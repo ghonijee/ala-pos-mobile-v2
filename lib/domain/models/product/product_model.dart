@@ -7,7 +7,7 @@ part 'product_model.g.dart';
 class ProductModel with _$ProductModel {
   factory ProductModel({
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "store_id") required String storeId,
+    @JsonKey(name: "store_id") required int storeId,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "description") required String description,
     @JsonKey(name: "price") required int price,

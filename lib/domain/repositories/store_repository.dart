@@ -37,7 +37,7 @@ class StoreRepository {
     try {
       ApiResponse response = await remoteSource.main();
 
-      if (!response.status!) {
+      if (response.status! == false) {
         throw Exception(response.message);
       }
 
