@@ -22,7 +22,7 @@ class ProductContainer extends StatelessWidget {
               ),
           child: Center(
               child: Text(
-            product.name.initial(),
+            product.name.initial() + product.id.toString(),
             style: Theme.of(context).textTheme.headline4,
           )),
         ),

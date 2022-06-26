@@ -1,3 +1,4 @@
+import 'package:ala_pos/domain/models/product/product_model.dart';
 import 'package:ala_pos/presentation/pages/pos/cubit/list_product/list_product_cubit.dart';
 import 'package:ala_pos/presentation/pages/pos/widgets/product_container.dart';
 import 'package:ala_pos/presentation/widgets/side_menu/widgets/side_menu_widget.dart';
@@ -15,15 +16,21 @@ class PosScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final listDataProduct = useState(<ProductModel>[]);
     final searchController = useTextEditingController();
     final scrollController = useScrollController();
 
     var listProductCubit = context.read<ListProductCubit>();
-    listProductCubit.getProductList();
+    listProductCubit.getProductList(initialData: true);
 
     return BlocConsumer<ListProductCubit, ListProductState>(
       listener: (context, state) {
-        //
+        // state.maybeWhen(loaded: (data) {
+        //   listDataProduct.value.addAll(data);
+        //   print(listDataProduct.value.length.toString());
+        // }, orElse: () {
+        //   //
+        // });
       },
       builder: (context, state) {
         return Scaffold(
@@ -63,7 +70,7 @@ class PosScreen extends HookWidget {
                         style: Theme.of(context).textTheme.bodyText1,
                         onEditingComplete: () {
                           if (searchController.text.isNotEmpty) {
-                            listProductCubit.getProductList(value: searchController.text);
+                            listProductCubit.getProductList(value: searchController.text, initialData: true);
                           }
                         },
                         decoration: InputDecoration(
@@ -90,7 +97,7 @@ class PosScreen extends HookWidget {
                         height: AppSpacings.m.sp,
                       ),
                       state.maybeWhen(
-                        loading: (nextPage, fetchData) {
+                        loading: () {
                           return Expanded(
                               child: Center(
                             child: CircularProgressIndicator(
@@ -98,27 +105,33 @@ class PosScreen extends HookWidget {
                             ),
                           ));
                         },
-                        loaded: (data) {
+                        loaded: (data, nextPage) {
                           return Expanded(
                             child: GridView.builder(
                                 controller: scrollController
                                   ..addListener(() {
+                                    // print("Offset =>" + scrollController.offset.toString());
+                                    // print("MAX =>" + scrollController.position.maxScrollExtent.toString());
+
                                     if (scrollController.offset == scrollController.position.maxScrollExtent &&
                                         listProductCubit.canFetchingData) {
-                                      print("scroll");
-                                      // context.bloc<BeerBloc>()
-                                      //   ..isFetching = true
-                                      //   ..add(BeerFetchEvent());
+                                      listProductCubit.getProductList(nextPage: true, initialData: false);
                                     }
                                   }),
-                                itemCount: data.length,
+                                itemCount: nextPage ? data.length + 1 : data.length,
                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 3,
                                   crossAxisSpacing: AppSpacings.s.sp,
                                   mainAxisSpacing: AppSpacings.s.sp,
                                 ),
                                 itemBuilder: (context, index) {
-                                  return ProductContainer(data[index]);
+                                  return index >= data.length
+                                      ? Center(
+                                          child: CircularProgressIndicator(
+                                            color: Theme.of(context).primaryColor,
+                                          ),
+                                        )
+                                      : ProductContainer(data[index]);
                                 }),
                           );
                         },
@@ -131,7 +144,7 @@ class PosScreen extends HookWidget {
                                 Text("Produk Belum Tersedia"),
                                 IconButton(
                                   onPressed: () async {
-                                    await listProductCubit.getProductList();
+                                    await listProductCubit.getProductList(initialData: true);
                                   },
                                   icon: Icon(Ionicons.reload),
                                 )

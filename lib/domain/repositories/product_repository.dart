@@ -11,7 +11,7 @@ class ProductRepository {
   ProductRepository(this.remoteSource);
 
   Future<Either<FailureModel, List<ProductModel>>> list(
-      {int page = 1, String? searchValue, required int storeId}) async {
+      {int page = 1, int take = 20, String? searchValue, required int storeId}) async {
     try {
       var filterQuery = FilterBuilder().where(FilterData("store_id", storeId));
 
@@ -26,7 +26,7 @@ class ProductRepository {
       ApiResponse response = await remoteSource.paginate(
         page: page.toString(),
         filter: filterQuery.build(),
-        take: 20,
+        take: take,
         sortBy: 'name',
       );
 

@@ -19,25 +19,28 @@ mixin _$ListProductState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
-    required TResult Function(List<ProductModel> data) loaded,
+    required TResult Function() loading,
+    required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() fetchError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$ListProductState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_FetchError value) fetchError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$ListProductState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$ListProductState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,9 +132,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
-    required TResult Function(List<ProductModel> data) loaded,
+    required TResult Function() loading,
+    required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() fetchError,
   }) {
     return initial();
   }
@@ -137,9 +144,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
   }) {
     return initial?.call();
   }
@@ -148,9 +156,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -166,6 +175,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_FetchError value) fetchError,
   }) {
     return initial(this);
   }
@@ -177,6 +187,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
   }) {
     return initial?.call(this);
   }
@@ -188,6 +199,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -206,7 +218,6 @@ abstract class _$$_LoadingCopyWith<$Res> {
   factory _$$_LoadingCopyWith(
           _$_Loading value, $Res Function(_$_Loading) then) =
       __$$_LoadingCopyWithImpl<$Res>;
-  $Res call({dynamic nextPage, dynamic fetchData});
 }
 
 /// @nodoc
@@ -218,87 +229,63 @@ class __$$_LoadingCopyWithImpl<$Res>
 
   @override
   _$_Loading get _value => super._value as _$_Loading;
-
-  @override
-  $Res call({
-    Object? nextPage = freezed,
-    Object? fetchData = freezed,
-  }) {
-    return _then(_$_Loading(
-      nextPage: nextPage == freezed ? _value.nextPage : nextPage,
-      fetchData: fetchData == freezed ? _value.fetchData : fetchData,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Loading implements _Loading {
-  const _$_Loading({this.nextPage, this.fetchData});
-
-  @override
-  final dynamic nextPage;
-  @override
-  final dynamic fetchData;
+  const _$_Loading();
 
   @override
   String toString() {
-    return 'ListProductState.loading(nextPage: $nextPage, fetchData: $fetchData)';
+    return 'ListProductState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Loading &&
-            const DeepCollectionEquality().equals(other.nextPage, nextPage) &&
-            const DeepCollectionEquality().equals(other.fetchData, fetchData));
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(nextPage),
-      const DeepCollectionEquality().hash(fetchData));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
-      __$$_LoadingCopyWithImpl<_$_Loading>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
-    required TResult Function(List<ProductModel> data) loaded,
+    required TResult Function() loading,
+    required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() fetchError,
   }) {
-    return loading(nextPage, fetchData);
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
   }) {
-    return loading?.call(nextPage, fetchData);
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(nextPage, fetchData);
+      return loading();
     }
     return orElse();
   }
@@ -310,6 +297,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_FetchError value) fetchError,
   }) {
     return loading(this);
   }
@@ -321,6 +309,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
   }) {
     return loading?.call(this);
   }
@@ -332,6 +321,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -342,21 +332,14 @@ class _$_Loading implements _Loading {
 }
 
 abstract class _Loading implements ListProductState {
-  const factory _Loading({final dynamic nextPage, final dynamic fetchData}) =
-      _$_Loading;
-
-  dynamic get nextPage => throw _privateConstructorUsedError;
-  dynamic get fetchData => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
 abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
-  $Res call({List<ProductModel> data});
+  $Res call({List<ProductModel> data, bool nextPage});
 }
 
 /// @nodoc
@@ -371,12 +354,17 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$ListProductStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? nextPage = freezed,
   }) {
     return _then(_$_Loaded(
       data == freezed
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>,
+      nextPage == freezed
+          ? _value.nextPage
+          : nextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -384,7 +372,7 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$ListProductStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(final List<ProductModel> data) : _data = data;
+  const _$_Loaded(final List<ProductModel> data, this.nextPage) : _data = data;
 
   final List<ProductModel> _data;
   @override
@@ -394,8 +382,11 @@ class _$_Loaded implements _Loaded {
   }
 
   @override
+  final bool nextPage;
+
+  @override
   String toString() {
-    return 'ListProductState.loaded(data: $data)';
+    return 'ListProductState.loaded(data: $data, nextPage: $nextPage)';
   }
 
   @override
@@ -403,12 +394,15 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            const DeepCollectionEquality().equals(other.nextPage, nextPage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      const DeepCollectionEquality().hash(nextPage));
 
   @JsonKey(ignore: true)
   @override
@@ -419,35 +413,38 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
-    required TResult Function(List<ProductModel> data) loaded,
+    required TResult Function() loading,
+    required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() fetchError,
   }) {
-    return loaded(data);
+    return loaded(data, nextPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
   }) {
-    return loaded?.call(data);
+    return loaded?.call(data, nextPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(data);
+      return loaded(data, nextPage);
     }
     return orElse();
   }
@@ -459,6 +456,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_FetchError value) fetchError,
   }) {
     return loaded(this);
   }
@@ -470,6 +468,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
   }) {
     return loaded?.call(this);
   }
@@ -481,6 +480,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -491,9 +491,11 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements ListProductState {
-  const factory _Loaded(final List<ProductModel> data) = _$_Loaded;
+  const factory _Loaded(final List<ProductModel> data, final bool nextPage) =
+      _$_Loaded;
 
   List<ProductModel> get data => throw _privateConstructorUsedError;
+  bool get nextPage => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -541,9 +543,10 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(dynamic nextPage, dynamic fetchData) loading,
-    required TResult Function(List<ProductModel> data) loaded,
+    required TResult Function() loading,
+    required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() fetchError,
   }) {
     return notFound();
   }
@@ -552,9 +555,10 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
   }) {
     return notFound?.call();
   }
@@ -563,9 +567,10 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(dynamic nextPage, dynamic fetchData)? loading,
-    TResult Function(List<ProductModel> data)? loaded,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? fetchError,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -581,6 +586,7 @@ class _$_NotFound implements _NotFound {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_FetchError value) fetchError,
   }) {
     return notFound(this);
   }
@@ -592,6 +598,7 @@ class _$_NotFound implements _NotFound {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
   }) {
     return notFound?.call(this);
   }
@@ -603,6 +610,7 @@ class _$_NotFound implements _NotFound {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -614,4 +622,127 @@ class _$_NotFound implements _NotFound {
 
 abstract class _NotFound implements ListProductState {
   const factory _NotFound() = _$_NotFound;
+}
+
+/// @nodoc
+abstract class _$$_FetchErrorCopyWith<$Res> {
+  factory _$$_FetchErrorCopyWith(
+          _$_FetchError value, $Res Function(_$_FetchError) then) =
+      __$$_FetchErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_FetchErrorCopyWithImpl<$Res>
+    extends _$ListProductStateCopyWithImpl<$Res>
+    implements _$$_FetchErrorCopyWith<$Res> {
+  __$$_FetchErrorCopyWithImpl(
+      _$_FetchError _value, $Res Function(_$_FetchError) _then)
+      : super(_value, (v) => _then(v as _$_FetchError));
+
+  @override
+  _$_FetchError get _value => super._value as _$_FetchError;
+}
+
+/// @nodoc
+
+class _$_FetchError implements _FetchError {
+  const _$_FetchError();
+
+  @override
+  String toString() {
+    return 'ListProductState.fetchError()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_FetchError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<ProductModel> data, bool nextPage) loaded,
+    required TResult Function() notFound,
+    required TResult Function() fetchError,
+  }) {
+    return fetchError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
+    TResult Function()? notFound,
+    TResult Function()? fetchError,
+  }) {
+    return fetchError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
+    TResult Function()? notFound,
+    TResult Function()? fetchError,
+    required TResult orElse(),
+  }) {
+    if (fetchError != null) {
+      return fetchError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_FetchError value) fetchError,
+  }) {
+    return fetchError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
+  }) {
+    return fetchError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_FetchError value)? fetchError,
+    required TResult orElse(),
+  }) {
+    if (fetchError != null) {
+      return fetchError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchError implements ListProductState {
+  const factory _FetchError() = _$_FetchError;
 }
