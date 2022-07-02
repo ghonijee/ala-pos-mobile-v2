@@ -1,6 +1,6 @@
 import 'package:core/styles/app_spacing.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
@@ -124,7 +124,7 @@ class OrderSuccessScreen extends StatelessWidget {
                           side: BorderSide(color: Theme.of(context).primaryColor),
                         ),
                         onPressed: () {
-                          context.go(RouteName.Pos);
+                          // context.go(RouteName.Pos);
                         },
                         label: Text(
                           "Cetak Struk",
@@ -165,7 +165,7 @@ class OrderSuccessScreen extends StatelessWidget {
                       minimumSize: Size.fromHeight(40.sp),
                     ),
                     onPressed: () {
-                      context.go(RouteName.Pos);
+                      // context.go(RouteName.Pos);
                     },
                     child: Text(
                       "Selesai",

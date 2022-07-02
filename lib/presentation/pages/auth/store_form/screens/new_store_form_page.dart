@@ -1,11 +1,12 @@
 import 'package:ala_pos/presentation/pages/auth/store_form/cubit/store_form_cubit.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:core/styles/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
@@ -38,7 +39,7 @@ class NewStoreFormScreen extends HookWidget {
     return BlocConsumer<StoreFormCubit, StoreFormState>(
       listener: (context, state) {
         state.maybeWhen(
-            success: () => context.goNamed(RouteName.Pos),
+            success: () => context.router.replaceNamed(RouteName.posWrapper),
             failed: (message) {
               SnackbarMessage.failed(context, message);
             },

@@ -1,11 +1,12 @@
 import 'package:ala_pos/domain/models/user_model.dart';
 import 'package:ala_pos/presentation/widgets/side_menu/cubit/side_menu_cubit.dart';
 import 'package:ala_pos/routes/route_page.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:core/styles/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:sizer/sizer.dart';
 import 'side_menu_item_widget.dart';
 
@@ -122,9 +123,9 @@ class SideMenuView extends StatelessWidget {
                 onTap: () async {
                   var status = await sideMenuCubit.singOut();
                   if (status) {
-                    context.go(RouteName.Login);
+                    context.router.replaceNamed(RouteName.login);
                   } else {
-                    context.pop();
+                    context.router.pop();
                     var snackBar = SnackBar(
                       content: Text("Terjadi kesalahan"),
                     );

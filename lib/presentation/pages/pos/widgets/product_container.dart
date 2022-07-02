@@ -22,7 +22,7 @@ class ProductContainer extends StatelessWidget {
               ),
           child: Center(
               child: Text(
-            product.name.initial() + product.id.toString(),
+            product.name.initial(),
             style: Theme.of(context).textTheme.headline4,
           )),
         ),
@@ -39,12 +39,14 @@ class ProductContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  product.name.titleProduct,
-                  style: Theme.of(context).primaryTextTheme.caption,
+                Flexible(
+                  child: Text(
+                    product.name.titleProduct,
+                    style: Theme.of(context).primaryTextTheme.caption,
+                  ),
                 ),
                 Text(
-                  product.price.toString(),
+                  product.price.toIDR(),
                   style: Theme.of(context).primaryTextTheme.titleSmall,
                 ),
               ],

@@ -1,11 +1,12 @@
 import 'package:ala_pos/routes/route_page.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:core/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:sizer/sizer.dart';
 
 import '../cubit/login_cubit.dart';
@@ -25,9 +26,9 @@ class LoginScreen extends HookWidget {
         state.when(
             initial: () => null,
             loading: () => null,
-            notHaveStore: () => context.goNamed(RouteName.NewStoreForm),
+            notHaveStore: () => context.router.replaceNamed(RouteName.newStoreForm),
             onSuccess: () {
-              context.go(RouteName.Pos);
+              context.router.replaceNamed(RouteName.posWrapper);
             },
             onFailure: (message) {
               var snackBar = SnackBar(
@@ -131,7 +132,7 @@ class LoginScreen extends HookWidget {
                     Center(
                       child: TextButton(
                         onPressed: () {
-                          context.go(RouteName.Register);
+                          context.router.navigateNamed(RouteName.register);
                         },
                         child: Text(
                           "Belum punya akun? daftar disini.",

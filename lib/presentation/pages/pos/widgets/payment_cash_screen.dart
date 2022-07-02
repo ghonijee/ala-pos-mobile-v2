@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:sizer/sizer.dart';
 
 import '../../../../routes/route_page.dart';
@@ -191,7 +191,7 @@ class PaymentCashScreen extends StatelessWidget {
                       minimumSize: Size.fromHeight(40.sp),
                     ),
                     onPressed: () {
-                      context.push(RouteName.PosOrderSuccess);
+                      // context.push(RouteName.PosOrderSuccess);
                     },
                     child: Text(
                       "Bayar",

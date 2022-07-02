@@ -10,7 +10,7 @@ class ProductRemoteSource {
 
   ProductRemoteSource(this.apiClient);
 
-  Future<ApiResponse> paginate({String? page, int take = 10, String? sortBy, bool desc = true, String? filter}) async {
+  Future<ApiResponse> paginate({String? page, int take = 15, String? sortBy, bool desc = true, String? filter}) async {
     Dio dio = await apiClient.instance();
     try {
       Response registerResponse = await dio.get(resouce, queryParameters: {

@@ -1,11 +1,12 @@
 import 'package:ala_pos/presentation/pages/auth/register/cubit/register_cubit.dart';
 import 'package:ala_pos/routes/route_page.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:sizer/sizer.dart';
 
 class RegisterScreen extends HookWidget {
@@ -23,7 +24,7 @@ class RegisterScreen extends HookWidget {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         state.maybeWhen(
-            success: () => context.goNamed(RouteName.NewStoreForm),
+            success: () => context.router.replaceNamed(RouteName.newStoreForm),
             failed: (message) {
               SnackbarMessage.failed(context, message);
             },
@@ -141,7 +142,7 @@ class RegisterScreen extends HookWidget {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        GoRouter.of(context).go(RouteName.Login);
+                        context.router.navigateNamed(RouteName.login);
                       },
                       child: Text(
                         "Sudah punya akun? masuk disini.",

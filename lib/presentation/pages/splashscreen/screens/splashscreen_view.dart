@@ -1,9 +1,9 @@
 import 'package:ala_pos/presentation/pages/splashscreen/cubit/splash_cubit.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:atomic_design/foundations/foundations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class SplashScreenView extends StatelessWidget {
   const SplashScreenView({Key? key}) : super(key: key);
@@ -16,15 +16,13 @@ class SplashScreenView extends StatelessWidget {
       listener: (context, state) {
         state.when(
           loading: () {
-            print("Loading Splash");
+            //
           },
           loaded: (authStatus) {
-            print("Loaded");
-
             if (authStatus) {
-              context.go(RouteName.Pos);
+              context.router.replaceNamed(RouteName.posWrapper);
             } else {
-              context.go(RouteName.Login);
+              context.router.replace(LoginRoute());
             }
           },
         );

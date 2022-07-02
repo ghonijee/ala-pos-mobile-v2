@@ -1,7 +1,7 @@
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:sizer/sizer.dart';
 
 import 'order_discount_screen.dart';
@@ -29,7 +29,7 @@ class ResumeOrderScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return ListTile(
                       onTap: () {
-                        context.push(RouteName.PosOrderItemEdit);
+                        // context.push(RouteName.PosOrderItemEdit);
                       },
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: AppSpacings.l.sp,
@@ -140,7 +140,7 @@ class ResumeOrderScreen extends StatelessWidget {
                           side: BorderSide(color: Theme.of(context).primaryColor),
                         ),
                         onPressed: () {
-                          context.go(RouteName.Pos);
+                          // context.go(RouteName.Pos);
                         },
                         child: Text(
                           "Simpan Order",
@@ -182,7 +182,7 @@ class ResumeOrderScreen extends StatelessWidget {
                       minimumSize: Size.fromHeight(40.sp),
                     ),
                     onPressed: () {
-                      context.push(RouteName.PosPaymentCash);
+                      // context.push(RouteName.PosPaymentCash);
                     },
                     child: Text(
                       "Lanjut Pembayaran",

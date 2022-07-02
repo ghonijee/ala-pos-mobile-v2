@@ -1,15 +1,16 @@
-part of "route_page.dart";
+part of 'route_page.dart';
 
 class RouteName {
-  static const SplashScreen = "/Splashscreen";
-  static const Login = "/login";
-  static const Register = "/register";
-  static const NewStoreForm = "store";
-  static const Pos = "/pos";
-  static const PosCart = "/pos/cart";
-  static const PosOrderItemEdit = "/pos/order/item/edit";
-  static const PosOrderResume = "/pos/order/resume";
-  static const PosPaymentCash = "/pos/payment/cash";
-  static const PosOrderSuccess = "/pos/order/success";
-  static const PosPrintReceipt = "/pos/print/receipt";
+  static const splashScreen = "Splashscreen";
+  static const login = "login";
+  static const register = "register";
+  static const newStoreForm = "new/store/form";
+  static const posWrapper = "pos/";
+  static const posProduct = "pos/product";
+  static const posCart = "pos/cart";
+  static const posOrderItemEdit = "pos/order/item/edit";
+  static const posOrderResume = "pos/order/resume";
+  static const posPaymentCash = "pos/payment/cash";
+  static const posOrderSuccess = "pos/order/success";
+  static const posPrintReceipt = "pos/print/receipt";
 }
