@@ -8,7 +8,7 @@ class RouteName {
   static const posWrapper = "pos/";
   static const posProduct = "pos/product";
   static const posCart = "pos/cart";
-  static const posOrderItemEdit = "pos/order/item/edit";
+  static const posCartItemDetail = "pos/cart/edit/:index";
   static const posOrderResume = "pos/order/resume";
   static const posPaymentCash = "pos/payment/cash";
   static const posOrderSuccess = "pos/order/success";

@@ -53,15 +53,28 @@ class CartPage extends HookWidget implements AutoRouteWrapper {
                         TransactionItemModel itemModel = state.items[index];
                         return ListTile(
                           onTap: () {
-                            // context.push(RouteName.PosOrderItemEdit);
+                            var routeName = RouteName.posCartItemDetail.replaceFirst(":index", index.toString());
+                            context.router.pushNamed(routeName);
                           },
                           contentPadding: EdgeInsets.symmetric(
                             horizontal: AppSpacings.m.sp,
                           ),
-                          title: Text(itemModel.product.name),
-                          subtitle: Text(
-                            itemModel.price.toIDR(),
-                            style: Theme.of(context).textTheme.caption,
+                          title: Text(
+                            itemModel.productName,
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                itemModel.price.toIDR(),
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                              Text(
+                                itemModel.note ?? "",
+                                style: Theme.of(context).textTheme.caption,
+                              ),
+                            ],
                           ),
                           trailing: SizedBox(
                             width: 80.sp,
@@ -71,7 +84,7 @@ class CartPage extends HookWidget implements AutoRouteWrapper {
                               children: [
                                 IconButton(
                                   onPressed: () {
-                                    cartCubit.add(itemModel.product);
+                                    cartCubit.increase(itemModel);
                                   },
                                   icon: Icon(Ionicons.add_circle_outline),
                                 ),

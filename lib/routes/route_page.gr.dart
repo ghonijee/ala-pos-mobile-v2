@@ -44,6 +44,15 @@ class _$RoutePage extends RootStackRouter {
     CartRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: WrappedRoute(child: const CartPage()));
+    },
+    CartItemDetailRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<CartItemDetailRouteArgs>(
+          orElse: () =>
+              CartItemDetailRouteArgs(indexItem: pathParams.getInt('index')));
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: CartItemDetailPage(key: args.key, indexItem: args.indexItem));
     }
   };
 
@@ -62,7 +71,9 @@ class _$RoutePage extends RootStackRouter {
           RouteConfig(PosRoute.name,
               path: 'pos/product', parent: PosWrapperRoute.name),
           RouteConfig(CartRoute.name,
-              path: 'pos/cart', parent: PosWrapperRoute.name)
+              path: 'pos/cart', parent: PosWrapperRoute.name),
+          RouteConfig(CartItemDetailRoute.name,
+              path: 'pos/cart/edit/:index', parent: PosWrapperRoute.name)
         ])
       ];
 }
@@ -123,4 +134,29 @@ class CartRoute extends PageRouteInfo<void> {
   const CartRoute() : super(CartRoute.name, path: 'pos/cart');
 
   static const String name = 'CartRoute';
+}
+
+/// generated route for
+/// [CartItemDetailPage]
+class CartItemDetailRoute extends PageRouteInfo<CartItemDetailRouteArgs> {
+  CartItemDetailRoute({Key? key, required int indexItem})
+      : super(CartItemDetailRoute.name,
+            path: 'pos/cart/edit/:index',
+            args: CartItemDetailRouteArgs(key: key, indexItem: indexItem),
+            rawPathParams: {'index': indexItem});
+
+  static const String name = 'CartItemDetailRoute';
+}
+
+class CartItemDetailRouteArgs {
+  const CartItemDetailRouteArgs({this.key, required this.indexItem});
+
+  final Key? key;
+
+  final int indexItem;
+
+  @override
+  String toString() {
+    return 'CartItemDetailRouteArgs{key: $key, indexItem: $indexItem}';
+  }
 }

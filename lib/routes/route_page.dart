@@ -15,6 +15,7 @@ part 'route_page.gr.dart';
     AutoRoute(page: PosWrapperPage, path: RouteName.posWrapper, children: [
       AutoRoute(page: PosPage, path: RouteName.posProduct, initial: true),
       AutoRoute(page: CartPage, path: RouteName.posCart),
+      AutoRoute(page: CartItemDetailPage, path: RouteName.posCartItemDetail),
     ]),
   ],
 )

@@ -12,6 +12,20 @@ extension extensionString on String {
     }
     return name;
   }
+
+  int? toNumber() {
+    if (this.length > 0) {
+      return int.parse(this);
+    }
+    return null;
+  }
+
+  double? toDouble() {
+    if (this.length > 0) {
+      return double.parse(this);
+    }
+    return null;
+  }
 }
 
 extension extensionInt on int {

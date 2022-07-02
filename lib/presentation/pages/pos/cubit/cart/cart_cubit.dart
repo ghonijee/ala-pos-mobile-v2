@@ -20,7 +20,7 @@ class CartCubit extends Cubit<CartState> {
       price: productModel.price,
       id: '',
       productId: productModel.id,
-      product: productModel,
+      productName: productModel.name,
       storeId: 1,
       transactionId: '',
     );
@@ -37,14 +37,34 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
+  increase(TransactionItemModel cartItem) async {
+    final cartItemIndex = state.items.indexWhere(
+      (item) => item.productId == cartItem.productId,
+    );
+
+    _increaseCartItemCount(cartItem, cartItemIndex);
+  }
+
   decrease(TransactionItemModel cartItem) async {
     final cartItemIndex = state.items.indexWhere(
       (item) => item.productId == cartItem.productId,
     );
 
-    if (cartItemIndex >= 0) {
-      _decreaseCartItemCount(cartItem, cartItemIndex);
-    } else {}
+    _decreaseCartItemCount(cartItem, cartItemIndex);
+  }
+
+  updateItem(TransactionItemModel cartItem, index) {
+    final items = state.items.rebuild(
+      (builder) => builder[index] = cartItem,
+    );
+    emit(state.copyWith(items: items));
+  }
+
+  deleteItem(int index) {
+    final items = state.items.rebuild(
+      (builder) => builder.removeAt(index),
+    );
+    emit(state.copyWith(items: items));
   }
 
   _increaseCartItemCount(

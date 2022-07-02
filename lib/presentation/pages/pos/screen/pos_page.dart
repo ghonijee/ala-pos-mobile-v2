@@ -1,8 +1,4 @@
-import 'package:ala_pos/domain/models/product/product_model.dart';
 import 'package:ala_pos/presentation/pages/pages.dart';
-import 'package:ala_pos/presentation/pages/pos/cubit/cart/cart_cubit.dart';
-import 'package:ala_pos/presentation/pages/pos/cubit/list_product/list_product_cubit.dart';
-import 'package:ala_pos/presentation/pages/pos/widgets/product_container.dart';
 import 'package:ala_pos/presentation/widgets/side_menu/widgets/side_menu_widget.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:auto_route/auto_route.dart';
