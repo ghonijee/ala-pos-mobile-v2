@@ -23,5 +23,9 @@ class TransactionItemModel with _$TransactionItemModel {
     @JsonKey(name: "amount") required int amount,
   }) = _TransactionItemModel;
 
+  int get result {
+    return price - discountPrice;
+  }
+
   factory TransactionItemModel.fromJson(Map<String, dynamic> json) => _$TransactionItemModelFromJson(json);
 }

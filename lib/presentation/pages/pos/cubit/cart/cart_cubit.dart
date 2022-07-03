@@ -53,9 +53,15 @@ class CartCubit extends Cubit<CartState> {
     _decreaseCartItemCount(cartItem, cartItemIndex);
   }
 
-  updateItem(TransactionItemModel cartItem, index) {
+  updateItem(TransactionItemModel cartItem, index) async {
     final items = state.items.rebuild(
-      (builder) => builder[index] = cartItem,
+      (builder) => builder[index] = builder[index].copyWith(
+        productName: cartItem.productName,
+        price: cartItem.price,
+        quantity: cartItem.quantity,
+        discountPrice: cartItem.discountPrice,
+        note: cartItem.note,
+      ),
     );
     emit(state.copyWith(items: items));
   }

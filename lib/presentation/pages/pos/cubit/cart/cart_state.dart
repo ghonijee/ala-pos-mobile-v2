@@ -19,7 +19,7 @@ class CartState with _$CartState {
   int get amountPrice {
     var count = 0;
     for (var item in items) {
-      count += item.price * item.quantity;
+      count += item.result * item.quantity;
     }
     return count;
   }

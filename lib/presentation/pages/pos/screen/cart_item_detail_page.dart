@@ -9,10 +9,18 @@ import 'package:sizer/sizer.dart';
 
 import '../cubit/cart/cart_cubit.dart';
 
-class CartItemDetailPage extends HookWidget {
+class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
   const CartItemDetailPage({Key? key, @PathParam('index') required this.indexItem}) : super(key: key);
 
   final int indexItem;
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider.value(
+      value: BlocProvider.of<CartCubit>(context),
+      child: this,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -210,8 +218,8 @@ class CartItemDetailPage extends HookWidget {
                     ),
                     onPressed: () {
                       // context.pop();
-                      context.router.pop();
                       cartCubit.deleteItem(indexItem);
+                      context.router.pop();
                     },
                     label: Text(
                       "Hapus",
@@ -227,14 +235,16 @@ class CartItemDetailPage extends HookWidget {
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size.fromWidth(45.w),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       // context.pop();
+                      // context.router.pop();
+
                       itemCart.value.productName = namaProductField.text;
                       itemCart.value.price = hargaProductField.text.toNumber()!;
                       itemCart.value.quantity = jumlahProductField.text.toNumber()!;
                       itemCart.value.discountPrice = discountProductField.text.toNumber()!;
                       itemCart.value.note = noteProductField.text;
-                      cartCubit.updateItem(itemCart.value, indexItem);
+                      await cartCubit.updateItem(itemCart.value, indexItem);
                       context.router.pop();
                     },
                     child: Text(

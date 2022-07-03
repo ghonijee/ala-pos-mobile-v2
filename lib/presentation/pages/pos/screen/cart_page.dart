@@ -66,10 +66,25 @@ class CartPage extends HookWidget implements AutoRouteWrapper {
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                itemModel.price.toIDR(),
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
+                              itemModel.discountPrice > 0
+                                  ? Text.rich(
+                                      TextSpan(
+                                        text: itemModel.price.toIDR(),
+                                        style: TextStyle(decoration: TextDecoration.lineThrough),
+                                        children: [
+                                          TextSpan(
+                                            text: " " + itemModel.result.toIDR(),
+                                            style: TextStyle(
+                                              decoration: TextDecoration.none,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  : Text(
+                                      itemModel.result.toIDR(),
+                                      style: Theme.of(context).textTheme.bodyMedium,
+                                    ),
                               Text(
                                 itemModel.note ?? "",
                                 style: Theme.of(context).textTheme.caption,
