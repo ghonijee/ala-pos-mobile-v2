@@ -12,18 +12,18 @@ _$_TransactionModel _$$_TransactionModelFromJson(Map<String, dynamic> json) {
     requiredKeys: const ['id', 'user_id', 'date', 'amount', 'receivedMoney'],
   );
   return _$_TransactionModel(
-    id: json['id'] as String,
-    userId: json['user_id'] as String,
-    storeId: json['store_id'] as String,
-    date: DateTime.parse(json['date'] as String),
+    id: json['id'] as String?,
+    userId: json['user_id'] as int?,
+    storeId: json['store_id'] as int?,
+    date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
     status: json['status'] as String?,
-    discount: (json['discount'] as num?)?.toDouble(),
+    discountPrice: json['discount'] as int? ?? 0,
     note: json['note'] as String?,
-    amount: json['amount'] as int,
-    receivedMoney: json['receivedMoney'] as int,
+    amount: json['amount'] as int? ?? 0,
+    receivedMoney: json['receivedMoney'] as int?,
     changeMoney: json['changeMoney'] as int?,
-    items: (json['items'] as List<dynamic>)
-        .map((e) => TransactionItemModel.fromJson(e as Map<String, dynamic>))
+    items: (json['items'] as List<dynamic>?)
+        ?.map((e) => TransactionItemModel.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -33,9 +33,9 @@ Map<String, dynamic> _$$_TransactionModelToJson(_$_TransactionModel instance) =>
       'id': instance.id,
       'user_id': instance.userId,
       'store_id': instance.storeId,
-      'date': instance.date.toIso8601String(),
+      'date': instance.date?.toIso8601String(),
       'status': instance.status,
-      'discount': instance.discount,
+      'discount': instance.discountPrice,
       'note': instance.note,
       'amount': instance.amount,
       'receivedMoney': instance.receivedMoney,

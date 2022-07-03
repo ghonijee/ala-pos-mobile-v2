@@ -16,6 +16,8 @@ part 'route_page.gr.dart';
       AutoRoute(page: PosPage, path: RouteName.posProduct, initial: true),
       AutoRoute(page: CartPage, path: RouteName.posCart),
       AutoRoute(page: CartItemDetailPage, path: RouteName.posCartItemDetail),
+      AutoRoute(page: ResumeOrderPage, path: RouteName.posOrderResume),
+      AutoRoute(page: PaymentCashPage, path: RouteName.posPaymentCash),
     ]),
   ],
 )

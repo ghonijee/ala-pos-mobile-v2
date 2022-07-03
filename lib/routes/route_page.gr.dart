@@ -52,7 +52,17 @@ class _$RoutePage extends RootStackRouter {
               CartItemDetailRouteArgs(indexItem: pathParams.getInt('index')));
       return MaterialPageX<dynamic>(
           routeData: routeData,
-          child: CartItemDetailPage(key: args.key, indexItem: args.indexItem));
+          child: WrappedRoute(
+              child: CartItemDetailPage(
+                  key: args.key, indexItem: args.indexItem)));
+    },
+    ResumeOrderRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ResumeOrderPage());
+    },
+    PaymentCashRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const PaymentCashPage());
     }
   };
 
@@ -73,7 +83,11 @@ class _$RoutePage extends RootStackRouter {
           RouteConfig(CartRoute.name,
               path: 'pos/cart', parent: PosWrapperRoute.name),
           RouteConfig(CartItemDetailRoute.name,
-              path: 'pos/cart/edit/:index', parent: PosWrapperRoute.name)
+              path: 'pos/cart/edit/:index', parent: PosWrapperRoute.name),
+          RouteConfig(ResumeOrderRoute.name,
+              path: 'pos/order/resume', parent: PosWrapperRoute.name),
+          RouteConfig(PaymentCashRoute.name,
+              path: 'pos/payment/cash', parent: PosWrapperRoute.name)
         ])
       ];
 }
@@ -159,4 +173,22 @@ class CartItemDetailRouteArgs {
   String toString() {
     return 'CartItemDetailRouteArgs{key: $key, indexItem: $indexItem}';
   }
+}
+
+/// generated route for
+/// [ResumeOrderPage]
+class ResumeOrderRoute extends PageRouteInfo<void> {
+  const ResumeOrderRoute()
+      : super(ResumeOrderRoute.name, path: 'pos/order/resume');
+
+  static const String name = 'ResumeOrderRoute';
+}
+
+/// generated route for
+/// [PaymentCashPage]
+class PaymentCashRoute extends PageRouteInfo<void> {
+  const PaymentCashRoute()
+      : super(PaymentCashRoute.name, path: 'pos/payment/cash');
+
+  static const String name = 'PaymentCashRoute';
 }

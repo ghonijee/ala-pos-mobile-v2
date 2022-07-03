@@ -10,6 +10,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
+import '../cubit/resume/transaction_resume_cubit.dart';
+
 class CartPage extends HookWidget implements AutoRouteWrapper {
   const CartPage({Key? key}) : super(key: key);
 
@@ -24,10 +26,14 @@ class CartPage extends HookWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     var cartCubit = BlocProvider.of<CartCubit>(context);
+    var resumeCubit = BlocProvider.of<TransactionResumeCubit>(context);
 
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) {
-        //
+        print("change");
+        resumeCubit.init(
+          cartCubit.state.items.toList(),
+        );
       },
       builder: (context, state) {
         return Scaffold(
@@ -152,6 +158,7 @@ class CartPage extends HookWidget implements AutoRouteWrapper {
                         ),
                         onPressed: () {
                           // context.push(RouteName.PosOrderResume);
+                          context.router.pushNamed(RouteName.posOrderResume);
                         },
                         child: Text(
                           "Checkout",

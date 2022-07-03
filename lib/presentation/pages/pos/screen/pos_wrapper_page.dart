@@ -1,3 +1,4 @@
+import 'package:ala_pos/presentation/pages/pages.dart';
 import 'package:ala_pos/presentation/pages/pos/cubit/cart/cart_cubit.dart';
 import 'package:ala_pos/presentation/pages/pos/cubit/list_product/list_product_cubit.dart';
 import 'package:ala_pos/presentation/pages/pos/screen/pos_page.dart';
@@ -15,6 +16,7 @@ class PosWrapperPage extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => GetIt.I.get<ListProductCubit>()),
         BlocProvider(create: (_) => GetIt.I.get<CartCubit>()),
+        BlocProvider(create: (_) => GetIt.I.get<TransactionResumeCubit>()),
       ],
       child: AutoRouter(),
     );

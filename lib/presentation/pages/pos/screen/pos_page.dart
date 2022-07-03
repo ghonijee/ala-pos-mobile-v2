@@ -20,6 +20,8 @@ class PosPage extends HookWidget {
 
     var listProductCubit = context.read<ListProductCubit>();
     var cartCubit = context.read<CartCubit>();
+    var resumeCubit = BlocProvider.of<TransactionResumeCubit>(context);
+
     listProductCubit.getProductList(initialData: true);
 
     return BlocConsumer<ListProductCubit, ListProductState>(
@@ -147,7 +149,13 @@ class PosPage extends HookWidget {
                     ],
                   ),
                 ),
-                BlocBuilder<CartCubit, CartState>(
+                BlocConsumer<CartCubit, CartState>(
+                  listener: (context, state) {
+                    print("change POS");
+                    resumeCubit.init(
+                      cartCubit.state.items.toList(),
+                    );
+                  },
                   buildWhen: (previous, current) => current.items.isNotEmpty,
                   builder: (context, state) {
                     if (state.items.isEmpty) {
@@ -155,7 +163,7 @@ class PosPage extends HookWidget {
                     }
                     return GestureDetector(
                       onTap: () {
-                        context.router.pushNamed(RouteName.posCart);
+                        context.router.pushNamed(RouteName.posOrderResume);
                       },
                       child: Align(
                         alignment: Alignment.bottomCenter,
