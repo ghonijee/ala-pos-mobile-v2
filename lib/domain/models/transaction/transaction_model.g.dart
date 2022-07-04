@@ -20,8 +20,8 @@ _$_TransactionModel _$$_TransactionModelFromJson(Map<String, dynamic> json) {
     discountPrice: json['discount'] as int? ?? 0,
     note: json['note'] as String?,
     amount: json['amount'] as int? ?? 0,
-    receivedMoney: json['receivedMoney'] as int?,
-    changeMoney: json['changeMoney'] as int?,
+    receivedMoney: json['receivedMoney'] as int? ?? 0,
+    changeMoney: json['changeMoney'] as int? ?? 0,
     items: (json['items'] as List<dynamic>?)
         ?.map((e) => TransactionItemModel.fromJson(e as Map<String, dynamic>))
         .toList(),

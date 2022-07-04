@@ -1,6 +1,4 @@
-import 'package:ala_pos/domain/models/product/product_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
 
 part 'transaction_item_model.freezed.dart';
 part 'transaction_item_model.g.dart';

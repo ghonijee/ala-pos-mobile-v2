@@ -271,8 +271,8 @@ class _$_TransactionModel extends _TransactionModel
       @JsonKey(name: "discount", required: false) this.discountPrice = 0,
       @JsonKey(name: "note", required: false) this.note,
       @JsonKey(name: "amount", required: true) this.amount = 0,
-      @JsonKey(name: "receivedMoney", required: true) this.receivedMoney,
-      @JsonKey(name: "changeMoney", required: false) this.changeMoney,
+      @JsonKey(name: "receivedMoney", required: true) this.receivedMoney = 0,
+      @JsonKey(name: "changeMoney", required: false) this.changeMoney = 0,
       @JsonKey(name: "items") this.items})
       : super._();
 

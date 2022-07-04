@@ -20,8 +20,8 @@ class TransactionModel with _$TransactionModel {
     @JsonKey(name: "discount", required: false) @Default(0) int? discountPrice,
     @JsonKey(name: "note", required: false) String? note,
     @JsonKey(name: "amount", required: true) @Default(0) int? amount,
-    @JsonKey(name: "receivedMoney", required: true) int? receivedMoney,
-    @JsonKey(name: "changeMoney", required: false) int? changeMoney,
+    @JsonKey(name: "receivedMoney", required: true) @Default(0) int? receivedMoney,
+    @JsonKey(name: "changeMoney", required: false) @Default(0) int? changeMoney,
     @JsonKey(name: "items") List<TransactionItemModel>? items,
   }) = _TransactionModel;
 
