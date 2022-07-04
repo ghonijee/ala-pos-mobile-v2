@@ -1,11 +1,15 @@
 import 'package:ala_pos/presentation/pages/pages.dart';
 import 'package:ala_pos/presentation/pages/pos/cubit/payment/payment_cubit.dart';
+import 'package:ala_pos/routes/route_page.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sizer/sizer.dart';
+
+import '../cubit/submit_transaction/submit_transaction_cubit.dart';
 
 class PaymentCashPage extends HookWidget {
   const PaymentCashPage({Key? key}) : super(key: key);
@@ -14,6 +18,7 @@ class PaymentCashPage extends HookWidget {
   Widget build(BuildContext context) {
     var resumeCubit = context.read<TransactionResumeCubit>();
     var paymentCubit = context.read<PaymentCubit>();
+    var submitCubit = context.read<SubmitTransactionCubit>();
 
     paymentCubit.init(resumeCubit.state.model!);
 
@@ -21,10 +26,8 @@ class PaymentCashPage extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text("Pembayaran")),
-      body: BlocConsumer<PaymentCubit, PaymentState>(
-        listener: (context, state) {},
+      body: BlocBuilder<PaymentCubit, PaymentState>(
         builder: (context, state) {
-          print("builder");
           return Container(
             width: 100.w,
             height: 100.h,
@@ -273,7 +276,9 @@ class PaymentCashPage extends HookWidget {
                           if (!check) {
                             SnackbarMessage.failed(context, "Pembayaran masih kurang!");
                           } else {
-                            print("Success");
+                            var model = state.maybeWhen(orElse: () => null, loaded: (model) => model);
+                            submitCubit.submitData(model!);
+                            context.router.pushNamed(RouteName.posOrderSuccess);
                           }
                         },
                         child: Text(

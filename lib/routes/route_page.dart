@@ -1,3 +1,4 @@
+import 'package:ala_pos/presentation/pages/pos/screen/order_result_page.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../presentation/pages/pages.dart';
@@ -18,6 +19,7 @@ part 'route_page.gr.dart';
       AutoRoute(page: CartItemDetailPage, path: RouteName.posCartItemDetail),
       AutoRoute(page: ResumeOrderPage, path: RouteName.posOrderResume),
       AutoRoute(page: PaymentCashPage, path: RouteName.posPaymentCash),
+      AutoRoute(page: OrderResultPage, path: RouteName.posOrderSuccess),
     ]),
   ],
 )

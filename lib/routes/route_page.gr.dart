@@ -63,6 +63,10 @@ class _$RoutePage extends RootStackRouter {
     PaymentCashRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PaymentCashPage());
+    },
+    OrderResultRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const OrderResultPage());
     }
   };
 
@@ -87,7 +91,9 @@ class _$RoutePage extends RootStackRouter {
           RouteConfig(ResumeOrderRoute.name,
               path: 'pos/order/resume', parent: PosWrapperRoute.name),
           RouteConfig(PaymentCashRoute.name,
-              path: 'pos/payment/cash', parent: PosWrapperRoute.name)
+              path: 'pos/payment/cash', parent: PosWrapperRoute.name),
+          RouteConfig(OrderResultRoute.name,
+              path: 'pos/order/success', parent: PosWrapperRoute.name)
         ])
       ];
 }
@@ -191,4 +197,13 @@ class PaymentCashRoute extends PageRouteInfo<void> {
       : super(PaymentCashRoute.name, path: 'pos/payment/cash');
 
   static const String name = 'PaymentCashRoute';
+}
+
+/// generated route for
+/// [OrderResultPage]
+class OrderResultRoute extends PageRouteInfo<void> {
+  const OrderResultRoute()
+      : super(OrderResultRoute.name, path: 'pos/order/success');
+
+  static const String name = 'OrderResultRoute';
 }

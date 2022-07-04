@@ -13,6 +13,10 @@ part 'cart_cubit.freezed.dart';
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartState.initial());
 
+  resetCart() {
+    // emit(CartState.initial());
+  }
+
   add(ProductModel productModel) async {
     final cartItem = TransactionItemModel(
       quantity: 1,
