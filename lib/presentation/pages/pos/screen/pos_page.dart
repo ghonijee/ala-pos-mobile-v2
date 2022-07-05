@@ -151,12 +151,10 @@ class PosPage extends HookWidget {
                 ),
                 BlocConsumer<CartCubit, CartState>(
                   listener: (context, state) {
-                    print("change POS");
                     resumeCubit.init(
                       cartCubit.state.items.toList(),
                     );
                   },
-                  buildWhen: (previous, current) => current.items.isNotEmpty,
                   builder: (context, state) {
                     if (state.items.isEmpty) {
                       return SizedBox();
