@@ -1,4 +1,3 @@
-import 'package:ala_pos/presentation/pages/pages.dart';
 import 'package:ala_pos/presentation/widgets/side_menu/widgets/side_menu_widget.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:auto_route/auto_route.dart';
@@ -6,31 +5,30 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
+import '../cubit/master_product_cubit.dart';
+import 'product_item_widget.dart';
 
-class PosPage extends HookWidget {
-  const PosPage({Key? key}) : super(key: key);
+class ProductGridScreen extends HookWidget {
+  const ProductGridScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final searchController = useTextEditingController();
     final scrollController = useScrollController();
 
-    var listProductCubit = context.read<ListProductCubit>();
-    var cartCubit = context.read<CartCubit>();
-    var resumeCubit = BlocProvider.of<TransactionResumeCubit>(context);
+    var masterProductCubit = context.read<MasterProductCubit>();
+
+    masterProductCubit.getProductList(initialData: true);
 
     scrollController.addListener(() {
       if (scrollController.offset == scrollController.position.maxScrollExtent) {
-        listProductCubit.getProductList(nextPage: true, initialData: false);
+        masterProductCubit.getProductList(nextPage: true, initialData: false);
       }
     });
 
-    listProductCubit.getProductList(initialData: true);
-
-    return BlocConsumer<ListProductCubit, ListProductState>(
+    return BlocConsumer<MasterProductCubit, MasterProductState>(
       listener: (context, state) {
         //
       },
@@ -39,13 +37,13 @@ class PosPage extends HookWidget {
           drawer: SideMenuWidget(),
           backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
-            title: Text("Alapos"),
+            title: Text("Master Produk"),
             actions: [
               IconButton(
                 onPressed: () {
-                  context.router.navigateNamed(CartPageRoute.name);
+                  context.router.navigateNamed(RouteName.productForm);
                 },
-                icon: Icon(Ionicons.cart_outline),
+                icon: Icon(Ionicons.bag_add_sharp),
               )
             ],
           ),
@@ -69,7 +67,7 @@ class PosPage extends HookWidget {
                         style: Theme.of(context).textTheme.bodyText1,
                         onEditingComplete: () {
                           if (searchController.text.isNotEmpty) {
-                            listProductCubit.getProductList(value: searchController.text, initialData: true);
+                            masterProductCubit.getProductList(value: searchController.text, initialData: true);
                           }
                         },
                         decoration: InputDecoration(
@@ -106,14 +104,10 @@ class PosPage extends HookWidget {
                         },
                         loaded: (data, nextPage) {
                           return Expanded(
-                            child: GridView.builder(
+                            child: ListView.separated(
+                                separatorBuilder: (_, index) => Divider(),
                                 controller: scrollController,
                                 itemCount: nextPage ? data.length + 1 : data.length,
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: AppSpacings.s.sp,
-                                  mainAxisSpacing: AppSpacings.s.sp,
-                                ),
                                 itemBuilder: (context, index) {
                                   return index >= data.length
                                       ? Center(
@@ -122,8 +116,8 @@ class PosPage extends HookWidget {
                                           ),
                                         )
                                       : InkWell(
-                                          onTap: () => cartCubit.add(data[index]),
-                                          child: ProductContainer(data[index]),
+                                          onTap: () {},
+                                          child: ProductItemWidget(data[index]),
                                         );
                                 }),
                           );
@@ -137,7 +131,7 @@ class PosPage extends HookWidget {
                                 Text("Produk Belum Tersedia"),
                                 IconButton(
                                   onPressed: () async {
-                                    await listProductCubit.getProductList(initialData: true);
+                                    // await masterProductCubit.getProductList(initialData: true);
                                   },
                                   icon: Icon(Ionicons.reload),
                                 )
@@ -149,42 +143,6 @@ class PosPage extends HookWidget {
                     ],
                   ),
                 ),
-                BlocConsumer<CartCubit, CartState>(
-                  listener: (context, state) {
-                    resumeCubit.init(
-                      cartCubit.state.items.toList(),
-                    );
-                  },
-                  builder: (context, state) {
-                    if (state.items.isEmpty) {
-                      return SizedBox();
-                    }
-                    return GestureDetector(
-                      onTap: () {
-                        context.router.pushNamed(RouteName.posOrderResume);
-                      },
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl),
-                          width: 100.w,
-                          height: 50.sp,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Total ", style: Theme.of(context).primaryTextTheme.titleMedium),
-                              Text("${state.amountPrice.toIDR()} (${state.countItem} Item)",
-                                  style: Theme.of(context).primaryTextTheme.titleMedium),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
               ],
             ),
           ),

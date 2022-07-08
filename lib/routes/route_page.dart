@@ -2,12 +2,13 @@ import 'package:ala_pos/presentation/pages/pos/screen/order_result_page.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../presentation/pages/pages.dart';
+import '../presentation/pages/product/product.dart';
 
 part "route_name.dart";
 part 'route_page.gr.dart';
 
 @MaterialAutoRouter(
-  replaceInRouteName: 'Page,Route',
+  replaceInRouteName: 'Page,Route,Screen',
   routes: <AutoRoute>[
     AutoRoute(page: SplashScreenPage, initial: true),
     AutoRoute(page: LoginPage, path: RouteName.login),
@@ -21,6 +22,11 @@ part 'route_page.gr.dart';
       AutoRoute(page: PaymentCashPage, path: RouteName.posPaymentCash),
       AutoRoute(page: OrderResultPage, path: RouteName.posOrderSuccess),
     ]),
+    AutoRoute(page: MasterProductWrapper, path: RouteName.product, children: [
+      AutoRoute(page: ProductGridScreen, path: RouteName.productList, initial: true),
+      AutoRoute(page: ProductFormScreen, path: RouteName.productForm, initial: true),
+      // AutoRoute(page: ProductGridScreen, path: RouteName.productList),
+    ])
   ],
 )
 

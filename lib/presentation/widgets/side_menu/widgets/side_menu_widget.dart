@@ -106,7 +106,7 @@ class SideMenuView extends StatelessWidget {
               SideMenuItemWidget(
                 title: "POS",
                 onTap: () {
-                  //
+                  AutoRouter.of(context).replaceNamed(RouteName.posWrapper);
                 },
                 iconData: Icons.cases_rounded,
               ),
@@ -117,6 +117,12 @@ class SideMenuView extends StatelessWidget {
                 },
                 iconData: Icons.outbox_rounded,
               ),
+              SideMenuItemWidget(
+                  title: "Produk ",
+                  onTap: () {
+                    AutoRouter.of(context).replaceNamed(RouteName.product);
+                  },
+                  iconData: Icons.shopping_bag_rounded),
               Expanded(child: SizedBox()),
               SideMenuItemWidget(
                 title: "Keluar ",

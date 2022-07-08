@@ -17,159 +17,197 @@ class _$RoutePage extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    SplashScreenRoute.name: (routeData) {
+    SplashScreenPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const SplashScreenPage());
     },
-    LoginRoute.name: (routeData) {
+    LoginPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const LoginPage());
     },
-    RegisterRoute.name: (routeData) {
+    RegisterPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const RegisterPage());
     },
-    NewStoreFormRoute.name: (routeData) {
+    NewStoreFormPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const NewStoreFormPage());
     },
-    PosWrapperRoute.name: (routeData) {
+    PosWrapperPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PosWrapperPage());
     },
-    PosRoute.name: (routeData) {
+    MasterProductWrapperRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const MasterProductWrapper());
+    },
+    PosPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PosPage());
     },
-    CartRoute.name: (routeData) {
+    CartPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: WrappedRoute(child: const CartPage()));
     },
-    CartItemDetailRoute.name: (routeData) {
+    CartItemDetailPageRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<CartItemDetailRouteArgs>(
-          orElse: () =>
-              CartItemDetailRouteArgs(indexItem: pathParams.getInt('index')));
+      final args = routeData.argsAs<CartItemDetailPageRouteArgs>(
+          orElse: () => CartItemDetailPageRouteArgs(
+              indexItem: pathParams.getInt('index')));
       return MaterialPageX<dynamic>(
           routeData: routeData,
           child: WrappedRoute(
               child: CartItemDetailPage(
                   key: args.key, indexItem: args.indexItem)));
     },
-    ResumeOrderRoute.name: (routeData) {
+    ResumeOrderPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const ResumeOrderPage());
     },
-    PaymentCashRoute.name: (routeData) {
+    PaymentCashPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PaymentCashPage());
     },
-    OrderResultRoute.name: (routeData) {
+    OrderResultPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const OrderResultPage());
+    },
+    ProductGridScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ProductGridScreen());
+    },
+    ProductFormScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ProductFormScreen());
     }
   };
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashScreenRoute.name, path: '/'),
-        RouteConfig(LoginRoute.name, path: 'login'),
-        RouteConfig(RegisterRoute.name, path: 'register'),
-        RouteConfig(NewStoreFormRoute.name, path: 'new/store/form'),
-        RouteConfig(PosWrapperRoute.name, path: 'pos/', children: [
+        RouteConfig(SplashScreenPageRoute.name, path: '/'),
+        RouteConfig(LoginPageRoute.name, path: 'login'),
+        RouteConfig(RegisterPageRoute.name, path: 'register'),
+        RouteConfig(NewStoreFormPageRoute.name, path: 'new/store/form'),
+        RouteConfig(PosWrapperPageRoute.name, path: 'pos/', children: [
           RouteConfig('#redirect',
               path: '',
-              parent: PosWrapperRoute.name,
+              parent: PosWrapperPageRoute.name,
               redirectTo: 'pos/product',
               fullMatch: true),
-          RouteConfig(PosRoute.name,
-              path: 'pos/product', parent: PosWrapperRoute.name),
-          RouteConfig(CartRoute.name,
-              path: 'pos/cart', parent: PosWrapperRoute.name),
-          RouteConfig(CartItemDetailRoute.name,
-              path: 'pos/cart/edit/:index', parent: PosWrapperRoute.name),
-          RouteConfig(ResumeOrderRoute.name,
-              path: 'pos/order/resume', parent: PosWrapperRoute.name),
-          RouteConfig(PaymentCashRoute.name,
-              path: 'pos/payment/cash', parent: PosWrapperRoute.name),
-          RouteConfig(OrderResultRoute.name,
-              path: 'pos/order/success', parent: PosWrapperRoute.name)
-        ])
+          RouteConfig(PosPageRoute.name,
+              path: 'pos/product', parent: PosWrapperPageRoute.name),
+          RouteConfig(CartPageRoute.name,
+              path: 'pos/cart', parent: PosWrapperPageRoute.name),
+          RouteConfig(CartItemDetailPageRoute.name,
+              path: 'pos/cart/edit/:index', parent: PosWrapperPageRoute.name),
+          RouteConfig(ResumeOrderPageRoute.name,
+              path: 'pos/order/resume', parent: PosWrapperPageRoute.name),
+          RouteConfig(PaymentCashPageRoute.name,
+              path: 'pos/payment/cash', parent: PosWrapperPageRoute.name),
+          RouteConfig(OrderResultPageRoute.name,
+              path: 'pos/order/success', parent: PosWrapperPageRoute.name)
+        ]),
+        RouteConfig(MasterProductWrapperRoute.name,
+            path: 'product/',
+            children: [
+              RouteConfig('#redirect',
+                  path: '',
+                  parent: MasterProductWrapperRoute.name,
+                  redirectTo: 'product/list',
+                  fullMatch: true),
+              RouteConfig(ProductGridScreenRoute.name,
+                  path: 'product/list', parent: MasterProductWrapperRoute.name),
+              RouteConfig(ProductFormScreenRoute.name,
+                  path: 'product/create',
+                  parent: MasterProductWrapperRoute.name)
+            ])
       ];
 }
 
 /// generated route for
 /// [SplashScreenPage]
-class SplashScreenRoute extends PageRouteInfo<void> {
-  const SplashScreenRoute() : super(SplashScreenRoute.name, path: '/');
+class SplashScreenPageRoute extends PageRouteInfo<void> {
+  const SplashScreenPageRoute() : super(SplashScreenPageRoute.name, path: '/');
 
-  static const String name = 'SplashScreenRoute';
+  static const String name = 'SplashScreenPageRoute';
 }
 
 /// generated route for
 /// [LoginPage]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute() : super(LoginRoute.name, path: 'login');
+class LoginPageRoute extends PageRouteInfo<void> {
+  const LoginPageRoute() : super(LoginPageRoute.name, path: 'login');
 
-  static const String name = 'LoginRoute';
+  static const String name = 'LoginPageRoute';
 }
 
 /// generated route for
 /// [RegisterPage]
-class RegisterRoute extends PageRouteInfo<void> {
-  const RegisterRoute() : super(RegisterRoute.name, path: 'register');
+class RegisterPageRoute extends PageRouteInfo<void> {
+  const RegisterPageRoute() : super(RegisterPageRoute.name, path: 'register');
 
-  static const String name = 'RegisterRoute';
+  static const String name = 'RegisterPageRoute';
 }
 
 /// generated route for
 /// [NewStoreFormPage]
-class NewStoreFormRoute extends PageRouteInfo<void> {
-  const NewStoreFormRoute()
-      : super(NewStoreFormRoute.name, path: 'new/store/form');
+class NewStoreFormPageRoute extends PageRouteInfo<void> {
+  const NewStoreFormPageRoute()
+      : super(NewStoreFormPageRoute.name, path: 'new/store/form');
 
-  static const String name = 'NewStoreFormRoute';
+  static const String name = 'NewStoreFormPageRoute';
 }
 
 /// generated route for
 /// [PosWrapperPage]
-class PosWrapperRoute extends PageRouteInfo<void> {
-  const PosWrapperRoute({List<PageRouteInfo>? children})
-      : super(PosWrapperRoute.name, path: 'pos/', initialChildren: children);
+class PosWrapperPageRoute extends PageRouteInfo<void> {
+  const PosWrapperPageRoute({List<PageRouteInfo>? children})
+      : super(PosWrapperPageRoute.name,
+            path: 'pos/', initialChildren: children);
 
-  static const String name = 'PosWrapperRoute';
+  static const String name = 'PosWrapperPageRoute';
+}
+
+/// generated route for
+/// [MasterProductWrapper]
+class MasterProductWrapperRoute extends PageRouteInfo<void> {
+  const MasterProductWrapperRoute({List<PageRouteInfo>? children})
+      : super(MasterProductWrapperRoute.name,
+            path: 'product/', initialChildren: children);
+
+  static const String name = 'MasterProductWrapperRoute';
 }
 
 /// generated route for
 /// [PosPage]
-class PosRoute extends PageRouteInfo<void> {
-  const PosRoute() : super(PosRoute.name, path: 'pos/product');
+class PosPageRoute extends PageRouteInfo<void> {
+  const PosPageRoute() : super(PosPageRoute.name, path: 'pos/product');
 
-  static const String name = 'PosRoute';
+  static const String name = 'PosPageRoute';
 }
 
 /// generated route for
 /// [CartPage]
-class CartRoute extends PageRouteInfo<void> {
-  const CartRoute() : super(CartRoute.name, path: 'pos/cart');
+class CartPageRoute extends PageRouteInfo<void> {
+  const CartPageRoute() : super(CartPageRoute.name, path: 'pos/cart');
 
-  static const String name = 'CartRoute';
+  static const String name = 'CartPageRoute';
 }
 
 /// generated route for
 /// [CartItemDetailPage]
-class CartItemDetailRoute extends PageRouteInfo<CartItemDetailRouteArgs> {
-  CartItemDetailRoute({Key? key, required int indexItem})
-      : super(CartItemDetailRoute.name,
+class CartItemDetailPageRoute
+    extends PageRouteInfo<CartItemDetailPageRouteArgs> {
+  CartItemDetailPageRoute({Key? key, required int indexItem})
+      : super(CartItemDetailPageRoute.name,
             path: 'pos/cart/edit/:index',
-            args: CartItemDetailRouteArgs(key: key, indexItem: indexItem),
+            args: CartItemDetailPageRouteArgs(key: key, indexItem: indexItem),
             rawPathParams: {'index': indexItem});
 
-  static const String name = 'CartItemDetailRoute';
+  static const String name = 'CartItemDetailPageRoute';
 }
 
-class CartItemDetailRouteArgs {
-  const CartItemDetailRouteArgs({this.key, required this.indexItem});
+class CartItemDetailPageRouteArgs {
+  const CartItemDetailPageRouteArgs({this.key, required this.indexItem});
 
   final Key? key;
 
@@ -177,33 +215,51 @@ class CartItemDetailRouteArgs {
 
   @override
   String toString() {
-    return 'CartItemDetailRouteArgs{key: $key, indexItem: $indexItem}';
+    return 'CartItemDetailPageRouteArgs{key: $key, indexItem: $indexItem}';
   }
 }
 
 /// generated route for
 /// [ResumeOrderPage]
-class ResumeOrderRoute extends PageRouteInfo<void> {
-  const ResumeOrderRoute()
-      : super(ResumeOrderRoute.name, path: 'pos/order/resume');
+class ResumeOrderPageRoute extends PageRouteInfo<void> {
+  const ResumeOrderPageRoute()
+      : super(ResumeOrderPageRoute.name, path: 'pos/order/resume');
 
-  static const String name = 'ResumeOrderRoute';
+  static const String name = 'ResumeOrderPageRoute';
 }
 
 /// generated route for
 /// [PaymentCashPage]
-class PaymentCashRoute extends PageRouteInfo<void> {
-  const PaymentCashRoute()
-      : super(PaymentCashRoute.name, path: 'pos/payment/cash');
+class PaymentCashPageRoute extends PageRouteInfo<void> {
+  const PaymentCashPageRoute()
+      : super(PaymentCashPageRoute.name, path: 'pos/payment/cash');
 
-  static const String name = 'PaymentCashRoute';
+  static const String name = 'PaymentCashPageRoute';
 }
 
 /// generated route for
 /// [OrderResultPage]
-class OrderResultRoute extends PageRouteInfo<void> {
-  const OrderResultRoute()
-      : super(OrderResultRoute.name, path: 'pos/order/success');
+class OrderResultPageRoute extends PageRouteInfo<void> {
+  const OrderResultPageRoute()
+      : super(OrderResultPageRoute.name, path: 'pos/order/success');
 
-  static const String name = 'OrderResultRoute';
+  static const String name = 'OrderResultPageRoute';
+}
+
+/// generated route for
+/// [ProductGridScreen]
+class ProductGridScreenRoute extends PageRouteInfo<void> {
+  const ProductGridScreenRoute()
+      : super(ProductGridScreenRoute.name, path: 'product/list');
+
+  static const String name = 'ProductGridScreenRoute';
+}
+
+/// generated route for
+/// [ProductFormScreen]
+class ProductFormScreenRoute extends PageRouteInfo<void> {
+  const ProductFormScreenRoute()
+      : super(ProductFormScreenRoute.name, path: 'product/create');
+
+  static const String name = 'ProductFormScreenRoute';
 }

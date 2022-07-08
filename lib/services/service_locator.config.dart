@@ -15,20 +15,21 @@ import '../domain/repositories/auth_repository.dart' as _i12;
 import '../domain/repositories/product_repository.dart' as _i8;
 import '../domain/repositories/store_repository.dart' as _i10;
 import '../presentation/pages/auth/login/cubit/login_cubit.dart' as _i14;
-import '../presentation/pages/auth/register/cubit/register_cubit.dart' as _i15;
+import '../presentation/pages/auth/register/cubit/register_cubit.dart' as _i16;
 import '../presentation/pages/auth/store_form/cubit/store_form_cubit.dart'
-    as _i18;
+    as _i19;
 import '../presentation/pages/pos/cubit/cart/cart_cubit.dart' as _i5;
 import '../presentation/pages/pos/cubit/list_product/list_product_cubit.dart'
     as _i13;
 import '../presentation/pages/pos/cubit/payment/payment_cubit.dart' as _i6;
 import '../presentation/pages/pos/cubit/resume/transaction_resume_cubit.dart'
-    as _i19;
+    as _i20;
 import '../presentation/pages/pos/cubit/submit_transaction/submit_transaction_cubit.dart'
     as _i11;
-import '../presentation/pages/splashscreen/cubit/splash_cubit.dart' as _i17;
-import '../presentation/widgets/side_menu/cubit/side_menu_cubit.dart' as _i16;
-import 'service_locator.dart' as _i20; // ignore_for_file: unnecessary_lambdas
+import '../presentation/pages/product/cubit/master_product_cubit.dart' as _i15;
+import '../presentation/pages/splashscreen/cubit/splash_cubit.dart' as _i18;
+import '../presentation/widgets/side_menu/cubit/side_menu_cubit.dart' as _i17;
+import 'service_locator.dart' as _i21; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -58,17 +59,19 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i8.ProductRepository>(), get<_i10.StoreRepository>()));
   gh.factory<_i14.LoginCubit>(() =>
       _i14.LoginCubit(get<_i12.AuthRepository>(), get<_i10.StoreRepository>()));
-  gh.factory<_i15.RegisterCubit>(
-      () => _i15.RegisterCubit(get<_i12.AuthRepository>()));
-  gh.factory<_i16.SideMenuCubit>(
-      () => _i16.SideMenuCubit(get<_i12.AuthRepository>()));
-  gh.factory<_i17.SplashCubit>(
-      () => _i17.SplashCubit(authRepository: get<_i12.AuthRepository>()));
-  gh.factory<_i18.StoreFormCubit>(
-      () => _i18.StoreFormCubit(get<_i10.StoreRepository>()));
-  gh.factory<_i19.TransactionResumeCubit>(() => _i19.TransactionResumeCubit(
+  gh.factory<_i15.MasterProductCubit>(() => _i15.MasterProductCubit(
+      get<_i8.ProductRepository>(), get<_i10.StoreRepository>()));
+  gh.factory<_i16.RegisterCubit>(
+      () => _i16.RegisterCubit(get<_i12.AuthRepository>()));
+  gh.factory<_i17.SideMenuCubit>(
+      () => _i17.SideMenuCubit(get<_i12.AuthRepository>()));
+  gh.factory<_i18.SplashCubit>(
+      () => _i18.SplashCubit(authRepository: get<_i12.AuthRepository>()));
+  gh.factory<_i19.StoreFormCubit>(
+      () => _i19.StoreFormCubit(get<_i10.StoreRepository>()));
+  gh.factory<_i20.TransactionResumeCubit>(() => _i20.TransactionResumeCubit(
       get<_i12.AuthRepository>(), get<_i10.StoreRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i20.RegisterModule {}
+class _$RegisterModule extends _i21.RegisterModule {}

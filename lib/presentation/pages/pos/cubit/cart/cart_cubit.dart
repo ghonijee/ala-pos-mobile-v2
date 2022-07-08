@@ -1,6 +1,5 @@
 import 'package:ala_pos/domain/models/product/product_model.dart';
 import 'package:ala_pos/domain/models/transaction/transaction_item_model.dart';
-import 'package:ala_pos/domain/models/transaction/transaction_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

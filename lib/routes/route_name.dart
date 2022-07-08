@@ -13,4 +13,10 @@ class RouteName {
   static const posPaymentCash = "pos/payment/cash";
   static const posOrderSuccess = "pos/order/success";
   static const posPrintReceipt = "pos/print/receipt";
+
+  // Master Product
+  static const product = "product/";
+  static const productList = "product/list";
+  static const productForm = "product/create";
+  static const productScan = "product/scan";
 }

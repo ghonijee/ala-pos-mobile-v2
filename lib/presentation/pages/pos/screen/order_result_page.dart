@@ -191,7 +191,7 @@ class OrderResultPage extends HookWidget {
                                 ),
                                 onPressed: () {
                                   cartCubit.resetCart();
-                                  context.router.replaceAll([PosRoute()]);
+                                  context.router.replaceAll([PosPageRoute()]);
                                 },
                                 child: Text(
                                   "Selesai",

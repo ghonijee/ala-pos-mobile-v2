@@ -22,7 +22,7 @@ class SplashScreenView extends StatelessWidget {
             if (authStatus) {
               context.router.replaceNamed(RouteName.posWrapper);
             } else {
-              context.router.replace(LoginRoute());
+              context.router.replace(LoginPageRoute());
             }
           },
         );
