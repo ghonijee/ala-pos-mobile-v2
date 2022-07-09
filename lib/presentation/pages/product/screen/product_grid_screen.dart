@@ -1,3 +1,4 @@
+import 'package:ala_pos/presentation/pages/product/cubit/form/form_product_cubit.dart';
 import 'package:ala_pos/presentation/widgets/side_menu/widgets/side_menu_widget.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:auto_route/auto_route.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
-import '../cubit/master_product_cubit.dart';
+import '../cubit/master/master_product_cubit.dart';
 import 'product_item_widget.dart';
 
 class ProductGridScreen extends HookWidget {
@@ -116,7 +117,10 @@ class ProductGridScreen extends HookWidget {
                                           ),
                                         )
                                       : InkWell(
-                                          onTap: () {},
+                                          onTap: () {
+                                            context.read<FormProductCubit>().showProduct(data[index]);
+                                            context.router.pushNamed(RouteName.productForm);
+                                          },
                                           child: ProductItemWidget(data[index]),
                                         );
                                 }),

@@ -29,8 +29,22 @@ class ProductItemWidget extends StatelessWidget {
         style: Theme.of(context).textTheme.titleMedium,
       ),
       subtitle: Text(
-        product.stock.toString(),
+        product.price.toIDR(),
         style: Theme.of(context).textTheme.titleSmall,
+      ),
+      // trailing: ,
+      trailing: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            "Stok",
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+          Text(
+            product.stock.toString(),
+            style: Theme.of(context).textTheme.headline6!.copyWith(color: Theme.of(context).primaryColor),
+          ),
+        ],
       ),
     );
   }

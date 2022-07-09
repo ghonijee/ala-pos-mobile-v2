@@ -45,4 +45,31 @@ class ProductRepository {
       return Left(FailureModel.serverError(e.toString()));
     }
   }
+
+  Future<Either<FailureModel, ApiResponse>> create(ProductModel model) async {
+    //
+    try {
+      ApiResponse response = await remoteSource.create(model.toJson());
+      if (response.status! == false) {
+        throw Exception(response.message);
+      }
+
+      return Right(response);
+    } catch (e) {
+      return Left(FailureModel.serverError(e.toString()));
+    }
+  }
+
+  Future<Either<FailureModel, ApiResponse>> update(ProductModel model) async {
+    try {
+      ApiResponse response = await remoteSource.update(model.toJson(), model.id);
+      if (response.status! == false) {
+        throw Exception(response.message);
+      }
+
+      return Right(response);
+    } catch (e) {
+      return Left(FailureModel.serverError(e.toString()));
+    }
+  }
 }

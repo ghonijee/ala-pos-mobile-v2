@@ -30,7 +30,6 @@ class CartPage extends HookWidget implements AutoRouteWrapper {
 
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) {
-        print("change");
         resumeCubit.init(
           cartCubit.state.items.toList(),
         );
