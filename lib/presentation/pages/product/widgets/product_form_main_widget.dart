@@ -7,55 +7,39 @@ import 'package:sizer/sizer.dart';
 
 import '../cubit/form/form_product_cubit.dart';
 
-class ProductFormStockWidget extends HookWidget {
-  const ProductFormStockWidget({Key? key}) : super(key: key);
+class ProductFormMainWidget extends HookWidget {
+  const ProductFormMainWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var formProductCubit = context.read<FormProductCubit>();
 
-    var stockField = useTextEditingController();
-    var minStockField = useTextEditingController();
-    var formater = MoneyInputFormatter(
-      thousandSeparator: ThousandSeparator.Period,
-      mantissaLength: 0,
-    );
-
-    stockField.text = formProductCubit.state.stock.value.toString();
-    minStockField.text = formProductCubit.state.minStock.value.toString();
-
     return BlocBuilder<FormProductCubit, FormProductState>(
       builder: (context, state) {
         return Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: AppSpacings.m.sp,
+            vertical: AppSpacings.m.sp,
+          ),
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.inversePrimary,
           ),
-          child: ExpansionTile(
-              initiallyExpanded: true,
-              collapsedBackgroundColor: Theme.of(context).colorScheme.inversePrimary,
-              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-              title: Text("Stok"),
-              childrenPadding: EdgeInsets.symmetric(
-                horizontal: AppSpacings.m.sp,
-                // vertical: AppSpacings.m.sp,
-              ),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Stok Produk *"),
+                    Text("Nama *"),
                     TextFormField(
-                      key: Key("field_stock_product"),
-                      initialValue: formProductCubit.state.stock.value!.toThousandSeparator(),
+                      initialValue: formProductCubit.state.name.value,
                       style: Theme.of(context).textTheme.bodyText1,
-                      onChanged: (value) => formProductCubit.stockChange(value.toNumber()),
-                      inputFormatters: [
-                        formater,
-                      ],
+                      onChanged: (value) => formProductCubit.nameChange(value),
                       decoration: InputDecoration(
-                        hintText: "Jumlah Produk",
-                        errorText: state.stock.invalid ? state.stock.error!.message : null,
+                        errorText: state.name.invalid ? state.name.error?.message : null,
+                        hintText: "Nama Produk",
                         prefixStyle: Theme.of(context).textTheme.bodyText1,
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -78,20 +62,24 @@ class ProductFormStockWidget extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Minimal Stok"),
+                    Text("Harga *"),
                     SizedBox(
                         // height: AppSpacings.s,
                         ),
                     TextFormField(
-                      inputFormatters: [
-                        formater,
-                      ],
-                      initialValue: formProductCubit.state.minStock.value.toThousandSeparator(),
+                      // controller: priceField,
+                      initialValue: formProductCubit.state.price.value!.toThousandSeparator(),
+                      onChanged: (value) => formProductCubit.priceChange(value.toNumber()),
                       style: Theme.of(context).textTheme.bodyText1,
-                      onChanged: (value) => formProductCubit.minStockChange(value.toNumber()),
+                      inputFormatters: [
+                        MoneyInputFormatter(
+                          thousandSeparator: ThousandSeparator.Period,
+                          mantissaLength: 0,
+                        ),
+                      ],
                       decoration: InputDecoration(
-                        errorText: state.minStock.invalid ? state.minStock.error!.message : null,
-                        hintText: "0",
+                        hintText: "Rp. 0",
+                        errorText: state.price.error?.message,
                         prefixStyle: Theme.of(context).textTheme.bodyText1,
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(

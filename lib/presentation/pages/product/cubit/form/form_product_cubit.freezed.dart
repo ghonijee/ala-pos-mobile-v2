@@ -18,7 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FormProductState {
   NameField get name => throw _privateConstructorUsedError;
   PriceField get price => throw _privateConstructorUsedError;
-  FormzStatus get status => throw _privateConstructorUsedError;
+  StockField get stock => throw _privateConstructorUsedError;
+  MinStockField get minStock => throw _privateConstructorUsedError;
+  CodeField get code => throw _privateConstructorUsedError;
+  DescField get desc => throw _privateConstructorUsedError;
+  CostField get cost => throw _privateConstructorUsedError;
+  UnitField get unit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FormProductStateCopyWith<FormProductState> get copyWith =>
@@ -30,7 +35,15 @@ abstract class $FormProductStateCopyWith<$Res> {
   factory $FormProductStateCopyWith(
           FormProductState value, $Res Function(FormProductState) then) =
       _$FormProductStateCopyWithImpl<$Res>;
-  $Res call({NameField name, PriceField price, FormzStatus status});
+  $Res call(
+      {NameField name,
+      PriceField price,
+      StockField stock,
+      MinStockField minStock,
+      CodeField code,
+      DescField desc,
+      CostField cost,
+      UnitField unit});
 }
 
 /// @nodoc
@@ -46,7 +59,12 @@ class _$FormProductStateCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? price = freezed,
-    Object? status = freezed,
+    Object? stock = freezed,
+    Object? minStock = freezed,
+    Object? code = freezed,
+    Object? desc = freezed,
+    Object? cost = freezed,
+    Object? unit = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -57,10 +75,30 @@ class _$FormProductStateCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as PriceField,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
+      stock: stock == freezed
+          ? _value.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as StockField,
+      minStock: minStock == freezed
+          ? _value.minStock
+          : minStock // ignore: cast_nullable_to_non_nullable
+              as MinStockField,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as CodeField,
+      desc: desc == freezed
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as DescField,
+      cost: cost == freezed
+          ? _value.cost
+          : cost // ignore: cast_nullable_to_non_nullable
+              as CostField,
+      unit: unit == freezed
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as UnitField,
     ));
   }
 }
@@ -72,7 +110,15 @@ abstract class _$$_FormProductStateCopyWith<$Res>
           _$_FormProductState value, $Res Function(_$_FormProductState) then) =
       __$$_FormProductStateCopyWithImpl<$Res>;
   @override
-  $Res call({NameField name, PriceField price, FormzStatus status});
+  $Res call(
+      {NameField name,
+      PriceField price,
+      StockField stock,
+      MinStockField minStock,
+      CodeField code,
+      DescField desc,
+      CostField cost,
+      UnitField unit});
 }
 
 /// @nodoc
@@ -90,7 +136,12 @@ class __$$_FormProductStateCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? price = freezed,
-    Object? status = freezed,
+    Object? stock = freezed,
+    Object? minStock = freezed,
+    Object? code = freezed,
+    Object? desc = freezed,
+    Object? cost = freezed,
+    Object? unit = freezed,
   }) {
     return _then(_$_FormProductState(
       name: name == freezed
@@ -101,23 +152,48 @@ class __$$_FormProductStateCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as PriceField,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
+      stock: stock == freezed
+          ? _value.stock
+          : stock // ignore: cast_nullable_to_non_nullable
+              as StockField,
+      minStock: minStock == freezed
+          ? _value.minStock
+          : minStock // ignore: cast_nullable_to_non_nullable
+              as MinStockField,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as CodeField,
+      desc: desc == freezed
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as DescField,
+      cost: cost == freezed
+          ? _value.cost
+          : cost // ignore: cast_nullable_to_non_nullable
+              as CostField,
+      unit: unit == freezed
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as UnitField,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_FormProductState
-    with DiagnosticableTreeMixin
-    implements _FormProductState {
-  _$_FormProductState(
+class _$_FormProductState extends _FormProductState
+    with DiagnosticableTreeMixin {
+  const _$_FormProductState(
       {this.name = const NameField.pure(),
       this.price = const PriceField.pure(),
-      this.status = FormzStatus.pure});
+      this.stock = const StockField.pure(),
+      this.minStock = const MinStockField.pure(),
+      this.code = const CodeField.pure(),
+      this.desc = const DescField.pure(),
+      this.cost = const CostField.pure(),
+      this.unit = const UnitField.pure()})
+      : super._();
 
   @override
   @JsonKey()
@@ -127,11 +203,26 @@ class _$_FormProductState
   final PriceField price;
   @override
   @JsonKey()
-  final FormzStatus status;
+  final StockField stock;
+  @override
+  @JsonKey()
+  final MinStockField minStock;
+  @override
+  @JsonKey()
+  final CodeField code;
+  @override
+  @JsonKey()
+  final DescField desc;
+  @override
+  @JsonKey()
+  final CostField cost;
+  @override
+  @JsonKey()
+  final UnitField unit;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FormProductState(name: $name, price: $price, status: $status)';
+    return 'FormProductState(name: $name, price: $price, stock: $stock, minStock: $minStock, code: $code, desc: $desc, cost: $cost, unit: $unit)';
   }
 
   @override
@@ -141,7 +232,12 @@ class _$_FormProductState
       ..add(DiagnosticsProperty('type', 'FormProductState'))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('price', price))
-      ..add(DiagnosticsProperty('status', status));
+      ..add(DiagnosticsProperty('stock', stock))
+      ..add(DiagnosticsProperty('minStock', minStock))
+      ..add(DiagnosticsProperty('code', code))
+      ..add(DiagnosticsProperty('desc', desc))
+      ..add(DiagnosticsProperty('cost', cost))
+      ..add(DiagnosticsProperty('unit', unit));
   }
 
   @override
@@ -151,7 +247,12 @@ class _$_FormProductState
             other is _$_FormProductState &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.price, price) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.stock, stock) &&
+            const DeepCollectionEquality().equals(other.minStock, minStock) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other.desc, desc) &&
+            const DeepCollectionEquality().equals(other.cost, cost) &&
+            const DeepCollectionEquality().equals(other.unit, unit));
   }
 
   @override
@@ -159,7 +260,12 @@ class _$_FormProductState
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(price),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(stock),
+      const DeepCollectionEquality().hash(minStock),
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(desc),
+      const DeepCollectionEquality().hash(cost),
+      const DeepCollectionEquality().hash(unit));
 
   @JsonKey(ignore: true)
   @override
@@ -167,18 +273,34 @@ class _$_FormProductState
       __$$_FormProductStateCopyWithImpl<_$_FormProductState>(this, _$identity);
 }
 
-abstract class _FormProductState implements FormProductState {
-  factory _FormProductState(
+abstract class _FormProductState extends FormProductState {
+  const factory _FormProductState(
       {final NameField name,
       final PriceField price,
-      final FormzStatus status}) = _$_FormProductState;
+      final StockField stock,
+      final MinStockField minStock,
+      final CodeField code,
+      final DescField desc,
+      final CostField cost,
+      final UnitField unit}) = _$_FormProductState;
+  const _FormProductState._() : super._();
 
   @override
   NameField get name => throw _privateConstructorUsedError;
   @override
   PriceField get price => throw _privateConstructorUsedError;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  StockField get stock => throw _privateConstructorUsedError;
+  @override
+  MinStockField get minStock => throw _privateConstructorUsedError;
+  @override
+  CodeField get code => throw _privateConstructorUsedError;
+  @override
+  DescField get desc => throw _privateConstructorUsedError;
+  @override
+  CostField get cost => throw _privateConstructorUsedError;
+  @override
+  UnitField get unit => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_FormProductStateCopyWith<_$_FormProductState> get copyWith =>

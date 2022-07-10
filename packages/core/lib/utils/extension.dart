@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 extension extensionString on String {
   String initial() {
@@ -13,9 +14,21 @@ extension extensionString on String {
     return name;
   }
 
+  /// Convert from [String] to [int?]
+  /// with formated Currency Rupiah (Rp.)
+  ///
+  /// ```dart
+  /// String test = "10.000";
+  /// int? result = test.toNumber();
+  /// print(result!) // 10000
+  ///
+  /// String test2 = "Rp. 10.000";
+  /// int? result = test2.toNumber();
+  /// print(result!) // 10000
+  /// ```
   int? toNumber() {
     if (this.length > 0) {
-      return int.parse(this);
+      return int.parse(toNumericString(this));
     }
     return null;
   }
@@ -29,6 +42,13 @@ extension extensionString on String {
 }
 
 extension extensionInt on int {
+  /// Convert from int to string
+  /// with formated Currency Rupiah (Rp.)
+  /// ```dart
+  /// int test = 10000;
+  /// String result = test.toIDR();
+  /// print(result) // Rp. 10.000
+  /// ``
   String toIDR({decimalDigit = 0}) {
     NumberFormat currencyFormatter = NumberFormat.currency(
       locale: 'id',
@@ -36,5 +56,20 @@ extension extensionInt on int {
       decimalDigits: decimalDigit,
     );
     return currencyFormatter.format(this);
+  }
+
+  /// Convert from int to string
+  /// with formated ThousandSeparator(.)
+  /// ```dart
+  /// int test = 10000;
+  /// String result = test.toThousandSeparator();
+  /// print(result) // 10.000
+  /// ```
+  String toThousandSeparator() {
+    return toCurrencyString(
+      this.toString(),
+      thousandSeparator: ThousandSeparator.Period,
+      mantissaLength: 0,
+    );
   }
 }
