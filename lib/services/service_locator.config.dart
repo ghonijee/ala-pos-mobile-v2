@@ -59,7 +59,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       remoteSource: get<_i4.AuthRemoteSource>(),
       storage: get<_i3.LocalStorage>()));
   gh.factory<_i13.FormProductCubit>(() => _i13.FormProductCubit(
-      get<_i8.ProductRepository>(), get<_i10.StoreRepository>()));
+      get<_i8.ProductRepository>(),
+      get<_i10.StoreRepository>(),
+      get<_i12.AuthRepository>()));
   gh.factory<_i14.ListProductCubit>(() => _i14.ListProductCubit(
       get<_i8.ProductRepository>(), get<_i10.StoreRepository>()));
   gh.factory<_i15.LoginCubit>(() =>

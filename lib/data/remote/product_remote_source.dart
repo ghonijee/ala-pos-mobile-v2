@@ -33,7 +33,7 @@ class ProductRemoteSource {
   Future<ApiResponse> create(Map<String, dynamic> dataJson) async {
     Dio dio = await apiClient.instance();
     try {
-      Response registerResponse = await dio.post(resouce, data: {});
+      Response registerResponse = await dio.post(resouce, data: dataJson);
 
       return SuccessResponse.fromJson(registerResponse.data);
     } on DioError catch (e) {

@@ -1,4 +1,6 @@
+import 'package:ala_pos/data/remote/auth_remote_source.dart';
 import 'package:ala_pos/domain/models/product/product_model.dart';
+import 'package:ala_pos/domain/repositories/auth_repository.dart';
 import 'package:ala_pos/domain/repositories/product_repository.dart';
 import 'package:ala_pos/domain/repositories/store_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -13,19 +15,30 @@ part 'form_product_cubit.freezed.dart';
 
 @injectable
 class FormProductCubit extends Cubit<FormProductState> {
+  AuthRepository authRepository;
   ProductRepository productRepository;
   StoreRepository storeRepository;
   bool isUpdate = false;
-  FormProductCubit(this.productRepository, this.storeRepository) : super(FormProductState());
+  FormProductCubit(
+    this.productRepository,
+    this.storeRepository,
+    this.authRepository,
+  ) : super(FormProductState());
 
-  createProduct() {
+  createProduct() async {
+    var storeActive = await storeRepository.activeStore();
     isUpdate = false;
-    emit(FormProductState());
+    emit(FormProductState(
+      id: 0,
+      storeId: storeActive.id,
+    ));
   }
 
   showProduct(ProductModel model) {
     isUpdate = true;
     emit(state.copyWith(
+      id: model.id,
+      storeId: model.storeId,
       name: NameField.dirty(model.name),
       price: PriceField.dirty(model.price),
       stock: StockField.dirty(model.stock),
@@ -35,6 +48,36 @@ class FormProductCubit extends Cubit<FormProductState> {
       desc: DescField.dirty(model.description!),
       unit: UnitField.dirty(model.unit!),
     ));
+  }
+
+  storeProduct() async {
+    try {
+      emit(state.copyWith(statusSubmission: FormzStatus.submissionInProgress));
+
+      var result = await productRepository.create(state.toModel());
+      result.fold((failure) {
+        emit(state.copyWith(statusSubmission: FormzStatus.submissionFailure, message: failure.message));
+      }, (response) {
+        emit(state.copyWith(statusSubmission: FormzStatus.submissionSuccess, message: response.message!));
+      });
+    } catch (e) {
+      emit(state.copyWith(statusSubmission: FormzStatus.submissionFailure, message: e.toString()));
+    }
+  }
+
+  updateProduct() async {
+    try {
+      emit(state.copyWith(statusSubmission: FormzStatus.submissionInProgress));
+
+      var result = await productRepository.update(state.toModel());
+      result.fold((failure) {
+        emit(state.copyWith(statusSubmission: FormzStatus.submissionFailure, message: failure.message));
+      }, (response) {
+        emit(state.copyWith(statusSubmission: FormzStatus.submissionSuccess, message: response.message!));
+      });
+    } catch (e) {
+      emit(state.copyWith(statusSubmission: FormzStatus.submissionFailure, message: e.toString()));
+    }
   }
 
   nameChange(value) {
@@ -91,13 +134,5 @@ class FormProductCubit extends Cubit<FormProductState> {
     emit(state.copyWith(
       unit: field,
     ));
-  }
-
-  storeProduct() {
-    //
-  }
-
-  updateProduct() {
-    //
   }
 }

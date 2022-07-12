@@ -5,6 +5,8 @@ class FormProductState with _$FormProductState {
   const FormProductState._();
 
   const factory FormProductState({
+    int? id,
+    int? storeId,
     @Default(NameField.pure()) NameField name,
     @Default(PriceField.pure()) PriceField price,
     @Default(StockField.pure()) StockField stock,
@@ -13,7 +15,8 @@ class FormProductState with _$FormProductState {
     @Default(DescField.pure()) DescField desc,
     @Default(CostField.pure()) CostField cost,
     @Default(UnitField.pure()) UnitField unit,
-    // @Default(FormzStatus.pure) FormzStatus status,
+    @Default(FormzStatus.pure) FormzStatus statusSubmission,
+    @Default("") String message,
   }) = _FormProductState;
 
   FormzStatus get status {
@@ -28,4 +31,17 @@ class FormProductState with _$FormProductState {
       unit,
     ]);
   }
+
+  ProductModel toModel() => ProductModel(
+        id: id!,
+        storeId: storeId!,
+        name: name.value,
+        price: price.value!,
+        stock: stock.value!,
+        minStock: minStock.value,
+        code: code.value,
+        cost: cost.value,
+        description: desc.value,
+        unit: unit.value,
+      );
 }

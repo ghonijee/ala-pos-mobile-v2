@@ -12,17 +12,7 @@ class ProductFormDetailWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    var codeField = useTextEditingController();
-    var descField = useTextEditingController();
-    var costField = useTextEditingController();
-    var unitField = useTextEditingController();
-
     var formProductCubit = context.read<FormProductCubit>();
-
-    codeField.text = formProductCubit.state.code.value.toString();
-    descField.text = formProductCubit.state.desc.value.toString();
-    costField.text = formProductCubit.state.cost.value.toString();
-    unitField.text = formProductCubit.state.unit.value.toString();
 
     return BlocBuilder<FormProductCubit, FormProductState>(
       builder: (context, state) {
@@ -45,6 +35,7 @@ class ProductFormDetailWidget extends HookWidget {
                   Text("Kode / SKU Produk"),
                   TextFormField(
                     // controller: discountProductField,
+                    initialValue: formProductCubit.state.code.value,
                     style: Theme.of(context).textTheme.bodyText1,
                     decoration: InputDecoration(
                       hintText: "SKU",
@@ -81,7 +72,7 @@ class ProductFormDetailWidget extends HookWidget {
                 children: [
                   Text("Modal Produk"),
                   TextFormField(
-                    // controller: discountProductField,
+                    initialValue: formProductCubit.state.cost.value.toThousandSeparator(),
                     style: Theme.of(context).textTheme.bodyText1,
                     decoration: InputDecoration(
                       hintText: "Rp. 0",
@@ -109,7 +100,7 @@ class ProductFormDetailWidget extends HookWidget {
                 children: [
                   Text("Deskripsi"),
                   TextFormField(
-                    // controller: discountProductField,
+                    initialValue: formProductCubit.state.desc.value,
                     minLines: 3,
                     maxLines: 5,
                     style: Theme.of(context).textTheme.bodyText1,
@@ -139,7 +130,7 @@ class ProductFormDetailWidget extends HookWidget {
                 children: [
                   Text("Satuan / Unit"),
                   TextFormField(
-                    // controller: discountProductField,
+                    initialValue: formProductCubit.state.unit.value,
                     style: Theme.of(context).textTheme.bodyText1,
                     decoration: InputDecoration(
                       hintText: "Kg/Lembar/Lusin dll.",
