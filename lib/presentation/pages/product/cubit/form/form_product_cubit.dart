@@ -30,6 +30,7 @@ class FormProductCubit extends Cubit<FormProductState> {
     emit(FormProductState(
       id: 0,
       storeId: storeActive.id,
+      stock: StockField.dirty(0),
     ));
   }
 

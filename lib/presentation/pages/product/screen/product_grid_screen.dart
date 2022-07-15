@@ -72,6 +72,8 @@ class ProductGridScreen extends HookWidget {
                         onEditingComplete: () {
                           if (searchController.text.isNotEmpty) {
                             masterProductCubit.getProductList(value: searchController.text, initialData: true);
+                          } else {
+                            masterProductCubit.getProductList(value: '', initialData: true);
                           }
                         },
                         decoration: InputDecoration(
