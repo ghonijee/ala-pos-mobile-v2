@@ -4,6 +4,8 @@ import 'package:ala_pos/routes/route_page.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
@@ -78,15 +80,33 @@ class ProductGridScreen extends HookWidget {
                               Ionicons.search_outline,
                               color: Theme.of(context).colorScheme.primary,
                             ),
-                            onPressed: () {},
+                            onPressed: () async {
+                              //
+                            },
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
                               Ionicons.barcode_outline,
                               color: Theme.of(context).colorScheme.primary,
                             ),
-                            onPressed: () {
-                              // print("qrcode press");
+                            onPressed: () async {
+                              String barcodeScanRes;
+
+                              try {
+                                barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+                                  '#ff6666',
+                                  'Cancel',
+                                  true,
+                                  ScanMode.BARCODE,
+                                );
+
+                                searchController.text = barcodeScanRes;
+                              } on PlatformException {
+                                barcodeScanRes = 'Failed to get platform version.';
+                              }
+                              if (searchController.text.isNotEmpty) {
+                                masterProductCubit.getProductList(value: searchController.text, initialData: true);
+                              }
                             },
                           ),
                           hintText: "Nama/Kode Barang",

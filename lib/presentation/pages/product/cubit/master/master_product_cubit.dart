@@ -60,7 +60,7 @@ class MasterProductCubit extends Cubit<MasterProductState> {
         storeId: store.id!,
         page: page,
         take: take,
-        searchValue: '',
+        searchValue: value,
       );
 
       result.fold((error) {
