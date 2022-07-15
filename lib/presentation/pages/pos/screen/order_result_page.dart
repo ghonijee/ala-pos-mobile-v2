@@ -1,5 +1,4 @@
 import 'package:ala_pos/presentation/pages/pages.dart';
-import 'package:ala_pos/presentation/pages/pos/cubit/payment/payment_cubit.dart';
 import 'package:ala_pos/presentation/pages/pos/cubit/submit_transaction/submit_transaction_cubit.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:auto_route/auto_route.dart';

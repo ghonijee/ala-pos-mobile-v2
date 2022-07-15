@@ -27,7 +27,7 @@ class ProductFormScreen extends HookWidget {
         listener: (context, state) {
           if (state.statusSubmission.isSubmissionFailure) {
             SnackbarMessage.failed(context, state.message);
-          } else {
+          } else if (state.statusSubmission.isSubmissionSuccess) {
             context.read<MasterProductCubit>().getProductList(initialData: true);
             context.router.pop();
           }

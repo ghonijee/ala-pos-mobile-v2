@@ -58,6 +58,7 @@ dependencies:
   simple_animations: ^4.0.2
   sizer: ^2.0.15
   uuid: ^3.0.6
+  flutter_barcode_scanner: ^2.0.0
 
 dev_dependencies:
   auto_route_generator: null
@@ -88,6 +89,7 @@ flutter:
     - assets/images/
     - .env
     - .env.production
+    - .env.android.emulator
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

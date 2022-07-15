@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../routes/route_page.dart';
-
 class OrderSuccessScreen extends StatelessWidget {
   const OrderSuccessScreen({Key? key}) : super(key: key);
 

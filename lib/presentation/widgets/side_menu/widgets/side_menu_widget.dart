@@ -1,4 +1,3 @@
-import 'package:ala_pos/domain/models/user_model.dart';
 import 'package:ala_pos/presentation/widgets/side_menu/cubit/side_menu_cubit.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:auto_route/auto_route.dart';

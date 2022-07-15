@@ -73,7 +73,7 @@ class ListProductCubit extends Cubit<ListProductState> {
 
       /// Enable request after request proses
       canFetchingData = true;
-    } catch (e, s) {
+    } catch (e) {
       canFetchingData = true;
       emit(ListProductState.fetchError());
     }

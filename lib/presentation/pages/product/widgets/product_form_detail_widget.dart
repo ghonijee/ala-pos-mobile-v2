@@ -1,5 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
@@ -13,6 +15,9 @@ class ProductFormDetailWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     var formProductCubit = context.read<FormProductCubit>();
+
+    var codeController = useTextEditingController();
+    codeController.text = formProductCubit.state.code.value;
 
     return BlocBuilder<FormProductCubit, FormProductState>(
       builder: (context, state) {
@@ -34,15 +39,29 @@ class ProductFormDetailWidget extends HookWidget {
                 children: [
                   Text("Kode / SKU Produk"),
                   TextFormField(
-                    // controller: discountProductField,
-                    initialValue: formProductCubit.state.code.value,
+                    controller: codeController,
                     style: Theme.of(context).textTheme.bodyText1,
+                    onChanged: (value) => formProductCubit.codeChange(value),
                     decoration: InputDecoration(
                       hintText: "SKU",
                       prefixStyle: Theme.of(context).textTheme.bodyText1,
                       suffixIcon: GestureDetector(
-                        onTap: () {
-                          //
+                        onTap: () async {
+                          String barcodeScanRes;
+
+                          try {
+                            barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+                              '#ff6666',
+                              'Cancel',
+                              true,
+                              ScanMode.BARCODE,
+                            );
+
+                            formProductCubit.codeChange(barcodeScanRes);
+                            codeController.text = barcodeScanRes;
+                          } on PlatformException {
+                            barcodeScanRes = 'Failed to get platform version.';
+                          }
                         },
                         child: Icon(
                           Ionicons.barcode_outline,

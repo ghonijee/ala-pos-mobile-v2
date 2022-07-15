@@ -6,7 +6,6 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:injectable/injectable.dart';
 import 'package:sizer/sizer.dart';
 
 import '../cubit/submit_transaction/submit_transaction_cubit.dart';

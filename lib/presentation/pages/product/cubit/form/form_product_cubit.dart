@@ -1,4 +1,3 @@
-import 'package:ala_pos/data/remote/auth_remote_source.dart';
 import 'package:ala_pos/domain/models/product/product_model.dart';
 import 'package:ala_pos/domain/repositories/auth_repository.dart';
 import 'package:ala_pos/domain/repositories/product_repository.dart';
@@ -47,6 +46,7 @@ class FormProductCubit extends Cubit<FormProductState> {
       cost: CostField.dirty(model.cost!),
       desc: DescField.dirty(model.description!),
       unit: UnitField.dirty(model.unit!),
+      statusSubmission: FormzStatus.pure,
     ));
   }
 

@@ -1,8 +1,6 @@
 import 'package:ala_pos/domain/models/transaction/transaction_item_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
-import 'package:uuid/uuid.dart';
 
 part 'transaction_model.freezed.dart';
 part 'transaction_model.g.dart';

@@ -86,7 +86,7 @@ class PosPage extends HookWidget {
                               color: Theme.of(context).colorScheme.primary,
                             ),
                             onPressed: () {
-                              print("qrcode press");
+                              // print("qrcode press");
                             },
                           ),
                           hintText: "Nama/Kode Barang",

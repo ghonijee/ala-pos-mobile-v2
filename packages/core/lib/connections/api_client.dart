@@ -44,10 +44,10 @@ class ApiClient {
       // If you want to reject the request with a error message,
       // you can reject a `DioError` object eg: `handler.reject(dioError)`
     }, onError: (DioError e, handler) {
-      if (e.response!.statusMessage!.contains("Unauthorized") && e.response!.statusCode == 401) {
-        // If currenct page isn't LoginScreen, redirect to LoginScreen if response is Unauthorized
+      // if (e.response!.statusMessage!.contains("Unauthorized") && e.response!.statusCode == 401) {
+      //   // If currenct page isn't LoginScreen, redirect to LoginScreen if response is Unauthorized
 
-      }
+      // }
       if (kDebugMode) {
         // SnackbarCustom.defaultColor("Network Error", e.message);
       }

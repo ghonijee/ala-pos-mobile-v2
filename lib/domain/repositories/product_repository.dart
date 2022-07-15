@@ -41,7 +41,7 @@ class ProductRepository {
       }
 
       return Right(data);
-    } catch (e, stacktrace) {
+    } catch (e) {
       return Left(FailureModel.serverError(e.toString()));
     }
   }

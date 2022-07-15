@@ -59,8 +59,9 @@ class AuthRepository {
 
   Future<Either<FailureModel, LoginModel>> signIn(String username, String password) async {
     try {
-      var deviceInfo = await DeviceInfo().ios;
-      ApiResponse response = await remoteSource.login(username, password, deviceInfo.model!);
+      var deviceName = await DeviceInfo().deviceName;
+
+      ApiResponse response = await remoteSource.login(username, password, deviceName);
       if (!response.status!) {
         return Left(FailureModel.serverError(response.message));
       }

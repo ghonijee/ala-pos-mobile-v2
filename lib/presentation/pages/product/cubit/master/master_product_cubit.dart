@@ -76,7 +76,7 @@ class MasterProductCubit extends Cubit<MasterProductState> {
 
       /// Enable request after request proses
       canFetchingData = true;
-    } catch (e, s) {
+    } catch (e) {
       canFetchingData = true;
       emit(MasterProductState.fetchError());
     }

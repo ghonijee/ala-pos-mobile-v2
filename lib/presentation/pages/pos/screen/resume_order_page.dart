@@ -17,10 +17,7 @@ class ResumeOrderPage extends HookWidget {
     var cartCubit = BlocProvider.of<CartCubit>(context);
     var resumeCubit = BlocProvider.of<TransactionResumeCubit>(context);
 
-    return BlocConsumer<TransactionResumeCubit, TransactionResumeState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+    return BlocBuilder<TransactionResumeCubit, TransactionResumeState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text("Order")),
@@ -34,7 +31,7 @@ class ResumeOrderPage extends HookWidget {
                     children: [
                       BlocConsumer<CartCubit, CartState>(
                         listener: (context, state) {
-                          print("change");
+                          // print("change");
                           resumeCubit.init(
                             cartCubit.state.items.toList(),
                           );

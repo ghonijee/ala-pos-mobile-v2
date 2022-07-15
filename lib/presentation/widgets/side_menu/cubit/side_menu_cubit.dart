@@ -19,7 +19,7 @@ class SideMenuCubit extends Cubit<SideMenuState> {
   }
 
   Future<bool> singOut() async {
-    var status = await authRepository.signOut();
+    await authRepository.signOut();
     return true;
   }
 }

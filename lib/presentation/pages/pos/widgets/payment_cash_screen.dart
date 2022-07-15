@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:sizer/sizer.dart';
 
-import '../../../../routes/route_page.dart';
-
 class PaymentCashScreen extends StatelessWidget {
   const PaymentCashScreen({Key? key}) : super(key: key);
 

@@ -1,5 +1,4 @@
 import 'package:ala_pos/presentation/pages/pages.dart';
-import 'package:ala_pos/presentation/pages/pos/data/pos_data.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';

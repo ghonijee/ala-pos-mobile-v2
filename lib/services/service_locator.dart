@@ -1,12 +1,9 @@
-import 'package:ala_pos/domain/models/transaction/transaction_model.dart';
 import 'package:core/core.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 
-import '../domain/models/transaction/transaction_item_model.dart';
 import 'service_locator.config.dart';
 
 final getIt = GetIt.instance;
