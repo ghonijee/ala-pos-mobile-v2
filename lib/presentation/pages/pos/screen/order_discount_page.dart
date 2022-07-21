@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:sizer/sizer.dart';
 
 class OrderDiscountPage extends HookWidget {
@@ -13,7 +14,7 @@ class OrderDiscountPage extends HookWidget {
   Widget build(BuildContext context) {
     var resumeCubit = BlocProvider.of<TransactionResumeCubit>(context);
     var model = resumeCubit.state.model;
-    var discountField = useTextEditingController(text: model!.discountPrice.toString());
+    var discountField = useTextEditingController(text: model!.discountPrice!.toThousandSeparator());
 
     return Container(
       height: 90.h,
@@ -96,6 +97,12 @@ class OrderDiscountPage extends HookWidget {
                 height: AppSpacings.s.sp,
               ),
               TextFormField(
+                inputFormatters: [
+                  MoneyInputFormatter(
+                    thousandSeparator: ThousandSeparator.Period,
+                    mantissaLength: 0,
+                  ),
+                ],
                 controller: discountField,
               )
             ],

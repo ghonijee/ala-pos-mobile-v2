@@ -100,9 +100,10 @@ class CartPage extends HookWidget implements AutoRouteWrapper {
                             width: 80.sp,
                             height: 10.h,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 IconButton(
+                                  padding: EdgeInsets.zero,
                                   onPressed: () {
                                     cartCubit.increase(itemModel);
                                   },
@@ -110,6 +111,7 @@ class CartPage extends HookWidget implements AutoRouteWrapper {
                                 ),
                                 Text(itemModel.quantity.toString()),
                                 IconButton(
+                                  padding: EdgeInsets.zero,
                                   onPressed: itemModel.quantity == 1
                                       ? null
                                       : () {

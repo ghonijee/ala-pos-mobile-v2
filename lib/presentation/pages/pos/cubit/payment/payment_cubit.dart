@@ -15,7 +15,7 @@ class PaymentCubit extends Cubit<PaymentState> {
   }
 
   setPayment(int cash) {
-    var model = state.when(initial: () => null, loaded: (model) => model);
+    var model = state.maybeWhen(orElse: () => null, loaded: (model) => model);
     emit(PaymentState.initial());
     emit(
       PaymentState.loaded(
@@ -28,10 +28,9 @@ class PaymentCubit extends Cubit<PaymentState> {
   }
 
   paymentValid() {
-    return state.when(
-      initial: () {
-        return true;
-      },
+    return state.maybeWhen(
+      orElse: () {},
+      initial: () => false,
       loaded: (model) => model.receivedMoney! > model.result,
     );
   }

@@ -11,30 +11,32 @@ import 'package:injectable/injectable.dart' as _i2;
 import '../data/remote/auth_remote_source.dart' as _i4;
 import '../data/remote/product_remote_source.dart' as _i7;
 import '../data/remote/store_remote_source.dart' as _i10;
-import '../domain/repositories/auth_repository.dart' as _i13;
+import '../data/remote/transaction_remote_source.dart' as _i12;
+import '../domain/repositories/auth_repository.dart' as _i14;
 import '../domain/repositories/product_repository.dart' as _i8;
 import '../domain/repositories/store_repository.dart' as _i11;
-import '../presentation/pages/auth/login/cubit/login_cubit.dart' as _i16;
-import '../presentation/pages/auth/register/cubit/register_cubit.dart' as _i18;
+import '../domain/repositories/transaction_repository.dart' as _i13;
+import '../presentation/pages/auth/login/cubit/login_cubit.dart' as _i17;
+import '../presentation/pages/auth/register/cubit/register_cubit.dart' as _i19;
 import '../presentation/pages/auth/store_form/cubit/store_form_cubit.dart'
-    as _i21;
+    as _i22;
 import '../presentation/pages/pos/cubit/cart/cart_cubit.dart' as _i5;
 import '../presentation/pages/pos/cubit/list_product/list_product_cubit.dart'
-    as _i15;
+    as _i16;
 import '../presentation/pages/pos/cubit/payment/payment_cubit.dart' as _i6;
 import '../presentation/pages/pos/cubit/resume/transaction_resume_cubit.dart'
-    as _i22;
+    as _i24;
 import '../presentation/pages/pos/cubit/scan_product/scan_product_cubit.dart'
     as _i9;
 import '../presentation/pages/pos/cubit/submit_transaction/submit_transaction_cubit.dart'
-    as _i12;
+    as _i23;
 import '../presentation/pages/product/cubit/form/form_product_cubit.dart'
-    as _i14;
+    as _i15;
 import '../presentation/pages/product/cubit/master/master_product_cubit.dart'
-    as _i17;
-import '../presentation/pages/splashscreen/cubit/splash_cubit.dart' as _i20;
-import '../presentation/widgets/side_menu/cubit/side_menu_cubit.dart' as _i19;
-import 'service_locator.dart' as _i23; // ignore_for_file: unnecessary_lambdas
+    as _i18;
+import '../presentation/pages/splashscreen/cubit/splash_cubit.dart' as _i21;
+import '../presentation/widgets/side_menu/cubit/side_menu_cubit.dart' as _i20;
+import 'service_locator.dart' as _i25; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -58,31 +60,36 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i10.StoreRemoteSource(get<_i3.ApiClient>()));
   gh.lazySingleton<_i11.StoreRepository>(() => _i11.StoreRepository(
       get<_i10.StoreRemoteSource>(), get<_i3.LocalStorage>()));
-  gh.factory<_i12.SubmitTransactionCubit>(() => _i12.SubmitTransactionCubit());
-  gh.lazySingleton<_i13.AuthRepository>(() => _i13.AuthRepository(
+  gh.lazySingleton<_i12.TransactionRemoteSource>(
+      () => _i12.TransactionRemoteSource(get<_i3.ApiClient>()));
+  gh.lazySingleton<_i13.TransactionRepository>(
+      () => _i13.TransactionRepository(get<_i12.TransactionRemoteSource>()));
+  gh.lazySingleton<_i14.AuthRepository>(() => _i14.AuthRepository(
       remoteSource: get<_i4.AuthRemoteSource>(),
       storage: get<_i3.LocalStorage>()));
-  gh.factory<_i14.FormProductCubit>(() => _i14.FormProductCubit(
+  gh.factory<_i15.FormProductCubit>(() => _i15.FormProductCubit(
       get<_i8.ProductRepository>(),
       get<_i11.StoreRepository>(),
-      get<_i13.AuthRepository>()));
-  gh.factory<_i15.ListProductCubit>(() => _i15.ListProductCubit(
+      get<_i14.AuthRepository>()));
+  gh.factory<_i16.ListProductCubit>(() => _i16.ListProductCubit(
       get<_i8.ProductRepository>(), get<_i11.StoreRepository>()));
-  gh.factory<_i16.LoginCubit>(() =>
-      _i16.LoginCubit(get<_i13.AuthRepository>(), get<_i11.StoreRepository>()));
-  gh.factory<_i17.MasterProductCubit>(() => _i17.MasterProductCubit(
+  gh.factory<_i17.LoginCubit>(() =>
+      _i17.LoginCubit(get<_i14.AuthRepository>(), get<_i11.StoreRepository>()));
+  gh.factory<_i18.MasterProductCubit>(() => _i18.MasterProductCubit(
       get<_i8.ProductRepository>(), get<_i11.StoreRepository>()));
-  gh.factory<_i18.RegisterCubit>(
-      () => _i18.RegisterCubit(get<_i13.AuthRepository>()));
-  gh.factory<_i19.SideMenuCubit>(
-      () => _i19.SideMenuCubit(get<_i13.AuthRepository>()));
-  gh.factory<_i20.SplashCubit>(
-      () => _i20.SplashCubit(authRepository: get<_i13.AuthRepository>()));
-  gh.factory<_i21.StoreFormCubit>(
-      () => _i21.StoreFormCubit(get<_i11.StoreRepository>()));
-  gh.factory<_i22.TransactionResumeCubit>(() => _i22.TransactionResumeCubit(
-      get<_i13.AuthRepository>(), get<_i11.StoreRepository>()));
+  gh.factory<_i19.RegisterCubit>(
+      () => _i19.RegisterCubit(get<_i14.AuthRepository>()));
+  gh.factory<_i20.SideMenuCubit>(
+      () => _i20.SideMenuCubit(get<_i14.AuthRepository>()));
+  gh.factory<_i21.SplashCubit>(
+      () => _i21.SplashCubit(authRepository: get<_i14.AuthRepository>()));
+  gh.factory<_i22.StoreFormCubit>(
+      () => _i22.StoreFormCubit(get<_i11.StoreRepository>()));
+  gh.factory<_i23.SubmitTransactionCubit>(
+      () => _i23.SubmitTransactionCubit(get<_i13.TransactionRepository>()));
+  gh.factory<_i24.TransactionResumeCubit>(() => _i24.TransactionResumeCubit(
+      get<_i14.AuthRepository>(), get<_i11.StoreRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i23.RegisterModule {}
+class _$RegisterModule extends _i25.RegisterModule {}

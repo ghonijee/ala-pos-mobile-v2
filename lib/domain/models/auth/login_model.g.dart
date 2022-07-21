@@ -15,5 +15,5 @@ _$_LoginModel _$$_LoginModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_LoginModelToJson(_$_LoginModel instance) =>
     <String, dynamic>{
       'personal_access_token': instance.personalAccessToken,
-      'user': instance.userModel,
+      'user': instance.userModel.toJson(),
     };

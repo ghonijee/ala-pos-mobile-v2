@@ -1,1 +1,1 @@
-{"bricks":{"hello":"0.1.0+1","data_source":{"path":"packages/core/bricks/data_source"}}}
+{"bricks":{"data_source":{"path":"packages/core/bricks/data_source"}}}

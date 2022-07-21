@@ -5,6 +5,6 @@
 
 ## Generate Data Source 
 Running this command to generate file data source
-```
+```bash
 mason make data_source
 ```

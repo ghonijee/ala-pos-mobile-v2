@@ -42,7 +42,7 @@ class OrderResultPage extends HookWidget {
                             children: [
                               Icon(
                                 Ionicons.checkmark_circle_outline,
-                                size: 80.sp,
+                                size: 60.sp,
                                 color: Theme.of(context).primaryColor,
                               ),
                               SizedBox(
@@ -50,7 +50,7 @@ class OrderResultPage extends HookWidget {
                               ),
                               Text(
                                 "Pembayaran Berhasil",
-                                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                style: Theme.of(context).textTheme.headline6!.copyWith(
                                       color: Theme.of(context).primaryColor,
                                     ),
                               ),

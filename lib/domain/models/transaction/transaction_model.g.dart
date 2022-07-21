@@ -42,5 +42,5 @@ Map<String, dynamic> _$$_TransactionModelToJson(_$_TransactionModel instance) =>
       'amount': instance.amount,
       'received_money': instance.receivedMoney,
       'change_money': instance.changeMoney,
-      'items': instance.items,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
