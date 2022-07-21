@@ -10,7 +10,8 @@ class TransactionModel with _$TransactionModel {
   const TransactionModel._();
 
   factory TransactionModel({
-    @JsonKey(name: "id", required: true) String? id,
+    @JsonKey(name: "id", required: true) int? id,
+    @JsonKey(name: "key", required: false) String? key,
     @JsonKey(name: "user_id", required: true) int? userId,
     @JsonKey(name: "store_id") int? storeId,
     @JsonKey(name: "date", required: true) DateTime? date,
@@ -18,8 +19,8 @@ class TransactionModel with _$TransactionModel {
     @JsonKey(name: "discount", required: false) @Default(0) int? discountPrice,
     @JsonKey(name: "note", required: false) String? note,
     @JsonKey(name: "amount", required: true) @Default(0) int? amount,
-    @JsonKey(name: "receivedMoney", required: true) @Default(0) int? receivedMoney,
-    @JsonKey(name: "changeMoney", required: false) @Default(0) int? changeMoney,
+    @JsonKey(name: "received_money", required: true) @Default(0) int? receivedMoney,
+    @JsonKey(name: "change_money", required: false) @Default(0) int? changeMoney,
     @JsonKey(name: "items") List<TransactionItemModel>? items,
   }) = _TransactionModel;
 

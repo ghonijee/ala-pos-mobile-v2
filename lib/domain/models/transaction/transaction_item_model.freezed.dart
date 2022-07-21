@@ -36,14 +36,18 @@ mixin _$TransactionItemModel {
   int get productId => throw _privateConstructorUsedError;
   @JsonKey(name: "product_id")
   set productId(int value) => throw _privateConstructorUsedError;
-  @JsonKey(name: "product")
+  @JsonKey(name: "product_name")
   String get productName => throw _privateConstructorUsedError;
-  @JsonKey(name: "product")
+  @JsonKey(name: "product_name")
   set productName(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
   int get price => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
   set price(int value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "product_cost")
+  int? get productCost => throw _privateConstructorUsedError;
+  @JsonKey(name: "product_cost")
+  set productCost(int? value) => throw _privateConstructorUsedError;
   @JsonKey(name: "discount_price")
   int get discountPrice => throw _privateConstructorUsedError;
   @JsonKey(name: "discount_price")
@@ -81,8 +85,9 @@ abstract class $TransactionItemModelCopyWith<$Res> {
       @JsonKey(name: "transaction_id") String transactionId,
       @JsonKey(name: "store_id") int storeId,
       @JsonKey(name: "product_id") int productId,
-      @JsonKey(name: "product") String productName,
+      @JsonKey(name: "product_name") String productName,
       @JsonKey(name: "price") int price,
+      @JsonKey(name: "product_cost") int? productCost,
       @JsonKey(name: "discount_price") int discountPrice,
       @JsonKey(name: "discount_percentage") double? discountPercentage,
       @JsonKey(name: "note") String? note,
@@ -107,6 +112,7 @@ class _$TransactionItemModelCopyWithImpl<$Res>
     Object? productId = freezed,
     Object? productName = freezed,
     Object? price = freezed,
+    Object? productCost = freezed,
     Object? discountPrice = freezed,
     Object? discountPercentage = freezed,
     Object? note = freezed,
@@ -138,6 +144,10 @@ class _$TransactionItemModelCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      productCost: productCost == freezed
+          ? _value.productCost
+          : productCost // ignore: cast_nullable_to_non_nullable
+              as int?,
       discountPrice: discountPrice == freezed
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
@@ -174,8 +184,9 @@ abstract class _$$_TransactionItemModelCopyWith<$Res>
       @JsonKey(name: "transaction_id") String transactionId,
       @JsonKey(name: "store_id") int storeId,
       @JsonKey(name: "product_id") int productId,
-      @JsonKey(name: "product") String productName,
+      @JsonKey(name: "product_name") String productName,
       @JsonKey(name: "price") int price,
+      @JsonKey(name: "product_cost") int? productCost,
       @JsonKey(name: "discount_price") int discountPrice,
       @JsonKey(name: "discount_percentage") double? discountPercentage,
       @JsonKey(name: "note") String? note,
@@ -202,6 +213,7 @@ class __$$_TransactionItemModelCopyWithImpl<$Res>
     Object? productId = freezed,
     Object? productName = freezed,
     Object? price = freezed,
+    Object? productCost = freezed,
     Object? discountPrice = freezed,
     Object? discountPercentage = freezed,
     Object? note = freezed,
@@ -233,6 +245,10 @@ class __$$_TransactionItemModelCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      productCost: productCost == freezed
+          ? _value.productCost
+          : productCost // ignore: cast_nullable_to_non_nullable
+              as int?,
       discountPrice: discountPrice == freezed
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
@@ -265,8 +281,9 @@ class _$_TransactionItemModel extends _TransactionItemModel {
       @JsonKey(name: "transaction_id") required this.transactionId,
       @JsonKey(name: "store_id") required this.storeId,
       @JsonKey(name: "product_id") required this.productId,
-      @JsonKey(name: "product") required this.productName,
+      @JsonKey(name: "product_name") required this.productName,
       @JsonKey(name: "price") required this.price,
+      @JsonKey(name: "product_cost") this.productCost = 0,
       @JsonKey(name: "discount_price") this.discountPrice = 0,
       @JsonKey(name: "discount_percentage") this.discountPercentage = 0.0,
       @JsonKey(name: "note") this.note,
@@ -290,11 +307,14 @@ class _$_TransactionItemModel extends _TransactionItemModel {
   @JsonKey(name: "product_id")
   int productId;
   @override
-  @JsonKey(name: "product")
+  @JsonKey(name: "product_name")
   String productName;
   @override
   @JsonKey(name: "price")
   int price;
+  @override
+  @JsonKey(name: "product_cost")
+  int? productCost;
   @override
   @JsonKey(name: "discount_price")
   int discountPrice;
@@ -313,7 +333,7 @@ class _$_TransactionItemModel extends _TransactionItemModel {
 
   @override
   String toString() {
-    return 'TransactionItemModel(id: $id, transactionId: $transactionId, storeId: $storeId, productId: $productId, productName: $productName, price: $price, discountPrice: $discountPrice, discountPercentage: $discountPercentage, note: $note, quantity: $quantity, amount: $amount)';
+    return 'TransactionItemModel(id: $id, transactionId: $transactionId, storeId: $storeId, productId: $productId, productName: $productName, price: $price, productCost: $productCost, discountPrice: $discountPrice, discountPercentage: $discountPercentage, note: $note, quantity: $quantity, amount: $amount)';
   }
 
   @JsonKey(ignore: true)
@@ -334,8 +354,9 @@ abstract class _TransactionItemModel extends TransactionItemModel {
       @JsonKey(name: "transaction_id") required String transactionId,
       @JsonKey(name: "store_id") required int storeId,
       @JsonKey(name: "product_id") required int productId,
-      @JsonKey(name: "product") required String productName,
+      @JsonKey(name: "product_name") required String productName,
       @JsonKey(name: "price") required int price,
+      @JsonKey(name: "product_cost") int? productCost,
       @JsonKey(name: "discount_price") int discountPrice,
       @JsonKey(name: "discount_percentage") double? discountPercentage,
       @JsonKey(name: "note") String? note,
@@ -359,11 +380,14 @@ abstract class _TransactionItemModel extends TransactionItemModel {
   @JsonKey(name: "product_id")
   int get productId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: "product")
+  @JsonKey(name: "product_name")
   String get productName => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "price")
   int get price => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "product_cost")
+  int? get productCost => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "discount_price")
   int get discountPrice => throw _privateConstructorUsedError;

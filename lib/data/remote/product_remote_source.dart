@@ -56,6 +56,19 @@ class ProductRemoteSource {
     }
   }
 
+  Future<ApiResponse> findByCode(String code) async {
+    Dio dio = await apiClient.instance();
+    try {
+      Response registerResponse = await dio.get("$resouce/find/$code");
+
+      return SuccessResponse.fromJson(registerResponse.data);
+    } on DioError catch (e) {
+      return FailedResponse(message: e.toString(), status: false);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<ApiResponse> update(Map<String, dynamic> dataJson, id) async {
     Dio dio = await apiClient.instance();
     try {

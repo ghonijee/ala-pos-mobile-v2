@@ -21,9 +21,13 @@ TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TransactionModel {
   @JsonKey(name: "id", required: true)
-  String? get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "id", required: true)
-  set id(String? value) => throw _privateConstructorUsedError;
+  set id(int? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "key", required: false)
+  String? get key => throw _privateConstructorUsedError;
+  @JsonKey(name: "key", required: false)
+  set key(String? value) => throw _privateConstructorUsedError;
   @JsonKey(name: "user_id", required: true)
   int? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: "user_id", required: true)
@@ -52,13 +56,13 @@ mixin _$TransactionModel {
   int? get amount => throw _privateConstructorUsedError;
   @JsonKey(name: "amount", required: true)
   set amount(int? value) => throw _privateConstructorUsedError;
-  @JsonKey(name: "receivedMoney", required: true)
+  @JsonKey(name: "received_money", required: true)
   int? get receivedMoney => throw _privateConstructorUsedError;
-  @JsonKey(name: "receivedMoney", required: true)
+  @JsonKey(name: "received_money", required: true)
   set receivedMoney(int? value) => throw _privateConstructorUsedError;
-  @JsonKey(name: "changeMoney", required: false)
+  @JsonKey(name: "change_money", required: false)
   int? get changeMoney => throw _privateConstructorUsedError;
-  @JsonKey(name: "changeMoney", required: false)
+  @JsonKey(name: "change_money", required: false)
   set changeMoney(int? value) => throw _privateConstructorUsedError;
   @JsonKey(name: "items")
   List<TransactionItemModel>? get items => throw _privateConstructorUsedError;
@@ -78,7 +82,8 @@ abstract class $TransactionModelCopyWith<$Res> {
           TransactionModel value, $Res Function(TransactionModel) then) =
       _$TransactionModelCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "id", required: true) String? id,
+      {@JsonKey(name: "id", required: true) int? id,
+      @JsonKey(name: "key", required: false) String? key,
       @JsonKey(name: "user_id", required: true) int? userId,
       @JsonKey(name: "store_id") int? storeId,
       @JsonKey(name: "date", required: true) DateTime? date,
@@ -86,8 +91,8 @@ abstract class $TransactionModelCopyWith<$Res> {
       @JsonKey(name: "discount", required: false) int? discountPrice,
       @JsonKey(name: "note", required: false) String? note,
       @JsonKey(name: "amount", required: true) int? amount,
-      @JsonKey(name: "receivedMoney", required: true) int? receivedMoney,
-      @JsonKey(name: "changeMoney", required: false) int? changeMoney,
+      @JsonKey(name: "received_money", required: true) int? receivedMoney,
+      @JsonKey(name: "change_money", required: false) int? changeMoney,
       @JsonKey(name: "items") List<TransactionItemModel>? items});
 }
 
@@ -103,6 +108,7 @@ class _$TransactionModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? key = freezed,
     Object? userId = freezed,
     Object? storeId = freezed,
     Object? date = freezed,
@@ -118,6 +124,10 @@ class _$TransactionModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
               as String?,
       userId: userId == freezed
           ? _value.userId
@@ -171,7 +181,8 @@ abstract class _$$_TransactionModelCopyWith<$Res>
       __$$_TransactionModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "id", required: true) String? id,
+      {@JsonKey(name: "id", required: true) int? id,
+      @JsonKey(name: "key", required: false) String? key,
       @JsonKey(name: "user_id", required: true) int? userId,
       @JsonKey(name: "store_id") int? storeId,
       @JsonKey(name: "date", required: true) DateTime? date,
@@ -179,8 +190,8 @@ abstract class _$$_TransactionModelCopyWith<$Res>
       @JsonKey(name: "discount", required: false) int? discountPrice,
       @JsonKey(name: "note", required: false) String? note,
       @JsonKey(name: "amount", required: true) int? amount,
-      @JsonKey(name: "receivedMoney", required: true) int? receivedMoney,
-      @JsonKey(name: "changeMoney", required: false) int? changeMoney,
+      @JsonKey(name: "received_money", required: true) int? receivedMoney,
+      @JsonKey(name: "change_money", required: false) int? changeMoney,
       @JsonKey(name: "items") List<TransactionItemModel>? items});
 }
 
@@ -198,6 +209,7 @@ class __$$_TransactionModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? key = freezed,
     Object? userId = freezed,
     Object? storeId = freezed,
     Object? date = freezed,
@@ -213,6 +225,10 @@ class __$$_TransactionModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
               as String?,
       userId: userId == freezed
           ? _value.userId
@@ -264,6 +280,7 @@ class _$_TransactionModel extends _TransactionModel
     with DiagnosticableTreeMixin {
   _$_TransactionModel(
       {@JsonKey(name: "id", required: true) this.id,
+      @JsonKey(name: "key", required: false) this.key,
       @JsonKey(name: "user_id", required: true) this.userId,
       @JsonKey(name: "store_id") this.storeId,
       @JsonKey(name: "date", required: true) this.date,
@@ -271,8 +288,8 @@ class _$_TransactionModel extends _TransactionModel
       @JsonKey(name: "discount", required: false) this.discountPrice = 0,
       @JsonKey(name: "note", required: false) this.note,
       @JsonKey(name: "amount", required: true) this.amount = 0,
-      @JsonKey(name: "receivedMoney", required: true) this.receivedMoney = 0,
-      @JsonKey(name: "changeMoney", required: false) this.changeMoney = 0,
+      @JsonKey(name: "received_money", required: true) this.receivedMoney = 0,
+      @JsonKey(name: "change_money", required: false) this.changeMoney = 0,
       @JsonKey(name: "items") this.items})
       : super._();
 
@@ -281,7 +298,10 @@ class _$_TransactionModel extends _TransactionModel
 
   @override
   @JsonKey(name: "id", required: true)
-  String? id;
+  int? id;
+  @override
+  @JsonKey(name: "key", required: false)
+  String? key;
   @override
   @JsonKey(name: "user_id", required: true)
   int? userId;
@@ -304,10 +324,10 @@ class _$_TransactionModel extends _TransactionModel
   @JsonKey(name: "amount", required: true)
   int? amount;
   @override
-  @JsonKey(name: "receivedMoney", required: true)
+  @JsonKey(name: "received_money", required: true)
   int? receivedMoney;
   @override
-  @JsonKey(name: "changeMoney", required: false)
+  @JsonKey(name: "change_money", required: false)
   int? changeMoney;
   @override
   @JsonKey(name: "items")
@@ -315,7 +335,7 @@ class _$_TransactionModel extends _TransactionModel
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TransactionModel(id: $id, userId: $userId, storeId: $storeId, date: $date, status: $status, discountPrice: $discountPrice, note: $note, amount: $amount, receivedMoney: $receivedMoney, changeMoney: $changeMoney, items: $items)';
+    return 'TransactionModel(id: $id, key: $key, userId: $userId, storeId: $storeId, date: $date, status: $status, discountPrice: $discountPrice, note: $note, amount: $amount, receivedMoney: $receivedMoney, changeMoney: $changeMoney, items: $items)';
   }
 
   @override
@@ -324,6 +344,7 @@ class _$_TransactionModel extends _TransactionModel
     properties
       ..add(DiagnosticsProperty('type', 'TransactionModel'))
       ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('key', key))
       ..add(DiagnosticsProperty('userId', userId))
       ..add(DiagnosticsProperty('storeId', storeId))
       ..add(DiagnosticsProperty('date', date))
@@ -349,7 +370,8 @@ class _$_TransactionModel extends _TransactionModel
 
 abstract class _TransactionModel extends TransactionModel {
   factory _TransactionModel(
-          {@JsonKey(name: "id", required: true) String? id,
+          {@JsonKey(name: "id", required: true) int? id,
+          @JsonKey(name: "key", required: false) String? key,
           @JsonKey(name: "user_id", required: true) int? userId,
           @JsonKey(name: "store_id") int? storeId,
           @JsonKey(name: "date", required: true) DateTime? date,
@@ -357,8 +379,8 @@ abstract class _TransactionModel extends TransactionModel {
           @JsonKey(name: "discount", required: false) int? discountPrice,
           @JsonKey(name: "note", required: false) String? note,
           @JsonKey(name: "amount", required: true) int? amount,
-          @JsonKey(name: "receivedMoney", required: true) int? receivedMoney,
-          @JsonKey(name: "changeMoney", required: false) int? changeMoney,
+          @JsonKey(name: "received_money", required: true) int? receivedMoney,
+          @JsonKey(name: "change_money", required: false) int? changeMoney,
           @JsonKey(name: "items") List<TransactionItemModel>? items}) =
       _$_TransactionModel;
   _TransactionModel._() : super._();
@@ -368,7 +390,10 @@ abstract class _TransactionModel extends TransactionModel {
 
   @override
   @JsonKey(name: "id", required: true)
-  String? get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "key", required: false)
+  String? get key => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "user_id", required: true)
   int? get userId => throw _privateConstructorUsedError;
@@ -391,10 +416,10 @@ abstract class _TransactionModel extends TransactionModel {
   @JsonKey(name: "amount", required: true)
   int? get amount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: "receivedMoney", required: true)
+  @JsonKey(name: "received_money", required: true)
   int? get receivedMoney => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: "changeMoney", required: false)
+  @JsonKey(name: "change_money", required: false)
   int? get changeMoney => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "items")

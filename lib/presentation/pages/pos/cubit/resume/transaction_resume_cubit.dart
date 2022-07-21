@@ -27,7 +27,7 @@ class TransactionResumeCubit extends Cubit<TransactionResumeState> {
     var modelPrevius = state.model;
 
     var model = TransactionModel(
-      id: Uuid().v4(),
+      key: Uuid().v4(),
       userId: user.id,
       storeId: store.id,
       date: DateTime.now(),

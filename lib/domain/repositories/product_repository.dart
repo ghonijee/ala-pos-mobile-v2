@@ -72,4 +72,30 @@ class ProductRepository {
       return Left(FailureModel.serverError(e.toString()));
     }
   }
+
+  Future<Either<FailureModel, ApiResponse>> show(String key) async {
+    try {
+      ApiResponse response = await remoteSource.show(key);
+      if (response.status! == false) {
+        throw Exception(response.message);
+      }
+
+      return Right(response);
+    } catch (e) {
+      return Left(FailureModel.serverError(e.toString()));
+    }
+  }
+
+  Future<Either<FailureModel, ApiResponse>> scanCode(String key) async {
+    try {
+      ApiResponse response = await remoteSource.findByCode(key);
+      if (response.status! == false) {
+        throw Exception(response.message);
+      }
+
+      return Right(response);
+    } catch (e) {
+      return Left(FailureModel.serverError(e.toString()));
+    }
+  }
 }
