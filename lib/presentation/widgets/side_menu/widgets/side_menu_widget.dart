@@ -109,13 +109,13 @@ class SideMenuView extends StatelessWidget {
                 },
                 iconData: Icons.cases_rounded,
               ),
-              // SideMenuItemWidget(
-              //   title: "Penjualan ",
-              //   onTap: () {
-              //     //
-              //   },
-              //   iconData: Icons.outbox_rounded,
-              // ),
+              SideMenuItemWidget(
+                title: "Transaksi ",
+                onTap: () {
+                  AutoRouter.of(context).replaceNamed(RouteName.transaction);
+                },
+                iconData: Icons.outbox_rounded,
+              ),
               SideMenuItemWidget(
                   title: "Produk ",
                   onTap: () {

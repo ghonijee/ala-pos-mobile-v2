@@ -11,7 +11,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 import '../cubit/master/master_product_cubit.dart';
-import 'product_item_widget.dart';
+import '../widgets/product_item_widget.dart';
 
 class ProductGridScreen extends HookWidget {
   const ProductGridScreen({Key? key}) : super(key: key);

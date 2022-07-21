@@ -1,4 +1,7 @@
 import 'package:ala_pos/presentation/pages/pos/screen/order_result_page.dart';
+import 'package:ala_pos/presentation/pages/transaction/screen/transaction_detail_screen.dart';
+import 'package:ala_pos/presentation/pages/transaction/screen/transaction_list_screen.dart';
+import 'package:ala_pos/presentation/pages/transaction/screen/transaction_wrapper.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../presentation/pages/pages.dart';
@@ -24,9 +27,12 @@ part 'route_page.gr.dart';
     ]),
     AutoRoute(page: MasterProductWrapper, path: RouteName.product, children: [
       AutoRoute(page: ProductGridScreen, path: RouteName.productList, initial: true),
-      AutoRoute(page: ProductFormScreen, path: RouteName.productForm, initial: true),
-      // AutoRoute(page: ProductGridScreen, path: RouteName.productList),
-    ])
+      AutoRoute(page: ProductFormScreen, path: RouteName.productForm),
+    ]),
+    AutoRoute(page: TransactionWrapper, path: RouteName.transaction, children: [
+      AutoRoute(page: TransactionListScreen, path: RouteName.transactionList, initial: true),
+      AutoRoute(page: TransactionDetailScreen, path: RouteName.transactionDetail),
+    ]),
   ],
 )
 

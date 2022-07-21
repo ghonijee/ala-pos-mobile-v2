@@ -41,6 +41,10 @@ class _$RoutePage extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const MasterProductWrapper());
     },
+    TransactionWrapperRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const TransactionWrapper());
+    },
     PosPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PosPage());
@@ -79,6 +83,14 @@ class _$RoutePage extends RootStackRouter {
     ProductFormScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const ProductFormScreen());
+    },
+    TransactionListScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const TransactionListScreen());
+    },
+    TransactionDetailScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const TransactionDetailScreen());
     }
   };
 
@@ -120,6 +132,21 @@ class _$RoutePage extends RootStackRouter {
               RouteConfig(ProductFormScreenRoute.name,
                   path: 'product/create',
                   parent: MasterProductWrapperRoute.name)
+            ]),
+        RouteConfig(TransactionWrapperRoute.name,
+            path: 'transaction/',
+            children: [
+              RouteConfig('#redirect',
+                  path: '',
+                  parent: TransactionWrapperRoute.name,
+                  redirectTo: 'transaction/list',
+                  fullMatch: true),
+              RouteConfig(TransactionListScreenRoute.name,
+                  path: 'transaction/list',
+                  parent: TransactionWrapperRoute.name),
+              RouteConfig(TransactionDetailScreenRoute.name,
+                  path: 'transaction/detail',
+                  parent: TransactionWrapperRoute.name)
             ])
       ];
 }
@@ -175,6 +202,16 @@ class MasterProductWrapperRoute extends PageRouteInfo<void> {
             path: 'product/', initialChildren: children);
 
   static const String name = 'MasterProductWrapperRoute';
+}
+
+/// generated route for
+/// [TransactionWrapper]
+class TransactionWrapperRoute extends PageRouteInfo<void> {
+  const TransactionWrapperRoute({List<PageRouteInfo>? children})
+      : super(TransactionWrapperRoute.name,
+            path: 'transaction/', initialChildren: children);
+
+  static const String name = 'TransactionWrapperRoute';
 }
 
 /// generated route for
@@ -262,4 +299,22 @@ class ProductFormScreenRoute extends PageRouteInfo<void> {
       : super(ProductFormScreenRoute.name, path: 'product/create');
 
   static const String name = 'ProductFormScreenRoute';
+}
+
+/// generated route for
+/// [TransactionListScreen]
+class TransactionListScreenRoute extends PageRouteInfo<void> {
+  const TransactionListScreenRoute()
+      : super(TransactionListScreenRoute.name, path: 'transaction/list');
+
+  static const String name = 'TransactionListScreenRoute';
+}
+
+/// generated route for
+/// [TransactionDetailScreen]
+class TransactionDetailScreenRoute extends PageRouteInfo<void> {
+  const TransactionDetailScreenRoute()
+      : super(TransactionDetailScreenRoute.name, path: 'transaction/detail');
+
+  static const String name = 'TransactionDetailScreenRoute';
 }

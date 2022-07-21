@@ -19,4 +19,9 @@ class RouteName {
   static const productList = "product/list";
   static const productForm = "product/create";
   static const productScan = "product/scan";
+
+  // Transaction
+  static const transaction = "transaction/";
+  static const transactionList = "transaction/list";
+  static const transactionDetail = "transaction/detail";
 }
