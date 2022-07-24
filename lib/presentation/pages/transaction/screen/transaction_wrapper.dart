@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../cubit/transaction_detail/transaction_detail_cubit.dart';
+
 class TransactionWrapper extends StatelessWidget {
   const TransactionWrapper({Key? key}) : super(key: key);
 
@@ -13,6 +15,9 @@ class TransactionWrapper extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => GetIt.I.get<TransactionListCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => GetIt.I.get<TransactionDetailCubit>(),
         ),
       ],
       child: AutoRouter(),

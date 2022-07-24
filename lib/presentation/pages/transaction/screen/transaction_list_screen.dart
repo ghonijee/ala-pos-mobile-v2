@@ -11,6 +11,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../widgets/side_menu/widgets/side_menu_widget.dart';
+import '../cubit/transaction_detail/transaction_detail_cubit.dart';
 
 class TransactionListScreen extends HookWidget {
   const TransactionListScreen({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class TransactionListScreen extends HookWidget {
     final scrollController = useScrollController();
 
     var listCubit = context.read<TransactionListCubit>();
+    var detailCubit = context.read<TransactionDetailCubit>();
 
     listCubit.getTransactionList(initialData: true);
 
@@ -82,6 +84,17 @@ class TransactionListScreen extends HookWidget {
                           //
                         },
                       ),
+                      suffixIcon: searchController.text.isNotEmpty
+                          ? IconButton(
+                              icon: Icon(
+                                Ionicons.close_outline,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              onPressed: () async {
+                                listCubit.getTransactionList(value: '', initialData: true);
+                              },
+                            )
+                          : null,
                       hintText: "Nomer Transaksi",
                     ),
                   ),
@@ -152,6 +165,7 @@ class TransactionListScreen extends HookWidget {
                                         var item = group.items![index];
                                         return ListTile(
                                           onTap: () {
+                                            detailCubit.load(group.items![index]);
                                             AutoRouter.of(context).pushNamed(RouteName.transactionDetail);
                                           },
                                           contentPadding: EdgeInsets.zero,

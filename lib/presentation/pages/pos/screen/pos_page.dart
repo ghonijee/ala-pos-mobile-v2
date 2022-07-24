@@ -61,7 +61,7 @@ class PosPage extends HookWidget {
               actions: [
                 IconButton(
                   onPressed: () {
-                    context.router.navigateNamed(CartPageRoute.name);
+                    context.router.pushNamed(RouteName.posOrderResume);
                   },
                   icon: Icon(Ionicons.cart_outline),
                 )
