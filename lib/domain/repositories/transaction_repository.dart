@@ -15,6 +15,10 @@ class TransactionRepository {
     try {
       var filterQuery = FilterBuilder().where(FilterData("store_id", storeId));
 
+      if (searchValue!.isNotEmpty) {
+        filterQuery = filterQuery..where(FilterData("invoice_number", searchValue, conjunction: 'contains'));
+      }
+
       ApiResponse response = await remoteSource.paginate(
         page: page.toString(),
         filter: filterQuery.build(),

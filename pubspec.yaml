@@ -54,6 +54,7 @@ dependencies:
   hive_flutter: ^1.1.0
   injectable: ^1.5.3
   ionicons: ^0.1.2
+  intl: ^0.17.0
   json_annotation: ^4.5.0
   simple_animations: ^4.0.2
   sizer: ^2.0.15

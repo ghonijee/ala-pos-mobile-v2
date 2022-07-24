@@ -20,7 +20,10 @@ class ProductFormScreen extends HookWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: Text("Produk"),
+        title: Text(
+          "Produk",
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.surface),
+        ),
         actions: [],
       ),
       body: BlocListener<FormProductCubit, FormProductState>(

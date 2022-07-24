@@ -1,6 +1,15 @@
 import 'package:intl/intl.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
+extension extensionDateTime on DateTime {
+  String humanReadable() {
+    // Intl.defaultLocale = 'id';
+    DateFormat dateFormat = DateFormat.yMd();
+
+    return dateFormat.format(this);
+  }
+}
+
 extension extensionString on String {
   String initial() {
     return this.isNotEmpty ? this.trim().split(RegExp(' +')).map((s) => s[0]).take(2).join().toUpperCase() : '';

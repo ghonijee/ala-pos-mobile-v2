@@ -25,7 +25,7 @@ import '../presentation/pages/pos/cubit/list_product/list_product_cubit.dart'
     as _i16;
 import '../presentation/pages/pos/cubit/payment/payment_cubit.dart' as _i6;
 import '../presentation/pages/pos/cubit/resume/transaction_resume_cubit.dart'
-    as _i24;
+    as _i25;
 import '../presentation/pages/pos/cubit/scan_product/scan_product_cubit.dart'
     as _i9;
 import '../presentation/pages/pos/cubit/submit_transaction/submit_transaction_cubit.dart'
@@ -35,8 +35,10 @@ import '../presentation/pages/product/cubit/form/form_product_cubit.dart'
 import '../presentation/pages/product/cubit/master/master_product_cubit.dart'
     as _i18;
 import '../presentation/pages/splashscreen/cubit/splash_cubit.dart' as _i21;
+import '../presentation/pages/transaction/cubit/transaction_list/transaction_list_cubit.dart'
+    as _i24;
 import '../presentation/widgets/side_menu/cubit/side_menu_cubit.dart' as _i20;
-import 'service_locator.dart' as _i25; // ignore_for_file: unnecessary_lambdas
+import 'service_locator.dart' as _i26; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -87,9 +89,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i22.StoreFormCubit(get<_i11.StoreRepository>()));
   gh.factory<_i23.SubmitTransactionCubit>(
       () => _i23.SubmitTransactionCubit(get<_i13.TransactionRepository>()));
-  gh.factory<_i24.TransactionResumeCubit>(() => _i24.TransactionResumeCubit(
+  gh.factory<_i24.TransactionListCubit>(() => _i24.TransactionListCubit(
+      get<_i13.TransactionRepository>(), get<_i11.StoreRepository>()));
+  gh.factory<_i25.TransactionResumeCubit>(() => _i25.TransactionResumeCubit(
       get<_i14.AuthRepository>(), get<_i11.StoreRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i25.RegisterModule {}
+class _$RegisterModule extends _i26.RegisterModule {}

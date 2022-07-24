@@ -8,8 +8,8 @@ class TransactionItemModel with _$TransactionItemModel {
   const TransactionItemModel._();
 
   factory TransactionItemModel({
-    @JsonKey(name: "id") required String id,
-    @JsonKey(name: "transaction_id") required String transactionId,
+    @JsonKey(name: "id") required int id,
+    @JsonKey(name: "transaction_id") required int transactionId,
     @JsonKey(name: "store_id") required int storeId,
     @JsonKey(name: "product_id") required int productId,
     @JsonKey(name: "product_name") required String productName,

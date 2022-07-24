@@ -21,13 +21,13 @@ TransactionItemModel _$TransactionItemModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TransactionItemModel {
   @JsonKey(name: "id")
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "id")
-  set id(String value) => throw _privateConstructorUsedError;
+  set id(int value) => throw _privateConstructorUsedError;
   @JsonKey(name: "transaction_id")
-  String get transactionId => throw _privateConstructorUsedError;
+  int get transactionId => throw _privateConstructorUsedError;
   @JsonKey(name: "transaction_id")
-  set transactionId(String value) => throw _privateConstructorUsedError;
+  set transactionId(int value) => throw _privateConstructorUsedError;
   @JsonKey(name: "store_id")
   int get storeId => throw _privateConstructorUsedError;
   @JsonKey(name: "store_id")
@@ -81,8 +81,8 @@ abstract class $TransactionItemModelCopyWith<$Res> {
           $Res Function(TransactionItemModel) then) =
       _$TransactionItemModelCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "transaction_id") String transactionId,
+      {@JsonKey(name: "id") int id,
+      @JsonKey(name: "transaction_id") int transactionId,
       @JsonKey(name: "store_id") int storeId,
       @JsonKey(name: "product_id") int productId,
       @JsonKey(name: "product_name") String productName,
@@ -123,11 +123,11 @@ class _$TransactionItemModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       transactionId: transactionId == freezed
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       storeId: storeId == freezed
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
@@ -180,8 +180,8 @@ abstract class _$$_TransactionItemModelCopyWith<$Res>
       __$$_TransactionItemModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "transaction_id") String transactionId,
+      {@JsonKey(name: "id") int id,
+      @JsonKey(name: "transaction_id") int transactionId,
       @JsonKey(name: "store_id") int storeId,
       @JsonKey(name: "product_id") int productId,
       @JsonKey(name: "product_name") String productName,
@@ -224,11 +224,11 @@ class __$$_TransactionItemModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       transactionId: transactionId == freezed
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       storeId: storeId == freezed
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
@@ -296,10 +296,10 @@ class _$_TransactionItemModel extends _TransactionItemModel {
 
   @override
   @JsonKey(name: "id")
-  String id;
+  int id;
   @override
   @JsonKey(name: "transaction_id")
-  String transactionId;
+  int transactionId;
   @override
   @JsonKey(name: "store_id")
   int storeId;
@@ -350,8 +350,8 @@ class _$_TransactionItemModel extends _TransactionItemModel {
 
 abstract class _TransactionItemModel extends TransactionItemModel {
   factory _TransactionItemModel(
-      {@JsonKey(name: "id") required String id,
-      @JsonKey(name: "transaction_id") required String transactionId,
+      {@JsonKey(name: "id") required int id,
+      @JsonKey(name: "transaction_id") required int transactionId,
       @JsonKey(name: "store_id") required int storeId,
       @JsonKey(name: "product_id") required int productId,
       @JsonKey(name: "product_name") required String productName,
@@ -369,10 +369,10 @@ abstract class _TransactionItemModel extends TransactionItemModel {
 
   @override
   @JsonKey(name: "id")
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "transaction_id")
-  String get transactionId => throw _privateConstructorUsedError;
+  int get transactionId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "store_id")
   int get storeId => throw _privateConstructorUsedError;

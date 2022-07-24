@@ -1,5 +1,4 @@
 import 'package:ala_pos/domain/models/transaction/transaction_item_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'transaction_model.freezed.dart';
@@ -12,6 +11,8 @@ class TransactionModel with _$TransactionModel {
   factory TransactionModel({
     @JsonKey(name: "id", required: true)
         int? id,
+    @JsonKey(name: "invoice_number", required: false)
+        String? invoiceNumber,
     @JsonKey(name: "key", required: false)
         String? key,
     @JsonKey(name: "user_id", required: true)
@@ -37,7 +38,7 @@ class TransactionModel with _$TransactionModel {
     @Default(0)
         int? changeMoney,
     @JsonKey(
-      name: "items",
+      name: "products",
     )
         List<TransactionItemModel>? items,
   }) = _TransactionModel;

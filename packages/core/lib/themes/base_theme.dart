@@ -50,7 +50,7 @@ class BaseTheme {
       ),
       titleTextStyle: GoogleFonts.openSans(
         color: AppColors.textPrimaryDark,
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: FontWeight.w500,
         letterSpacing: 0.15,
       ),

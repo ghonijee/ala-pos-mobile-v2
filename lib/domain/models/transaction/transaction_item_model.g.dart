@@ -9,8 +9,8 @@ part of 'transaction_item_model.dart';
 _$_TransactionItemModel _$$_TransactionItemModelFromJson(
         Map<String, dynamic> json) =>
     _$_TransactionItemModel(
-      id: json['id'] as String,
-      transactionId: json['transaction_id'] as String,
+      id: json['id'] as int,
+      transactionId: json['transaction_id'] as int,
       storeId: json['store_id'] as int,
       productId: json['product_id'] as int,
       productName: json['product_name'] as String,

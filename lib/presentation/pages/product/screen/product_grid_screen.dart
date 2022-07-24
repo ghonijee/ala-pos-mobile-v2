@@ -40,7 +40,10 @@ class ProductGridScreen extends HookWidget {
           drawer: SideMenuWidget(),
           backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
-            title: Text("Master Produk"),
+            title: Text(
+              "Master Produk",
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.surface),
+            ),
             actions: [
               IconButton(
                 onPressed: () {

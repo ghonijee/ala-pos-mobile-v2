@@ -13,6 +13,7 @@ _$_TransactionModel _$$_TransactionModelFromJson(Map<String, dynamic> json) {
   );
   return _$_TransactionModel(
     id: json['id'] as int?,
+    invoiceNumber: json['invoice_number'] as String?,
     key: json['key'] as String?,
     userId: json['user_id'] as int?,
     storeId: json['store_id'] as int?,
@@ -23,7 +24,7 @@ _$_TransactionModel _$$_TransactionModelFromJson(Map<String, dynamic> json) {
     amount: json['amount'] as int? ?? 0,
     receivedMoney: json['received_money'] as int? ?? 0,
     changeMoney: json['change_money'] as int? ?? 0,
-    items: (json['items'] as List<dynamic>?)
+    items: (json['products'] as List<dynamic>?)
         ?.map((e) => TransactionItemModel.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
@@ -32,6 +33,7 @@ _$_TransactionModel _$$_TransactionModelFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$$_TransactionModelToJson(_$_TransactionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'invoice_number': instance.invoiceNumber,
       'key': instance.key,
       'user_id': instance.userId,
       'store_id': instance.storeId,
@@ -42,5 +44,5 @@ Map<String, dynamic> _$$_TransactionModelToJson(_$_TransactionModel instance) =>
       'amount': instance.amount,
       'received_money': instance.receivedMoney,
       'change_money': instance.changeMoney,
-      'items': instance.items?.map((e) => e.toJson()).toList(),
+      'products': instance.items?.map((e) => e.toJson()).toList(),
     };

@@ -21,11 +21,11 @@ class CartCubit extends Cubit<CartState> {
       quantity: 1,
       amount: productModel.price * 1,
       price: productModel.price,
-      id: '',
+      id: 0,
       productId: productModel.id,
       productName: productModel.name,
       storeId: 1,
-      transactionId: '',
+      transactionId: 0,
     );
     final cartItemIndex = state.items.indexWhere(
       (item) => item.productId == cartItem.productId,
