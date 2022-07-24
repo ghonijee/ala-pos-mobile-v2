@@ -148,31 +148,10 @@ class OrderResultPage extends HookWidget {
                                       side: BorderSide(color: Theme.of(context).primaryColor),
                                     ),
                                     onPressed: () {
-                                      // context.go(RouteName.Pos);
+                                      context.router.pushNamed(RouteName.receiptScreen);
                                     },
                                     label: Text(
-                                      "Cetak Struk",
-                                      style: Theme.of(context)
-                                          .primaryTextTheme
-                                          .button!
-                                          .copyWith(color: Theme.of(context).primaryColor),
-                                    ),
-                                  ),
-                                  ElevatedButton.icon(
-                                    icon: Icon(
-                                      Ionicons.share_social_outline,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                      fixedSize: Size(45.w, 40.sp),
-                                      primary: Theme.of(context).colorScheme.surface,
-                                      side: BorderSide(color: Theme.of(context).primaryColor),
-                                    ),
-                                    onPressed: () {
-                                      //
-                                    },
-                                    label: Text(
-                                      "Share Struk",
+                                      "Lihat Struk",
                                       style: Theme.of(context)
                                           .primaryTextTheme
                                           .button!

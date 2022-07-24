@@ -1,6 +1,7 @@
 import 'package:ala_pos/ala_pos.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -18,6 +19,8 @@ void main() async {
   await initializeDateFormatting('id', null);
 
   await Core.initLocalDB();
+
+  // debugRepaintRainbowEnabled = true;
 
   runApp(const AlaApp());
 }

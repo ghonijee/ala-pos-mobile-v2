@@ -1,4 +1,5 @@
 import 'package:ala_pos/presentation/pages/pos/screen/order_result_page.dart';
+import 'package:ala_pos/presentation/pages/receipt/screen/receipt_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_detail_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_list_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_wrapper.dart';
@@ -33,6 +34,7 @@ part 'route_page.gr.dart';
       AutoRoute(page: TransactionListScreen, path: RouteName.transactionList, initial: true),
       AutoRoute(page: TransactionDetailScreen, path: RouteName.transactionDetail),
     ]),
+    AutoRoute(page: ReceiptScreen, path: RouteName.receiptScreen),
   ],
 )
 

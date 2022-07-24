@@ -27,7 +27,21 @@ class ResumeOrderPage extends HookWidget {
               height: 90.h,
               decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
               child: state.model!.items!.isEmpty
-                  ? Center(child: CircularProgressIndicator())
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Belum ada item "),
+                        SizedBox(
+                          height: AppSpacings.s.sp,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            context.router.pop();
+                          },
+                          child: Text("Kembali"),
+                        ),
+                      ],
+                    )
                   : Column(
                       children: [
                         BlocConsumer<CartCubit, CartState>(

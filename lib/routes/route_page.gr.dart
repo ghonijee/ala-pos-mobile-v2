@@ -45,6 +45,12 @@ class _$RoutePage extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const TransactionWrapper());
     },
+    ReceiptScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<ReceiptScreenRouteArgs>(
+          orElse: () => const ReceiptScreenRouteArgs());
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: ReceiptScreen(key: args.key));
+    },
     PosPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PosPage());
@@ -147,7 +153,8 @@ class _$RoutePage extends RootStackRouter {
               RouteConfig(TransactionDetailScreenRoute.name,
                   path: 'transaction/detail',
                   parent: TransactionWrapperRoute.name)
-            ])
+            ]),
+        RouteConfig(ReceiptScreenRoute.name, path: 'receipt')
       ];
 }
 
@@ -212,6 +219,27 @@ class TransactionWrapperRoute extends PageRouteInfo<void> {
             path: 'transaction/', initialChildren: children);
 
   static const String name = 'TransactionWrapperRoute';
+}
+
+/// generated route for
+/// [ReceiptScreen]
+class ReceiptScreenRoute extends PageRouteInfo<ReceiptScreenRouteArgs> {
+  ReceiptScreenRoute({Key? key})
+      : super(ReceiptScreenRoute.name,
+            path: 'receipt', args: ReceiptScreenRouteArgs(key: key));
+
+  static const String name = 'ReceiptScreenRoute';
+}
+
+class ReceiptScreenRouteArgs {
+  const ReceiptScreenRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ReceiptScreenRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

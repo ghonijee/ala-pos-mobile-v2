@@ -24,4 +24,7 @@ class RouteName {
   static const transaction = "transaction/";
   static const transactionList = "transaction/list";
   static const transactionDetail = "transaction/detail";
+
+  // Receipt
+  static const receiptScreen = "receipt";
 }

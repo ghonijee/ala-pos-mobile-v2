@@ -1,4 +1,6 @@
 import 'package:ala_pos/presentation/pages/transaction/cubit/transaction_detail/transaction_detail_cubit.dart';
+import 'package:ala_pos/routes/route_page.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -196,7 +198,8 @@ class TransactionDetailScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).colorScheme.error,
+                side: BorderSide(color: Theme.of(context).primaryColor),
+                primary: Theme.of(context).colorScheme.background,
                 minimumSize: Size.fromWidth(45.w),
                 textStyle: Theme.of(context).textTheme.bodyMedium,
               ),
@@ -206,12 +209,14 @@ class TransactionDetailScreen extends StatelessWidget {
                   Icon(
                     Ionicons.close_outline,
                     size: 18.sp,
+                    color: Theme.of(context).primaryColor,
                   ),
                   SizedBox(
                     width: AppSpacings.s.sp,
                   ),
                   Text(
                     "Batalkan",
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).primaryColor),
                   ),
                 ],
               ),
@@ -221,17 +226,19 @@ class TransactionDetailScreen extends StatelessWidget {
                 textStyle: Theme.of(context).textTheme.bodyMedium,
                 minimumSize: Size.fromWidth(45.w),
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.router.pushNamed(RouteName.receiptScreen);
+              },
               child: Row(
                 children: [
                   Icon(
                     Ionicons.receipt_outline,
-                    size: 14.sp,
+                    size: 12.sp,
                   ),
                   SizedBox(
                     width: AppSpacings.s.sp,
                   ),
-                  Text("Invoice"),
+                  Text("Struk"),
                 ],
               ),
             )
