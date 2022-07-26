@@ -1,0 +1,10 @@
+#  Config for generate launcher Icon
+# How to run:
+#  flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons.yaml
+#  OR, if config on pubspec.yaml
+#  flutter pub run flutter_launcher_icons:main 
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/launch_icon.png"
