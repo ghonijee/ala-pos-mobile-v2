@@ -45,11 +45,12 @@ class _$RoutePage extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const TransactionWrapper());
     },
-    ReceiptScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<ReceiptScreenRouteArgs>(
-          orElse: () => const ReceiptScreenRouteArgs());
+    ReceiptPageRoute.name: (routeData) {
+      final args = routeData.argsAs<ReceiptPageRouteArgs>();
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: ReceiptScreen(key: args.key));
+          routeData: routeData,
+          child: ReceiptPage(
+              key: args.key, transactionModel: args.transactionModel));
     },
     PosPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -154,7 +155,7 @@ class _$RoutePage extends RootStackRouter {
                   path: 'transaction/detail',
                   parent: TransactionWrapperRoute.name)
             ]),
-        RouteConfig(ReceiptScreenRoute.name, path: 'receipt')
+        RouteConfig(ReceiptPageRoute.name, path: 'receipt')
       ];
 }
 
@@ -222,23 +223,27 @@ class TransactionWrapperRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ReceiptScreen]
-class ReceiptScreenRoute extends PageRouteInfo<ReceiptScreenRouteArgs> {
-  ReceiptScreenRoute({Key? key})
-      : super(ReceiptScreenRoute.name,
-            path: 'receipt', args: ReceiptScreenRouteArgs(key: key));
+/// [ReceiptPage]
+class ReceiptPageRoute extends PageRouteInfo<ReceiptPageRouteArgs> {
+  ReceiptPageRoute({Key? key, required TransactionModel transactionModel})
+      : super(ReceiptPageRoute.name,
+            path: 'receipt',
+            args: ReceiptPageRouteArgs(
+                key: key, transactionModel: transactionModel));
 
-  static const String name = 'ReceiptScreenRoute';
+  static const String name = 'ReceiptPageRoute';
 }
 
-class ReceiptScreenRouteArgs {
-  const ReceiptScreenRouteArgs({this.key});
+class ReceiptPageRouteArgs {
+  const ReceiptPageRouteArgs({this.key, required this.transactionModel});
 
   final Key? key;
 
+  final TransactionModel transactionModel;
+
   @override
   String toString() {
-    return 'ReceiptScreenRouteArgs{key: $key}';
+    return 'ReceiptPageRouteArgs{key: $key, transactionModel: $transactionModel}';
   }
 }
 

@@ -1,6 +1,8 @@
+import 'package:core/core.dart';
 import 'package:core/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
@@ -9,8 +11,12 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:path_provider/path_provider.dart';
 
+import '../../../../domain/models/transaction/transaction_model.dart';
+
 class ReceiptScreen extends StatelessWidget {
-  ReceiptScreen({Key? key}) : super(key: key);
+  ReceiptScreen({Key? key, required this.transactionModel}) : super(key: key);
+
+  final TransactionModel transactionModel;
 
   final GlobalKey genKey = GlobalKey();
 
@@ -29,7 +35,7 @@ class ReceiptScreen extends StatelessWidget {
                 key: genKey,
                 child: Container(
                   // alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: AppSpacings.x4l, right: AppSpacings.x4l, top: 40.sp, bottom: 20.sp),
+                  padding: EdgeInsets.only(left: AppSpacings.xl, right: AppSpacings.xl, top: 40.sp, bottom: 20.sp),
                   width: 90.w,
                   decoration: BoxDecoration(
                     boxShadow: [BoxShadow(color: Colors.black, spreadRadius: 0.2, blurRadius: 0.1)],
@@ -59,7 +65,7 @@ class ReceiptScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.normal),
                               ),
                               Text(
-                                "12-Juni-2022",
+                                DateFormat("d-MM-y").format(transactionModel.date!),
                                 style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -72,7 +78,7 @@ class ReceiptScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.normal),
                               ),
                               Text(
-                                "TR20220809-001",
+                                transactionModel.invoiceNumber!,
                                 style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -83,18 +89,22 @@ class ReceiptScreen extends StatelessWidget {
                       Row(
                         children: [
                           SizedBox(
-                            width: 10.w,
-                            child: Text("Qty"),
-                          ),
-                          Expanded(
+                            width: 110.sp,
                             child: Text(
                               "Nama Item",
                               style: Theme.of(context).textTheme.titleSmall,
                             ),
                           ),
                           SizedBox(
-                            width: 10.w,
+                            width: 20.sp,
+                            child: Text("Qty"),
+                          ),
+                          SizedBox(
+                            width: 55.sp,
                             child: Text("Harga"),
+                          ),
+                          SizedBox(
+                            child: Text("Total"),
                           ),
                         ],
                       ),
@@ -102,25 +112,35 @@ class ReceiptScreen extends StatelessWidget {
                       ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: 3,
+                          itemCount: transactionModel.items!.length,
                           itemBuilder: (context, index) {
+                            var item = transactionModel.items![index];
                             return Container(
                               padding: EdgeInsets.only(bottom: AppSpacings.s.sp),
                               child: Row(
                                 children: [
                                   SizedBox(
-                                    width: 10.w,
-                                    child: Text("1"),
-                                  ),
-                                  Expanded(
+                                    width: 110.sp,
                                     child: Text(
-                                      "Sapu lidi jepang",
-                                      style: Theme.of(context).textTheme.titleSmall,
+                                      item.productName,
+                                      style: Theme.of(context).textTheme.bodyMedium,
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 10.w,
-                                    child: Text("1.000",
+                                    width: 20.sp,
+                                    child: Text(item.quantity.toString()),
+                                  ),
+                                  SizedBox(
+                                    width: 55.sp,
+                                    child: Text(item.price.toThousandSeparator(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(fontWeight: FontWeight.bold)),
+                                  ),
+                                  SizedBox(
+                                    width: 55.sp,
+                                    child: Text(item.amount.toThousandSeparator(),
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleSmall!
@@ -141,7 +161,7 @@ class ReceiptScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               Text(
-                                "50.000",
+                                transactionModel.amount!.toThousandSeparator(),
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
@@ -154,7 +174,7 @@ class ReceiptScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               Text(
-                                "0",
+                                transactionModel.discountPrice!.toThousandSeparator(),
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
@@ -167,7 +187,7 @@ class ReceiptScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                "50.000",
+                                transactionModel.result.toThousandSeparator(),
                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -280,7 +300,7 @@ class ReceiptScreen extends StatelessWidget {
 
   save(String fileName) async {
     RenderRepaintBoundary boundary = genKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
-    ui.Image image = await boundary.toImage();
+    ui.Image image = await boundary.toImage(pixelRatio: 3.0);
     final directory = (await getApplicationDocumentsDirectory()).path;
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List pngBytes = byteData!.buffer.asUint8List();

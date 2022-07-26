@@ -1,5 +1,4 @@
 import 'package:ala_pos/presentation/pages/pos/screen/order_result_page.dart';
-import 'package:ala_pos/presentation/pages/receipt/screen/receipt_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_detail_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_list_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_wrapper.dart';
@@ -7,6 +6,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../presentation/pages/pages.dart';
 import '../presentation/pages/product/product.dart';
+import '../presentation/pages/receipt/screen/receipt_page.dart';
+import '../domain/models/transaction/transaction_model.dart';
 
 part "route_name.dart";
 part 'route_page.gr.dart';
@@ -34,7 +35,7 @@ part 'route_page.gr.dart';
       AutoRoute(page: TransactionListScreen, path: RouteName.transactionList, initial: true),
       AutoRoute(page: TransactionDetailScreen, path: RouteName.transactionDetail),
     ]),
-    AutoRoute(page: ReceiptScreen, path: RouteName.receiptScreen),
+    AutoRoute(page: ReceiptPage, path: RouteName.receiptScreen),
   ],
 )
 
