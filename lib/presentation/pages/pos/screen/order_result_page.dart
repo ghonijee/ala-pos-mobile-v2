@@ -141,12 +141,15 @@ class OrderResultPage extends HookWidget {
                                   color: Theme.of(context).primaryColor,
                                 ),
                                 style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(40.w, 40.sp),
+                                  fixedSize: Size(45.w, 40.sp),
                                   primary: Theme.of(context).colorScheme.surface,
                                   side: BorderSide(color: Theme.of(context).primaryColor),
                                 ),
                                 onPressed: () {
-                                  context.router.pushNamed(RouteName.receiptScreen);
+                                  // context.router.pushNamed(RouteName.receiptScreen);
+                                  context.router.push(
+                                    ReceiptPageRoute(transactionModel: model),
+                                  );
                                 },
                                 label: Text(
                                   "Lihat Struk",
@@ -158,7 +161,7 @@ class OrderResultPage extends HookWidget {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(40.w, 40.sp),
+                                  fixedSize: Size(45.w, 40.sp),
                                 ),
                                 onPressed: () {
                                   cartCubit.resetCart();

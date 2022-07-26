@@ -21,8 +21,9 @@ class SubmitTransactionCubit extends Cubit<SubmitTransactionState> {
 
       result.fold((l) {
         emit(SubmitTransactionState.failed(l.message, model));
-      }, (r) {
-        emit(SubmitTransactionState.success(model));
+      }, (response) {
+        TransactionModel transactionModel = TransactionModel.fromJson(response.data);
+        emit(SubmitTransactionState.success(transactionModel));
       });
     } catch (e) {
       emit(SubmitTransactionState.failed(e.toString(), model));
