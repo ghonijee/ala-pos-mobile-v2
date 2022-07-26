@@ -132,40 +132,33 @@ class OrderResultPage extends HookWidget {
                             horizontal: AppSpacings.m.sp,
                             vertical: AppSpacings.l.sp,
                           ),
-                          child: Column(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  ElevatedButton.icon(
-                                    icon: Icon(
-                                      Ionicons.print_outline,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                      fixedSize: Size(45.w, 40.sp),
-                                      primary: Theme.of(context).colorScheme.surface,
-                                      side: BorderSide(color: Theme.of(context).primaryColor),
-                                    ),
-                                    onPressed: () {
-                                      context.router.pushNamed(RouteName.receiptScreen);
-                                    },
-                                    label: Text(
-                                      "Lihat Struk",
-                                      style: Theme.of(context)
-                                          .primaryTextTheme
-                                          .button!
-                                          .copyWith(color: Theme.of(context).primaryColor),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: AppSpacings.s.sp,
+                              ElevatedButton.icon(
+                                icon: Icon(
+                                  Ionicons.print_outline,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: Size(40.w, 40.sp),
+                                  primary: Theme.of(context).colorScheme.surface,
+                                  side: BorderSide(color: Theme.of(context).primaryColor),
+                                ),
+                                onPressed: () {
+                                  context.router.pushNamed(RouteName.receiptScreen);
+                                },
+                                label: Text(
+                                  "Lihat Struk",
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .button!
+                                      .copyWith(color: Theme.of(context).primaryColor),
+                                ),
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  minimumSize: Size.fromHeight(40.sp),
+                                  fixedSize: Size(40.w, 40.sp),
                                 ),
                                 onPressed: () {
                                   cartCubit.resetCart();

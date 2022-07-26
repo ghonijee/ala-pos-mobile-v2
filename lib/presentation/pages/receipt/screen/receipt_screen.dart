@@ -35,7 +35,7 @@ class ReceiptScreen extends StatelessWidget {
                 key: genKey,
                 child: Container(
                   // alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: AppSpacings.xl, right: AppSpacings.xl, top: 40.sp, bottom: 20.sp),
+                  padding: EdgeInsets.only(left: AppSpacings.x4l, right: AppSpacings.x4l, top: 40.sp, bottom: 20.sp),
                   width: 90.w,
                   decoration: BoxDecoration(
                     boxShadow: [BoxShadow(color: Colors.black, spreadRadius: 0.2, blurRadius: 0.1)],
@@ -86,29 +86,29 @@ class ReceiptScreen extends StatelessWidget {
                         ]),
                       ),
                       Divider(),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 110.sp,
-                            child: Text(
-                              "Nama Item",
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20.sp,
-                            child: Text("Qty"),
-                          ),
-                          SizedBox(
-                            width: 55.sp,
-                            child: Text("Harga"),
-                          ),
-                          SizedBox(
-                            child: Text("Total"),
-                          ),
-                        ],
-                      ),
-                      Divider(),
+                      // Row(
+                      //   children: [
+                      //     SizedBox(
+                      //       width: 110.sp,
+                      //       child: Text(
+                      //         "Nama Item",
+                      //         style: Theme.of(context).textTheme.titleSmall,
+                      //       ),
+                      //     ),
+                      //     SizedBox(
+                      //       width: 20.sp,
+                      //       child: Text("Qty"),
+                      //     ),
+                      //     SizedBox(
+                      //       width: 55.sp,
+                      //       child: Text("Harga"),
+                      //     ),
+                      //     SizedBox(
+                      //       child: Text("Total"),
+                      //     ),
+                      //   ],
+                      // ),
+                      // Divider(),
                       ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -117,7 +117,8 @@ class ReceiptScreen extends StatelessWidget {
                             var item = transactionModel.items![index];
                             return Container(
                               padding: EdgeInsets.only(bottom: AppSpacings.s.sp),
-                              child: Row(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
                                     width: 110.sp,
@@ -126,25 +127,32 @@ class ReceiptScreen extends StatelessWidget {
                                       style: Theme.of(context).textTheme.bodyMedium,
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 20.sp,
-                                    child: Text(item.quantity.toString()),
-                                  ),
-                                  SizedBox(
-                                    width: 55.sp,
-                                    child: Text(item.price.toThousandSeparator(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(fontWeight: FontWeight.bold)),
-                                  ),
-                                  SizedBox(
-                                    width: 55.sp,
-                                    child: Text(item.amount.toThousandSeparator(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(fontWeight: FontWeight.bold)),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        // width: 20.sp,
+                                        child: Text(item.quantity.toString() + " X"),
+                                      ),
+                                      Expanded(
+                                        // width: 55.sp,
+                                        child: Text(item.price.toThousandSeparator(),
+                                            textAlign: TextAlign.right,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall!
+                                                .copyWith(fontWeight: FontWeight.bold)),
+                                      ),
+                                      Expanded(
+                                        // width: 55.sp,
+                                        child: Text(item.amount.toThousandSeparator(),
+                                            textAlign: TextAlign.right,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall!
+                                                .copyWith(fontWeight: FontWeight.bold)),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

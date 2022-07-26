@@ -30,15 +30,22 @@ class PaymentCashPage extends HookWidget {
       body: SingleChildScrollView(
         child: BlocListener<SubmitTransactionCubit, SubmitTransactionState>(
           listener: (context, state) {
-            state.maybeWhen(failed: (message, model) {
-              SnackbarMessage.failed(context, message);
-            }, loading: () {
-              isLoading.value = true;
-            }, success: (model) {
-              context.router.pushNamed(RouteName.posOrderSuccess);
-            }, orElse: () {
-              isLoading.value = false;
-            });
+            state.maybeWhen(
+              failed: (message, model) {
+                isLoading.value = false;
+                SnackbarMessage.failed(context, message);
+              },
+              loading: () {
+                isLoading.value = true;
+              },
+              success: (model) {
+                context.router.pushNamed(RouteName.posOrderSuccess);
+              },
+              orElse: () {
+                isLoading.value = false;
+                print(isLoading.value.toString());
+              },
+            );
           },
           child: BlocBuilder<PaymentCubit, PaymentState>(
             builder: (context, state) {
@@ -133,11 +140,11 @@ class PaymentCashPage extends HookWidget {
                               side: BorderSide(color: Theme.of(context).primaryColor),
                             ),
                             onPressed: () {
-                              cashField.text = "1000";
+                              cashField.text = 1000.toThousandSeparator();
                               paymentCubit.setPayment(cashField.text.toNumber()!);
                             },
                             child: Text(
-                              "Rp. 1,000",
+                              "Rp. 1.000",
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .button!
@@ -151,11 +158,11 @@ class PaymentCashPage extends HookWidget {
                               side: BorderSide(color: Theme.of(context).primaryColor),
                             ),
                             onPressed: () {
-                              cashField.text = "2000";
+                              cashField.text = 2000.toThousandSeparator();
                               paymentCubit.setPayment(cashField.text.toNumber()!);
                             },
                             child: Text(
-                              "Rp. 2,000",
+                              "Rp. 2.000",
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .button!
@@ -169,11 +176,11 @@ class PaymentCashPage extends HookWidget {
                               side: BorderSide(color: Theme.of(context).primaryColor),
                             ),
                             onPressed: () {
-                              cashField.text = "5000";
+                              cashField.text = 5000.toThousandSeparator();
                               paymentCubit.setPayment(cashField.text.toNumber()!);
                             },
                             child: Text(
-                              "Rp. 5,000",
+                              "Rp. 5.000",
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .button!
@@ -187,11 +194,11 @@ class PaymentCashPage extends HookWidget {
                               side: BorderSide(color: Theme.of(context).primaryColor),
                             ),
                             onPressed: () {
-                              cashField.text = "10000";
+                              cashField.text = 10000.toThousandSeparator();
                               paymentCubit.setPayment(cashField.text.toNumber()!);
                             },
                             child: Text(
-                              "Rp. 10,000",
+                              "Rp. 10.000",
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .button!
@@ -205,11 +212,11 @@ class PaymentCashPage extends HookWidget {
                               side: BorderSide(color: Theme.of(context).primaryColor),
                             ),
                             onPressed: () {
-                              cashField.text = "20000";
+                              cashField.text = 20000.toThousandSeparator();
                               paymentCubit.setPayment(cashField.text.toNumber()!);
                             },
                             child: Text(
-                              "Rp. 20,000",
+                              "Rp. 20.000",
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .button!
@@ -223,11 +230,11 @@ class PaymentCashPage extends HookWidget {
                               side: BorderSide(color: Theme.of(context).primaryColor),
                             ),
                             onPressed: () {
-                              cashField.text = "50000";
+                              cashField.text = 50000.toThousandSeparator();
                               paymentCubit.setPayment(cashField.text.toNumber()!);
                             },
                             child: Text(
-                              "Rp. 50,000",
+                              "Rp. 50.000",
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .button!
@@ -241,11 +248,47 @@ class PaymentCashPage extends HookWidget {
                               side: BorderSide(color: Theme.of(context).primaryColor),
                             ),
                             onPressed: () {
-                              cashField.text = "100000";
+                              cashField.text = 100000.toThousandSeparator();
                               paymentCubit.setPayment(cashField.text.toNumber()!);
                             },
                             child: Text(
-                              "Rp. 100,000",
+                              "Rp. 100.000",
+                              style: Theme.of(context)
+                                  .primaryTextTheme
+                                  .button!
+                                  .copyWith(color: Theme.of(context).primaryColor),
+                            ),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              // maximumSize: Size.fromWidth(0.w),
+                              primary: Theme.of(context).colorScheme.surface,
+                              side: BorderSide(color: Theme.of(context).primaryColor),
+                            ),
+                            onPressed: () {
+                              cashField.text = 150000.toThousandSeparator();
+                              paymentCubit.setPayment(cashField.text.toNumber()!);
+                            },
+                            child: Text(
+                              "Rp. 150.000",
+                              style: Theme.of(context)
+                                  .primaryTextTheme
+                                  .button!
+                                  .copyWith(color: Theme.of(context).primaryColor),
+                            ),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              // maximumSize: Size.fromWidth(0.w),
+                              primary: Theme.of(context).colorScheme.surface,
+                              side: BorderSide(color: Theme.of(context).primaryColor),
+                            ),
+                            onPressed: () {
+                              cashField.text = 200000.toThousandSeparator();
+                              paymentCubit.setPayment(cashField.text.toNumber()!);
+                            },
+                            child: Text(
+                              "Rp. 200.000",
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .button!
@@ -292,27 +335,31 @@ class PaymentCashPage extends HookWidget {
                           SizedBox(
                             height: AppSpacings.s.sp,
                           ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: Size.fromHeight(40.sp),
-                            ),
-                            onPressed: isLoading.value
-                                ? null
-                                : () {
-                                    var check = paymentCubit.paymentValid();
-                                    if (!check) {
-                                      SnackbarMessage.failed(context, "Pembayaran masih kurang!");
-                                    } else {
-                                      var model = state.maybeWhen(orElse: () => null, loaded: (model) => model);
-                                      submitCubit.submitData(model!);
-                                    }
-                                  },
-                            child: isLoading.value
-                                ? CircularProgressIndicator()
-                                : Text(
-                                    "Bayar",
-                                    style: Theme.of(context).primaryTextTheme.button,
-                                  ),
+                          BlocBuilder<SubmitTransactionCubit, SubmitTransactionState>(
+                            builder: (context, stateSubmit) {
+                              return ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: Size.fromHeight(40.sp),
+                                ),
+                                onPressed: isLoading.value
+                                    ? null
+                                    : () {
+                                        var check = paymentCubit.paymentValid();
+                                        if (!check) {
+                                          SnackbarMessage.failed(context, "Pembayaran masih kurang!");
+                                        } else {
+                                          var model = state.maybeWhen(orElse: () => null, loaded: (model) => model);
+                                          submitCubit.submitData(model!);
+                                        }
+                                      },
+                                child: isLoading.value
+                                    ? CircularProgressIndicator()
+                                    : Text(
+                                        "Bayar",
+                                        style: Theme.of(context).primaryTextTheme.button,
+                                      ),
+                              );
+                            },
                           ),
                         ],
                       ),
