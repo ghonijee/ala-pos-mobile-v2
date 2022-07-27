@@ -12,16 +12,16 @@ import 'package:sizer/sizer.dart';
 
 import '../cubit/resume/transaction_resume_cubit.dart';
 
-class CartPage extends HookWidget implements AutoRouteWrapper {
+class CartPage extends HookWidget {
   const CartPage({Key? key}) : super(key: key);
 
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider.value(
-      value: BlocProvider.of<CartCubit>(context),
-      child: this,
-    );
-  }
+  // @override
+  // Widget wrappedRoute(BuildContext context) {
+  //   return BlocProvider.value(
+  //     value: BlocProvider.of<CartCubit>(context),
+  //     child: this,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
