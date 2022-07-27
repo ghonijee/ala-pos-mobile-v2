@@ -1,5 +1,7 @@
 import 'package:ala_pos/domain/models/product/product_model.dart';
+import 'package:ala_pos/domain/models/store/store_model.dart';
 import 'package:ala_pos/domain/models/transaction/transaction_item_model.dart';
+import 'package:ala_pos/domain/repositories/store_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -10,10 +12,40 @@ part 'cart_cubit.freezed.dart';
 
 @injectable
 class CartCubit extends Cubit<CartState> {
-  CartCubit() : super(CartState.initial());
+  StoreRepository storeRepository;
+  late StoreModel storeModel;
+
+  CartCubit(this.storeRepository) : super(CartState.initial()) {
+    storeRepository.activeStore().then((value) {
+      storeModel = value;
+    });
+  }
 
   resetCart() {
     emit(CartState.initial());
+  }
+
+  addFlash(ProductModel productModel) async {
+    final cartItem = TransactionItemModel(
+      quantity: 1,
+      amount: productModel.price * 1,
+      price: productModel.price,
+      productCost: productModel.cost,
+      productId: productModel.id,
+      productName: productModel.name,
+      storeId: storeModel.id,
+    );
+    final cartItemIndex = state.items.indexWhere(
+      (item) => item.productId == cartItem.productId,
+    );
+
+    if (cartItemIndex >= 0) {
+      _increaseCartItemCount(cartItem, cartItemIndex);
+    } else {
+      final items = state.items.rebuild((builder) => builder.add(cartItem));
+
+      emit(state.copyWith(items: items));
+    }
   }
 
   add(ProductModel productModel) async {
@@ -21,11 +53,10 @@ class CartCubit extends Cubit<CartState> {
       quantity: 1,
       amount: productModel.price * 1,
       price: productModel.price,
-      id: 0,
+      productCost: productModel.cost,
       productId: productModel.id,
       productName: productModel.name,
-      storeId: 1,
-      transactionId: 0,
+      storeId: storeModel.id,
     );
     final cartItemIndex = state.items.indexWhere(
       (item) => item.productId == cartItem.productId,

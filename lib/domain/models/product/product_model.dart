@@ -6,8 +6,8 @@ part 'product_model.g.dart';
 @freezed
 class ProductModel with _$ProductModel {
   factory ProductModel({
-    @JsonKey(name: "id") required int id,
-    @JsonKey(name: "store_id") required int storeId,
+    @JsonKey(name: "id") int? id,
+    @JsonKey(name: "store_id") int? storeId,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "price") required int price,
     @JsonKey(name: "stock") @Default(0) int stock,

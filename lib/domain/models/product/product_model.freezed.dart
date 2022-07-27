@@ -21,9 +21,9 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProductModel {
   @JsonKey(name: "id")
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "store_id")
-  int get storeId => throw _privateConstructorUsedError;
+  int? get storeId => throw _privateConstructorUsedError;
   @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
@@ -59,8 +59,8 @@ abstract class $ProductModelCopyWith<$Res> {
           ProductModel value, $Res Function(ProductModel) then) =
       _$ProductModelCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "id") int id,
-      @JsonKey(name: "store_id") int storeId,
+      {@JsonKey(name: "id") int? id,
+      @JsonKey(name: "store_id") int? storeId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "price") int price,
       @JsonKey(name: "stock") int stock,
@@ -102,11 +102,11 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       storeId: storeId == freezed
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -163,8 +163,8 @@ abstract class _$$_ProductModelCopyWith<$Res>
       __$$_ProductModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "id") int id,
-      @JsonKey(name: "store_id") int storeId,
+      {@JsonKey(name: "id") int? id,
+      @JsonKey(name: "store_id") int? storeId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "price") int price,
       @JsonKey(name: "stock") int stock,
@@ -209,11 +209,11 @@ class __$$_ProductModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       storeId: storeId == freezed
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -266,8 +266,8 @@ class __$$_ProductModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ProductModel implements _ProductModel {
   _$_ProductModel(
-      {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "store_id") required this.storeId,
+      {@JsonKey(name: "id") this.id,
+      @JsonKey(name: "store_id") this.storeId,
       @JsonKey(name: "name") required this.name,
       @JsonKey(name: "price") required this.price,
       @JsonKey(name: "stock") this.stock = 0,
@@ -285,10 +285,10 @@ class _$_ProductModel implements _ProductModel {
 
   @override
   @JsonKey(name: "id")
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: "store_id")
-  final int storeId;
+  final int? storeId;
   @override
   @JsonKey(name: "name")
   final String name;
@@ -382,9 +382,9 @@ class _$_ProductModel implements _ProductModel {
 abstract class _ProductModel implements ProductModel {
   factory _ProductModel(
       {@JsonKey(name: "id")
-          required final int id,
+          final int? id,
       @JsonKey(name: "store_id")
-          required final int storeId,
+          final int? storeId,
       @JsonKey(name: "name")
           required final String name,
       @JsonKey(name: "price")
@@ -413,10 +413,10 @@ abstract class _ProductModel implements ProductModel {
 
   @override
   @JsonKey(name: "id")
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "store_id")
-  int get storeId => throw _privateConstructorUsedError;
+  int? get storeId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
