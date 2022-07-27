@@ -6,6 +6,7 @@ class RouteName {
   static const register = "register";
   static const newStoreForm = "new/store/form";
   static const posWrapper = "pos/";
+  static const posCustomProduct = "pos/custom/product";
   static const posProduct = "pos/product";
   static const posCart = "pos/cart";
   static const posCartItemDetail = "pos/cart/edit/:index";

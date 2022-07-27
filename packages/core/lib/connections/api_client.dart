@@ -44,6 +44,8 @@ class ApiClient {
       // If you want to reject the request with a error message,
       // you can reject a `DioError` object eg: `handler.reject(dioError)`
     }, onError: (DioError e, handler) {
+      print(e.error.toString());
+      print(e.response.toString());
       // if (e.response!.statusMessage!.contains("Unauthorized") && e.response!.statusCode == 401) {
       //   // If currenct page isn't LoginScreen, redirect to LoginScreen if response is Unauthorized
 

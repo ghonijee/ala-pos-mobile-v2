@@ -28,150 +28,156 @@ class OrderResultPage extends HookWidget {
       },
       builder: (context, state) {
         return Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.surface,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             body: state.maybeWhen(
                 success: (model) {
                   return SizedBox(
                     height: 100.h,
                     width: 100.w,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Expanded(
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: AppSpacings.s.sp, vertical: AppSpacings.s.sp),
+                          padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl.sp, vertical: AppSpacings.x4l.sp),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surface,
+                              borderRadius: BorderRadius.all(Radius.circular(AppSpacings.m)),
+                              // border: Border.all(
+                              //   color: Theme.of(context).colorScheme.primary,
+                              // ),
+                              boxShadow: [
+                                BoxShadow(
+                                  spreadRadius: 0.75,
+                                  blurRadius: 1.25,
+                                  color: Theme.of(context).colorScheme.primary,
+                                )
+                              ]),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Icon(
-                                Ionicons.checkmark_circle_outline,
-                                size: 60.sp,
+                                Ionicons.checkmark_circle,
+                                size: 75.sp,
                                 color: Theme.of(context).primaryColor,
                               ),
                               SizedBox(
-                                height: AppSpacings.l,
+                                height: 24.sp,
                               ),
                               Text(
                                 "Pembayaran Berhasil",
-                                style: Theme.of(context).textTheme.headline6!.copyWith(
+                                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                                       color: Theme.of(context).primaryColor,
+                                      // fontWeight: FontWeight.bold,
                                     ),
                               ),
                               SizedBox(
-                                height: AppSpacings.l,
+                                height: AppSpacings.m,
                               ),
-                              Container(
-                                margin: EdgeInsets.symmetric(horizontal: AppSpacings.m.sp, vertical: AppSpacings.s.sp),
-                                padding: EdgeInsets.symmetric(horizontal: AppSpacings.m.sp, vertical: AppSpacings.s.sp),
-                                decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.background,
-                                    borderRadius: BorderRadius.all(Radius.circular(AppSpacings.m)),
-                                    border: Border.all(color: Theme.of(context).colorScheme.primary)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Total",
-                                          style: Theme.of(context).textTheme.bodyLarge,
-                                        ),
-                                        Text(
-                                          model.result.toIDR(),
-                                          style: Theme.of(context).textTheme.bodyLarge,
-                                        ),
-                                      ],
+                              Text(
+                                "Transaksi berhasil dibuat, \nsilahkan cetak struk!",
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.bodyText1!.copyWith(),
+                              ),
+                              Divider(
+                                height: 40.sp,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Total",
+                                    style: Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                  Text(
+                                    model.result.toIDR(),
+                                    style: Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: AppSpacings.xl.sp,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Bayar",
+                                    style: Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                  Text(
+                                    model.receivedMoney!.toIDR(),
+                                    style: Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: AppSpacings.xl.sp,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Kembalian",
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    model.changeMoney!.toIDR(),
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 36.sp,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ElevatedButton.icon(
+                                    icon: Icon(
+                                      Ionicons.print_sharp,
+                                      color: Theme.of(context).colorScheme.surface,
                                     ),
-                                    SizedBox(
-                                      height: AppSpacings.s.sp,
+                                    style: ElevatedButton.styleFrom(
+                                      fixedSize: Size(40.w, 40.sp),
+                                      primary: Theme.of(context).colorScheme.primary,
+                                      side: BorderSide(color: Theme.of(context).primaryColor),
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Bayar",
-                                          style: Theme.of(context).textTheme.bodyLarge,
-                                        ),
-                                        Text(
-                                          model.receivedMoney!.toIDR(),
-                                          style: Theme.of(context).textTheme.bodyLarge,
-                                        ),
-                                      ],
+                                    onPressed: () {
+                                      context.router.push(
+                                        ReceiptPageRoute(transactionModel: model),
+                                      );
+                                    },
+                                    label: Text(
+                                      "Cetak Struk",
+                                      style: Theme.of(context)
+                                          .primaryTextTheme
+                                          .button!
+                                          .copyWith(color: Theme.of(context).colorScheme.surface),
                                     ),
-                                    SizedBox(
-                                      height: AppSpacings.s.sp,
+                                  ),
+                                  ElevatedButton.icon(
+                                    icon: Icon(
+                                      Ionicons.checkmark,
+                                      color: Theme.of(context).colorScheme.surface,
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Kembalian",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          model.changeMoney!.toIDR(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                    style: ElevatedButton.styleFrom(
+                                      fixedSize: Size(40.w, 40.sp),
+                                    ),
+                                    onPressed: () {
+                                      cartCubit.resetCart();
+                                      context.router.replaceAll([PosPageRoute()]);
+                                    },
+                                    label: Text(
+                                      "Selesai",
+                                      style: Theme.of(context).primaryTextTheme.button,
+                                    ),
+                                  ),
+                                ],
                               )
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          height: AppSpacings.m,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: AppSpacings.m.sp,
-                            vertical: AppSpacings.l.sp,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ElevatedButton.icon(
-                                icon: Icon(
-                                  Ionicons.print_outline,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(45.w, 40.sp),
-                                  primary: Theme.of(context).colorScheme.surface,
-                                  side: BorderSide(color: Theme.of(context).primaryColor),
-                                ),
-                                onPressed: () {
-                                  // context.router.pushNamed(RouteName.receiptScreen);
-                                  context.router.push(
-                                    ReceiptPageRoute(transactionModel: model),
-                                  );
-                                },
-                                label: Text(
-                                  "Lihat Struk",
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .button!
-                                      .copyWith(color: Theme.of(context).primaryColor),
-                                ),
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(45.w, 40.sp),
-                                ),
-                                onPressed: () {
-                                  cartCubit.resetCart();
-                                  context.router.replaceAll([PosPageRoute()]);
-                                },
-                                child: Text(
-                                  "Selesai",
-                                  style: Theme.of(context).primaryTextTheme.button,
-                                ),
-                              ),
                             ],
                           ),
                         )

@@ -31,7 +31,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     return state.maybeWhen(
       orElse: () {},
       initial: () => false,
-      loaded: (model) => model.receivedMoney! > model.result,
+      loaded: (model) => model.receivedMoney! >= model.result,
     );
   }
 }

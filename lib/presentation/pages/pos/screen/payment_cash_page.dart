@@ -350,6 +350,7 @@ class PaymentCashPage extends HookWidget {
                                         } else {
                                           var model = state.maybeWhen(orElse: () => null, loaded: (model) => model);
                                           submitCubit.submitData(model!);
+                                          // paymentCubit.setPayment(cashField.text.toNumber()!);
                                         }
                                       },
                                 child: isLoading.value

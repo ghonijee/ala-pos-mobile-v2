@@ -37,6 +37,8 @@ class TransactionRemoteSource {
 
       return SuccessResponse.fromJson(registerResponse.data);
     } on DioError catch (e) {
+      print(e.message);
+
       return FailedResponse(message: e.toString(), status: false);
     } catch (e) {
       rethrow;

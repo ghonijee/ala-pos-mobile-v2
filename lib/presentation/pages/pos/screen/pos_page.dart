@@ -58,14 +58,7 @@ class PosPage extends HookWidget {
             backgroundColor: Theme.of(context).colorScheme.background,
             appBar: AppBar(
               title: Text("Alapos"),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    context.router.pushNamed(RouteName.posOrderResume);
-                  },
-                  icon: Icon(Ionicons.cart_outline),
-                )
-              ],
+              actions: [],
             ),
             body: GestureDetector(
               onTap: () {
@@ -98,25 +91,41 @@ class PosPage extends HookWidget {
                               ),
                               onPressed: () {},
                             ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                Ionicons.barcode_outline,
-                                color: Theme.of(context).colorScheme.primary,
+                            suffixIcon: SizedBox(
+                              width: 70.sp,
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Ionicons.barcode_outline,
+                                      color: Theme.of(context).colorScheme.primary,
+                                    ),
+                                    onPressed: () {
+                                      FlutterBarcodeScanner.getBarcodeStreamReceiver(
+                                        '#ff6666',
+                                        'Kembali',
+                                        false,
+                                        ScanMode.BARCODE,
+                                      )!
+                                          .listen((barcode) {
+                                        if (barcode != null) {
+                                          scanCubit.scan(barcode);
+                                          FlutterBeep.beep(true);
+                                        }
+                                      });
+                                    },
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      context.router.pushNamed(RouteName.posCustomProduct);
+                                    },
+                                    icon: Icon(
+                                      Ionicons.flash_outline,
+                                      color: Theme.of(context).colorScheme.primary,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              onPressed: () {
-                                FlutterBarcodeScanner.getBarcodeStreamReceiver(
-                                  '#ff6666',
-                                  'Kembali',
-                                  false,
-                                  ScanMode.BARCODE,
-                                )!
-                                    .listen((barcode) {
-                                  if (barcode != null) {
-                                    scanCubit.scan(barcode);
-                                    FlutterBeep.beep(true);
-                                  }
-                                });
-                              },
                             ),
                             hintText: "Nama/Kode Barang",
                           ),
@@ -144,6 +153,7 @@ class PosPage extends HookWidget {
                                     mainAxisSpacing: AppSpacings.s.sp,
                                   ),
                                   itemBuilder: (context, index) {
+                                    var item = data[index];
                                     return index >= data.length
                                         ? Center(
                                             child: CircularProgressIndicator(
@@ -151,7 +161,13 @@ class PosPage extends HookWidget {
                                             ),
                                           )
                                         : InkWell(
-                                            onTap: () => cartCubit.add(data[index]),
+                                            onTap: () {
+                                              if (item.stock > 0) {
+                                                cartCubit.add(item);
+                                              } else {
+                                                SnackbarMessage.failed(context, "Stok product tidak tersedia");
+                                              }
+                                            },
                                             child: ProductContainer(data[index]),
                                           );
                                   }),

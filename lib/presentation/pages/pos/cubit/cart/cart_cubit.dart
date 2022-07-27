@@ -25,7 +25,7 @@ class CartCubit extends Cubit<CartState> {
     emit(CartState.initial());
   }
 
-  addFlash(ProductModel productModel) async {
+  add(ProductModel productModel) async {
     final cartItem = TransactionItemModel(
       quantity: 1,
       amount: productModel.price * 1,
@@ -48,18 +48,10 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  add(ProductModel productModel) async {
-    final cartItem = TransactionItemModel(
-      quantity: 1,
-      amount: productModel.price * 1,
-      price: productModel.price,
-      productCost: productModel.cost,
-      productId: productModel.id,
-      productName: productModel.name,
-      storeId: storeModel.id,
-    );
+  addCustom(TransactionItemModel cartItem) async {
+    cartItem.storeId = storeModel.id;
     final cartItemIndex = state.items.indexWhere(
-      (item) => item.productId == cartItem.productId,
+      (item) => item.productName == cartItem.productName,
     );
 
     if (cartItemIndex >= 0) {

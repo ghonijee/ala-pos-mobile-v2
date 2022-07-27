@@ -1,3 +1,5 @@
+import 'package:ala_pos/domain/models/product/product_model.dart';
+import 'package:ala_pos/domain/models/transaction/transaction_item_model.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +12,8 @@ import 'package:sizer/sizer.dart';
 
 import '../cubit/cart/cart_cubit.dart';
 
-class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
-  const CartItemDetailPage({Key? key, @PathParam('index') required this.indexItem}) : super(key: key);
-
-  final int indexItem;
+class CustomItemPage extends HookWidget implements AutoRouteWrapper {
+  const CustomItemPage({Key? key}) : super(key: key);
 
   @override
   Widget wrappedRoute(BuildContext context) {
@@ -27,16 +27,15 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     var cartCubit = BlocProvider.of<CartCubit>(context);
 
-    var itemCart = useState(cartCubit.state.items[indexItem]);
-    var namaProductField = useTextEditingController(text: itemCart.value.productName);
-    var jumlahProductField = useTextEditingController(text: itemCart.value.quantity.toString());
-    var hargaProductField = useTextEditingController(text: itemCart.value.price.toString());
-    var discountProductField = useTextEditingController(text: itemCart.value.discountPrice.toString());
-    var noteProductField = useTextEditingController(text: itemCart.value.note ?? "");
+    var namaProductField = useTextEditingController();
+    var jumlahProductField = useTextEditingController();
+    var hargaProductField = useTextEditingController();
+    var discountProductField = useTextEditingController();
+    var noteProductField = useTextEditingController();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ubah Item"),
+        title: Text("Add Custom Item"),
       ),
       body: Container(
         constraints: BoxConstraints.loose(
@@ -216,49 +215,26 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ElevatedButton.icon(
-                    icon: Icon(
-                      Ionicons.trash_sharp,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.background,
-                      side: BorderSide(color: Theme.of(context).colorScheme.primary),
-                      minimumSize: Size.fromWidth(45.w),
-                    ),
-                    onPressed: () {
-                      // context.pop();
-                      cartCubit.deleteItem(indexItem);
-                      context.router.pop();
-                    },
-                    label: Text(
-                      "Hapus",
-                      style: Theme.of(context).primaryTextTheme.button?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                    ),
-                  ),
-                  // SizedBox(
-                  //   width: AppSpacings.m.sp,
-                  // ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size.fromWidth(45.w),
+                      minimumSize: Size.fromWidth(90.w),
                     ),
                     onPressed: () async {
-                      // context.pop();
-                      // context.router.pop();
+                      var amount = jumlahProductField.text.toNumber()! * hargaProductField.text.toNumber()!;
+                      var itemCart = TransactionItemModel(
+                        productName: namaProductField.text,
+                        amount: amount,
+                        price: hargaProductField.text.toNumber()!,
+                        quantity: jumlahProductField.text.toNumber()!,
+                        note: noteProductField.text,
+                        discountPrice: discountProductField.text.toNumber()!,
+                      );
 
-                      itemCart.value.productName = namaProductField.text;
-                      itemCart.value.price = hargaProductField.text.toNumber()!;
-                      itemCart.value.quantity = jumlahProductField.text.toNumber()!;
-                      itemCart.value.discountPrice = discountProductField.text.toNumber()!;
-                      itemCart.value.note = noteProductField.text;
-                      await cartCubit.updateItem(itemCart.value, indexItem);
+                      await cartCubit.addCustom(itemCart);
                       context.router.pop();
                     },
                     child: Text(
-                      "Simpan",
+                      "Tambahkan",
                       style: Theme.of(context).primaryTextTheme.button,
                     ),
                   ),

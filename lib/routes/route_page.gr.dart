@@ -56,9 +56,14 @@ class _$RoutePage extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PosPage());
     },
+    CustomItemPageRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: WrappedRoute(child: const CustomItemPage()));
+    },
     CartPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: WrappedRoute(child: const CartPage()));
+          routeData: routeData, child: const CartPage());
     },
     CartItemDetailPageRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
@@ -115,6 +120,8 @@ class _$RoutePage extends RootStackRouter {
               fullMatch: true),
           RouteConfig(PosPageRoute.name,
               path: 'pos/product', parent: PosWrapperPageRoute.name),
+          RouteConfig(CustomItemPageRoute.name,
+              path: 'pos/custom/product', parent: PosWrapperPageRoute.name),
           RouteConfig(CartPageRoute.name,
               path: 'pos/cart', parent: PosWrapperPageRoute.name),
           RouteConfig(CartItemDetailPageRoute.name,
@@ -253,6 +260,15 @@ class PosPageRoute extends PageRouteInfo<void> {
   const PosPageRoute() : super(PosPageRoute.name, path: 'pos/product');
 
   static const String name = 'PosPageRoute';
+}
+
+/// generated route for
+/// [CustomItemPage]
+class CustomItemPageRoute extends PageRouteInfo<void> {
+  const CustomItemPageRoute()
+      : super(CustomItemPageRoute.name, path: 'pos/custom/product');
+
+  static const String name = 'CustomItemPageRoute';
 }
 
 /// generated route for

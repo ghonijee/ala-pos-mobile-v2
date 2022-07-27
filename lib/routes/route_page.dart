@@ -1,3 +1,4 @@
+import 'package:ala_pos/presentation/pages/pos/screen/custom_item_page.dart';
 import 'package:ala_pos/presentation/pages/pos/screen/order_result_page.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_detail_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_list_screen.dart';
@@ -21,6 +22,7 @@ part 'route_page.gr.dart';
     AutoRoute(page: NewStoreFormPage, path: RouteName.newStoreForm),
     AutoRoute(page: PosWrapperPage, path: RouteName.posWrapper, children: [
       AutoRoute(page: PosPage, path: RouteName.posProduct, initial: true),
+      AutoRoute(page: CustomItemPage, path: RouteName.posCustomProduct),
       AutoRoute(page: CartPage, path: RouteName.posCart),
       AutoRoute(page: CartItemDetailPage, path: RouteName.posCartItemDetail),
       AutoRoute(page: ResumeOrderPage, path: RouteName.posOrderResume),
