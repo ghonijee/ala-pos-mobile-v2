@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'services/service_locator.dart';
@@ -22,5 +23,10 @@ void main() async {
 
   // debugRepaintRainbowEnabled = true;
 
-  runApp(const AlaApp());
+  runApp(HookedBlocConfigProvider(
+    injector: () => getIt.get,
+    builderCondition: (state) => state != null, // Global build condition
+    listenerCondition: (state) => state != null, // Global listen condition
+    child: const AlaApp(),
+  ));
 }
