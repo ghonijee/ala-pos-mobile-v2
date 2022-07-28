@@ -52,6 +52,10 @@ class _$RoutePage extends RootStackRouter {
           child: ReceiptPage(
               key: args.key, transactionModel: args.transactionModel));
     },
+    ProfileWrapperRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ProfileWrapper());
+    },
     PosPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PosPage());
@@ -103,6 +107,22 @@ class _$RoutePage extends RootStackRouter {
     TransactionDetailScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const TransactionDetailScreen());
+    },
+    ProfileScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ProfileScreen());
+    },
+    ProfileUserFormScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ProfileUserFormScreen());
+    },
+    StoreListScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const StoreListScreen());
+    },
+    StoreFormScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const StoreFormScreen());
     }
   };
 
@@ -162,7 +182,22 @@ class _$RoutePage extends RootStackRouter {
                   path: 'transaction/detail',
                   parent: TransactionWrapperRoute.name)
             ]),
-        RouteConfig(ReceiptPageRoute.name, path: 'receipt')
+        RouteConfig(ReceiptPageRoute.name, path: 'receipt'),
+        RouteConfig(ProfileWrapperRoute.name, path: 'profile', children: [
+          RouteConfig('#redirect',
+              path: '',
+              parent: ProfileWrapperRoute.name,
+              redirectTo: 'profile/user',
+              fullMatch: true),
+          RouteConfig(ProfileScreenRoute.name,
+              path: 'profile/user', parent: ProfileWrapperRoute.name),
+          RouteConfig(ProfileUserFormScreenRoute.name,
+              path: 'profile/user/form', parent: ProfileWrapperRoute.name),
+          RouteConfig(StoreListScreenRoute.name,
+              path: 'profile/store', parent: ProfileWrapperRoute.name),
+          RouteConfig(StoreFormScreenRoute.name,
+              path: 'profile/store/form', parent: ProfileWrapperRoute.name)
+        ])
       ];
 }
 
@@ -252,6 +287,16 @@ class ReceiptPageRouteArgs {
   String toString() {
     return 'ReceiptPageRouteArgs{key: $key, transactionModel: $transactionModel}';
   }
+}
+
+/// generated route for
+/// [ProfileWrapper]
+class ProfileWrapperRoute extends PageRouteInfo<void> {
+  const ProfileWrapperRoute({List<PageRouteInfo>? children})
+      : super(ProfileWrapperRoute.name,
+            path: 'profile', initialChildren: children);
+
+  static const String name = 'ProfileWrapperRoute';
 }
 
 /// generated route for
@@ -366,4 +411,40 @@ class TransactionDetailScreenRoute extends PageRouteInfo<void> {
       : super(TransactionDetailScreenRoute.name, path: 'transaction/detail');
 
   static const String name = 'TransactionDetailScreenRoute';
+}
+
+/// generated route for
+/// [ProfileScreen]
+class ProfileScreenRoute extends PageRouteInfo<void> {
+  const ProfileScreenRoute()
+      : super(ProfileScreenRoute.name, path: 'profile/user');
+
+  static const String name = 'ProfileScreenRoute';
+}
+
+/// generated route for
+/// [ProfileUserFormScreen]
+class ProfileUserFormScreenRoute extends PageRouteInfo<void> {
+  const ProfileUserFormScreenRoute()
+      : super(ProfileUserFormScreenRoute.name, path: 'profile/user/form');
+
+  static const String name = 'ProfileUserFormScreenRoute';
+}
+
+/// generated route for
+/// [StoreListScreen]
+class StoreListScreenRoute extends PageRouteInfo<void> {
+  const StoreListScreenRoute()
+      : super(StoreListScreenRoute.name, path: 'profile/store');
+
+  static const String name = 'StoreListScreenRoute';
+}
+
+/// generated route for
+/// [StoreFormScreen]
+class StoreFormScreenRoute extends PageRouteInfo<void> {
+  const StoreFormScreenRoute()
+      : super(StoreFormScreenRoute.name, path: 'profile/store/form');
+
+  static const String name = 'StoreFormScreenRoute';
 }

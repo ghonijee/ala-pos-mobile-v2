@@ -1,5 +1,10 @@
 import 'package:ala_pos/presentation/pages/pos/screen/custom_item_page.dart';
 import 'package:ala_pos/presentation/pages/pos/screen/order_result_page.dart';
+import 'package:ala_pos/presentation/pages/profile/screen/profile_screen.dart';
+import 'package:ala_pos/presentation/pages/profile/screen/profile_user_form_screen.dart';
+import 'package:ala_pos/presentation/pages/profile/screen/profile_wrapper.dart';
+import 'package:ala_pos/presentation/pages/profile/screen/store_form_screen.dart';
+import 'package:ala_pos/presentation/pages/profile/screen/store_list_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_detail_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_list_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_wrapper.dart';
@@ -38,6 +43,12 @@ part 'route_page.gr.dart';
       AutoRoute(page: TransactionDetailScreen, path: RouteName.transactionDetail),
     ]),
     AutoRoute(page: ReceiptPage, path: RouteName.receiptScreen),
+    AutoRoute(page: ProfileWrapper, path: RouteName.profile, children: [
+      AutoRoute(page: ProfileScreen, path: RouteName.profileUser, initial: true),
+      AutoRoute(page: ProfileUserFormScreen, path: RouteName.profileUserForm),
+      AutoRoute(page: StoreListScreen, path: RouteName.profileStoreList),
+      AutoRoute(page: StoreFormScreen, path: RouteName.profileStoreForm),
+    ]),
   ],
 )
 

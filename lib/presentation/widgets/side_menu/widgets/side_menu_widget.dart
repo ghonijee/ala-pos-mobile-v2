@@ -75,24 +75,31 @@ class SideMenuView extends StatelessWidget {
                           ],
                         );
                       }, loaded: ((userModel) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              userModel.username!,
-                              style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    color: Theme.of(context).primaryColorDark,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            Text(
-                              "Profile",
-                              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    color: Theme.of(context).primaryColorDark,
-                                  ),
-                            ),
-                          ],
+                        return GestureDetector(
+                          onTap: () {
+                            context.router.pop();
+
+                            AutoRouter.of(context).pushNamed(RouteName.profile);
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                userModel.username!,
+                                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      color: Theme.of(context).primaryColorDark,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              Text(
+                                "Profile",
+                                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                                      color: Theme.of(context).primaryColorDark,
+                                    ),
+                              ),
+                            ],
+                          ),
                         );
                       })),
                     ],

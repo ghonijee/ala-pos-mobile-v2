@@ -28,4 +28,11 @@ class RouteName {
 
   // Receipt
   static const receiptScreen = "receipt";
+
+  // Profile
+  static const profile = "profile";
+  static const profileUser = "profile/user";
+  static const profileUserForm = "profile/user/form";
+  static const profileStoreForm = "profile/store/form";
+  static const profileStoreList = "profile/store";
 }
