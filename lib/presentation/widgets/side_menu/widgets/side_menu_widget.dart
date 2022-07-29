@@ -93,7 +93,7 @@ class SideMenuView extends StatelessWidget {
                                     ),
                               ),
                               Text(
-                                "Profile",
+                                "Profile & Setting",
                                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
                                       color: Theme.of(context).primaryColorDark,
                                     ),

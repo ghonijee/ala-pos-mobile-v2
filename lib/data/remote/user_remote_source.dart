@@ -52,7 +52,7 @@ class UserRemoteSource {
     } on DioError catch (e) {
       return FailedResponse(message: e.toString(), status: false);
     } catch (e) {
-      rethrow;
+      return FailedResponse(message: e.toString(), status: false);
     }
   }
 

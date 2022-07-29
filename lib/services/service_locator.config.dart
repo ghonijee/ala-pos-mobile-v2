@@ -78,8 +78,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i12.TransactionRepository(get<_i11.TransactionRemoteSource>()));
   gh.lazySingleton<_i13.UserRemoteSource>(
       () => _i13.UserRemoteSource(get<_i3.ApiClient>()));
-  gh.lazySingleton<_i14.UserRepository>(
-      () => _i14.UserRepository(get<_i13.UserRemoteSource>()));
+  gh.lazySingleton<_i14.UserRepository>(() => _i14.UserRepository(
+      get<_i13.UserRemoteSource>(), get<_i3.LocalStorage>()));
   gh.lazySingleton<_i15.AuthRepository>(() => _i15.AuthRepository(
       remoteSource: get<_i4.AuthRemoteSource>(),
       storage: get<_i3.LocalStorage>()));
@@ -117,7 +117,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i31.TransactionResumeCubit>(() => _i31.TransactionResumeCubit(
       get<_i15.AuthRepository>(), get<_i10.StoreRepository>()));
   gh.factory<_i32.UserProfileCubit>(() => _i32.UserProfileCubit(
-      get<_i10.StoreRepository>(), get<_i15.AuthRepository>()));
+      get<_i10.StoreRepository>(),
+      get<_i15.AuthRepository>(),
+      get<_i14.UserRepository>()));
   return get;
 }
 

@@ -1,4 +1,5 @@
 import 'package:ala_pos/presentation/pages/profile/cubit/form_user/form_user_cubit.dart';
+import 'package:ala_pos/presentation/pages/profile/cubit/user/user_profile_cubit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -43,11 +44,14 @@ class ProfileUserFormScreen extends StatelessWidget {
           child: SizedBox(
             height: 80.h,
             child: BlocConsumer<FormUserCubit, FormUserState>(
-              listener: (context, state) {
-                if (state.statusSubmission == FormzStatus.submissionSuccess) {
+              listener: (context, state) async {
+                if (state.statusSubmission.isSubmissionSuccess) {
+                  await context.read<UserProfileCubit>().refreshUserData();
                   context.router.pop();
+                  SnackbarMessage.failed(context, state.message);
+                } else if (state.statusSubmission.isSubmissionFailure) {
+                  SnackbarMessage.failed(context, state.message);
                 }
-                SnackbarMessage.failed(context, state.message);
               },
               builder: (context, state) {
                 return Column(

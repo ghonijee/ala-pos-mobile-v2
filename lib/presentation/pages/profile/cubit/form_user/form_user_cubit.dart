@@ -24,6 +24,7 @@ class FormUserCubit extends Cubit<FormUserState> {
   show(UserModel userModel) {
     isUpdate = true;
     emit(state.copyWith(
+      statusSubmission: FormzStatus.pure,
       id: userModel.id!,
       fullnameField: FullnameField.dirty(userModel.fullname!),
       usernameField: UsernameField.dirty(userModel.username),

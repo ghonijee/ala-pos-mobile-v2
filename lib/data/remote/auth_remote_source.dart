@@ -22,9 +22,6 @@ class AuthRemoteSource {
       );
       return SuccessResponse.fromJson(response.data);
     } on DioError catch (e) {
-      if (kDebugMode) {
-        print(e.message);
-      }
       rethrow;
     } catch (e) {
       return FailedResponse(message: e.toString(), status: false);
@@ -44,9 +41,6 @@ class AuthRemoteSource {
 
       return SuccessResponse.fromJson(registerResponse.data);
     } on DioError catch (e) {
-      if (kDebugMode) {
-        print(e.message);
-      }
       rethrow;
     } catch (e) {
       return FailedResponse(message: e.toString(), status: false);
