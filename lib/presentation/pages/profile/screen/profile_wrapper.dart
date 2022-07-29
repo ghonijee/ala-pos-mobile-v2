@@ -1,3 +1,4 @@
+import 'package:ala_pos/presentation/pages/profile/cubit/change_password/change_password_cubit.dart';
 import 'package:ala_pos/presentation/pages/profile/cubit/form_user/form_user_cubit.dart';
 import 'package:ala_pos/presentation/pages/profile/cubit/user/user_profile_cubit.dart';
 import 'package:ala_pos/presentation/pages/profile/screen/profile_screen.dart';
@@ -18,6 +19,9 @@ class ProfileWrapper extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetIt.I.get<FormUserCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => GetIt.I.get<ChangePasswordCubit>(),
         ),
       ],
       child: AutoRouter(),

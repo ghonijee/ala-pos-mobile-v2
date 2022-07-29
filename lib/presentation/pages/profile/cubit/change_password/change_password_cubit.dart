@@ -40,6 +40,8 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
           statusSubmission: FormzStatus.submissionSuccess,
         ));
       });
+
+      emit(ChangePasswordState());
     } catch (e) {
       emit(state.copyWith(
         statusSubmission: FormzStatus.submissionFailure,

@@ -52,10 +52,8 @@ class ProfileChangePassword extends HookWidget {
                 if (state.statusSubmission == FormzStatus.submissionFailure) {
                   SnackbarMessage.failed(context, state.message);
                 } else if (state.statusSubmission == FormzStatus.submissionSuccess) {
-                  SnackbarMessage.success(context, state.message);
                   context.router.pop();
-                } else {
-                  SnackbarMessage.failed(context, state.message);
+                  SnackbarMessage.success(context, state.message);
                 }
               },
               builder: (context, state) {

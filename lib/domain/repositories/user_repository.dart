@@ -54,6 +54,7 @@ class UserRepository {
   Future<Either<FailureModel, ApiResponse>> changePassword(ChangePasswordModel model) async {
     try {
       ApiResponse response = await userRemoteSource.changePassword(model.toJson(), model.id);
+
       if (response.status! == false) {
         throw Exception(response.message);
       }
