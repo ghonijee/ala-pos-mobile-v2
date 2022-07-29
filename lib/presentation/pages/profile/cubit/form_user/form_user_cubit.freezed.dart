@@ -21,6 +21,8 @@ mixin _$FormUserState {
   FullnameField get fullnameField => throw _privateConstructorUsedError;
   PhoneField get phone => throw _privateConstructorUsedError;
   EmailField get email => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+  FormzStatus get statusSubmission => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FormUserStateCopyWith<FormUserState> get copyWith =>
@@ -37,7 +39,9 @@ abstract class $FormUserStateCopyWith<$Res> {
       UsernameField usernameField,
       FullnameField fullnameField,
       PhoneField phone,
-      EmailField email});
+      EmailField email,
+      String message,
+      FormzStatus statusSubmission});
 }
 
 /// @nodoc
@@ -56,6 +60,8 @@ class _$FormUserStateCopyWithImpl<$Res>
     Object? fullnameField = freezed,
     Object? phone = freezed,
     Object? email = freezed,
+    Object? message = freezed,
+    Object? statusSubmission = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -78,6 +84,14 @@ class _$FormUserStateCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as EmailField,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      statusSubmission: statusSubmission == freezed
+          ? _value.statusSubmission
+          : statusSubmission // ignore: cast_nullable_to_non_nullable
+              as FormzStatus,
     ));
   }
 }
@@ -94,7 +108,9 @@ abstract class _$$_FormUserStateCopyWith<$Res>
       UsernameField usernameField,
       FullnameField fullnameField,
       PhoneField phone,
-      EmailField email});
+      EmailField email,
+      String message,
+      FormzStatus statusSubmission});
 }
 
 /// @nodoc
@@ -115,6 +131,8 @@ class __$$_FormUserStateCopyWithImpl<$Res>
     Object? fullnameField = freezed,
     Object? phone = freezed,
     Object? email = freezed,
+    Object? message = freezed,
+    Object? statusSubmission = freezed,
   }) {
     return _then(_$_FormUserState(
       id: id == freezed
@@ -137,6 +155,14 @@ class __$$_FormUserStateCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as EmailField,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      statusSubmission: statusSubmission == freezed
+          ? _value.statusSubmission
+          : statusSubmission // ignore: cast_nullable_to_non_nullable
+              as FormzStatus,
     ));
   }
 }
@@ -149,7 +175,9 @@ class _$_FormUserState extends _FormUserState {
       this.usernameField = const UsernameField.pure(),
       this.fullnameField = const FullnameField.pure(),
       this.phone = const PhoneField.pure(),
-      this.email = const EmailField.pure()})
+      this.email = const EmailField.pure(),
+      this.message = '',
+      this.statusSubmission = FormzStatus.pure})
       : super._();
 
   @override
@@ -166,10 +194,16 @@ class _$_FormUserState extends _FormUserState {
   @override
   @JsonKey()
   final EmailField email;
+  @override
+  @JsonKey()
+  final String message;
+  @override
+  @JsonKey()
+  final FormzStatus statusSubmission;
 
   @override
   String toString() {
-    return 'FormUserState(id: $id, usernameField: $usernameField, fullnameField: $fullnameField, phone: $phone, email: $email)';
+    return 'FormUserState(id: $id, usernameField: $usernameField, fullnameField: $fullnameField, phone: $phone, email: $email, message: $message, statusSubmission: $statusSubmission)';
   }
 
   @override
@@ -183,7 +217,10 @@ class _$_FormUserState extends _FormUserState {
             const DeepCollectionEquality()
                 .equals(other.fullnameField, fullnameField) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
-            const DeepCollectionEquality().equals(other.email, email));
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality()
+                .equals(other.statusSubmission, statusSubmission));
   }
 
   @override
@@ -193,7 +230,9 @@ class _$_FormUserState extends _FormUserState {
       const DeepCollectionEquality().hash(usernameField),
       const DeepCollectionEquality().hash(fullnameField),
       const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(email));
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(statusSubmission));
 
   @JsonKey(ignore: true)
   @override
@@ -207,7 +246,9 @@ abstract class _FormUserState extends FormUserState {
       final UsernameField usernameField,
       final FullnameField fullnameField,
       final PhoneField phone,
-      final EmailField email}) = _$_FormUserState;
+      final EmailField email,
+      final String message,
+      final FormzStatus statusSubmission}) = _$_FormUserState;
   const _FormUserState._() : super._();
 
   @override
@@ -220,6 +261,10 @@ abstract class _FormUserState extends FormUserState {
   PhoneField get phone => throw _privateConstructorUsedError;
   @override
   EmailField get email => throw _privateConstructorUsedError;
+  @override
+  String get message => throw _privateConstructorUsedError;
+  @override
+  FormzStatus get statusSubmission => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_FormUserStateCopyWith<_$_FormUserState> get copyWith =>

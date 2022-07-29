@@ -10,6 +10,8 @@ class FormUserState with _$FormUserState {
     @Default(FullnameField.pure()) FullnameField fullnameField,
     @Default(PhoneField.pure()) PhoneField phone,
     @Default(EmailField.pure()) EmailField email,
+    @Default('') String message,
+    @Default(FormzStatus.pure) FormzStatus statusSubmission,
   }) = _FormUserState;
 
   FormzStatus get status {

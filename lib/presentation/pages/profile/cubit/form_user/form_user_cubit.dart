@@ -31,4 +31,63 @@ class FormUserCubit extends Cubit<FormUserState> {
       phone: PhoneField.dirty(userModel.phone!),
     ));
   }
+
+  submit() async {
+    try {
+      var data = UserProfileModel(
+        id: state.id,
+        fullname: state.fullnameField.value,
+        username: state.usernameField.value,
+        email: state.email.value,
+        phone: state.phone.value,
+      );
+
+      var result = await repository.update(data);
+
+      result.fold((failure) {
+        emit(state.copyWith(
+          statusSubmission: FormzStatus.submissionFailure,
+          message: failure.message,
+        ));
+      }, (response) {
+        emit(state.copyWith(
+          message: response.message!,
+          statusSubmission: FormzStatus.submissionSuccess,
+        ));
+      });
+    } catch (e) {
+      emit(state.copyWith(
+        statusSubmission: FormzStatus.submissionFailure,
+        message: e.toString(),
+      ));
+    }
+  }
+
+  fullnameChange(String value) {
+    var field = FullnameField.dirty(value);
+    emit(state.copyWith(
+      fullnameField: field,
+    ));
+  }
+
+  usernameChange(String value) {
+    var field = UsernameField.dirty(value);
+    emit(state.copyWith(
+      usernameField: field,
+    ));
+  }
+
+  emailChange(String value) {
+    var field = EmailField.dirty(value);
+    emit(state.copyWith(
+      email: field,
+    ));
+  }
+
+  phoneChange(String value) {
+    var field = PhoneField.dirty(value);
+    emit(state.copyWith(
+      phone: field,
+    ));
+  }
 }

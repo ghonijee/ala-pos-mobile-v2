@@ -2,9 +2,8 @@ import 'package:ala_pos/presentation/pages/profile/cubit/form_user/form_user_cub
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
@@ -43,7 +42,13 @@ class ProfileUserFormScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: SizedBox(
             height: 80.h,
-            child: BlocBuilder<FormUserCubit, FormUserState>(
+            child: BlocConsumer<FormUserCubit, FormUserState>(
+              listener: (context, state) {
+                if (state.statusSubmission == FormzStatus.submissionSuccess) {
+                  context.router.pop();
+                }
+                SnackbarMessage.failed(context, state.message);
+              },
               builder: (context, state) {
                 return Column(
                   children: [
@@ -55,7 +60,7 @@ class ProfileUserFormScreen extends StatelessWidget {
                         TextFormField(
                           initialValue: state.fullnameField.value,
                           style: Theme.of(context).textTheme.bodyText1,
-                          // onChanged: (value) => formProductCubit.nameChange(value),
+                          onChanged: (value) => formCubit.fullnameChange(value),
                           decoration: InputDecoration(
                             errorText: state.fullnameField.invalid ? state.fullnameField.error?.message : null,
                             hintText: "Nama Lengkap",
@@ -85,7 +90,7 @@ class ProfileUserFormScreen extends StatelessWidget {
                         TextFormField(
                           initialValue: state.usernameField.value,
                           style: Theme.of(context).textTheme.bodyText1,
-                          // onChanged: (value) => formProductCubit.nameChange(value),
+                          onChanged: (value) => formCubit.usernameChange(value),
                           decoration: InputDecoration(
                             errorText: state.usernameField.invalid ? state.usernameField.error?.message : null,
                             hintText: "Username",
@@ -115,7 +120,7 @@ class ProfileUserFormScreen extends StatelessWidget {
                         TextFormField(
                           initialValue: state.email.value,
                           style: Theme.of(context).textTheme.bodyText1,
-                          // onChanged: (value) => formProductCubit.nameChange(value),
+                          onChanged: (value) => formCubit.emailChange(value),
                           decoration: InputDecoration(
                             errorText: state.email.invalid ? state.email.error?.message : null,
                             hintText: "Email",
@@ -145,7 +150,7 @@ class ProfileUserFormScreen extends StatelessWidget {
                         TextFormField(
                           initialValue: state.phone.value,
                           style: Theme.of(context).textTheme.bodyText1,
-                          // onChanged: (value) => formProductCubit.nameChange(value),
+                          onChanged: (value) => formCubit.phoneChange(value),
                           decoration: InputDecoration(
                             errorText: state.phone.invalid ? state.phone.error?.message : null,
                             hintText: "Nomer Handphone",
@@ -167,11 +172,13 @@ class ProfileUserFormScreen extends StatelessWidget {
                     Expanded(child: SizedBox()),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(40.sp)),
-                        onPressed: () {
-                          context.router.pop();
-                        },
+                        onPressed: state.status == FormzStatus.invalid
+                            ? null
+                            : () {
+                                formCubit.submit();
+                              },
                         child: Text(
-                          "Simpan",
+                          "Simpan Perubahan",
                           style: Theme.of(context).primaryTextTheme.button,
                         ))
                   ],
