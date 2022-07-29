@@ -11,6 +11,8 @@ import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
+import '../cubit/form_user/form_user_cubit.dart';
+
 class ProfileScreen extends HookWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -66,6 +68,8 @@ class ProfileScreen extends HookWidget {
                     icon: Icon(Ionicons.person_outline),
                     title: "Ubah Profile User",
                     onTap: () {
+                      var formCubit = context.read<FormUserCubit>();
+                      formCubit.show(user);
                       context.router.pushNamed(RouteName.profileUserForm);
                     },
                     hasTrailIcon: true,
@@ -79,7 +83,9 @@ class ProfileScreen extends HookWidget {
                   ProfileMenuItemWidget(
                     icon: Icon(Ionicons.lock_closed_outline),
                     title: "Ubah Password",
-                    onTap: () {},
+                    onTap: () {
+                      context.router.pushNamed(RouteName.profileChangePassword);
+                    },
                     hasTrailIcon: true,
                   ),
                   Divider(

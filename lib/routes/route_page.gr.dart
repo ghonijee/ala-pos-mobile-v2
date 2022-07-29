@@ -116,6 +116,10 @@ class _$RoutePage extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const ProfileUserFormScreen());
     },
+    ProfileChangePasswordRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ProfileChangePassword());
+    },
     StoreListScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const StoreListScreen());
@@ -193,6 +197,9 @@ class _$RoutePage extends RootStackRouter {
               path: 'profile/user', parent: ProfileWrapperRoute.name),
           RouteConfig(ProfileUserFormScreenRoute.name,
               path: 'profile/user/form', parent: ProfileWrapperRoute.name),
+          RouteConfig(ProfileChangePasswordRoute.name,
+              path: 'profile/change-password',
+              parent: ProfileWrapperRoute.name),
           RouteConfig(StoreListScreenRoute.name,
               path: 'profile/store', parent: ProfileWrapperRoute.name),
           RouteConfig(StoreFormScreenRoute.name,
@@ -429,6 +436,15 @@ class ProfileUserFormScreenRoute extends PageRouteInfo<void> {
       : super(ProfileUserFormScreenRoute.name, path: 'profile/user/form');
 
   static const String name = 'ProfileUserFormScreenRoute';
+}
+
+/// generated route for
+/// [ProfileChangePassword]
+class ProfileChangePasswordRoute extends PageRouteInfo<void> {
+  const ProfileChangePasswordRoute()
+      : super(ProfileChangePasswordRoute.name, path: 'profile/change-password');
+
+  static const String name = 'ProfileChangePasswordRoute';
 }
 
 /// generated route for

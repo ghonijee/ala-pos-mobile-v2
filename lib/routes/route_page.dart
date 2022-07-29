@@ -1,5 +1,6 @@
 import 'package:ala_pos/presentation/pages/pos/screen/custom_item_page.dart';
 import 'package:ala_pos/presentation/pages/pos/screen/order_result_page.dart';
+import 'package:ala_pos/presentation/pages/profile/screen/profile_change_password.dart';
 import 'package:ala_pos/presentation/pages/profile/screen/profile_screen.dart';
 import 'package:ala_pos/presentation/pages/profile/screen/profile_user_form_screen.dart';
 import 'package:ala_pos/presentation/pages/profile/screen/profile_wrapper.dart';
@@ -46,6 +47,7 @@ part 'route_page.gr.dart';
     AutoRoute(page: ProfileWrapper, path: RouteName.profile, children: [
       AutoRoute(page: ProfileScreen, path: RouteName.profileUser, initial: true),
       AutoRoute(page: ProfileUserFormScreen, path: RouteName.profileUserForm),
+      AutoRoute(page: ProfileChangePassword, path: RouteName.profileChangePassword),
       AutoRoute(page: StoreListScreen, path: RouteName.profileStoreList),
       AutoRoute(page: StoreFormScreen, path: RouteName.profileStoreForm),
     ]),

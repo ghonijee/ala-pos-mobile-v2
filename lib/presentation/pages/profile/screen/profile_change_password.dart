@@ -8,13 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
-class ProfileUserFormScreen extends StatelessWidget {
-  const ProfileUserFormScreen({Key? key}) : super(key: key);
+import '../cubit/change_password/change_password_cubit.dart';
+
+class ProfileChangePassword extends StatelessWidget {
+  const ProfileChangePassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var formCubit = context.read<FormUserCubit>();
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -28,7 +28,7 @@ class ProfileUserFormScreen extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).backgroundColor,
         title: Text(
-          "Ubah Profile",
+          "Ubah Password",
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
@@ -43,7 +43,7 @@ class ProfileUserFormScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: SizedBox(
             height: 80.h,
-            child: BlocBuilder<FormUserCubit, FormUserState>(
+            child: BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
               builder: (context, state) {
                 return Column(
                   children: [
@@ -51,14 +51,14 @@ class ProfileUserFormScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Nama Lengkap *"),
+                        Text("New Password *"),
                         TextFormField(
-                          initialValue: state.fullnameField.value,
+                          initialValue: state.newPassword.value,
                           style: Theme.of(context).textTheme.bodyText1,
                           // onChanged: (value) => formProductCubit.nameChange(value),
                           decoration: InputDecoration(
-                            errorText: state.fullnameField.invalid ? state.fullnameField.error?.message : null,
-                            hintText: "Nama Lengkap",
+                            errorText: state.newPassword.invalid ? state.newPassword.error?.message : null,
+                            hintText: "New Password",
                             prefixStyle: Theme.of(context).textTheme.bodyText1,
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -81,14 +81,15 @@ class ProfileUserFormScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Username *"),
+                        Text("Konfirmasi New Password *"),
                         TextFormField(
-                          initialValue: state.usernameField.value,
+                          initialValue: state.newPasswordConfirm.value,
                           style: Theme.of(context).textTheme.bodyText1,
                           // onChanged: (value) => formProductCubit.nameChange(value),
                           decoration: InputDecoration(
-                            errorText: state.usernameField.invalid ? state.usernameField.error?.message : null,
-                            hintText: "Username",
+                            errorText:
+                                state.newPasswordConfirm.invalid ? state.newPasswordConfirm.error?.message : null,
+                            hintText: "Konfirmasi Password",
                             prefixStyle: Theme.of(context).textTheme.bodyText1,
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -111,14 +112,14 @@ class ProfileUserFormScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Email *"),
+                        Text("Password Sebelumnya *"),
                         TextFormField(
-                          initialValue: state.email.value,
+                          initialValue: state.oldPassword.value,
                           style: Theme.of(context).textTheme.bodyText1,
                           // onChanged: (value) => formProductCubit.nameChange(value),
                           decoration: InputDecoration(
-                            errorText: state.email.invalid ? state.email.error?.message : null,
-                            hintText: "Email",
+                            errorText: state.oldPassword.invalid ? state.oldPassword.error?.message : null,
+                            hintText: "Password",
                             prefixStyle: Theme.of(context).textTheme.bodyText1,
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -136,33 +137,6 @@ class ProfileUserFormScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       height: AppSpacings.m.sp,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Nomer Handphone *"),
-                        TextFormField(
-                          initialValue: state.phone.value,
-                          style: Theme.of(context).textTheme.bodyText1,
-                          // onChanged: (value) => formProductCubit.nameChange(value),
-                          decoration: InputDecoration(
-                            errorText: state.phone.invalid ? state.phone.error?.message : null,
-                            hintText: "Nomer Handphone",
-                            prefixStyle: Theme.of(context).textTheme.bodyText1,
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor,
-                              ),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
                     Expanded(child: SizedBox()),
                     ElevatedButton(

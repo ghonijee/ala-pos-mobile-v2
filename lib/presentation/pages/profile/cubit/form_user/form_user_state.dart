@@ -5,16 +5,22 @@ class FormUserState with _$FormUserState {
   const FormUserState._();
 
   const factory FormUserState({
+    required int id,
     @Default(UsernameField.pure()) UsernameField usernameField,
     @Default(FullnameField.pure()) FullnameField fullnameField,
-    @Default(PasswordField.pure()) PasswordField password,
     @Default(PhoneField.pure()) PhoneField phone,
     @Default(EmailField.pure()) EmailField email,
   }) = _FormUserState;
 
-  // FormzStatus get status {
-  //   return Formz.validate([usernam]);
-  // }
+  FormzStatus get status {
+    return Formz.validate([fullnameField, usernameField, email, phone]);
+  }
 
-  UserModel toModel() => UserModel();
+  UserProfileModel toModel() => UserProfileModel(
+        id: id,
+        username: usernameField.value,
+        fullname: fullnameField.value,
+        phone: phone.value,
+        email: email.value,
+      );
 }

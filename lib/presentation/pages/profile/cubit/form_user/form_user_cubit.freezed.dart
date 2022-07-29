@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FormUserState {
+  int get id => throw _privateConstructorUsedError;
   UsernameField get usernameField => throw _privateConstructorUsedError;
   FullnameField get fullnameField => throw _privateConstructorUsedError;
-  PasswordField get password => throw _privateConstructorUsedError;
   PhoneField get phone => throw _privateConstructorUsedError;
   EmailField get email => throw _privateConstructorUsedError;
 
@@ -33,9 +33,9 @@ abstract class $FormUserStateCopyWith<$Res> {
           FormUserState value, $Res Function(FormUserState) then) =
       _$FormUserStateCopyWithImpl<$Res>;
   $Res call(
-      {UsernameField usernameField,
+      {int id,
+      UsernameField usernameField,
       FullnameField fullnameField,
-      PasswordField password,
       PhoneField phone,
       EmailField email});
 }
@@ -51,13 +51,17 @@ class _$FormUserStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? usernameField = freezed,
     Object? fullnameField = freezed,
-    Object? password = freezed,
     Object? phone = freezed,
     Object? email = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       usernameField: usernameField == freezed
           ? _value.usernameField
           : usernameField // ignore: cast_nullable_to_non_nullable
@@ -66,10 +70,6 @@ class _$FormUserStateCopyWithImpl<$Res>
           ? _value.fullnameField
           : fullnameField // ignore: cast_nullable_to_non_nullable
               as FullnameField,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as PasswordField,
       phone: phone == freezed
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -90,9 +90,9 @@ abstract class _$$_FormUserStateCopyWith<$Res>
       __$$_FormUserStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UsernameField usernameField,
+      {int id,
+      UsernameField usernameField,
       FullnameField fullnameField,
-      PasswordField password,
       PhoneField phone,
       EmailField email});
 }
@@ -110,13 +110,17 @@ class __$$_FormUserStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? usernameField = freezed,
     Object? fullnameField = freezed,
-    Object? password = freezed,
     Object? phone = freezed,
     Object? email = freezed,
   }) {
     return _then(_$_FormUserState(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       usernameField: usernameField == freezed
           ? _value.usernameField
           : usernameField // ignore: cast_nullable_to_non_nullable
@@ -125,10 +129,6 @@ class __$$_FormUserStateCopyWithImpl<$Res>
           ? _value.fullnameField
           : fullnameField // ignore: cast_nullable_to_non_nullable
               as FullnameField,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as PasswordField,
       phone: phone == freezed
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -145,22 +145,21 @@ class __$$_FormUserStateCopyWithImpl<$Res>
 
 class _$_FormUserState extends _FormUserState {
   const _$_FormUserState(
-      {this.usernameField = const UsernameField.pure(),
+      {required this.id,
+      this.usernameField = const UsernameField.pure(),
       this.fullnameField = const FullnameField.pure(),
-      this.password = const PasswordField.pure(),
       this.phone = const PhoneField.pure(),
       this.email = const EmailField.pure()})
       : super._();
 
+  @override
+  final int id;
   @override
   @JsonKey()
   final UsernameField usernameField;
   @override
   @JsonKey()
   final FullnameField fullnameField;
-  @override
-  @JsonKey()
-  final PasswordField password;
   @override
   @JsonKey()
   final PhoneField phone;
@@ -170,7 +169,7 @@ class _$_FormUserState extends _FormUserState {
 
   @override
   String toString() {
-    return 'FormUserState(usernameField: $usernameField, fullnameField: $fullnameField, password: $password, phone: $phone, email: $email)';
+    return 'FormUserState(id: $id, usernameField: $usernameField, fullnameField: $fullnameField, phone: $phone, email: $email)';
   }
 
   @override
@@ -178,11 +177,11 @@ class _$_FormUserState extends _FormUserState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FormUserState &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.usernameField, usernameField) &&
             const DeepCollectionEquality()
                 .equals(other.fullnameField, fullnameField) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality().equals(other.email, email));
   }
@@ -190,9 +189,9 @@ class _$_FormUserState extends _FormUserState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(usernameField),
       const DeepCollectionEquality().hash(fullnameField),
-      const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(phone),
       const DeepCollectionEquality().hash(email));
 
@@ -204,19 +203,19 @@ class _$_FormUserState extends _FormUserState {
 
 abstract class _FormUserState extends FormUserState {
   const factory _FormUserState(
-      {final UsernameField usernameField,
+      {required final int id,
+      final UsernameField usernameField,
       final FullnameField fullnameField,
-      final PasswordField password,
       final PhoneField phone,
       final EmailField email}) = _$_FormUserState;
   const _FormUserState._() : super._();
 
   @override
+  int get id => throw _privateConstructorUsedError;
+  @override
   UsernameField get usernameField => throw _privateConstructorUsedError;
   @override
   FullnameField get fullnameField => throw _privateConstructorUsedError;
-  @override
-  PasswordField get password => throw _privateConstructorUsedError;
   @override
   PhoneField get phone => throw _privateConstructorUsedError;
   @override
