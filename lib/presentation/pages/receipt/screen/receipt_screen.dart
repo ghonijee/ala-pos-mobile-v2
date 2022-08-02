@@ -1,12 +1,13 @@
+import 'package:ala_pos/domain/models/store/store_model.dart';
 import 'package:ala_pos/presentation/pages/receipt/cubit/preview/receipt_cubit.dart';
 import 'package:ala_pos/presentation/pages/receipt/cubit/print/print_cubit.dart';
 import 'package:ala_pos/presentation/pages/receipt/screen/scan_printer_screen.dart';
 import 'package:core/core.dart';
-import 'package:core/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:share_plus/share_plus.dart';
@@ -320,34 +321,40 @@ class ReceiptScreen extends HookWidget {
                 ],
               ),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.bodyMedium,
-                minimumSize: Size.fromWidth(30.w),
-              ),
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (_) {
-                      return BlocProvider.value(
-                        value: context.read<PrintCubit>(),
-                        child: ScanPrinterScreen(),
-                      );
-                    });
-                // context.router.pushNamed(RouteName.receiptScreen);
+            BlocBuilder<ReceiptCubit, ReceiptState>(
+              builder: (context, state) {
+                return ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    textStyle: Theme.of(context).textTheme.bodyMedium,
+                    minimumSize: Size.fromWidth(30.w),
+                  ),
+                  onPressed: () {
+                    var store = state.maybeWhen(
+                        loaded: (transactionModel, storeModel) => storeModel, orElse: () => StoreModel(name: "Alapos"));
+                    // context.read<PrintCubit>().init();
+
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (_) {
+                          return ScanPrinterScreen(transactionModel, store);
+                        });
+                    // context.router.pushNamed(RouteName.receiptScreen);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Ionicons.receipt_outline,
+                        size: 12.sp,
+                      ),
+                      SizedBox(
+                        width: AppSpacings.s.sp,
+                      ),
+                      Text("Print"),
+                    ],
+                  ),
+                );
               },
-              child: Row(
-                children: [
-                  Icon(
-                    Ionicons.receipt_outline,
-                    size: 12.sp,
-                  ),
-                  SizedBox(
-                    width: AppSpacings.s.sp,
-                  ),
-                  Text("Print"),
-                ],
-              ),
             )
           ],
         ),

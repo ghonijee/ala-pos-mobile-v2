@@ -18,9 +18,9 @@ class ReceiptPage extends StatelessWidget {
         BlocProvider(
           create: (context) => GetIt.I.get<ReceiptCubit>(),
         ),
-        BlocProvider(
-          create: (context) => GetIt.I.get<PrintCubit>(),
-        ),
+        // BlocProvider(
+        //   create: (context) => GetIt.I.get<PrintCubit>(),
+        // ),
       ],
       child: ReceiptScreen(
         transactionModel: transactionModel,
