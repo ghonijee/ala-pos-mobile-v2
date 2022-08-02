@@ -20,6 +20,8 @@ class AuthRemoteSource {
           "device_name": deviceName,
         },
       );
+      print(response.toString());
+
       return SuccessResponse.fromJson(response.data);
     } on DioError catch (e) {
       rethrow;

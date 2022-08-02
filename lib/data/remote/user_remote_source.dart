@@ -72,9 +72,8 @@ class UserRemoteSource {
   Future<ApiResponse> changePassword(Map<String, dynamic> dataJson, int id) async {
     Dio dio = await apiClient.instance();
     try {
-      Response registerResponse = await dio.post("user/change-password/$id", data: dataJson);
-      print(registerResponse);
-      print(registerResponse);
+      Response registerResponse = await dio.post("/change-password/$id", data: dataJson);
+
       return SuccessResponse.fromJson(registerResponse.data);
     } on DioError catch (e) {
       return FailedResponse(message: e.toString(), status: false);

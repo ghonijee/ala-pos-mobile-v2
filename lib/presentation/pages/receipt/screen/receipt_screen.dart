@@ -1,4 +1,6 @@
-import 'package:ala_pos/presentation/pages/receipt/cubit/receipt_cubit.dart';
+import 'package:ala_pos/presentation/pages/receipt/cubit/preview/receipt_cubit.dart';
+import 'package:ala_pos/presentation/pages/receipt/cubit/print/print_cubit.dart';
+import 'package:ala_pos/presentation/pages/receipt/screen/scan_printer_screen.dart';
 import 'package:core/core.dart';
 import 'package:core/styles/styles.dart';
 import 'package:flutter/material.dart';
@@ -324,6 +326,14 @@ class ReceiptScreen extends HookWidget {
                 minimumSize: Size.fromWidth(30.w),
               ),
               onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (_) {
+                      return BlocProvider.value(
+                        value: context.read<PrintCubit>(),
+                        child: ScanPrinterScreen(),
+                      );
+                    });
                 // context.router.pushNamed(RouteName.receiptScreen);
               },
               child: Row(

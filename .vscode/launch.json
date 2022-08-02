@@ -23,6 +23,15 @@
             ]
         },
         {
+            "name": "ala_pos prod android",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define",
+                "ENV=.env.production",
+            ]
+        },
+        {
             "name": "ala_pos (profile mode)",
             "request": "launch",
             "type": "dart",

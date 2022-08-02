@@ -63,6 +63,9 @@ dependencies:
   uuid: ^3.0.6
   flutter_barcode_scanner: ^2.0.0
   flutter_beep: ^1.0.0
+  flutter_blue_plus: ^1.2.0
+  esc_pos_utils: ^1.1.0
+  flutter_esc_pos_utils: ^0.1.7
 
 dev_dependencies:
   auto_route_generator: null

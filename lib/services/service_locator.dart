@@ -18,6 +18,9 @@ abstract class RegisterModule {
   // @lazySingleton
   // Dio get dio => Dio();
 
+  @lazySingleton
+  // PrinterBluetoothManager get printerBluetoothManager => PrinterBluetoothManager();
+
   @singleton
   LocalStorage get localStorage => LocalStorage();
 
