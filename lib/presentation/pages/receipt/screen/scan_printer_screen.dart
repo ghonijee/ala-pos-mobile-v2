@@ -119,7 +119,9 @@ class ScanPrinterScreen extends StatelessWidget {
     bytes += generator.text('Terimakasih', styles: const PosStyles(bold: true, align: PosAlign.center));
     bytes += generator.feed(1);
     bytes += generator.text('Made with Alapos', styles: const PosStyles(align: PosAlign.center));
-    bytes += generator.cut();
+    // bytes += generator.cut();
+    bytes += generator.feed(1);
+
     var printer = BluePrint();
     printer.setData(bytes);
     await printer.printData(device);
@@ -187,62 +189,59 @@ class ScanPrinterScreen extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: RefreshIndicator(
-              onRefresh: () => FlutterBluePlus.instance.startScan(timeout: const Duration(seconds: 4)),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    StreamBuilder<List<BluetoothDevice>>(
-                      stream: Stream.periodic(const Duration(seconds: 2))
-                          .asyncMap((_) => FlutterBluePlus.instance.connectedDevices),
-                      initialData: const [],
-                      builder: (c, snapshot) => Column(
-                        children: snapshot.data!
-                            .map((d) => ListTile(
-                                  onTap: () {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(builder: (context) => DeviceScreen(device: d)));
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  StreamBuilder<List<BluetoothDevice>>(
+                    stream: Stream.periodic(const Duration(seconds: 2))
+                        .asyncMap((_) => FlutterBluePlus.instance.connectedDevices),
+                    initialData: const [],
+                    builder: (c, snapshot) => Column(
+                      children: snapshot.data!
+                          .map((d) => ListTile(
+                                onTap: () {
+                                  Navigator.of(context)
+                                      .push(MaterialPageRoute(builder: (context) => DeviceScreen(device: d)));
+                                },
+                                title: Text(d.name),
+                                subtitle: Text(d.id.toString()),
+                                trailing: StreamBuilder<BluetoothDeviceState>(
+                                  stream: d.state,
+                                  initialData: BluetoothDeviceState.disconnected,
+                                  builder: (c, snapshot) {
+                                    if (snapshot.data == BluetoothDeviceState.connected) {
+                                      return ElevatedButton(
+                                        child: const Text('Print'),
+                                        onPressed: () {
+                                          printReceipt(d);
+                                        },
+                                      );
+                                    }
+                                    return Text(snapshot.data.toString());
                                   },
-                                  title: Text(d.name),
-                                  subtitle: Text(d.id.toString()),
-                                  trailing: StreamBuilder<BluetoothDeviceState>(
-                                    stream: d.state,
-                                    initialData: BluetoothDeviceState.disconnected,
-                                    builder: (c, snapshot) {
-                                      if (snapshot.data == BluetoothDeviceState.connected) {
-                                        return ElevatedButton(
-                                          child: const Text('Print'),
-                                          onPressed: () {
-                                            printReceipt(d);
-                                          },
-                                        );
-                                      }
-                                      return Text(snapshot.data.toString());
-                                    },
-                                  ),
-                                ))
-                            .toList(),
-                      ),
+                                ),
+                              ))
+                          .toList(),
                     ),
-                    StreamBuilder<List<ScanResult>>(
-                      stream: FlutterBluePlus.instance.scanResults,
-                      initialData: const [],
-                      builder: (c, snapshot) => Column(
-                        children: snapshot.data!
-                            .map(
-                              (r) => ScanResultTile(
-                                result: r,
-                                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                                  r.device.connect();
-                                  return DeviceScreen(device: r.device);
-                                })),
-                              ),
-                            )
-                            .toList(),
-                      ),
+                  ),
+                  StreamBuilder<List<ScanResult>>(
+                    stream: FlutterBluePlus.instance.scanResults,
+                    initialData: const [],
+                    builder: (c, snapshot) => Column(
+                      children: snapshot.data!
+                          .map(
+                            (r) => ScanResultTile(
+                              result: r,
+                              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                                r.device.connect();
+                                return DeviceScreen(device: r.device);
+                              })),
+                            ),
+                          )
+                          .toList(),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -307,8 +306,8 @@ class BluePrint {
   Future<void> printData(BluetoothDevice device) async {
     final data = getChunks();
     final characs = await _getCharacteristics(device);
-    for (var i = 0; i < characs.length; i++) {
-      if (await _tryPrint(characs[i], data)) {
+    for (var charac in characs) {
+      if (await _tryPrint(charac, data)) {
         break;
       }
     }
@@ -325,6 +324,8 @@ class BluePrint {
         return false;
       }
     }
+    print(charac.toString());
+
     return true;
   }
 
@@ -333,9 +334,10 @@ class BluePrint {
   ) async {
     final services = await device.discoverServices();
     final res = List<BluetoothCharacteristic>.empty(growable: true);
-    for (var i = 0; i < services.length; i++) {
-      res.addAll(services[i].characteristics);
+    for (var service in services) {
+      res.addAll(service.characteristics);
     }
+
     return res;
   }
 }
