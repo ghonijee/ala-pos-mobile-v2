@@ -14,7 +14,7 @@ class MasterProductCubit extends Cubit<MasterProductState> {
   final ProductRepository productRepository;
   final StoreRepository storeRepository;
 
-  MasterProductCubit(this.productRepository, this.storeRepository) : super(MasterProductState.initial());
+  MasterProductCubit(this.productRepository, this.storeRepository) : super(MasterProductState.empty());
 
   int page = 1;
   bool canFetchingData = true;
@@ -72,7 +72,13 @@ class MasterProductCubit extends Cubit<MasterProductState> {
         page = countAllData.toInt() ~/ take.toInt() + 1;
       });
 
-      emit(MasterProductState.loaded(listData, false));
+      if (listData.isEmpty && value.isNotEmpty) {
+        emit(MasterProductState.notFound());
+      } else if (listData.isEmpty) {
+        emit(MasterProductState.empty());
+      } else {
+        emit(MasterProductState.loaded(listData, false));
+      }
 
       /// Enable request after request proses
       canFetchingData = true;

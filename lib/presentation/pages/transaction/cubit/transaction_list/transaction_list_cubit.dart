@@ -14,7 +14,7 @@ part 'transaction_list_cubit.freezed.dart';
 class TransactionListCubit extends Cubit<TransactionListState> {
   TransactionRepository transactionRepository;
   StoreRepository storeRepository;
-  TransactionListCubit(this.transactionRepository, this.storeRepository) : super(TransactionListState.initial());
+  TransactionListCubit(this.transactionRepository, this.storeRepository) : super(TransactionListState.empty());
 
   int page = 1;
   bool canFetchingData = true;
@@ -72,7 +72,13 @@ class TransactionListCubit extends Cubit<TransactionListState> {
         page = countAllData.toInt() ~/ take.toInt() + 1;
       });
 
-      emit(TransactionListState.loaded(listData, false));
+      if (listData.isEmpty && value.isNotEmpty) {
+        emit(TransactionListState.notFound());
+      } else if (listData.isEmpty) {
+        emit(TransactionListState.empty());
+      } else {
+        emit(TransactionListState.loaded(listData, false));
+      }
 
       /// Enable request after request proses
       canFetchingData = true;

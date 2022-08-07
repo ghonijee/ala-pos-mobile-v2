@@ -27,20 +27,27 @@ class ResumeOrderPage extends HookWidget {
               height: 90.h,
               decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
               child: state.model!.items!.isEmpty
-                  ? Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Belum ada produk ditambahkan"),
-                        SizedBox(
-                          height: AppSpacings.s.sp,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            context.router.pop();
-                          },
-                          child: Text("Kembali"),
-                        ),
-                      ],
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/images/empty/cart_empty.png"),
+                          Text("Belum ada produk ditambahkan"),
+                          SizedBox(
+                            height: AppSpacings.xl.sp,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(fixedSize: Size(60.w, 35.sp)),
+                            onPressed: () {
+                              context.router.pop();
+                            },
+                            child: Text("Kembali"),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                        ],
+                      ),
                     )
                   : Column(
                       children: [

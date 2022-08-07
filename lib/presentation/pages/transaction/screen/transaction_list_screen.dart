@@ -40,7 +40,7 @@ class TransactionListScreen extends HookWidget {
       builder: (context, state) {
         return Scaffold(
           drawer: SideMenuWidget(),
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(
             title: Text(
               "Riwayat Transaksi",
@@ -111,100 +111,169 @@ class TransactionListScreen extends HookWidget {
                   SizedBox(
                     height: AppSpacings.m.sp,
                   ),
-                  state.maybeWhen(loading: () {
-                    return Expanded(
-                        child: Center(
-                      child: CircularProgressIndicator(
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ));
-                  }, loaded: (list, nextPage) {
-                    var listGroupTransaction = TransactionGroupModel.fromTransactionList(list);
+                  state.maybeWhen(
+                    empty: () {
+                      return Expanded(
+                          child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/empty/transaction_empty.png"),
+                            Text("Belum ada transaksi"),
+                            SizedBox(
+                              height: AppSpacings.xl.sp,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(fixedSize: Size(60.w, 35.sp)),
+                              onPressed: () {
+                                context.router.pushNamed(RouteName.posWrapper);
+                              },
+                              child: Text("Buat Transaksi"),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                          ],
+                        ),
+                      ));
+                    },
+                    notFound: () {
+                      return Expanded(
+                          child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/empty/search_empty_state.png"),
+                            Text("Transaksi tidak ditemukan"),
+                            SizedBox(
+                              height: AppSpacings.xl.sp,
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                          ],
+                        ),
+                      ));
+                    },
+                    loading: () {
+                      return Expanded(
+                          child: Center(
+                        child: CircularProgressIndicator(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ));
+                    },
+                    loaded: (list, nextPage) {
+                      var listGroupTransaction = TransactionGroupModel.fromTransactionList(list);
 
-                    return Expanded(
-                      child: ListView.builder(
-                        controller: scrollController,
-                        itemCount: nextPage ? listGroupTransaction.length + 1 : listGroupTransaction.length,
-                        itemBuilder: (context, index) {
-                          DateFormat dateFormat = DateFormat("EEEE, dd-MM-y", "id");
-                          TransactionGroupModel group;
-                          if (index < listGroupTransaction.length) {
-                            group = listGroupTransaction[index];
-                          } else {
-                            group = TransactionGroupModel();
-                          }
-                          return index >= listGroupTransaction.length
-                              ? Center(
-                                  child: CircularProgressIndicator(
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                )
-                              : Container(
-                                  margin: EdgeInsets.symmetric(vertical: AppSpacings.s.sp),
-                                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          dateFormat.format(group.date!),
-                                          style: Theme.of(context).textTheme.subtitle1!.copyWith(fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          group.amount!.toIDR(),
-                                          style: Theme.of(context).textTheme.subtitle1!.copyWith(fontWeight: FontWeight.bold),
-                                        )
-                                      ],
+                      return Expanded(
+                        child: ListView.builder(
+                          controller: scrollController,
+                          itemCount: nextPage ? listGroupTransaction.length + 1 : listGroupTransaction.length,
+                          itemBuilder: (context, index) {
+                            DateFormat dateFormat = DateFormat("EEEE, dd-MM-y", "id");
+                            TransactionGroupModel group;
+                            if (index < listGroupTransaction.length) {
+                              group = listGroupTransaction[index];
+                            } else {
+                              group = TransactionGroupModel();
+                            }
+                            return index >= listGroupTransaction.length
+                                ? Center(
+                                    child: CircularProgressIndicator(
+                                      color: Theme.of(context).primaryColor,
                                     ),
-                                    ListView.separated(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount: group.items!.length,
-                                      addAutomaticKeepAlives: true,
-                                      separatorBuilder: (context, index) {
-                                        return Divider(
-                                          height: AppSpacings.s.sp,
-                                        );
-                                      },
-                                      itemBuilder: (context, index) {
-                                        var item = group.items![index];
-                                        return ListTile(
-                                          onTap: () {
-                                            detailCubit.load(group.items![index]);
-                                            AutoRouter.of(context).pushNamed(RouteName.transactionDetail);
-                                          },
-                                          contentPadding: EdgeInsets.zero,
-                                          leading: Container(
-                                            constraints: BoxConstraints(minHeight: 32.sp, minWidth: 32.sp),
-                                            decoration: BoxDecoration(color: Theme.of(context).primaryColor.withOpacity(0.1), borderRadius: BorderRadius.all(Radius.circular(8))),
-                                            child: Icon(
-                                              Ionicons.cash_outline,
-                                              size: AppSpacings.xl,
-                                              color: Theme.of(context).primaryColor,
+                                  )
+                                : Container(
+                                    margin: EdgeInsets.symmetric(vertical: AppSpacings.s.sp),
+                                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            dateFormat.format(group.date!),
+                                            style: Theme.of(context).textTheme.subtitle1!.copyWith(fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            group.amount!.toIDR(),
+                                            style: Theme.of(context).textTheme.subtitle1!.copyWith(fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                      ListView.separated(
+                                        physics: NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: group.items!.length,
+                                        addAutomaticKeepAlives: true,
+                                        separatorBuilder: (context, index) {
+                                          return Divider(
+                                            height: AppSpacings.s.sp,
+                                          );
+                                        },
+                                        itemBuilder: (context, index) {
+                                          var item = group.items![index];
+                                          return ListTile(
+                                            onTap: () {
+                                              detailCubit.load(group.items![index]);
+                                              AutoRouter.of(context).pushNamed(RouteName.transactionDetail);
+                                            },
+                                            contentPadding: EdgeInsets.zero,
+                                            leading: Container(
+                                              constraints: BoxConstraints(minHeight: 32.sp, minWidth: 32.sp),
+                                              decoration: BoxDecoration(color: Theme.of(context).primaryColor.withOpacity(0.1), borderRadius: BorderRadius.all(Radius.circular(8))),
+                                              child: Icon(
+                                                Ionicons.cash_outline,
+                                                size: AppSpacings.xl,
+                                                color: Theme.of(context).primaryColor,
+                                              ),
                                             ),
-                                          ),
-                                          title: Text(item.invoiceNumber ?? "-"),
-                                          subtitle: Text(item.items!.length.toString() + " Item"),
-                                          trailing: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(item.amount!.toIDR()),
-                                              // SizedBox(
-                                              //   height: 4.sp,
-                                              // ),
-                                              // Text(item.items!.length.toString() + " item"),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    )
-                                  ]),
-                                );
-                        },
-                      ),
-                    );
-                  }, orElse: () {
-                    return SizedBox();
-                  }),
+                                            title: Text(item.invoiceNumber ?? "-"),
+                                            subtitle: Text(item.items!.length.toString() + " Item"),
+                                            trailing: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Text(item.amount!.toIDR()),
+                                                // SizedBox(
+                                                //   height: 4.sp,
+                                                // ),
+                                                // Text(item.items!.length.toString() + " item"),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    ]),
+                                  );
+                          },
+                        ),
+                      );
+                    },
+                    orElse: () {
+                      return Expanded(
+                          child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/empty/transaction_empty.png"),
+                            Text("Belum ada transaksi"),
+                            SizedBox(
+                              height: AppSpacings.xl.sp,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(fixedSize: Size(60.w, 35.sp)),
+                              onPressed: () {
+                                context.router.pushNamed(RouteName.product);
+                              },
+                              child: Text("Buat Transaksi"),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                          ],
+                        ),
+                      ));
+                    },
+                  ),
                 ],
               ),
             ),

@@ -149,6 +149,31 @@ class PosPage extends HookWidget {
                           height: AppSpacings.m.sp,
                         ),
                         state.maybeWhen(
+                          notFound: () {
+                            return Expanded(
+                                child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset("assets/images/empty/search_empty_state.png"),
+                                  Text("Produk Belum Tersedia"),
+                                  SizedBox(
+                                    height: AppSpacings.xl.sp,
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(fixedSize: Size(60.w, 35.sp)),
+                                    onPressed: () {
+                                      context.router.pushNamed(RouteName.product);
+                                    },
+                                    child: Text("Tambahkan Produk"),
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                ],
+                              ),
+                            ));
+                          },
                           loading: () {
                             return Expanded(
                                 child: Center(
@@ -194,13 +219,21 @@ class PosPage extends HookWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Produk Belum Tersedia"),
-                                  IconButton(
-                                    onPressed: () async {
-                                      await listProductCubit.getProductList(initialData: true);
+                                  Image.asset("assets/images/empty/product_empty.png"),
+                                  Text("Belum ada daftar produk yang tersedia"),
+                                  SizedBox(
+                                    height: AppSpacings.xl.sp,
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(fixedSize: Size(60.w, 35.sp)),
+                                    onPressed: () {
+                                      context.router.pushNamed(RouteName.product);
                                     },
-                                    icon: Icon(Ionicons.reload),
-                                  )
+                                    child: Text("Tambahkan Sekarang"),
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
                                 ],
                               ),
                             ));

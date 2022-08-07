@@ -134,6 +134,49 @@ class ProductGridScreen extends HookWidget {
                         height: AppSpacings.m.sp,
                       ),
                       state.maybeWhen(
+                        empty: () {
+                          return Expanded(
+                              child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset("assets/images/empty/product_empty.png"),
+                                Text("Belum ada produk"),
+                                SizedBox(
+                                  height: AppSpacings.xl.sp,
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(fixedSize: Size(60.w, 35.sp)),
+                                  onPressed: () {
+                                    context.router.pushNamed(RouteName.productForm);
+                                  },
+                                  child: Text("Buat Sekarang"),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                              ],
+                            ),
+                          ));
+                        },
+                        notFound: () {
+                          return Expanded(
+                              child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset("assets/images/empty/search_empty_state.png"),
+                                Text("Produk tidak ditemukan"),
+                                SizedBox(
+                                  height: AppSpacings.xl.sp,
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                              ],
+                            ),
+                          ));
+                        },
                         loading: () {
                           return Expanded(
                               child: Center(

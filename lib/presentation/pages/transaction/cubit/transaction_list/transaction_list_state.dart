@@ -5,4 +5,6 @@ class TransactionListState with _$TransactionListState {
   const factory TransactionListState.initial() = _Initial;
   const factory TransactionListState.loading() = _Loading;
   const factory TransactionListState.loaded(list, bool nextPage) = _Loaded;
+  const factory TransactionListState.notFound() = _NotFound;
+  const factory TransactionListState.empty() = _Empty;
 }

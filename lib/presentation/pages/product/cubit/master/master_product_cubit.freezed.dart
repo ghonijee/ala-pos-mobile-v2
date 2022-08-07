@@ -22,6 +22,7 @@ mixin _$MasterProductState {
     required TResult Function() loading,
     required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() empty,
     required TResult Function() fetchError,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,6 +32,7 @@ mixin _$MasterProductState {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +42,7 @@ mixin _$MasterProductState {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
     required TResult orElse(),
   }) =>
@@ -50,6 +53,7 @@ mixin _$MasterProductState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Empty value) empty,
     required TResult Function(_FetchError value) fetchError,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +63,7 @@ mixin _$MasterProductState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +73,7 @@ mixin _$MasterProductState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) =>
@@ -135,6 +141,7 @@ class _$_Initial implements _Initial {
     required TResult Function() loading,
     required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() empty,
     required TResult Function() fetchError,
   }) {
     return initial();
@@ -147,6 +154,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
   }) {
     return initial?.call();
@@ -159,6 +167,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
     required TResult orElse(),
   }) {
@@ -175,6 +184,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Empty value) empty,
     required TResult Function(_FetchError value) fetchError,
   }) {
     return initial(this);
@@ -187,6 +197,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
   }) {
     return initial?.call(this);
@@ -199,6 +210,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) {
@@ -257,6 +269,7 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() empty,
     required TResult Function() fetchError,
   }) {
     return loading();
@@ -269,6 +282,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
   }) {
     return loading?.call();
@@ -281,6 +295,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
     required TResult orElse(),
   }) {
@@ -297,6 +312,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Empty value) empty,
     required TResult Function(_FetchError value) fetchError,
   }) {
     return loading(this);
@@ -309,6 +325,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
   }) {
     return loading?.call(this);
@@ -321,6 +338,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) {
@@ -417,6 +435,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function() loading,
     required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() empty,
     required TResult Function() fetchError,
   }) {
     return loaded(data, nextPage);
@@ -429,6 +448,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
   }) {
     return loaded?.call(data, nextPage);
@@ -441,6 +461,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
     required TResult orElse(),
   }) {
@@ -457,6 +478,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Empty value) empty,
     required TResult Function(_FetchError value) fetchError,
   }) {
     return loaded(this);
@@ -469,6 +491,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
   }) {
     return loaded?.call(this);
@@ -481,6 +504,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) {
@@ -547,6 +571,7 @@ class _$_NotFound implements _NotFound {
     required TResult Function() loading,
     required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() empty,
     required TResult Function() fetchError,
   }) {
     return notFound();
@@ -559,6 +584,7 @@ class _$_NotFound implements _NotFound {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
   }) {
     return notFound?.call();
@@ -571,6 +597,7 @@ class _$_NotFound implements _NotFound {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
     required TResult orElse(),
   }) {
@@ -587,6 +614,7 @@ class _$_NotFound implements _NotFound {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Empty value) empty,
     required TResult Function(_FetchError value) fetchError,
   }) {
     return notFound(this);
@@ -599,6 +627,7 @@ class _$_NotFound implements _NotFound {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
   }) {
     return notFound?.call(this);
@@ -611,6 +640,7 @@ class _$_NotFound implements _NotFound {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) {
@@ -623,6 +653,133 @@ class _$_NotFound implements _NotFound {
 
 abstract class _NotFound implements MasterProductState {
   const factory _NotFound() = _$_NotFound;
+}
+
+/// @nodoc
+abstract class _$$_EmptyCopyWith<$Res> {
+  factory _$$_EmptyCopyWith(_$_Empty value, $Res Function(_$_Empty) then) =
+      __$$_EmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_EmptyCopyWithImpl<$Res>
+    extends _$MasterProductStateCopyWithImpl<$Res>
+    implements _$$_EmptyCopyWith<$Res> {
+  __$$_EmptyCopyWithImpl(_$_Empty _value, $Res Function(_$_Empty) _then)
+      : super(_value, (v) => _then(v as _$_Empty));
+
+  @override
+  _$_Empty get _value => super._value as _$_Empty;
+}
+
+/// @nodoc
+
+class _$_Empty implements _Empty {
+  const _$_Empty();
+
+  @override
+  String toString() {
+    return 'MasterProductState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<ProductModel> data, bool nextPage) loaded,
+    required TResult Function() notFound,
+    required TResult Function() empty,
+    required TResult Function() fetchError,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
+    TResult Function()? notFound,
+    TResult Function()? empty,
+    TResult Function()? fetchError,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<ProductModel> data, bool nextPage)? loaded,
+    TResult Function()? notFound,
+    TResult Function()? empty,
+    TResult Function()? fetchError,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_FetchError value) fetchError,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_FetchError value)? fetchError,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_FetchError value)? fetchError,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Empty implements MasterProductState {
+  const factory _Empty() = _$_Empty;
 }
 
 /// @nodoc
@@ -670,6 +827,7 @@ class _$_FetchError implements _FetchError {
     required TResult Function() loading,
     required TResult Function(List<ProductModel> data, bool nextPage) loaded,
     required TResult Function() notFound,
+    required TResult Function() empty,
     required TResult Function() fetchError,
   }) {
     return fetchError();
@@ -682,6 +840,7 @@ class _$_FetchError implements _FetchError {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
   }) {
     return fetchError?.call();
@@ -694,6 +853,7 @@ class _$_FetchError implements _FetchError {
     TResult Function()? loading,
     TResult Function(List<ProductModel> data, bool nextPage)? loaded,
     TResult Function()? notFound,
+    TResult Function()? empty,
     TResult Function()? fetchError,
     required TResult orElse(),
   }) {
@@ -710,6 +870,7 @@ class _$_FetchError implements _FetchError {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Empty value) empty,
     required TResult Function(_FetchError value) fetchError,
   }) {
     return fetchError(this);
@@ -722,6 +883,7 @@ class _$_FetchError implements _FetchError {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
   }) {
     return fetchError?.call(this);
@@ -734,6 +896,7 @@ class _$_FetchError implements _FetchError {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_Empty value)? empty,
     TResult Function(_FetchError value)? fetchError,
     required TResult orElse(),
   }) {

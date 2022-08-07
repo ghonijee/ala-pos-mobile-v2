@@ -46,12 +46,12 @@ class ListProductCubit extends Cubit<ListProductState> {
       canFetchingData = false;
 
       /// Save list data old to listData temp variabel
-      state.maybeWhen(loaded: (data, _) {
-        listData.addAll(data);
-        emit(ListProductState.loaded(listData, nextPage));
-      }, orElse: () {
-        print("test");
-      });
+      state.maybeWhen(
+          loaded: (data, _) {
+            listData.addAll(data);
+            emit(ListProductState.loaded(listData, nextPage));
+          },
+          orElse: () {});
       // Loading
 
       var result = await productRepository.list(
@@ -69,7 +69,14 @@ class ListProductCubit extends Cubit<ListProductState> {
         var countAllData = listData.length;
         page = countAllData.toInt() ~/ take.toInt() + 1;
       });
-      emit(ListProductState.loaded(listData, false));
+
+      if (listData.isEmpty && value.isNotEmpty) {
+        emit(ListProductState.notFound());
+      } else if (listData.isEmpty) {
+        emit(ListProductState.initial());
+      } else {
+        emit(ListProductState.loaded(listData, false));
+      }
 
       /// Enable request after request proses
       canFetchingData = true;
