@@ -2,9 +2,17 @@ part of 'login_cubit.dart';
 
 @freezed
 class LoginState with _$LoginState {
-  const factory LoginState.initial() = _Initial;
-  const factory LoginState.loading() = _Loading;
-  const factory LoginState.onSuccess() = _OnSuccess;
-  const factory LoginState.notHaveStore() = _NotHavestore;
-  const factory LoginState.onFailure({message}) = _OnFailure;
+  const LoginState._();
+
+  const factory LoginState({
+    @Default(UsernameField.pure()) UsernameField usernameField,
+    @Default(PasswordField.pure()) PasswordField passwordField,
+    @Default('') String message,
+    @Default(false) bool haveStore,
+    @Default(FormzStatus.pure) FormzStatus statusSubmission,
+  }) = _LoginState;
+
+  FormzStatus get status {
+    return Formz.validate([passwordField, usernameField]);
+  }
 }

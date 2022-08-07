@@ -51,8 +51,7 @@ class TransactionDetailScreen extends StatelessWidget {
                                   ),
                                   Text(
                                     item.invoiceNumber!,
-                                    style:
-                                        Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
+                                    style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
                                   )
                                 ],
                               ),
@@ -65,8 +64,7 @@ class TransactionDetailScreen extends StatelessWidget {
                                   ),
                                   Text(
                                     DateFormat("EEEE, d-MM-y", "id").format(item.date!),
-                                    style:
-                                        Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
+                                    style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
                                   )
                                 ],
                               )
@@ -108,10 +106,7 @@ class TransactionDetailScreen extends StatelessWidget {
                                       ),
                                       title: Text(
                                         transactionItem.productName,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(fontWeight: FontWeight.bold),
+                                        style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
                                       ),
                                       subtitle: Text(
                                         transactionItem.amount.toIDR(),
@@ -171,8 +166,7 @@ class TransactionDetailScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     "Total",
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     item.result.toIDR(),
@@ -203,35 +197,35 @@ class TransactionDetailScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                // ElevatedButton(
+                //   style: ElevatedButton.styleFrom(
+                //     side: BorderSide(color: Theme.of(context).primaryColor),
+                //     primary: Theme.of(context).colorScheme.background,
+                //     minimumSize: Size.fromWidth(5.w),
+                //     textStyle: Theme.of(context).textTheme.bodyMedium,
+                //   ),
+                //   onPressed: () {},
+                //   child: Row(
+                //     children: [
+                //       Icon(
+                //         Ionicons.ellipsis_vertical_outline,
+                //         size: 18.sp,
+                //         color: Theme.of(context).primaryColor,
+                //       ),
+                //       // SizedBox(
+                //       //   width: AppSpacings.s.sp,
+                //       // ),
+                //       // Text(
+                //       //   ,
+                //       //   style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).primaryColor),
+                //       // ),
+                //     ],
+                //   ),
+                // ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    side: BorderSide(color: Theme.of(context).primaryColor),
-                    primary: Theme.of(context).colorScheme.background,
-                    minimumSize: Size.fromWidth(5.w),
                     textStyle: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Icon(
-                        Ionicons.ellipsis_vertical_outline,
-                        size: 18.sp,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      // SizedBox(
-                      //   width: AppSpacings.s.sp,
-                      // ),
-                      // Text(
-                      //   ,
-                      //   style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).primaryColor),
-                      // ),
-                    ],
-                  ),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    textStyle: Theme.of(context).textTheme.bodyMedium,
-                    minimumSize: Size.fromWidth(75.w),
+                    minimumSize: Size.fromWidth(90.w),
                   ),
                   onPressed: () {
                     state.maybeWhen(loaded: (item) {

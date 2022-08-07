@@ -1,1 +1,1 @@
- flutter build apk --release --dart-define ENV=.env.production
+fvm flutter build apk --release --dart-define ENV=.env.production

@@ -23,7 +23,7 @@
             ]
         },
         {
-            "name": "ala_pos prod android",
+            "name": "ala_pos prod",
             "request": "launch",
             "type": "dart",
             "args": [

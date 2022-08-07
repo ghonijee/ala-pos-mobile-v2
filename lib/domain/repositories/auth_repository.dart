@@ -80,10 +80,9 @@ class AuthRepository {
     }
   }
 
-  Future<Either<FailureModel, LoginModel>> signUp(
-      {required String username, required String password, required String phone}) async {
+  Future<Either<FailureModel, LoginModel>> signUp({required String username, required String password, required String phone}) async {
     try {
-      var deviceInfo = await DeviceInfo().ios;
+      var deviceInfo = await DeviceInfo().info;
       ApiResponse response = await remoteSource.register(
         username: username,
         password: password,

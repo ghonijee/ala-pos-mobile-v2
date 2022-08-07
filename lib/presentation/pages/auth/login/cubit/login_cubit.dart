@@ -1,5 +1,7 @@
 import 'package:ala_pos/domain/repositories/store_repository.dart';
+import 'package:ala_pos/presentation/fields/fields.dart';
 import 'package:bloc/bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../domain/repositories/auth_repository.dart';
@@ -14,21 +16,33 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit(AuthRepository authRepository, this.storeRepository)
       : _authRepository = authRepository,
-        super(LoginState.initial());
+        super(LoginState());
 
   /// Method for Sign In Proccess.
-  /// [username] and [password] is required params
-  void signIn({required String username, required String password}) async {
+  void signIn() async {
     try {
-      emit(LoginState.loading());
-      var signInAction = await _authRepository.signIn(username, password);
+      emit(state.copyWith(
+        statusSubmission: FormzStatus.submissionInProgress,
+      ));
+      print(state.toString());
+      // emit(LoginState.loading());
+      var signInAction = await _authRepository.signIn(
+        state.usernameField.value,
+        state.passwordField.value,
+      );
       signInAction.fold((failure) {
-        emit(LoginState.onFailure(message: failure.message));
+        emit(state.copyWith(
+          statusSubmission: FormzStatus.submissionFailure,
+          message: failure.message,
+        ));
       }, (loginModel) {
         checkUserMainStore();
       });
     } catch (e) {
-      emit(LoginState.onFailure(message: e.toString()));
+      emit(state.copyWith(
+        statusSubmission: FormzStatus.submissionFailure,
+        message: e.toString(),
+      ));
     }
   }
 
@@ -37,12 +51,34 @@ class LoginCubit extends Cubit<LoginState> {
   /// if have emit success and redirect to Home
   void checkUserMainStore() async {
     var result = await storeRepository.mainStore();
-    result.fold((l) {
-      emit(LoginState.notHaveStore());
-    }, (r) {
-      emit(LoginState.onSuccess());
-    });
 
-    // print()
+    result.fold((failure) {
+      emit(state.copyWith(
+        statusSubmission: FormzStatus.submissionSuccess,
+        message: failure.message,
+        haveStore: false,
+      ));
+    }, (right) {
+      emit(state.copyWith(
+        statusSubmission: FormzStatus.submissionSuccess,
+        haveStore: true,
+      ));
+    });
+  }
+
+  usernameChange(String value) {
+    var field = UsernameField.dirty(value);
+    emit(state.copyWith(
+      usernameField: field,
+    ));
+    print(state.toString());
+  }
+
+  passwordChange(String value) {
+    var field = PasswordField.dirty(value);
+    emit(state.copyWith(
+      passwordField: field,
+    ));
+    print(state.toString());
   }
 }

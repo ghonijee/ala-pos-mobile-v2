@@ -1,0 +1,1 @@
+fvm flutter build appbundle --release --dart-define ENV=.env.production
