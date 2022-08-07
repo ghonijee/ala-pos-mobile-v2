@@ -46,19 +46,19 @@ class ListProductCubit extends Cubit<ListProductState> {
       canFetchingData = false;
 
       /// Save list data old to listData temp variabel
-      state.maybeWhen(
-          loaded: (data, _) {
-            listData.addAll(data);
-            emit(ListProductState.loaded(listData, nextPage));
-          },
-          orElse: () {});
+      state.maybeWhen(loaded: (data, _) {
+        listData.addAll(data);
+        emit(ListProductState.loaded(listData, nextPage));
+      }, orElse: () {
+        print("test");
+      });
       // Loading
 
       var result = await productRepository.list(
         storeId: store.id!,
         page: page,
         take: take,
-        searchValue: '',
+        searchValue: value,
       );
 
       result.fold((error) {

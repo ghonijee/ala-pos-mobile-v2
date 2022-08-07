@@ -20,6 +20,7 @@ class TransactionListScreen extends HookWidget {
   Widget build(BuildContext context) {
     final searchController = useTextEditingController();
     final scrollController = useScrollController();
+    var searchHasValue = useState<bool>(false);
 
     var listCubit = context.read<TransactionListCubit>();
     var detailCubit = context.read<TransactionDetailCubit>();
@@ -66,6 +67,14 @@ class TransactionListScreen extends HookWidget {
                   TextFormField(
                     controller: searchController,
                     style: Theme.of(context).textTheme.bodyText1,
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        searchHasValue.value = true;
+                      } else {
+                        searchHasValue.value = false;
+                      }
+                    },
+                    textAlignVertical: TextAlignVertical.center,
                     onEditingComplete: () {
                       if (searchController.text.isNotEmpty) {
                         listCubit.getTransactionList(value: searchController.text, initialData: true);
@@ -73,7 +82,6 @@ class TransactionListScreen extends HookWidget {
                         listCubit.getTransactionList(value: '', initialData: true);
                       }
                     },
-                    textAlignVertical: TextAlignVertical.center,
                     decoration: InputDecoration(
                       prefixIcon: IconButton(
                         icon: Icon(
@@ -84,13 +92,15 @@ class TransactionListScreen extends HookWidget {
                           //
                         },
                       ),
-                      suffixIcon: searchController.text.isNotEmpty
+                      suffixIcon: searchHasValue.value
                           ? IconButton(
                               icon: Icon(
                                 Ionicons.close_outline,
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                               onPressed: () async {
+                                searchController.clear();
+                                searchHasValue.value = false;
                                 listCubit.getTransactionList(value: '', initialData: true);
                               },
                             )

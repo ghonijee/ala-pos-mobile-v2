@@ -20,6 +20,7 @@ class ProductGridScreen extends HookWidget {
   Widget build(BuildContext context) {
     final searchController = useTextEditingController();
     final scrollController = useScrollController();
+    var searchHasValue = useState<bool>(false);
 
     var masterProductCubit = context.read<MasterProductCubit>();
 
@@ -72,6 +73,14 @@ class ProductGridScreen extends HookWidget {
                       TextFormField(
                         controller: searchController,
                         style: Theme.of(context).textTheme.bodyText1,
+                        onChanged: (value) {
+                          if (value.isNotEmpty) {
+                            searchHasValue.value = true;
+                          } else {
+                            searchHasValue.value = false;
+                          }
+                        },
+                        textAlignVertical: TextAlignVertical.center,
                         onEditingComplete: () {
                           if (searchController.text.isNotEmpty) {
                             masterProductCubit.getProductList(value: searchController.text, initialData: true);
@@ -82,11 +91,15 @@ class ProductGridScreen extends HookWidget {
                         decoration: InputDecoration(
                           prefixIcon: IconButton(
                             icon: Icon(
-                              Ionicons.search_outline,
+                              searchHasValue.value ? Ionicons.close_outline : Ionicons.search_outline,
                               color: Theme.of(context).colorScheme.primary,
                             ),
-                            onPressed: () async {
-                              //
+                            onPressed: () {
+                              if (searchHasValue.value) {
+                                searchController.clear();
+                                searchHasValue.value = false;
+                                masterProductCubit.getProductList(value: '', initialData: true);
+                              }
                             },
                           ),
                           suffixIcon: IconButton(

@@ -19,6 +19,7 @@ class PosPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final searchController = useTextEditingController();
+    var searchHasValue = useState<bool>(false);
     final scrollController = useScrollController();
 
     var listProductCubit = context.read<ListProductCubit>();
@@ -78,6 +79,14 @@ class PosPage extends HookWidget {
                         TextFormField(
                           controller: searchController,
                           style: Theme.of(context).textTheme.bodyText1,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              searchHasValue.value = true;
+                            } else {
+                              searchHasValue.value = false;
+                            }
+                          },
+                          textAlignVertical: TextAlignVertical.center,
                           onEditingComplete: () {
                             if (searchController.text.isNotEmpty) {
                               listProductCubit.getProductList(value: searchController.text, initialData: true);
@@ -86,10 +95,16 @@ class PosPage extends HookWidget {
                           decoration: InputDecoration(
                             prefixIcon: IconButton(
                               icon: Icon(
-                                Ionicons.search_outline,
+                                searchHasValue.value ? Ionicons.close_outline : Ionicons.search_outline,
                                 color: Theme.of(context).colorScheme.primary,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                if (searchHasValue.value) {
+                                  searchController.clear();
+                                  searchHasValue.value = false;
+                                  listProductCubit.getProductList(value: '', initialData: true);
+                                }
+                              },
                             ),
                             suffixIcon: SizedBox(
                               width: 70.sp,
