@@ -57,7 +57,7 @@ class PosPage extends HookWidget {
             drawer: SideMenuWidget(),
             backgroundColor: Theme.of(context).colorScheme.background,
             appBar: AppBar(
-              title: Text("Alapos"),
+              title: Text("Kasir"),
               actions: [],
             ),
             body: GestureDetector(
@@ -221,8 +221,7 @@ class PosPage extends HookWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("Total ", style: Theme.of(context).primaryTextTheme.titleMedium),
-                                Text("${state.amountPrice.toIDR()} (${state.countItem} Item)",
-                                    style: Theme.of(context).primaryTextTheme.titleMedium),
+                                Text("${state.amountPrice.toIDR()} (${state.countItem} Item)", style: Theme.of(context).primaryTextTheme.titleMedium),
                               ],
                             ),
                           ),

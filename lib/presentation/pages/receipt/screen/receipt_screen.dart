@@ -3,6 +3,7 @@ import 'package:ala_pos/presentation/pages/receipt/cubit/preview/receipt_cubit.d
 import 'package:ala_pos/presentation/pages/receipt/cubit/print/print_cubit.dart';
 import 'package:ala_pos/presentation/pages/receipt/screen/scan_printer_screen.dart';
 import 'package:core/core.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,8 +55,7 @@ class ReceiptScreen extends HookWidget {
                         key: genKey,
                         child: Container(
                           // alignment: Alignment.center,
-                          padding:
-                              EdgeInsets.only(left: AppSpacings.x4l, right: AppSpacings.x4l, top: 40.sp, bottom: 20.sp),
+                          padding: EdgeInsets.only(left: AppSpacings.x4l, right: AppSpacings.x4l, top: 40.sp, bottom: 20.sp),
                           width: 90.w,
                           decoration: BoxDecoration(
                             boxShadow: [BoxShadow(color: Colors.black, spreadRadius: 0.2, blurRadius: 0.1)],
@@ -72,6 +72,7 @@ class ReceiptScreen extends HookWidget {
                               Text(
                                 store.address!,
                                 style: Theme.of(context).textTheme.titleSmall,
+                                textAlign: TextAlign.center,
                               ),
                               SizedBox(height: AppSpacings.x2l.sp),
                               SizedBox(
@@ -82,17 +83,11 @@ class ReceiptScreen extends HookWidget {
                                     children: [
                                       Text(
                                         "Tanggal",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(fontWeight: FontWeight.normal),
+                                        style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.normal),
                                       ),
                                       Text(
-                                        DateFormat("d-MM-y").format(transactionModel.date!),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(fontWeight: FontWeight.bold),
+                                        DateFormat("dd-MM-y").format(transactionModel.date!),
+                                        style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
@@ -101,17 +96,11 @@ class ReceiptScreen extends HookWidget {
                                     children: [
                                       Text(
                                         "No. Struk",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(fontWeight: FontWeight.normal),
+                                        style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.normal),
                                       ),
                                       Text(
                                         transactionModel.invoiceNumber!,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(fontWeight: FontWeight.bold),
+                                        style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   )
@@ -168,21 +157,13 @@ class ReceiptScreen extends HookWidget {
                                               ),
                                               Expanded(
                                                 // width: 55.sp,
-                                                child: Text(item.price.toThousandSeparator(),
-                                                    textAlign: TextAlign.right,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .titleSmall!
-                                                        .copyWith(fontWeight: FontWeight.bold)),
+                                                child: Text(item.result.toThousandSeparator(),
+                                                    textAlign: TextAlign.right, style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold)),
                                               ),
                                               Expanded(
                                                 // width: 55.sp,
                                                 child: Text(item.amount.toThousandSeparator(),
-                                                    textAlign: TextAlign.right,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .titleSmall!
-                                                        .copyWith(fontWeight: FontWeight.bold)),
+                                                    textAlign: TextAlign.right, style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold)),
                                               ),
                                             ],
                                           ),
@@ -210,7 +191,7 @@ class ReceiptScreen extends HookWidget {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "Discount",
+                                        "Diskon",
                                         style: Theme.of(context).textTheme.bodyMedium,
                                       ),
                                       Text(
@@ -224,17 +205,11 @@ class ReceiptScreen extends HookWidget {
                                     children: [
                                       Text(
                                         "Total",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(fontWeight: FontWeight.bold),
+                                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         transactionModel.result.toThousandSeparator(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(fontWeight: FontWeight.bold),
+                                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   )
@@ -245,7 +220,7 @@ class ReceiptScreen extends HookWidget {
                                 height: 20.sp,
                               ),
                               Text(
-                                "Terimakasih Sudah Berbelanja",
+                                "Terima kasih sudah berbelanja",
                                 style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
@@ -279,8 +254,19 @@ class ReceiptScreen extends HookWidget {
                 minimumSize: Size.fromWidth(30.w),
                 textStyle: Theme.of(context).textTheme.bodyMedium,
               ),
-              onPressed: () {
-                save("TR20220201-0001");
+              onPressed: () async {
+                var path = await save("TR20220201-0001");
+                var snackBar = SnackBar(
+                  content: Text("Berhasil disimpan"),
+                  action: SnackBarAction(
+                    label: "Lihat",
+                    onPressed: () {
+                      //
+                    },
+                  ),
+                );
+
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               },
               child: Row(
                 children: [
@@ -329,8 +315,7 @@ class ReceiptScreen extends HookWidget {
                     minimumSize: Size.fromWidth(30.w),
                   ),
                   onPressed: () {
-                    var store = state.maybeWhen(
-                        loaded: (transactionModel, storeModel) => storeModel, orElse: () => StoreModel(name: "Alapos"));
+                    var store = state.maybeWhen(loaded: (transactionModel, storeModel) => storeModel, orElse: () => StoreModel(name: "Alapos"));
                     // context.read<PrintCubit>().init();
 
                     showModalBottomSheet(
@@ -371,6 +356,7 @@ class ReceiptScreen extends HookWidget {
     File imgFile = File('$directory/$fileName.png');
     imgFile.writeAsBytes(pngBytes);
     print(imgFile.path);
+
     return imgFile.path;
   }
 }

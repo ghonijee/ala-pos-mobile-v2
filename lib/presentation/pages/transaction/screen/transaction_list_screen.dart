@@ -42,7 +42,7 @@ class TransactionListScreen extends HookWidget {
           backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
             title: Text(
-              "Transaksi",
+              "Riwayat Transaksi",
               // style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.surface),
             ),
             actions: [],
@@ -95,7 +95,7 @@ class TransactionListScreen extends HookWidget {
                               },
                             )
                           : null,
-                      hintText: "Nomer Transaksi",
+                      hintText: "Nomor Transaksi",
                     ),
                   ),
                   SizedBox(
@@ -116,7 +116,7 @@ class TransactionListScreen extends HookWidget {
                         controller: scrollController,
                         itemCount: nextPage ? listGroupTransaction.length + 1 : listGroupTransaction.length,
                         itemBuilder: (context, index) {
-                          DateFormat dateFormat = DateFormat("EEEE, d-MM-y", "id");
+                          DateFormat dateFormat = DateFormat("EEEE, dd-MM-y", "id");
                           TransactionGroupModel group;
                           if (index < listGroupTransaction.length) {
                             group = listGroupTransaction[index];
@@ -137,17 +137,11 @@ class TransactionListScreen extends HookWidget {
                                       children: [
                                         Text(
                                           dateFormat.format(group.date!),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle1!
-                                              .copyWith(fontWeight: FontWeight.bold),
+                                          style: Theme.of(context).textTheme.subtitle1!.copyWith(fontWeight: FontWeight.bold),
                                         ),
                                         Text(
                                           group.amount!.toIDR(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle1!
-                                              .copyWith(fontWeight: FontWeight.bold),
+                                          style: Theme.of(context).textTheme.subtitle1!.copyWith(fontWeight: FontWeight.bold),
                                         )
                                       ],
                                     ),
@@ -171,9 +165,7 @@ class TransactionListScreen extends HookWidget {
                                           contentPadding: EdgeInsets.zero,
                                           leading: Container(
                                             constraints: BoxConstraints(minHeight: 32.sp, minWidth: 32.sp),
-                                            decoration: BoxDecoration(
-                                                color: Theme.of(context).primaryColor.withOpacity(0.1),
-                                                borderRadius: BorderRadius.all(Radius.circular(8))),
+                                            decoration: BoxDecoration(color: Theme.of(context).primaryColor.withOpacity(0.1), borderRadius: BorderRadius.all(Radius.circular(8))),
                                             child: Icon(
                                               Ionicons.cash_outline,
                                               size: AppSpacings.xl,
@@ -181,7 +173,7 @@ class TransactionListScreen extends HookWidget {
                                             ),
                                           ),
                                           title: Text(item.invoiceNumber ?? "-"),
-                                          subtitle: Text(item.items!.length.toString() + " item"),
+                                          subtitle: Text(item.items!.length.toString() + " Item"),
                                           trailing: Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [

@@ -20,7 +20,7 @@ class ResumeOrderPage extends HookWidget {
     return BlocBuilder<TransactionResumeCubit, TransactionResumeState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: Text("Order")),
+          appBar: AppBar(title: Text("Keranjang")),
           body: SingleChildScrollView(
             child: Container(
               width: 100.w,
@@ -30,7 +30,7 @@ class ResumeOrderPage extends HookWidget {
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Belum ada item "),
+                        Text("Belum ada produk ditambahkan"),
                         SizedBox(
                           height: AppSpacings.s.sp,
                         ),
@@ -65,8 +65,7 @@ class ResumeOrderPage extends HookWidget {
                                     TransactionItemModel itemModel = state.items[index];
                                     return ListTile(
                                       onTap: () {
-                                        var routeName =
-                                            RouteName.posCartItemDetail.replaceFirst(":index", index.toString());
+                                        var routeName = RouteName.posCartItemDetail.replaceFirst(":index", index.toString());
                                         context.router.pushNamed(routeName);
                                       },
                                       contentPadding: EdgeInsets.symmetric(
@@ -112,20 +111,20 @@ class ResumeOrderPage extends HookWidget {
                                           children: [
                                             IconButton(
                                               padding: EdgeInsets.zero,
-                                              onPressed: () {
-                                                cartCubit.increase(itemModel);
-                                              },
-                                              icon: Icon(Ionicons.add_circle_outline),
-                                            ),
-                                            Text(itemModel.quantity.toString()),
-                                            IconButton(
-                                              padding: EdgeInsets.zero,
                                               onPressed: itemModel.quantity == 1
                                                   ? null
                                                   : () {
                                                       cartCubit.decrease(itemModel);
                                                     },
                                               icon: Icon(Ionicons.remove_circle_outline),
+                                            ),
+                                            Text(itemModel.quantity.toString()),
+                                            IconButton(
+                                              padding: EdgeInsets.zero,
+                                              onPressed: () {
+                                                cartCubit.increase(itemModel);
+                                              },
+                                              icon: Icon(Ionicons.add_circle_outline),
                                             ),
                                           ],
                                         ),
@@ -151,7 +150,7 @@ class ResumeOrderPage extends HookWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Subotal",
+                                    "Subtotal",
                                     style: Theme.of(context).textTheme.bodyMedium,
                                   ),
                                   Text(
@@ -167,7 +166,7 @@ class ResumeOrderPage extends HookWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Discount",
+                                    "Diskon",
                                     style: Theme.of(context).textTheme.bodyMedium,
                                   ),
                                   Text(
@@ -184,8 +183,7 @@ class ResumeOrderPage extends HookWidget {
                                 children: [
                                   Text(
                                     "Total",
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     state.model!.result.toIDR(),
@@ -244,11 +242,8 @@ class ResumeOrderPage extends HookWidget {
                                   );
                                 },
                                 child: Text(
-                                  "Atur Diskon",
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .button!
-                                      .copyWith(color: Theme.of(context).primaryColor),
+                                  "Tambahkan Diskon",
+                                  style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                                 ),
                               ),
                               SizedBox(

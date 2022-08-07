@@ -43,9 +43,7 @@ class OrderResultPage extends HookWidget {
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: AppSpacings.s.sp, vertical: AppSpacings.s.sp),
                           padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl.sp, vertical: AppSpacings.x4l.sp),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.surface,
-                              borderRadius: BorderRadius.all(Radius.circular(AppSpacings.m)),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface, borderRadius: BorderRadius.all(Radius.circular(AppSpacings.m)),
                               // border: Border.all(
                               //   color: Theme.of(context).colorScheme.primary,
                               // ),
@@ -78,7 +76,7 @@ class OrderResultPage extends HookWidget {
                                 height: AppSpacings.m,
                               ),
                               Text(
-                                "Transaksi berhasil dibuat, \nsilahkan cetak struk!",
+                                "Transaksi berhasil dibuat. \nSilakan cetak struk!",
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context).textTheme.bodyText1!.copyWith(),
                               ),
@@ -153,10 +151,7 @@ class OrderResultPage extends HookWidget {
                                     },
                                     label: Text(
                                       "Cetak Struk",
-                                      style: Theme.of(context)
-                                          .primaryTextTheme
-                                          .button!
-                                          .copyWith(color: Theme.of(context).colorScheme.surface),
+                                      style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).colorScheme.surface),
                                     ),
                                   ),
                                   ElevatedButton.icon(
@@ -260,17 +255,11 @@ class OrderResultPage extends HookWidget {
                                       children: [
                                         Text(
                                           "Kembalian",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(fontWeight: FontWeight.bold),
+                                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
                                         ),
                                         Text(
                                           model.changeMoney!.toIDR(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .copyWith(fontWeight: FontWeight.bold),
+                                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
                                         ),
                                       ],
                                     )

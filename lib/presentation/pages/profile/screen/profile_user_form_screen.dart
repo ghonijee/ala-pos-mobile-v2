@@ -28,7 +28,7 @@ class ProfileUserFormScreen extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).backgroundColor,
         title: Text(
-          "Ubah Profile",
+          "Ubah Profil",
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
@@ -150,14 +150,14 @@ class ProfileUserFormScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Nomer Handphone *"),
+                        Text("Nomor Handphone *"),
                         TextFormField(
                           initialValue: state.phone.value,
                           style: Theme.of(context).textTheme.bodyText1,
                           onChanged: (value) => formCubit.phoneChange(value),
                           decoration: InputDecoration(
                             errorText: state.phone.invalid ? state.phone.error?.message : null,
-                            hintText: "Nomer Handphone",
+                            hintText: "Nomor Handphone",
                             prefixStyle: Theme.of(context).textTheme.bodyText1,
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(

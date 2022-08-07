@@ -63,7 +63,7 @@ class TransactionDetailScreen extends StatelessWidget {
                                     style: Theme.of(context).textTheme.titleSmall,
                                   ),
                                   Text(
-                                    DateFormat("EEEE, d-MM-y", "id").format(item.date!),
+                                    DateFormat("EEEE, dd-MM-y", "id").format(item.date!),
                                     style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
                                   )
                                 ],
@@ -109,10 +109,10 @@ class TransactionDetailScreen extends StatelessWidget {
                                         style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
                                       ),
                                       subtitle: Text(
-                                        transactionItem.amount.toIDR(),
+                                        transactionItem.result.toIDR(),
                                         style: Theme.of(context).textTheme.bodyText2,
                                       ),
-                                      trailing: Text("${transactionItem.quantity.toString()} x Pcs"),
+                                      trailing: Text("x ${transactionItem.quantity.toString()} Pcs"),
                                     );
                                   }),
                             ],
@@ -133,7 +133,7 @@ class TransactionDetailScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Subotal",
+                                    "Subtotal",
                                     style: Theme.of(context).textTheme.bodyMedium,
                                   ),
                                   Text(
@@ -149,7 +149,7 @@ class TransactionDetailScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Discount",
+                                    "Diskon",
                                     style: Theme.of(context).textTheme.bodyMedium,
                                   ),
                                   Text(

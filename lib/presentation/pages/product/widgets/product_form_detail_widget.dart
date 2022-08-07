@@ -37,7 +37,7 @@ class ProductFormDetailWidget extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Kode / SKU Produk"),
+                  Text("Kode Produk/SKU (Stock Keeping Unit)"),
                   TextFormField(
                     controller: codeController,
                     style: Theme.of(context).textTheme.bodyText1,
@@ -89,12 +89,13 @@ class ProductFormDetailWidget extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Modal Produk"),
+                  Text("Harga Modal Per Item"),
                   TextFormField(
                     initialValue: formProductCubit.state.cost.value.toThousandSeparator(),
                     style: Theme.of(context).textTheme.bodyText1,
                     decoration: InputDecoration(
                       hintText: "Rp. 0",
+                      helperText: "Isikan harga kulakan untuk menghitung keuntungan",
                       prefixStyle: Theme.of(context).textTheme.bodyText1,
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -124,7 +125,7 @@ class ProductFormDetailWidget extends HookWidget {
                     maxLines: 5,
                     style: Theme.of(context).textTheme.bodyText1,
                     decoration: InputDecoration(
-                      hintText: "Deskripsi",
+                      hintText: "Tuliskan deskripsi produk ",
                       prefixStyle: Theme.of(context).textTheme.bodyText1,
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -147,7 +148,7 @@ class ProductFormDetailWidget extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Satuan / Unit"),
+                  Text("Satuan"),
                   TextFormField(
                     initialValue: formProductCubit.state.unit.value,
                     style: Theme.of(context).textTheme.bodyText1,

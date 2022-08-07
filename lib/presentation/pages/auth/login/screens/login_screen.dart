@@ -54,7 +54,7 @@ class LoginScreen extends HookWidget {
                     height: 15.h,
                   ),
                   Text(
-                    "SELAMAT DATANG!",
+                    "SELAMAT DATANG",
                     style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           color: Theme.of(context).primaryColor,
                         ),
@@ -63,7 +63,7 @@ class LoginScreen extends HookWidget {
                     height: AppSpacings.m.sp,
                   ),
                   Text(
-                    "Silahkan masuk terlebih dahulu!\nselanjutnya mulai berjualan dengan Alapos.",
+                    "Silakan masuk terlebih dahulu dan mulai \nberjualan dengan Alapos",
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   SizedBox(
@@ -106,7 +106,7 @@ class LoginScreen extends HookWidget {
                         context.router.navigateNamed(RouteName.register);
                       },
                       child: Text(
-                        "Belum punya akun? daftar disini.",
+                        "Belum punya akun? Daftar disini!",
                         style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).primaryColor),
                       ),
                     ),
@@ -149,7 +149,7 @@ class _FieldUsername extends HookWidget {
           decoration: InputDecoration(
             errorText: state.usernameField.invalid ? state.usernameField.error?.message : null,
             label: Text(
-              "Username / No HP",
+              "Username / Nomor HP",
               style: Theme.of(context).textTheme.bodyText2,
             ),
           ),

@@ -35,7 +35,7 @@ class CustomItemPage extends HookWidget implements AutoRouteWrapper {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Custom Item"),
+        title: Text("Jual Produk Khusus"),
       ),
       body: Container(
         constraints: BoxConstraints.loose(
@@ -57,7 +57,7 @@ class CustomItemPage extends HookWidget implements AutoRouteWrapper {
                 TextFormField(
                   controller: namaProductField,
                   decoration: InputDecoration(
-                    hintText: "Nama Product",
+                    hintText: "Nama Produk",
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Theme.of(context).primaryColor,
@@ -86,7 +86,7 @@ class CustomItemPage extends HookWidget implements AutoRouteWrapper {
                 TextFormField(
                   controller: jumlahProductField,
                   decoration: InputDecoration(
-                    hintText: "Jumlah Item",
+                    hintText: "Jumlah item dijual",
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Theme.of(context).primaryColor,
@@ -193,7 +193,7 @@ class CustomItemPage extends HookWidget implements AutoRouteWrapper {
                   minLines: 3,
                   maxLines: 5,
                   decoration: InputDecoration(
-                    hintText: "Catatan tambahan",
+                    hintText: "Deskripsi produk",
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Theme.of(context).primaryColor,

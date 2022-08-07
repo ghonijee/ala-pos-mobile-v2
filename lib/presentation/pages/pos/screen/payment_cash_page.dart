@@ -92,7 +92,7 @@ class PaymentCashPage extends HookWidget {
                     Column(
                       children: [
                         Text(
-                          "Pembayaran diterima",
+                          "Pembayaran Diterima",
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         SizedBox(
@@ -102,7 +102,7 @@ class PaymentCashPage extends HookWidget {
                           controller: cashField,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.titleLarge,
-                          decoration: InputDecoration(hintText: "Masukan nilai pembayaran"),
+                          decoration: InputDecoration(hintText: "Masukkan nilai pembayaran"),
                           onChanged: (value) {
                             if (value.isNotEmpty) {
                               paymentCubit.setPayment(cashField.text.toNumber()!);
@@ -127,11 +127,7 @@ class PaymentCashPage extends HookWidget {
                           horizontal: AppSpacings.m.sp,
                           vertical: AppSpacings.s.sp,
                         ),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: AppSpacings.s.sp,
-                            mainAxisSpacing: AppSpacings.s.sp,
-                            childAspectRatio: 3 / 1),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: AppSpacings.s.sp, mainAxisSpacing: AppSpacings.s.sp, childAspectRatio: 3 / 1),
                         children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -145,10 +141,7 @@ class PaymentCashPage extends HookWidget {
                             },
                             child: Text(
                               "Rp. 1.000",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button!
-                                  .copyWith(color: Theme.of(context).primaryColor),
+                              style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),
                           ElevatedButton(
@@ -163,10 +156,7 @@ class PaymentCashPage extends HookWidget {
                             },
                             child: Text(
                               "Rp. 2.000",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button!
-                                  .copyWith(color: Theme.of(context).primaryColor),
+                              style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),
                           ElevatedButton(
@@ -181,10 +171,7 @@ class PaymentCashPage extends HookWidget {
                             },
                             child: Text(
                               "Rp. 5.000",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button!
-                                  .copyWith(color: Theme.of(context).primaryColor),
+                              style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),
                           ElevatedButton(
@@ -199,10 +186,7 @@ class PaymentCashPage extends HookWidget {
                             },
                             child: Text(
                               "Rp. 10.000",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button!
-                                  .copyWith(color: Theme.of(context).primaryColor),
+                              style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),
                           ElevatedButton(
@@ -217,10 +201,7 @@ class PaymentCashPage extends HookWidget {
                             },
                             child: Text(
                               "Rp. 20.000",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button!
-                                  .copyWith(color: Theme.of(context).primaryColor),
+                              style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),
                           ElevatedButton(
@@ -235,10 +216,7 @@ class PaymentCashPage extends HookWidget {
                             },
                             child: Text(
                               "Rp. 50.000",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button!
-                                  .copyWith(color: Theme.of(context).primaryColor),
+                              style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),
                           ElevatedButton(
@@ -253,10 +231,7 @@ class PaymentCashPage extends HookWidget {
                             },
                             child: Text(
                               "Rp. 100.000",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button!
-                                  .copyWith(color: Theme.of(context).primaryColor),
+                              style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),
                           ElevatedButton(
@@ -271,10 +246,7 @@ class PaymentCashPage extends HookWidget {
                             },
                             child: Text(
                               "Rp. 150.000",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button!
-                                  .copyWith(color: Theme.of(context).primaryColor),
+                              style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),
                           ElevatedButton(
@@ -289,10 +261,7 @@ class PaymentCashPage extends HookWidget {
                             },
                             child: Text(
                               "Rp. 200.000",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .button!
-                                  .copyWith(color: Theme.of(context).primaryColor),
+                              style: Theme.of(context).primaryTextTheme.button!.copyWith(color: Theme.of(context).primaryColor),
                             ),
                           ),
                         ],

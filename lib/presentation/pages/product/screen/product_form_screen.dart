@@ -21,7 +21,7 @@ class ProductFormScreen extends HookWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text(
-          "Produk",
+          "Tambah Produk",
           style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.surface),
         ),
         actions: [],

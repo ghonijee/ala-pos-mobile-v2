@@ -93,7 +93,7 @@ class SideMenuView extends StatelessWidget {
                                     ),
                               ),
                               Text(
-                                "Profile & Setting",
+                                "Profil & Pengaturan",
                                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
                                       color: Theme.of(context).primaryColorDark,
                                     ),
@@ -110,7 +110,7 @@ class SideMenuView extends StatelessWidget {
                 height: AppSpacings.x2l.sp,
               ),
               SideMenuItemWidget(
-                title: "POS",
+                title: "Kasir",
                 onTap: () {
                   AutoRouter.of(context).replaceNamed(RouteName.posWrapper);
                 },

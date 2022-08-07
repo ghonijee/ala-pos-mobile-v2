@@ -44,14 +44,14 @@ class RegisterScreen extends HookWidget {
                     height: 10.h,
                   ),
                   Text(
-                    "Daftar Sekarang!",
+                    "Pendaftaran Akun",
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   SizedBox(
                     height: AppSpacings.m.sp,
                   ),
                   Text(
-                    "Dapatkan kemudahan untuk mengelola\ndan monitoring usahamu",
+                    "Dapatkan kemudahan untuk mengelola \ndan memantau usahamu",
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   SizedBox(
@@ -98,7 +98,7 @@ class RegisterScreen extends HookWidget {
                         context.router.navigateNamed(RouteName.login);
                       },
                       child: Text(
-                        "Sudah punya akun? masuk disini.",
+                        "Sudah punya akun? Masuk disini!",
                         style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).primaryColor),
                       ),
                     ),
@@ -141,7 +141,7 @@ class _UsernameField extends StatelessWidget {
           decoration: InputDecoration(
             errorText: state.usernameField.invalid ? state.usernameField.error?.message : null,
             label: Text(
-              "Username / No HP",
+              "Username / Nomor HP",
               style: Theme.of(context).textTheme.bodyText2,
             ),
           ),
