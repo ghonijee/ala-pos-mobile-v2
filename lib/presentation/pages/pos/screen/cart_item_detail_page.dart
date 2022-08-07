@@ -36,7 +36,7 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ubah Item"),
+        title: Text("Ubah Detail Produk"),
       ),
       body: Container(
         constraints: BoxConstraints.loose(

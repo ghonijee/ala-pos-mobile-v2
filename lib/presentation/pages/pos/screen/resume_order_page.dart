@@ -20,7 +20,24 @@ class ResumeOrderPage extends HookWidget {
     return BlocBuilder<TransactionResumeCubit, TransactionResumeState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: Text("Keranjang")),
+          appBar: AppBar(
+            title: Text("Keranjang"),
+            actions: [
+              // TextButton.icon(
+              //   icon: Icon(
+              //     Ionicons.close_outline,
+              //     color: Theme.of(context).primaryColorDark,
+              //   ),
+              //   label: Text(
+              //     "Bersihkan",
+              //     style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Theme.of(context).primaryColorDark),
+              //   ),
+              //   onPressed: () {
+              //     cartCubit.resetCart();
+              //   },
+              // )
+            ],
+          ),
           body: SingleChildScrollView(
             child: Container(
               width: 100.w,
