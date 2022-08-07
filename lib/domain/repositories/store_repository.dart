@@ -33,6 +33,22 @@ class StoreRepository {
     }
   }
 
+  Future<Either<FailureModel, ApiResponse>> update(StoreModel model) async {
+    try {
+      ApiResponse response = await remoteSource.update(model.toJson());
+
+      if (!response.status!) {
+        throw Exception(response.message);
+      }
+
+      storage.setValue(Constant.mainStore, model.toJson());
+
+      return Right(response);
+    } catch (e) {
+      return Left(FailureModel.serverError(e.toString()));
+    }
+  }
+
   Future<Either<FailureModel, bool>> mainStore() async {
     try {
       ApiResponse response = await remoteSource.main();

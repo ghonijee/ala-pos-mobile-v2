@@ -10,6 +10,7 @@ class StoreModel with _$StoreModel {
     @JsonKey(name: 'name') required String name,
     @JsonKey(name: 'address') String? address,
     @JsonKey(name: 'phone') String? phone,
+    @JsonKey(name: 'use_stock_opname') @Default(true) bool useStockOpname,
     @JsonKey(name: 'image_url') String? imageUrl,
     @JsonKey(name: 'image_path') String? imagePath,
     @JsonKey(name: 'created_at') DateTime? createdAt,

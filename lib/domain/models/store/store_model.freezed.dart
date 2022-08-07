@@ -28,6 +28,8 @@ mixin _$StoreModel {
   String? get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone')
   String? get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'use_stock_opname')
+  bool get useStockOpname => throw _privateConstructorUsedError;
   @JsonKey(name: 'image_url')
   String? get imageUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'image_path')
@@ -55,6 +57,7 @@ abstract class $StoreModelCopyWith<$Res> {
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone') String? phone,
+      @JsonKey(name: 'use_stock_opname') bool useStockOpname,
       @JsonKey(name: 'image_url') String? imageUrl,
       @JsonKey(name: 'image_path') String? imagePath,
       @JsonKey(name: 'created_at') DateTime? createdAt,
@@ -76,6 +79,7 @@ class _$StoreModelCopyWithImpl<$Res> implements $StoreModelCopyWith<$Res> {
     Object? name = freezed,
     Object? address = freezed,
     Object? phone = freezed,
+    Object? useStockOpname = freezed,
     Object? imageUrl = freezed,
     Object? imagePath = freezed,
     Object? createdAt = freezed,
@@ -99,6 +103,10 @@ class _$StoreModelCopyWithImpl<$Res> implements $StoreModelCopyWith<$Res> {
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      useStockOpname: useStockOpname == freezed
+          ? _value.useStockOpname
+          : useStockOpname // ignore: cast_nullable_to_non_nullable
+              as bool,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -135,6 +143,7 @@ abstract class _$$_StoreModelCopyWith<$Res>
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone') String? phone,
+      @JsonKey(name: 'use_stock_opname') bool useStockOpname,
       @JsonKey(name: 'image_url') String? imageUrl,
       @JsonKey(name: 'image_path') String? imagePath,
       @JsonKey(name: 'created_at') DateTime? createdAt,
@@ -158,6 +167,7 @@ class __$$_StoreModelCopyWithImpl<$Res> extends _$StoreModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? address = freezed,
     Object? phone = freezed,
+    Object? useStockOpname = freezed,
     Object? imageUrl = freezed,
     Object? imagePath = freezed,
     Object? createdAt = freezed,
@@ -181,6 +191,10 @@ class __$$_StoreModelCopyWithImpl<$Res> extends _$StoreModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      useStockOpname: useStockOpname == freezed
+          ? _value.useStockOpname
+          : useStockOpname // ignore: cast_nullable_to_non_nullable
+              as bool,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -213,6 +227,7 @@ class _$_StoreModel implements _StoreModel {
       @JsonKey(name: 'name') required this.name,
       @JsonKey(name: 'address') this.address,
       @JsonKey(name: 'phone') this.phone,
+      @JsonKey(name: 'use_stock_opname') this.useStockOpname = true,
       @JsonKey(name: 'image_url') this.imageUrl,
       @JsonKey(name: 'image_path') this.imagePath,
       @JsonKey(name: 'created_at') this.createdAt,
@@ -235,6 +250,9 @@ class _$_StoreModel implements _StoreModel {
   @JsonKey(name: 'phone')
   final String? phone;
   @override
+  @JsonKey(name: 'use_stock_opname')
+  final bool useStockOpname;
+  @override
   @JsonKey(name: 'image_url')
   final String? imageUrl;
   @override
@@ -252,7 +270,7 @@ class _$_StoreModel implements _StoreModel {
 
   @override
   String toString() {
-    return 'StoreModel(id: $id, name: $name, address: $address, phone: $phone, imageUrl: $imageUrl, imagePath: $imagePath, createdAt: $createdAt, updatedAt: $updatedAt, laravelThroughKey: $laravelThroughKey)';
+    return 'StoreModel(id: $id, name: $name, address: $address, phone: $phone, useStockOpname: $useStockOpname, imageUrl: $imageUrl, imagePath: $imagePath, createdAt: $createdAt, updatedAt: $updatedAt, laravelThroughKey: $laravelThroughKey)';
   }
 
   @override
@@ -264,6 +282,8 @@ class _$_StoreModel implements _StoreModel {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
+            const DeepCollectionEquality()
+                .equals(other.useStockOpname, useStockOpname) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
@@ -280,6 +300,7 @@ class _$_StoreModel implements _StoreModel {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(address),
       const DeepCollectionEquality().hash(phone),
+      const DeepCollectionEquality().hash(useStockOpname),
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(imagePath),
       const DeepCollectionEquality().hash(createdAt),
@@ -303,6 +324,7 @@ abstract class _StoreModel implements StoreModel {
           @JsonKey(name: 'name') required final String name,
           @JsonKey(name: 'address') final String? address,
           @JsonKey(name: 'phone') final String? phone,
+          @JsonKey(name: 'use_stock_opname') final bool useStockOpname,
           @JsonKey(name: 'image_url') final String? imageUrl,
           @JsonKey(name: 'image_path') final String? imagePath,
           @JsonKey(name: 'created_at') final DateTime? createdAt,
@@ -325,6 +347,9 @@ abstract class _StoreModel implements StoreModel {
   @override
   @JsonKey(name: 'phone')
   String? get phone => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'use_stock_opname')
+  bool get useStockOpname => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'image_url')
   String? get imageUrl => throw _privateConstructorUsedError;
