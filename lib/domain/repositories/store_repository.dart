@@ -35,7 +35,7 @@ class StoreRepository {
 
   Future<Either<FailureModel, ApiResponse>> update(StoreModel model) async {
     try {
-      ApiResponse response = await remoteSource.update(model.toJson());
+      ApiResponse response = await remoteSource.update(model.toJson(), model.id!);
 
       if (!response.status!) {
         throw Exception(response.message);

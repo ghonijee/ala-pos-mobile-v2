@@ -51,4 +51,20 @@ class FormStoreCubit extends Cubit<FormStoreState> {
       ));
     }
   }
+
+  changeUseStockOpname(value) {
+    emit(state.copyWith(useStockOpnameField: UseStockOpnameField.dirty(value)));
+  }
+
+  changeStoreName(value) {
+    emit(state.copyWith(storeNameField: StoreNameField.dirty(value)));
+  }
+
+  changeAddress(value) {
+    emit(state.copyWith(addressField: AddressField.dirty(value)));
+  }
+
+  changePhone(value) {
+    emit(state.copyWith(phoneField: PhoneField.dirty(value)));
+  }
 }

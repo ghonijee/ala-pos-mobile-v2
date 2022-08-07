@@ -43,7 +43,6 @@ class UserProfileCubit extends Cubit<UserProfileState> {
         emit(UserProfileState.failed(failure.message));
       }, (user) {
         emit(UserProfileState.success(user, store));
-        print(user.email);
       });
     } catch (e) {
       emit(UserProfileState.failed(e.toString()));

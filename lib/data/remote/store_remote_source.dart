@@ -43,11 +43,11 @@ class StoreRemoteSource {
     }
   }
 
-  Future<ApiResponse> update(Map<String, dynamic> dataJson) async {
+  Future<ApiResponse> update(Map<String, dynamic> dataJson, int id) async {
     Dio dio = await apiClient.instance();
     try {
-      Response registerResponse = await dio.put(resouce, data: dataJson);
-
+      Response registerResponse = await dio.put("$resouce/$id", data: dataJson);
+      print(registerResponse.toString());
       return SuccessResponse.fromJson(registerResponse.data);
     } on DioError catch (e) {
       return FailedResponse(message: e.toString(), status: false);

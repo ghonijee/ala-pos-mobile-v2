@@ -1,3 +1,4 @@
+import 'package:ala_pos/presentation/pages/profile/cubit/form_store/form_store_cubit.dart';
 import 'package:ala_pos/presentation/pages/profile/cubit/user/user_profile_cubit.dart';
 import 'package:ala_pos/presentation/pages/profile/widgets/profile_header_widget.dart';
 import 'package:ala_pos/presentation/pages/profile/widgets/profile_menu_item_widget.dart';
@@ -96,9 +97,13 @@ class ProfileScreen extends HookWidget {
                   ),
                   ProfileMenuItemWidget(
                     icon: Icon(Ionicons.storefront_outline),
-                    title: "Ganti Toko",
+                    title: "Ubah Profile Usaha",
                     subtitle: store.name,
-                    onTap: () {},
+                    onTap: () {
+                      var formCubit = context.read<FormStoreCubit>();
+                      formCubit.show(store);
+                      context.router.pushNamed(RouteName.profileStoreForm);
+                    },
                     hasTrailIcon: true,
                   ),
                   Divider(
