@@ -86,23 +86,15 @@ class ScanResultTile extends StatelessWidget {
       title: _buildTitle(context),
       leading: Text(result.rssi.toString()),
       trailing: ElevatedButton(
-        child: const Text('CONNECT'),
-        style: ElevatedButton.styleFrom(
-          primary: Colors.black,
-          onPrimary: Colors.white,
-        ),
+        child: const Text('Connect'),
+        style: ElevatedButton.styleFrom(),
         onPressed: (result.advertisementData.connectable) ? onTap : null,
       ),
       children: <Widget>[
         _buildAdvRow(context, 'Complete Local Name', result.advertisementData.localName),
         _buildAdvRow(context, 'Tx Power Level', '${result.advertisementData.txPowerLevel ?? 'N/A'}'),
         _buildAdvRow(context, 'Manufacturer Data', getNiceManufacturerData(result.advertisementData.manufacturerData)),
-        _buildAdvRow(
-            context,
-            'Service UUIDs',
-            (result.advertisementData.serviceUuids.isNotEmpty)
-                ? result.advertisementData.serviceUuids.join(', ').toUpperCase()
-                : 'N/A'),
+        _buildAdvRow(context, 'Service UUIDs', (result.advertisementData.serviceUuids.isNotEmpty) ? result.advertisementData.serviceUuids.join(', ').toUpperCase() : 'N/A'),
         _buildAdvRow(context, 'Service Data', getNiceServiceData(result.advertisementData.serviceData)),
       ],
     );
@@ -124,9 +116,7 @@ class ServiceTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const Text('Service'),
-            Text('0x${service.uuid.toString().toUpperCase().substring(4, 8)}',
-                style:
-                    Theme.of(context).textTheme.bodyText1?.copyWith(color: Theme.of(context).textTheme.caption?.color))
+            Text('0x${service.uuid.toString().toUpperCase().substring(4, 8)}', style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Theme.of(context).textTheme.caption?.color))
           ],
         ),
         children: characteristicTiles,
@@ -147,14 +137,7 @@ class CharacteristicTile extends StatelessWidget {
   final VoidCallback? onWritePressed;
   final VoidCallback? onNotificationPressed;
 
-  const CharacteristicTile(
-      {Key? key,
-      required this.characteristic,
-      required this.descriptorTiles,
-      this.onReadPressed,
-      this.onWritePressed,
-      this.onNotificationPressed})
-      : super(key: key);
+  const CharacteristicTile({Key? key, required this.characteristic, required this.descriptorTiles, this.onReadPressed, this.onWritePressed, this.onNotificationPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -170,11 +153,7 @@ class CharacteristicTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const Text('Characteristic'),
-                Text('0x${characteristic.uuid.toString().toUpperCase().substring(4, 8)}',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1
-                        ?.copyWith(color: Theme.of(context).textTheme.caption?.color))
+                Text('0x${characteristic.uuid.toString().toUpperCase().substring(4, 8)}', style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Theme.of(context).textTheme.caption?.color))
               ],
             ),
             subtitle: Text(value.toString()),
@@ -195,8 +174,7 @@ class CharacteristicTile extends StatelessWidget {
                 onPressed: onWritePressed,
               ),
               IconButton(
-                icon: Icon(characteristic.isNotifying ? Icons.sync_disabled : Icons.sync,
-                    color: Theme.of(context).iconTheme.color?.withOpacity(0.5)),
+                icon: Icon(characteristic.isNotifying ? Icons.sync_disabled : Icons.sync, color: Theme.of(context).iconTheme.color?.withOpacity(0.5)),
                 onPressed: onNotificationPressed,
               )
             ],
@@ -223,8 +201,7 @@ class DescriptorTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const Text('Descriptor'),
-          Text('0x${descriptor.uuid.toString().toUpperCase().substring(4, 8)}',
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Theme.of(context).textTheme.caption?.color))
+          Text('0x${descriptor.uuid.toString().toUpperCase().substring(4, 8)}', style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Theme.of(context).textTheme.caption?.color))
         ],
       ),
       subtitle: StreamBuilder<List<int>>(

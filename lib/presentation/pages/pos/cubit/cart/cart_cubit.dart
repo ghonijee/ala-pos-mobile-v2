@@ -87,6 +87,7 @@ class CartCubit extends Cubit<CartState> {
         quantity: cartItem.quantity,
         discountPrice: cartItem.discountPrice,
         note: cartItem.note,
+        amount: cartItem.result * cartItem.quantity,
       ),
     );
     emit(state.copyWith(items: items));
@@ -119,7 +120,10 @@ class CartCubit extends Cubit<CartState> {
     int value,
   ) async {
     final items = state.items.rebuild(
-      (builder) => builder[index] = item.copyWith(quantity: builder[index].quantity + value),
+      (builder) => builder[index] = item.copyWith(
+        quantity: builder[index].quantity + value,
+        amount: item.result * (builder[index].quantity + value),
+      ),
     );
     emit(state.copyWith(items: items));
   }

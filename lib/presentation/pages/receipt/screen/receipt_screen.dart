@@ -1,16 +1,15 @@
 import 'package:ala_pos/domain/models/store/store_model.dart';
 import 'package:ala_pos/presentation/pages/receipt/cubit/preview/receipt_cubit.dart';
-import 'package:ala_pos/presentation/pages/receipt/cubit/print/print_cubit.dart';
 import 'package:ala_pos/presentation/pages/receipt/screen/scan_printer_screen.dart';
 import 'package:core/core.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:open_file/open_file.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 import 'dart:io';
@@ -255,13 +254,14 @@ class ReceiptScreen extends HookWidget {
                 textStyle: Theme.of(context).textTheme.bodyMedium,
               ),
               onPressed: () async {
-                var path = await save("TR20220201-0001");
+                var path = await save(transactionModel.invoiceNumber!);
+
                 var snackBar = SnackBar(
                   content: Text("Berhasil disimpan"),
                   action: SnackBarAction(
                     label: "Lihat",
                     onPressed: () {
-                      //
+                      OpenFile.open(path);
                     },
                   ),
                 );
@@ -289,8 +289,8 @@ class ReceiptScreen extends HookWidget {
                 textStyle: Theme.of(context).textTheme.bodyMedium,
               ),
               onPressed: () async {
-                var path = await save("TR20220201-0001");
-                Share.shareFiles([path], text: "Bukti Pembelian");
+                var path = await save(transactionModel.invoiceNumber!);
+                Share.shareFiles([path], text: "Terima kasih sudah");
               },
               child: Row(
                 children: [
@@ -314,17 +314,21 @@ class ReceiptScreen extends HookWidget {
                     textStyle: Theme.of(context).textTheme.bodyMedium,
                     minimumSize: Size.fromWidth(30.w),
                   ),
-                  onPressed: () {
-                    var store = state.maybeWhen(loaded: (transactionModel, storeModel) => storeModel, orElse: () => StoreModel(name: "Alapos"));
-                    // context.read<PrintCubit>().init();
+                  onPressed: () async {
+                    if (await _requestPermission()) {
+                      var store = state.maybeWhen(
+                        loaded: (transactionModel, storeModel) => storeModel,
+                        orElse: () => StoreModel(name: "Alapos"),
+                      );
 
-                    showModalBottomSheet(
+                      showModalBottomSheet(
                         isScrollControlled: true,
                         context: context,
                         builder: (_) {
                           return ScanPrinterScreen(transactionModel, store);
-                        });
-                    // context.router.pushNamed(RouteName.receiptScreen);
+                        },
+                      );
+                    }
                   },
                   child: Row(
                     children: [
@@ -348,15 +352,25 @@ class ReceiptScreen extends HookWidget {
   }
 
   save(String fileName) async {
+    late String directory;
     RenderRepaintBoundary boundary = genKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-    final directory = (await getApplicationDocumentsDirectory()).path;
+    if (Platform.isAndroid) {
+      directory = (await getExternalStorageDirectory())!.path;
+    } else {
+      directory = (await getApplicationDocumentsDirectory()).path;
+    }
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List pngBytes = byteData!.buffer.asUint8List();
-    File imgFile = File('$directory/$fileName.png');
+    File imgFile = await File('$directory/alapos/$fileName.png').create(recursive: true);
     imgFile.writeAsBytes(pngBytes);
-    print(imgFile.path);
-
     return imgFile.path;
+  }
+
+  Future<bool> _requestPermission() async {
+    if (await Permission.bluetoothAdvertise.request().isGranted && await Permission.bluetoothConnect.request().isGranted && await Permission.bluetoothScan.request().isGranted) {
+      return true;
+    }
+    return false;
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ala_pos/domain/models/store/store_model.dart';
 import 'package:ala_pos/domain/models/transaction/transaction_model.dart';
 import 'package:core/core.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+import '../widget/bluetooth_inactive.dart';
 import 'device_screen.dart';
 import 'printer_widget.dart';
 
@@ -19,20 +22,24 @@ class ScanPrinterScreen extends StatelessWidget {
   ScanPrinterScreen(this.model, this.storeModel);
 
   void printReceipt(BluetoothDevice device) async {
-    // device.disconnect();
-    // await device.connect();
-
     final profile = await CapabilityProfile.load();
     final generator = Generator(PaperSize.mm58, profile);
     List<int> bytes = [];
 
-    bytes += generator.text(storeModel.name,
-        styles: PosStyles(bold: true, height: PosTextSize.size2, width: PosTextSize.size2, align: PosAlign.center));
-    bytes += generator.text(
-      storeModel.address!,
-      styles: PosStyles(align: PosAlign.center),
-      linesAfter: 2,
-    );
+    bytes += generator.text(storeModel.name + " Meredea Raya",
+        maxCharsPerLine: 15,
+        styles: PosStyles(
+          bold: true,
+          height: PosTextSize.size2,
+          width: PosTextSize.size2,
+          align: PosAlign.center,
+        ));
+    bytes += generator.text(storeModel.address!,
+        styles: PosStyles(
+          align: PosAlign.center,
+        ),
+        linesAfter: 2);
+    // bytes += generator.feed(2);
 
     bytes += generator.row([
       PosColumn(
@@ -66,7 +73,7 @@ class ScanPrinterScreen extends StatelessWidget {
       bytes += generator.row([
         PosColumn(
           width: 6,
-          text: item.quantity.toString() + " x " + item.price.toThousandSeparator(),
+          text: item.quantity.toString() + " x " + item.result.toThousandSeparator(),
           styles: const PosStyles(align: PosAlign.left),
         ),
         PosColumn(
@@ -131,97 +138,112 @@ class ScanPrinterScreen extends StatelessWidget {
   Widget build(context) {
     return SizedBox(
       height: 80.h,
-      child: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  StreamBuilder<List<BluetoothDevice>>(
-                    stream: Stream.periodic(const Duration(seconds: 2))
-                        .asyncMap((_) => FlutterBluePlus.instance.connectedDevices),
-                    initialData: const [],
-                    builder: (c, snapshot) => Column(
-                      children: snapshot.data!
-                          .map((d) => ListTile(
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .push(MaterialPageRoute(builder: (context) => DeviceScreen(device: d)));
-                                },
-                                title: Text(d.name),
-                                subtitle: Text(d.id.toString()),
-                                trailing: StreamBuilder<BluetoothDeviceState>(
-                                  stream: d.state,
-                                  initialData: BluetoothDeviceState.disconnected,
-                                  builder: (c, snapshot) {
-                                    if (snapshot.data == BluetoothDeviceState.connected) {
-                                      return ElevatedButton(
-                                        child: const Text('Print'),
-                                        onPressed: () {
-                                          printReceipt(d);
+      child: StreamBuilder<BluetoothState>(
+          stream: FlutterBluePlus.instance.state,
+          initialData: BluetoothState.unknown,
+          builder: (c, snapshot) {
+            final state = snapshot.data;
+            if (state == BluetoothState.on) {
+              return Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          StreamBuilder<List<BluetoothDevice>>(
+                            stream: Stream.periodic(const Duration(seconds: 2)).asyncMap((_) => FlutterBluePlus.instance.connectedDevices),
+                            initialData: const [],
+                            builder: (c, snapshot) => Column(
+                              children: snapshot.data!
+                                  .map((d) => ListTile(
+                                        onTap: () {
+                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DeviceScreen(device: d)));
                                         },
-                                      );
-                                    }
-                                    return Text(snapshot.data.toString());
-                                  },
-                                ),
-                              ))
-                          .toList(),
-                    ),
-                  ),
-                  StreamBuilder<List<ScanResult>>(
-                    stream: FlutterBluePlus.instance.scanResults,
-                    initialData: const [],
-                    builder: (c, snapshot) => Column(
-                      children: snapshot.data!
-                          .map(
-                            (r) => ScanResultTile(
-                              result: r,
-                              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                                r.device.connect();
-                                return DeviceScreen(device: r.device);
-                              })),
+                                        title: Text(d.name),
+                                        subtitle: Text(d.id.toString()),
+                                        trailing: StreamBuilder<BluetoothDeviceState>(
+                                          stream: d.state,
+                                          initialData: BluetoothDeviceState.disconnected,
+                                          builder: (c, snapshot) {
+                                            if (snapshot.data == BluetoothDeviceState.connected) {
+                                              return ElevatedButton(
+                                                child: const Text('Print'),
+                                                onPressed: () {
+                                                  printReceipt(d);
+                                                },
+                                              );
+                                            }
+                                            return Text(snapshot.data.toString());
+                                          },
+                                        ),
+                                      ))
+                                  .toList(),
                             ),
-                          )
-                          .toList(),
+                          ),
+                          StreamBuilder<List<ScanResult>>(
+                            stream: FlutterBluePlus.instance.scanResults,
+                            initialData: const [],
+                            builder: (c, snapshot) => Column(
+                              children: snapshot.data!
+                                  .map(
+                                    (r) => ScanResultTile(
+                                      result: r,
+                                      onTap: () async {
+                                        await r.device.disconnect();
+                                        await r.device.connect();
+                                      },
+                                      // onTap: () => Navigator.of(context).push(
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) {
+                                      //       r.device.connect();
+                                      //       return DeviceScreen(device: r.device);
+                                      //     },
+                                      //   ),
+                                      // ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 40.sp,
-            child: StreamBuilder<bool>(
-              stream: FlutterBluePlus.instance.isScanning,
-              initialData: false,
-              builder: (c, snapshot) {
-                if (snapshot.data!) {
-                  return ElevatedButton(
-                    child: Text("Berhanti"),
-                    style: ElevatedButton.styleFrom(
-                      textStyle: Theme.of(context).textTheme.bodyMedium,
-                      minimumSize: Size.fromWidth(80.w),
+                  SizedBox(
+                    height: 40.sp,
+                    child: StreamBuilder<bool>(
+                      stream: FlutterBluePlus.instance.isScanning,
+                      initialData: false,
+                      builder: (c, snapshot) {
+                        if (snapshot.data!) {
+                          return ElevatedButton(
+                            child: Text("Berhanti"),
+                            style: ElevatedButton.styleFrom(
+                              textStyle: Theme.of(context).textTheme.bodyMedium,
+                              minimumSize: Size.fromWidth(80.w),
+                            ),
+                            onPressed: () => FlutterBluePlus.instance.stopScan(),
+                          );
+                        } else {
+                          return ElevatedButton(
+                              child: Text("Scan Printer"),
+                              style: ElevatedButton.styleFrom(
+                                textStyle: Theme.of(context).textTheme.bodyMedium,
+                                minimumSize: Size.fromWidth(80.w),
+                              ),
+                              onPressed: () => FlutterBluePlus.instance.startScan(timeout: const Duration(seconds: 4)));
+                        }
+                      },
                     ),
-                    onPressed: () => FlutterBluePlus.instance.stopScan(),
-                  );
-                } else {
-                  return ElevatedButton(
-                      child: Text("Scan Printer"),
-                      style: ElevatedButton.styleFrom(
-                        textStyle: Theme.of(context).textTheme.bodyMedium,
-                        minimumSize: Size.fromWidth(80.w),
-                      ),
-                      onPressed: () => FlutterBluePlus.instance.startScan(timeout: const Duration(seconds: 4)));
-                }
-              },
-            ),
-          ),
-          SizedBox(
-            height: 20.sp,
-          )
-        ],
-      ),
+                  ),
+                  SizedBox(
+                    height: 20.sp,
+                  )
+                ],
+              );
+            }
+            return BluetoothInactiveWidget();
+          }),
     );
   }
 }
@@ -264,15 +286,11 @@ class BluePrint {
   ) async {
     for (var i = 0; i < data.length; i++) {
       try {
-        await charac.write(
-          data[i],
-          withoutResponse: true,
-        );
+        await charac.write(data[i]);
       } catch (e) {
         return false;
       }
     }
-    print(charac.toString());
 
     return true;
   }
