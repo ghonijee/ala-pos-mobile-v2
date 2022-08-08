@@ -87,9 +87,6 @@ class ResumeOrderPage extends HookWidget {
                                     ),
                                   )
                                 : SizedBox(),
-                            // SizedBox(
-                            //   width: AppSpacings.m.sp,
-                            // )
                           ],
                         ),
                         BlocConsumer<CartCubit, CartState>(
@@ -99,9 +96,9 @@ class ResumeOrderPage extends HookWidget {
                             );
                           },
                           builder: (context, state) {
-                            return SizedBox(
-                              width: 100.w,
-                              height: 50.h,
+                            return Expanded(
+                              // width: 100.w,
+                              // height: 50.h,
                               child: ListView.separated(
                                   separatorBuilder: (context, index) => Divider(
                                         height: 0,
@@ -254,28 +251,6 @@ class ResumeOrderPage extends HookWidget {
                           ),
                           child: Column(
                             children: [
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              //   children: [
-                              // ElevatedButton(
-                              //   style: ElevatedButton.styleFrom(
-                              //     fixedSize: Size(45.w, 40.sp),
-                              //     primary: Theme.of(context).colorScheme.surface,
-                              //     side: BorderSide(color: Theme.of(context).primaryColor),
-                              //   ),
-                              //   onPressed: () {
-                              //     // context.go(RouteName.Pos);
-                              //   },
-                              //   child: Text(
-                              //     "Simpan Order",
-                              //     style: Theme.of(context)
-                              //         .primaryTextTheme
-                              //         .button!
-                              //         .copyWith(color: Theme.of(context).primaryColor),
-                              //   ),
-                              // ),
-                              // ],
-                              // ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size.fromHeight(40.sp),

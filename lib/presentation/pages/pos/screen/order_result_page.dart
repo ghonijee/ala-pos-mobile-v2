@@ -57,13 +57,9 @@ class OrderResultPage extends HookWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Icon(
-                                Ionicons.checkmark_circle,
-                                size: 75.sp,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              SizedBox(
-                                height: 24.sp,
+                              Image.asset(
+                                "assets/images/empty/state_done.png",
+                                height: 20.h,
                               ),
                               Text(
                                 "Pembayaran Berhasil",
@@ -138,9 +134,10 @@ class OrderResultPage extends HookWidget {
                                     icon: Icon(
                                       Ionicons.print_sharp,
                                       color: Theme.of(context).colorScheme.surface,
+                                      size: 15.sp,
                                     ),
                                     style: ElevatedButton.styleFrom(
-                                      fixedSize: Size(40.w, 40.sp),
+                                      fixedSize: Size(40.w, 35.sp),
                                       primary: Theme.of(context).colorScheme.primary,
                                       side: BorderSide(color: Theme.of(context).primaryColor),
                                     ),
@@ -158,9 +155,10 @@ class OrderResultPage extends HookWidget {
                                     icon: Icon(
                                       Ionicons.checkmark,
                                       color: Theme.of(context).colorScheme.surface,
+                                      size: 15.sp,
                                     ),
                                     style: ElevatedButton.styleFrom(
-                                      fixedSize: Size(40.w, 40.sp),
+                                      fixedSize: Size(40.w, 35.sp),
                                     ),
                                     onPressed: () {
                                       cartCubit.resetCart();

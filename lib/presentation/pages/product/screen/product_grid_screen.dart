@@ -51,7 +51,10 @@ class ProductGridScreen extends HookWidget {
                   context.read<FormProductCubit>().createProduct();
                   context.router.navigateNamed(RouteName.productForm);
                 },
-                icon: Icon(Ionicons.bag_add_sharp),
+                icon: Icon(
+                  Ionicons.bag_add_sharp,
+                  size: 15.sp,
+                ),
               )
             ],
           ),
