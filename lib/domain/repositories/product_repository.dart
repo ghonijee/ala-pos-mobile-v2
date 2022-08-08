@@ -10,8 +10,7 @@ class ProductRepository {
   final ProductRemoteSource remoteSource;
   ProductRepository(this.remoteSource);
 
-  Future<Either<FailureModel, List<ProductModel>>> list(
-      {int page = 1, int take = 15, String? searchValue, required int storeId}) async {
+  Future<Either<FailureModel, List<ProductModel>>> list({int page = 1, int take = 15, String? searchValue, required int storeId}) async {
     try {
       var filterQuery = FilterBuilder().where(FilterData("store_id", storeId));
 

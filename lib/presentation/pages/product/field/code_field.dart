@@ -8,16 +8,16 @@ enum CodeValidationError {
   const CodeValidationError(this.message);
 }
 
-class CodeField extends FormzInput<String, dynamic> {
+class CodeField extends FormzInput<String?, dynamic> {
   // Call super.pure to represent an unmodified form input.
   const CodeField.pure() : super.pure('');
 
   // Call super.dirty to represent a modified form input.
-  const CodeField.dirty([String value = '']) : super.dirty(value);
+  const CodeField.dirty([String? value = '']) : super.dirty(value);
 
   // Override validator to handle validating a given input value.
   @override
-  validator(String value) {
+  validator(String? value) {
     return null;
   }
 }

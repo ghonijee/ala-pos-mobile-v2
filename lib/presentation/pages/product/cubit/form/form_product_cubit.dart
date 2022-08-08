@@ -43,10 +43,10 @@ class FormProductCubit extends Cubit<FormProductState> {
       price: PriceField.dirty(model.price),
       stock: StockField.dirty(model.stock),
       minStock: MinStockField.dirty(model.minStock!),
-      code: CodeField.dirty(model.code!),
+      code: CodeField.dirty(model.code),
       cost: CostField.dirty(model.cost!),
-      desc: DescField.dirty(model.description!),
-      unit: UnitField.dirty(model.unit!),
+      desc: DescField.dirty(model.description),
+      unit: UnitField.dirty(model.unit),
       statusSubmission: FormzStatus.pure,
     ));
   }

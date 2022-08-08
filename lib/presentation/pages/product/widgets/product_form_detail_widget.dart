@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
@@ -17,7 +18,7 @@ class ProductFormDetailWidget extends HookWidget {
     var formProductCubit = context.read<FormProductCubit>();
 
     var codeController = useTextEditingController();
-    codeController.text = formProductCubit.state.code.value;
+    codeController.text = formProductCubit.state.code.value!;
 
     return BlocBuilder<FormProductCubit, FormProductState>(
       builder: (context, state) {
@@ -93,6 +94,13 @@ class ProductFormDetailWidget extends HookWidget {
                   TextFormField(
                     initialValue: formProductCubit.state.cost.value.toThousandSeparator(),
                     style: Theme.of(context).textTheme.bodyText1,
+                    onChanged: (value) => formProductCubit.costChange(value.toNumber()!),
+                    inputFormatters: [
+                      MoneyInputFormatter(
+                        thousandSeparator: ThousandSeparator.Period,
+                        mantissaLength: 0,
+                      ),
+                    ],
                     decoration: InputDecoration(
                       hintText: "Rp. 0",
                       helperText: "Isikan harga kulakan untuk menghitung keuntungan",
@@ -124,6 +132,7 @@ class ProductFormDetailWidget extends HookWidget {
                     minLines: 3,
                     maxLines: 5,
                     style: Theme.of(context).textTheme.bodyText1,
+                    onChanged: (value) => formProductCubit.descChange(value),
                     decoration: InputDecoration(
                       hintText: "Tuliskan deskripsi produk ",
                       prefixStyle: Theme.of(context).textTheme.bodyText1,
@@ -152,6 +161,7 @@ class ProductFormDetailWidget extends HookWidget {
                   TextFormField(
                     initialValue: formProductCubit.state.unit.value,
                     style: Theme.of(context).textTheme.bodyText1,
+                    onChanged: (value) => formProductCubit.unitChange(value),
                     decoration: InputDecoration(
                       hintText: "Kg/Lembar/Lusin dll.",
                       prefixStyle: Theme.of(context).textTheme.bodyText1,

@@ -39,9 +39,9 @@ class FormProductState with _$FormProductState {
         price: price.value!,
         stock: stock.value!,
         minStock: minStock.value,
-        code: code.value,
+        code: code.value!,
         cost: cost.value,
-        description: desc.value,
-        unit: unit.value,
+        description: desc.value!,
+        unit: unit.value!,
       );
 }
