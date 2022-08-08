@@ -14,6 +14,7 @@ class ResumeOrderPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    var selectAllItem = useState<bool>(false);
     var cartCubit = BlocProvider.of<CartCubit>(context);
     var resumeCubit = BlocProvider.of<TransactionResumeCubit>(context);
 
@@ -22,21 +23,6 @@ class ResumeOrderPage extends HookWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text("Keranjang"),
-            actions: [
-              // TextButton.icon(
-              //   icon: Icon(
-              //     Ionicons.close_outline,
-              //     color: Theme.of(context).primaryColorDark,
-              //   ),
-              //   label: Text(
-              //     "Bersihkan",
-              //     style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Theme.of(context).primaryColorDark),
-              //   ),
-              //   onPressed: () {
-              //     cartCubit.resetCart();
-              //   },
-              // )
-            ],
           ),
           body: SingleChildScrollView(
             child: Container(
@@ -68,6 +54,44 @@ class ResumeOrderPage extends HookWidget {
                     )
                   : Column(
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                selectAllItem.value = !selectAllItem.value;
+                              },
+                              child: Row(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                          value: selectAllItem.value,
+                                          onChanged: (value) {
+                                            selectAllItem.value = !selectAllItem.value;
+                                          }),
+                                      Text("Pilih semua"),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            selectAllItem.value
+                                ? TextButton(
+                                    onPressed: () {
+                                      cartCubit.resetCart();
+                                    },
+                                    child: Text(
+                                      "Bersihkan",
+                                      style: Theme.of(context).textTheme.bodyMedium,
+                                    ),
+                                  )
+                                : SizedBox(),
+                            // SizedBox(
+                            //   width: AppSpacings.m.sp,
+                            // )
+                          ],
+                        ),
                         BlocConsumer<CartCubit, CartState>(
                           listener: (context, state) {
                             resumeCubit.init(
@@ -77,7 +101,7 @@ class ResumeOrderPage extends HookWidget {
                           builder: (context, state) {
                             return SizedBox(
                               width: 100.w,
-                              height: 55.h,
+                              height: 50.h,
                               child: ListView.separated(
                                   separatorBuilder: (context, index) => Divider(
                                         height: 0,
@@ -136,11 +160,13 @@ class ResumeOrderPage extends HookWidget {
                                             IconButton(
                                               padding: EdgeInsets.zero,
                                               onPressed: itemModel.quantity == 1
-                                                  ? null
+                                                  ? () {
+                                                      cartCubit.deleteItem(index);
+                                                    }
                                                   : () {
                                                       cartCubit.decrease(itemModel);
                                                     },
-                                              icon: Icon(Ionicons.remove_circle_outline),
+                                              icon: itemModel.quantity == 1 ? Icon(Ionicons.trash_outline) : Icon(Ionicons.remove_circle_outline),
                                             ),
                                             Text(itemModel.quantity.toString()),
                                             IconButton(

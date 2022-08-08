@@ -220,6 +220,7 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
                     icon: Icon(
                       Ionicons.trash_sharp,
                       color: Theme.of(context).colorScheme.primary,
+                      size: 15.sp,
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).colorScheme.background,
