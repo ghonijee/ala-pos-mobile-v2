@@ -16,7 +16,6 @@ class OrderResultPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     var submitCubit = context.read<SubmitTransactionCubit>();
-    var cartCubit = context.read<CartCubit>();
 
     return BlocConsumer<SubmitTransactionCubit, SubmitTransactionState>(
       listener: (context, state) {
@@ -161,7 +160,6 @@ class OrderResultPage extends HookWidget {
                                       fixedSize: Size(40.w, 35.sp),
                                     ),
                                     onPressed: () {
-                                      cartCubit.resetCart();
                                       context.router.replaceAll([PosPageRoute()]);
                                     },
                                     label: Text(

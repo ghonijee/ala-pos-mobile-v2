@@ -20,6 +20,7 @@ class PaymentCashPage extends HookWidget {
     var resumeCubit = context.read<TransactionResumeCubit>();
     var paymentCubit = context.read<PaymentCubit>();
     var submitCubit = context.read<SubmitTransactionCubit>();
+    var cartCubit = context.read<CartCubit>();
 
     paymentCubit.init(resumeCubit.state.model!);
 
@@ -39,11 +40,13 @@ class PaymentCashPage extends HookWidget {
                 isLoading.value = true;
               },
               success: (model) {
-                context.router.pushNamed(RouteName.posOrderSuccess);
+                cartCubit.resetCart();
+                context.router.replaceAll([PosPageRoute(), OrderResultPageRoute()]);
+
+                // context.router.pushNamed(RouteName.posOrderSuccess);
               },
               orElse: () {
                 isLoading.value = false;
-                print(isLoading.value.toString());
               },
             );
           },
