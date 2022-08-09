@@ -1,3 +1,4 @@
+import 'package:ala_pos/domain/models/user_model.dart';
 import 'package:ala_pos/presentation/widgets/side_menu/cubit/side_menu_cubit.dart';
 import 'package:ala_pos/routes/route_page.dart';
 import 'package:auto_route/auto_route.dart';
@@ -74,7 +75,7 @@ class SideMenuView extends StatelessWidget {
                             )
                           ],
                         );
-                      }, loaded: ((userModel) {
+                      }, loaded: ((UserModel userModel) {
                         return GestureDetector(
                           onTap: () {
                             context.router.pop();
@@ -85,12 +86,27 @@ class SideMenuView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                userModel.username!,
-                                style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      color: Theme.of(context).primaryColorDark,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    userModel.username!,
+                                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                                          color: Theme.of(context).primaryColorDark,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  // SizedBox(
+                                  //   width: 50.sp,
+                                  // ),
+                                  // Text(
+                                  //   "Free",
+                                  //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                                  //         color: Theme.of(context).primaryColorDark,
+                                  //         fontWeight: FontWeight.bold,
+                                  //       ),
+                                  // ),
+                                ],
                               ),
                               Text(
                                 "Profil & Pengaturan",

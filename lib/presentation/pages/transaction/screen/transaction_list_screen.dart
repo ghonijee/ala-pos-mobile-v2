@@ -57,7 +57,7 @@ class TransactionListScreen extends HookWidget {
             },
             child: Container(
               width: 100.w,
-              height: 85.h,
+              height: 90.h,
               padding: EdgeInsets.symmetric(
                 horizontal: AppSpacings.m.sp,
                 vertical: AppSpacings.m.sp,

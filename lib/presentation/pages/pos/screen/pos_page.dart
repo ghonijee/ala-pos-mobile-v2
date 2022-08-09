@@ -23,7 +23,7 @@ class PosPage extends HookWidget {
     final scrollController = useScrollController();
 
     var listProductCubit = context.read<ListProductCubit>();
-    var cartCubit = context.read<CartCubit>();
+    CartCubit cartCubit = context.read<CartCubit>();
     var scanCubit = context.read<ScanProductCubit>();
     var resumeCubit = BlocProvider.of<TransactionResumeCubit>(context);
 
@@ -71,7 +71,7 @@ class PosPage extends HookWidget {
               child: Stack(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(AppSpacings.m.sp),
+                    padding: EdgeInsets.symmetric(horizontal: AppSpacings.s.sp, vertical: AppSpacings.m.sp),
                     height: 100.h,
                     color: Theme.of(context).colorScheme.surface,
                     child: Column(
@@ -107,13 +107,14 @@ class PosPage extends HookWidget {
                               },
                             ),
                             suffixIcon: SizedBox(
-                              width: 70.sp,
+                              width: 25.w,
                               child: Row(
                                 children: [
                                   IconButton(
                                     icon: Icon(
                                       Ionicons.barcode_outline,
                                       color: Theme.of(context).colorScheme.primary,
+                                      size: 18.sp,
                                     ),
                                     onPressed: () {
                                       FlutterBarcodeScanner.getBarcodeStreamReceiver(
@@ -137,6 +138,7 @@ class PosPage extends HookWidget {
                                     icon: Icon(
                                       Ionicons.flash_outline,
                                       color: Theme.of(context).colorScheme.primary,
+                                      size: 18.sp,
                                     ),
                                   ),
                                 ],
@@ -202,6 +204,13 @@ class PosPage extends HookWidget {
                                           )
                                         : InkWell(
                                             onTap: () {
+                                              // Jika store tidak menggunakan stock opname
+                                              if (!cartCubit.storeModel.useStockOpname) {
+                                                cartCubit.add(item);
+                                                return;
+                                              }
+
+                                              // Jika store tidak menggunakan stock opname
                                               if (item.stock > 0) {
                                                 cartCubit.add(item);
                                               } else {
