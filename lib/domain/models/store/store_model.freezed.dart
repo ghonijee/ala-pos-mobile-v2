@@ -314,7 +314,9 @@ class _$_StoreModel implements _StoreModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StoreModelToJson(this);
+    return _$$_StoreModelToJson(
+      this,
+    );
   }
 }
 
@@ -337,34 +339,34 @@ abstract class _StoreModel implements StoreModel {
 
   @override
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @JsonKey(name: 'address')
-  String? get address => throw _privateConstructorUsedError;
+  String? get address;
   @override
   @JsonKey(name: 'phone')
-  String? get phone => throw _privateConstructorUsedError;
+  String? get phone;
   @override
   @JsonKey(name: 'use_stock_opname')
-  bool get useStockOpname => throw _privateConstructorUsedError;
+  bool get useStockOpname;
   @override
   @JsonKey(name: 'image_url')
-  String? get imageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl;
   @override
   @JsonKey(name: 'image_path')
-  String? get imagePath => throw _privateConstructorUsedError;
+  String? get imagePath;
   @override
   @JsonKey(name: 'created_at')
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt;
   @override
   @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt;
   @override
   @JsonKey(name: 'laravel_through_key')
-  int? get laravelThroughKey => throw _privateConstructorUsedError;
+  int? get laravelThroughKey;
   @override
   @JsonKey(ignore: true)
   _$$_StoreModelCopyWith<_$_StoreModel> get copyWith =>

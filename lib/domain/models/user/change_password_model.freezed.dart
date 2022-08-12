@@ -196,7 +196,9 @@ class _$_ChangePasswordModel implements _ChangePasswordModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChangePasswordModelToJson(this);
+    return _$$_ChangePasswordModelToJson(
+      this,
+    );
   }
 }
 
@@ -214,16 +216,16 @@ abstract class _ChangePasswordModel implements ChangePasswordModel {
       _$_ChangePasswordModel.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
   @JsonKey(name: "new_password")
-  String get newPassword => throw _privateConstructorUsedError;
+  String get newPassword;
   @override
   @JsonKey(name: "new_password_confirm")
-  String get newPasswordConfirm => throw _privateConstructorUsedError;
+  String get newPasswordConfirm;
   @override
   @JsonKey(name: "old_password")
-  String get oldPassword => throw _privateConstructorUsedError;
+  String get oldPassword;
   @override
   @JsonKey(ignore: true)
   _$$_ChangePasswordModelCopyWith<_$_ChangePasswordModel> get copyWith =>

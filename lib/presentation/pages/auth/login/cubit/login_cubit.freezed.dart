@@ -211,15 +211,15 @@ abstract class _LoginState extends LoginState {
   const _LoginState._() : super._();
 
   @override
-  UsernameField get usernameField => throw _privateConstructorUsedError;
+  UsernameField get usernameField;
   @override
-  PasswordField get passwordField => throw _privateConstructorUsedError;
+  PasswordField get passwordField;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
-  bool get haveStore => throw _privateConstructorUsedError;
+  bool get haveStore;
   @override
-  FormzStatus get statusSubmission => throw _privateConstructorUsedError;
+  FormzStatus get statusSubmission;
   @override
   @JsonKey(ignore: true)
   _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>

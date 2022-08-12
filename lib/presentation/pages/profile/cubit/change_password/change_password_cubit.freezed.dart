@@ -235,18 +235,17 @@ abstract class _ChangePasswordState extends ChangePasswordState {
   const _ChangePasswordState._() : super._();
 
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  PasswordField get newPassword => throw _privateConstructorUsedError;
+  PasswordField get newPassword;
   @override
-  PasswordConfirmField get newPasswordConfirm =>
-      throw _privateConstructorUsedError;
+  PasswordConfirmField get newPasswordConfirm;
   @override
-  PasswordField get oldPassword => throw _privateConstructorUsedError;
+  PasswordField get oldPassword;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
-  FormzStatus get statusSubmission => throw _privateConstructorUsedError;
+  FormzStatus get statusSubmission;
   @override
   @JsonKey(ignore: true)
   _$$_ChangePasswordStateCopyWith<_$_ChangePasswordState> get copyWith =>

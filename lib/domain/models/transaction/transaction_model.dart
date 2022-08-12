@@ -19,6 +19,10 @@ class TransactionModel with _$TransactionModel {
         int? userId,
     @JsonKey(name: "store_id")
         int? storeId,
+    @JsonKey(name: "customer_name")
+        String? customerName,
+    @JsonKey(name: "customer_id")
+        int? customerId,
     @JsonKey(name: "date", required: true)
         DateTime? date,
     @JsonKey(name: "status", required: false)

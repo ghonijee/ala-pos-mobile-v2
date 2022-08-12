@@ -340,7 +340,7 @@ class _$_Loaded implements _Loaded {
 abstract class _Loaded implements PrintState {
   const factory _Loaded(final List<dynamic> devices) = _$_Loaded;
 
-  List<dynamic> get devices => throw _privateConstructorUsedError;
+  List<dynamic> get devices;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -604,7 +604,7 @@ class _$_Loading implements _Loading {
 abstract class _Loading implements PrintState {
   const factory _Loading(final List<dynamic> devices) = _$_Loading;
 
-  List<dynamic> get devices => throw _privateConstructorUsedError;
+  List<dynamic> get devices;
   @JsonKey(ignore: true)
   _$$_LoadingCopyWith<_$_Loading> get copyWith =>
       throw _privateConstructorUsedError;

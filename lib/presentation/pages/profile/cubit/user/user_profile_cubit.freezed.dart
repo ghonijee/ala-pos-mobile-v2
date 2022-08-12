@@ -481,8 +481,8 @@ abstract class _Success implements UserProfileState {
   factory _Success(final UserModel userModel, final StoreModel storeModel) =
       _$_Success;
 
-  UserModel get userModel => throw _privateConstructorUsedError;
-  StoreModel get storeModel => throw _privateConstructorUsedError;
+  UserModel get userModel;
+  StoreModel get storeModel;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -626,7 +626,7 @@ class _$_Failed implements _Failed {
 abstract class _Failed implements UserProfileState {
   factory _Failed(final String message) = _$_Failed;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;

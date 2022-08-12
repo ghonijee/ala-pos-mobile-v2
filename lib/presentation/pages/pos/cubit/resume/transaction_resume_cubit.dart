@@ -26,14 +26,24 @@ class TransactionResumeCubit extends Cubit<TransactionResumeState> {
 
     var modelPrevius = state.model;
 
-    var model = TransactionModel(
+    var model = modelPrevius!.copyWith(
       key: Uuid().v4(),
       userId: user.id,
       storeId: store.id,
       date: DateTime.now(),
       items: listItem,
       amount: amount,
-      discountPrice: modelPrevius!.discountPrice!,
+      discountPrice: modelPrevius.discountPrice!,
+    );
+
+    emit(state.copyWith(model: model));
+  }
+
+  changeNameCustomer(String value) {
+    print(value);
+    var model = state.model!.copyWith(
+      customerName: value,
+      customerId: 0,
     );
 
     emit(state.copyWith(model: model));

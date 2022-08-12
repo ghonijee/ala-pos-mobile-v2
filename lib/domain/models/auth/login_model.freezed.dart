@@ -155,7 +155,9 @@ class _$_LoginModel implements _LoginModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LoginModelToJson(this);
+    return _$$_LoginModelToJson(
+      this,
+    );
   }
 }
 
@@ -171,10 +173,10 @@ abstract class _LoginModel implements LoginModel {
 
   @override
   @JsonKey(name: 'personal_access_token')
-  String get personalAccessToken => throw _privateConstructorUsedError;
+  String get personalAccessToken;
   @override
   @JsonKey(name: 'user')
-  UserModel get userModel => throw _privateConstructorUsedError;
+  UserModel get userModel;
   @override
   @JsonKey(ignore: true)
   _$$_LoginModelCopyWith<_$_LoginModel> get copyWith =>

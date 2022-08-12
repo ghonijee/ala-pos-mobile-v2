@@ -40,6 +40,14 @@ mixin _$TransactionModel {
   int? get storeId => throw _privateConstructorUsedError;
   @JsonKey(name: "store_id")
   set storeId(int? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "customer_name")
+  String? get customerName => throw _privateConstructorUsedError;
+  @JsonKey(name: "customer_name")
+  set customerName(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "customer_id")
+  int? get customerId => throw _privateConstructorUsedError;
+  @JsonKey(name: "customer_id")
+  set customerId(int? value) => throw _privateConstructorUsedError;
   @JsonKey(name: "date", required: true)
   DateTime? get date => throw _privateConstructorUsedError;
   @JsonKey(name: "date", required: true)
@@ -91,6 +99,8 @@ abstract class $TransactionModelCopyWith<$Res> {
       @JsonKey(name: "key", required: false) String? key,
       @JsonKey(name: "user_id", required: true) int? userId,
       @JsonKey(name: "store_id") int? storeId,
+      @JsonKey(name: "customer_name") String? customerName,
+      @JsonKey(name: "customer_id") int? customerId,
       @JsonKey(name: "date", required: true) DateTime? date,
       @JsonKey(name: "status", required: false) String? status,
       @JsonKey(name: "discount", required: false) int? discountPrice,
@@ -117,6 +127,8 @@ class _$TransactionModelCopyWithImpl<$Res>
     Object? key = freezed,
     Object? userId = freezed,
     Object? storeId = freezed,
+    Object? customerName = freezed,
+    Object? customerId = freezed,
     Object? date = freezed,
     Object? status = freezed,
     Object? discountPrice = freezed,
@@ -146,6 +158,14 @@ class _$TransactionModelCopyWithImpl<$Res>
       storeId: storeId == freezed
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerName: customerName == freezed
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: customerId == freezed
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
               as int?,
       date: date == freezed
           ? _value.date
@@ -196,6 +216,8 @@ abstract class _$$_TransactionModelCopyWith<$Res>
       @JsonKey(name: "key", required: false) String? key,
       @JsonKey(name: "user_id", required: true) int? userId,
       @JsonKey(name: "store_id") int? storeId,
+      @JsonKey(name: "customer_name") String? customerName,
+      @JsonKey(name: "customer_id") int? customerId,
       @JsonKey(name: "date", required: true) DateTime? date,
       @JsonKey(name: "status", required: false) String? status,
       @JsonKey(name: "discount", required: false) int? discountPrice,
@@ -224,6 +246,8 @@ class __$$_TransactionModelCopyWithImpl<$Res>
     Object? key = freezed,
     Object? userId = freezed,
     Object? storeId = freezed,
+    Object? customerName = freezed,
+    Object? customerId = freezed,
     Object? date = freezed,
     Object? status = freezed,
     Object? discountPrice = freezed,
@@ -253,6 +277,14 @@ class __$$_TransactionModelCopyWithImpl<$Res>
       storeId: storeId == freezed
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerName: customerName == freezed
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: customerId == freezed
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
               as int?,
       date: date == freezed
           ? _value.date
@@ -299,6 +331,8 @@ class _$_TransactionModel extends _TransactionModel {
       @JsonKey(name: "key", required: false) this.key,
       @JsonKey(name: "user_id", required: true) this.userId,
       @JsonKey(name: "store_id") this.storeId,
+      @JsonKey(name: "customer_name") this.customerName,
+      @JsonKey(name: "customer_id") this.customerId,
       @JsonKey(name: "date", required: true) this.date,
       @JsonKey(name: "status", required: false) this.status,
       @JsonKey(name: "discount", required: false) this.discountPrice = 0,
@@ -328,6 +362,12 @@ class _$_TransactionModel extends _TransactionModel {
   @JsonKey(name: "store_id")
   int? storeId;
   @override
+  @JsonKey(name: "customer_name")
+  String? customerName;
+  @override
+  @JsonKey(name: "customer_id")
+  int? customerId;
+  @override
   @JsonKey(name: "date", required: true)
   DateTime? date;
   @override
@@ -354,7 +394,7 @@ class _$_TransactionModel extends _TransactionModel {
 
   @override
   String toString() {
-    return 'TransactionModel(id: $id, invoiceNumber: $invoiceNumber, key: $key, userId: $userId, storeId: $storeId, date: $date, status: $status, discountPrice: $discountPrice, note: $note, amount: $amount, receivedMoney: $receivedMoney, changeMoney: $changeMoney, items: $items)';
+    return 'TransactionModel(id: $id, invoiceNumber: $invoiceNumber, key: $key, userId: $userId, storeId: $storeId, customerName: $customerName, customerId: $customerId, date: $date, status: $status, discountPrice: $discountPrice, note: $note, amount: $amount, receivedMoney: $receivedMoney, changeMoney: $changeMoney, items: $items)';
   }
 
   @JsonKey(ignore: true)
@@ -364,7 +404,9 @@ class _$_TransactionModel extends _TransactionModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionModelToJson(this);
+    return _$$_TransactionModelToJson(
+      this,
+    );
   }
 }
 
@@ -380,6 +422,10 @@ abstract class _TransactionModel extends TransactionModel {
           int? userId,
       @JsonKey(name: "store_id")
           int? storeId,
+      @JsonKey(name: "customer_name")
+          String? customerName,
+      @JsonKey(name: "customer_id")
+          int? customerId,
       @JsonKey(name: "date", required: true)
           DateTime? date,
       @JsonKey(name: "status", required: false)
@@ -403,43 +449,79 @@ abstract class _TransactionModel extends TransactionModel {
 
   @override
   @JsonKey(name: "id", required: true)
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
+  @JsonKey(name: "id", required: true)
+  set id(int? value);
   @override
   @JsonKey(name: "invoice_number", required: false)
-  String? get invoiceNumber => throw _privateConstructorUsedError;
+  String? get invoiceNumber;
+  @JsonKey(name: "invoice_number", required: false)
+  set invoiceNumber(String? value);
   @override
   @JsonKey(name: "key", required: false)
-  String? get key => throw _privateConstructorUsedError;
+  String? get key;
+  @JsonKey(name: "key", required: false)
+  set key(String? value);
   @override
   @JsonKey(name: "user_id", required: true)
-  int? get userId => throw _privateConstructorUsedError;
+  int? get userId;
+  @JsonKey(name: "user_id", required: true)
+  set userId(int? value);
   @override
   @JsonKey(name: "store_id")
-  int? get storeId => throw _privateConstructorUsedError;
+  int? get storeId;
+  @JsonKey(name: "store_id")
+  set storeId(int? value);
+  @override
+  @JsonKey(name: "customer_name")
+  String? get customerName;
+  @JsonKey(name: "customer_name")
+  set customerName(String? value);
+  @override
+  @JsonKey(name: "customer_id")
+  int? get customerId;
+  @JsonKey(name: "customer_id")
+  set customerId(int? value);
   @override
   @JsonKey(name: "date", required: true)
-  DateTime? get date => throw _privateConstructorUsedError;
+  DateTime? get date;
+  @JsonKey(name: "date", required: true)
+  set date(DateTime? value);
   @override
   @JsonKey(name: "status", required: false)
-  String? get status => throw _privateConstructorUsedError;
+  String? get status;
+  @JsonKey(name: "status", required: false)
+  set status(String? value);
   @override
   @JsonKey(name: "discount", required: false)
-  int? get discountPrice => throw _privateConstructorUsedError;
+  int? get discountPrice;
+  @JsonKey(name: "discount", required: false)
+  set discountPrice(int? value);
   @override
   @JsonKey(name: "note", required: false)
-  String? get note => throw _privateConstructorUsedError;
+  String? get note;
+  @JsonKey(name: "note", required: false)
+  set note(String? value);
   @override
   @JsonKey(name: "amount", required: true)
-  int? get amount => throw _privateConstructorUsedError;
+  int? get amount;
+  @JsonKey(name: "amount", required: true)
+  set amount(int? value);
   @override
   @JsonKey(name: "received_money", required: true)
-  int? get receivedMoney => throw _privateConstructorUsedError;
+  int? get receivedMoney;
+  @JsonKey(name: "received_money", required: true)
+  set receivedMoney(int? value);
   @override
   @JsonKey(name: "change_money", required: false)
-  int? get changeMoney => throw _privateConstructorUsedError;
+  int? get changeMoney;
+  @JsonKey(name: "change_money", required: false)
+  set changeMoney(int? value);
   @override
   @JsonKey(name: "products")
-  List<TransactionItemModel>? get items => throw _privateConstructorUsedError;
+  List<TransactionItemModel>? get items;
+  @JsonKey(name: "products")
+  set items(List<TransactionItemModel>? value);
   @override
   @JsonKey(ignore: true)
   _$$_TransactionModelCopyWith<_$_TransactionModel> get copyWith =>

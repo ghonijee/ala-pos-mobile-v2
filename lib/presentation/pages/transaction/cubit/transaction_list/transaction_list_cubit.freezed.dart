@@ -486,8 +486,8 @@ class _$_Loaded implements _Loaded {
 abstract class _Loaded implements TransactionListState {
   const factory _Loaded(final dynamic list, final bool nextPage) = _$_Loaded;
 
-  dynamic get list => throw _privateConstructorUsedError;
-  bool get nextPage => throw _privateConstructorUsedError;
+  dynamic get list;
+  bool get nextPage;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

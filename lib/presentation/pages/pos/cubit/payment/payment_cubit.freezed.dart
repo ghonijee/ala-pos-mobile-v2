@@ -363,7 +363,7 @@ class _$_Loaded implements _Loaded {
 abstract class _Loaded implements PaymentState {
   const factory _Loaded(final TransactionModel model) = _$_Loaded;
 
-  TransactionModel get model => throw _privateConstructorUsedError;
+  TransactionModel get model;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

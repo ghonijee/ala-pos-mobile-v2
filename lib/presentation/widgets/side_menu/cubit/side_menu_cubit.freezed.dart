@@ -428,7 +428,7 @@ class _$_Loaded implements _Loaded {
 abstract class _Loaded implements SideMenuState {
   const factory _Loaded(final UserModel userModel) = _$_Loaded;
 
-  UserModel get userModel => throw _privateConstructorUsedError;
+  UserModel get userModel;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

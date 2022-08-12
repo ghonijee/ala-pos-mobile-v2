@@ -300,7 +300,7 @@ class _$Loaded implements Loaded {
 abstract class Loaded implements SplashState {
   const factory Loaded(final bool authStatus) = _$Loaded;
 
-  bool get authStatus => throw _privateConstructorUsedError;
+  bool get authStatus;
   @JsonKey(ignore: true)
   _$$LoadedCopyWith<_$Loaded> get copyWith =>
       throw _privateConstructorUsedError;

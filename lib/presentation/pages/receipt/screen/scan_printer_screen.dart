@@ -41,6 +41,21 @@ class ScanPrinterScreen extends StatelessWidget {
         linesAfter: 2);
     // bytes += generator.feed(2);
 
+    if (model.customerName!.isNotEmpty) {
+      bytes += generator.row([
+        PosColumn(
+          text: 'Nama Pembeli',
+          width: 6,
+          styles: const PosStyles(align: PosAlign.left),
+        ),
+        PosColumn(
+          text: model.customerName!,
+          width: 6,
+          styles: const PosStyles(align: PosAlign.right),
+        ),
+      ]);
+      bytes += generator.feed(1);
+    }
     bytes += generator.row([
       PosColumn(
         text: 'No. Struk',

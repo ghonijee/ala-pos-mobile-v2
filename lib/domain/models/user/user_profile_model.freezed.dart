@@ -214,7 +214,9 @@ class _$_UserProfileModel implements _UserProfileModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserProfileModelToJson(this);
+    return _$$_UserProfileModelToJson(
+      this,
+    );
   }
 }
 
@@ -232,19 +234,19 @@ abstract class _UserProfileModel implements UserProfileModel {
 
   @override
   @JsonKey(name: "id")
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
   @JsonKey(name: "fullname")
-  String get fullname => throw _privateConstructorUsedError;
+  String get fullname;
   @override
   @JsonKey(name: "username")
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
   @JsonKey(name: "email")
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
   @JsonKey(name: "phone")
-  String get phone => throw _privateConstructorUsedError;
+  String get phone;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileModelCopyWith<_$_UserProfileModel> get copyWith =>

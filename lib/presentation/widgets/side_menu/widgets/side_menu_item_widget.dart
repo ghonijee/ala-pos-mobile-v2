@@ -19,13 +19,11 @@ class SideMenuItemWidget extends StatelessWidget {
       contentPadding: EdgeInsets.only(
         left: AppSpacings.x2l.sp,
         right: AppSpacings.x2l.sp,
-        bottom: AppSpacings.l,
+        bottom: AppSpacings.s,
       ),
       leading: Container(
-        constraints: BoxConstraints(minHeight: 32.sp, minWidth: 32.sp),
-        decoration: BoxDecoration(
-            color: Theme.of(context).primaryColorDark.withOpacity(0.1),
-            borderRadius: BorderRadius.all(Radius.circular(8))),
+        constraints: BoxConstraints(minHeight: 28.sp, minWidth: 28.sp),
+        decoration: BoxDecoration(color: Theme.of(context).primaryColorDark.withOpacity(0.1), borderRadius: BorderRadius.all(Radius.circular(8))),
         child: Icon(
           iconData,
           size: AppSpacings.xl,
@@ -34,7 +32,7 @@ class SideMenuItemWidget extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: Theme.of(context).textTheme.subtitle1!.copyWith(
+        style: Theme.of(context).textTheme.bodyText2!.copyWith(
               color: Theme.of(context).primaryColorDark,
             ),
       ),

@@ -464,7 +464,7 @@ class _$_Loaded implements _Loaded {
 abstract class _Loaded implements TransactionDetailState {
   const factory _Loaded(final TransactionModel item) = _$_Loaded;
 
-  TransactionModel get item => throw _privateConstructorUsedError;
+  TransactionModel get item;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -608,7 +608,7 @@ class _$_Failed implements _Failed {
 abstract class _Failed implements TransactionDetailState {
   const factory _Failed(final String message) = _$_Failed;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;

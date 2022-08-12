@@ -252,19 +252,19 @@ abstract class _FormUserState extends FormUserState {
   const _FormUserState._() : super._();
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  UsernameField get usernameField => throw _privateConstructorUsedError;
+  UsernameField get usernameField;
   @override
-  FullnameField get fullnameField => throw _privateConstructorUsedError;
+  FullnameField get fullnameField;
   @override
-  PhoneField get phone => throw _privateConstructorUsedError;
+  PhoneField get phone;
   @override
-  EmailField get email => throw _privateConstructorUsedError;
+  EmailField get email;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
-  FormzStatus get statusSubmission => throw _privateConstructorUsedError;
+  FormzStatus get statusSubmission;
   @override
   @JsonKey(ignore: true)
   _$$_FormUserStateCopyWith<_$_FormUserState> get copyWith =>

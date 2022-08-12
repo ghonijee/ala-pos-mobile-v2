@@ -64,7 +64,7 @@ class ReceiptScreen extends HookWidget {
                             children: [
                               Text(
                                 store.name,
-                                style: Theme.of(context).textTheme.headline4!.copyWith(
+                                style: Theme.of(context).textTheme.headline5!.copyWith(
                                       color: Theme.of(context).colorScheme.onBackground,
                                     ),
                               ),
@@ -77,6 +77,21 @@ class ReceiptScreen extends HookWidget {
                               SizedBox(
                                 height: 50.sp,
                                 child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                                  transactionModel.customerName!.isNotEmpty
+                                      ? Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "Nama Pembeli",
+                                              style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.normal),
+                                            ),
+                                            Text(
+                                              transactionModel.customerName!,
+                                              style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        )
+                                      : SizedBox(),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [

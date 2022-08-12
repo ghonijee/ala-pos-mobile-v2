@@ -375,7 +375,9 @@ class _$_ProductModel implements _ProductModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductModelToJson(this);
+    return _$$_ProductModelToJson(
+      this,
+    );
   }
 }
 
@@ -413,43 +415,43 @@ abstract class _ProductModel implements ProductModel {
 
   @override
   @JsonKey(name: "id")
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
   @JsonKey(name: "store_id")
-  int? get storeId => throw _privateConstructorUsedError;
+  int? get storeId;
   @override
   @JsonKey(name: "name")
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @JsonKey(name: "price")
-  int get price => throw _privateConstructorUsedError;
+  int get price;
   @override
   @JsonKey(name: "stock")
-  int get stock => throw _privateConstructorUsedError;
+  int get stock;
   @override
   @JsonKey(name: "description", nullable: true)
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
   @JsonKey(name: "code", nullable: true)
-  String? get code => throw _privateConstructorUsedError;
+  String? get code;
   @override
   @JsonKey(name: "cost", nullable: true)
-  int? get cost => throw _privateConstructorUsedError;
+  int? get cost;
   @override
   @JsonKey(name: "min_stock", nullable: true)
-  int? get minStock => throw _privateConstructorUsedError;
+  int? get minStock;
   @override
   @JsonKey(name: "unit", nullable: true)
-  String? get unit => throw _privateConstructorUsedError;
+  String? get unit;
   @override
   @JsonKey(name: "reduce_price", nullable: true)
-  int? get reducePrice => throw _privateConstructorUsedError;
+  int? get reducePrice;
   @override
   @JsonKey(name: "created_at", nullable: true)
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt;
   @override
   @JsonKey(name: "updated_at", nullable: true)
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

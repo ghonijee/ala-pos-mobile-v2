@@ -6,6 +6,7 @@ import 'package:core/styles/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:ionicons/ionicons.dart';
 
 import 'package:sizer/sizer.dart';
 import 'side_menu_item_widget.dart';
@@ -35,95 +36,106 @@ class SideMenuView extends StatelessWidget {
     return BlocBuilder<SideMenuCubit, SideMenuState>(
       builder: (context, state) {
         return Drawer(
+          width: 70.w,
           backgroundColor: Theme.of(context).primaryColor,
           child: Column(
             // padding: EdgeInsets.zero,
             children: <Widget>[
               SizedBox(
                 height: 100.sp,
+                // width: 0.w,
                 child: DrawerHeader(
                   margin: EdgeInsets.zero,
-                  padding: EdgeInsets.all(AppSpacings.x2l.sp),
+                  padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl.sp, vertical: AppSpacings.m.sp),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Icon(
-                        Icons.account_circle_rounded,
-                        size: AppSpacings.x3l.sp,
+                        Ionicons.person_circle,
+                        size: 28.sp,
                         color: Theme.of(context).primaryColorDark,
                       ),
                       SizedBox(
                         width: AppSpacings.l,
                       ),
-                      state.maybeWhen(orElse: () {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 100.sp,
-                              height: 10.sp,
-                              color: Theme.of(context).colorScheme.surface.withOpacity(0.1),
-                            ),
-                            SizedBox(
-                              height: AppSpacings.m,
-                            ),
-                            Container(
-                              width: 40.sp,
-                              height: 10.sp,
-                              color: Theme.of(context).colorScheme.surface.withOpacity(0.1),
-                            )
-                          ],
-                        );
-                      }, loaded: ((UserModel userModel) {
-                        return GestureDetector(
-                          onTap: () {
-                            context.router.pop();
-
-                            AutoRouter.of(context).pushNamed(RouteName.profile);
-                          },
-                          child: Column(
+                      state.maybeWhen(
+                        orElse: () {
+                          return Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    userModel.username!,
-                                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                                          color: Theme.of(context).primaryColorDark,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                  // SizedBox(
-                                  //   width: 50.sp,
-                                  // ),
-                                  // Text(
-                                  //   "Free",
-                                  //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                                  //         color: Theme.of(context).primaryColorDark,
-                                  //         fontWeight: FontWeight.bold,
-                                  //       ),
-                                  // ),
-                                ],
+                              Container(
+                                width: 100.sp,
+                                height: 10.sp,
+                                color: Theme.of(context).colorScheme.surface.withOpacity(0.1),
                               ),
-                              Text(
-                                "Profil & Pengaturan",
-                                style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                                      color: Theme.of(context).primaryColorDark,
-                                    ),
+                              SizedBox(
+                                height: AppSpacings.m,
                               ),
+                              Container(
+                                width: 40.sp,
+                                height: 10.sp,
+                                color: Theme.of(context).colorScheme.surface.withOpacity(0.1),
+                              )
                             ],
-                          ),
-                        );
-                      })),
+                          );
+                        },
+                        loaded: ((UserModel userModel) {
+                          return GestureDetector(
+                            onTap: () {
+                              context.router.pop();
+
+                              AutoRouter.of(context).pushNamed(RouteName.profile);
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  userModel.fullname!,
+                                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                        color: Theme.of(context).primaryColorDark,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                                SizedBox(
+                                  height: 2.sp,
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 2.sp, vertical: 1.sp),
+                                      decoration: BoxDecoration(color: Theme.of(context).primaryColorDark, borderRadius: BorderRadius.all(Radius.circular(2.sp))),
+                                      child: Text(
+                                        userModel.userStatus ?? "Free",
+                                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                              color: Theme.of(context).primaryColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                // Text(
+                                //   "Profil & Pengaturan",
+                                //   style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                                //         color: Theme.of(context).primaryColorDark,
+                                //       ),
+                                // ),
+                              ],
+                            ),
+                          );
+                        }),
+                      ),
+                      // Expanded(child: SizedBox()),
                     ],
                   ),
                 ),
               ),
               SizedBox(
-                height: AppSpacings.x2l.sp,
+                height: AppSpacings.m.sp,
               ),
               SideMenuItemWidget(
                 title: "Kasir",

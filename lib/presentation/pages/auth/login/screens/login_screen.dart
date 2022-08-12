@@ -143,7 +143,7 @@ class _FieldUsername extends HookWidget {
 
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
-        return TextFormField(
+        return TextField(
           onChanged: (value) => cubit.usernameChange(value),
           style: Theme.of(context).textTheme.bodyText1,
           decoration: InputDecoration(
@@ -170,7 +170,7 @@ class _FieldPassword extends HookWidget {
 
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
-        return TextFormField(
+        return TextField(
           style: Theme.of(context).textTheme.bodyText1,
           obscureText: hidePassword.value,
           onChanged: (value) => cubit.passwordChange(value),

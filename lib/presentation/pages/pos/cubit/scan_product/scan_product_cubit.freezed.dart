@@ -465,7 +465,7 @@ class _$_Success implements _Success {
 abstract class _Success implements ScanProductState {
   const factory _Success(final ProductModel model) = _$_Success;
 
-  ProductModel get model => throw _privateConstructorUsedError;
+  ProductModel get model;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -608,7 +608,7 @@ class _$_Failed implements _Failed {
 abstract class _Failed implements ScanProductState {
   const factory _Failed(final String message) = _$_Failed;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;

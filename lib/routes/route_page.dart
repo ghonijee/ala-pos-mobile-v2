@@ -53,8 +53,6 @@ part 'route_page.gr.dart';
     ]),
   ],
 )
-
-// extend the generated private router
 class RoutePage extends _$RoutePage {}
 
 RoutePage initRouter = RoutePage();

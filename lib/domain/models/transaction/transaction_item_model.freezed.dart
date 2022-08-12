@@ -344,7 +344,9 @@ class _$_TransactionItemModel extends _TransactionItemModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TransactionItemModelToJson(this);
+    return _$$_TransactionItemModelToJson(
+      this,
+    );
   }
 }
 
@@ -369,40 +371,64 @@ abstract class _TransactionItemModel extends TransactionItemModel {
 
   @override
   @JsonKey(name: "id")
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
+  @JsonKey(name: "id")
+  set id(int? value);
   @override
   @JsonKey(name: "transaction_id")
-  int? get transactionId => throw _privateConstructorUsedError;
+  int? get transactionId;
+  @JsonKey(name: "transaction_id")
+  set transactionId(int? value);
   @override
   @JsonKey(name: "store_id")
-  int? get storeId => throw _privateConstructorUsedError;
+  int? get storeId;
+  @JsonKey(name: "store_id")
+  set storeId(int? value);
   @override
   @JsonKey(name: "product_id")
-  int? get productId => throw _privateConstructorUsedError;
+  int? get productId;
+  @JsonKey(name: "product_id")
+  set productId(int? value);
   @override
   @JsonKey(name: "product_name")
-  String get productName => throw _privateConstructorUsedError;
+  String get productName;
+  @JsonKey(name: "product_name")
+  set productName(String value);
   @override
   @JsonKey(name: "price")
-  int get price => throw _privateConstructorUsedError;
+  int get price;
+  @JsonKey(name: "price")
+  set price(int value);
   @override
   @JsonKey(name: "product_cost")
-  int? get productCost => throw _privateConstructorUsedError;
+  int? get productCost;
+  @JsonKey(name: "product_cost")
+  set productCost(int? value);
   @override
   @JsonKey(name: "discount_price")
-  int get discountPrice => throw _privateConstructorUsedError;
+  int get discountPrice;
+  @JsonKey(name: "discount_price")
+  set discountPrice(int value);
   @override
   @JsonKey(name: "discount_percentage")
-  double? get discountPercentage => throw _privateConstructorUsedError;
+  double? get discountPercentage;
+  @JsonKey(name: "discount_percentage")
+  set discountPercentage(double? value);
   @override
   @JsonKey(name: "note")
-  String? get note => throw _privateConstructorUsedError;
+  String? get note;
+  @JsonKey(name: "note")
+  set note(String? value);
   @override
   @JsonKey(name: "quantity")
-  int get quantity => throw _privateConstructorUsedError;
+  int get quantity;
+  @JsonKey(name: "quantity")
+  set quantity(int value);
   @override
   @JsonKey(name: "amount")
-  int get amount => throw _privateConstructorUsedError;
+  int get amount;
+  @JsonKey(name: "amount")
+  set amount(int value);
   @override
   @JsonKey(ignore: true)
   _$$_TransactionItemModelCopyWith<_$_TransactionItemModel> get copyWith =>

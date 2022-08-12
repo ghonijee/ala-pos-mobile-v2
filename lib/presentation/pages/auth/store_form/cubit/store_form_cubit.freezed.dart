@@ -566,7 +566,7 @@ class _$_Failed implements _Failed {
 abstract class _Failed implements StoreFormState {
   const factory _Failed({final dynamic message}) = _$_Failed;
 
-  dynamic get message => throw _privateConstructorUsedError;
+  dynamic get message;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;

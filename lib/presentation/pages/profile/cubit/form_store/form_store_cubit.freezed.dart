@@ -255,20 +255,19 @@ abstract class _FormStoreState extends FormStoreState {
   const _FormStoreState._() : super._();
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  StoreNameField get storeNameField => throw _privateConstructorUsedError;
+  StoreNameField get storeNameField;
   @override
-  AddressField get addressField => throw _privateConstructorUsedError;
+  AddressField get addressField;
   @override
-  PhoneField get phoneField => throw _privateConstructorUsedError;
+  PhoneField get phoneField;
   @override
-  UseStockOpnameField get useStockOpnameField =>
-      throw _privateConstructorUsedError;
+  UseStockOpnameField get useStockOpnameField;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
-  FormzStatus get statusSubmission => throw _privateConstructorUsedError;
+  FormzStatus get statusSubmission;
   @override
   @JsonKey(ignore: true)
   _$$_FormStoreStateCopyWith<_$_FormStoreState> get copyWith =>

@@ -494,8 +494,8 @@ abstract class _Loaded implements ListProductState {
   const factory _Loaded(final List<ProductModel> data, final bool nextPage) =
       _$_Loaded;
 
-  List<ProductModel> get data => throw _privateConstructorUsedError;
-  bool get nextPage => throw _privateConstructorUsedError;
+  List<ProductModel> get data;
+  bool get nextPage;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

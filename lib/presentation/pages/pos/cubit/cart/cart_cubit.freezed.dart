@@ -121,8 +121,7 @@ abstract class _CartState extends CartState {
   const _CartState._() : super._();
 
   @override
-  BuiltList<TransactionItemModel> get items =>
-      throw _privateConstructorUsedError;
+  BuiltList<TransactionItemModel> get items;
   @override
   @JsonKey(ignore: true)
   _$$_CartStateCopyWith<_$_CartState> get copyWith =>

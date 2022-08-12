@@ -369,29 +369,29 @@ abstract class _FormProductState extends FormProductState {
   const _FormProductState._() : super._();
 
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  int? get storeId => throw _privateConstructorUsedError;
+  int? get storeId;
   @override
-  NameField get name => throw _privateConstructorUsedError;
+  NameField get name;
   @override
-  PriceField get price => throw _privateConstructorUsedError;
+  PriceField get price;
   @override
-  StockField get stock => throw _privateConstructorUsedError;
+  StockField get stock;
   @override
-  MinStockField get minStock => throw _privateConstructorUsedError;
+  MinStockField get minStock;
   @override
-  CodeField get code => throw _privateConstructorUsedError;
+  CodeField get code;
   @override
-  DescField get desc => throw _privateConstructorUsedError;
+  DescField get desc;
   @override
-  CostField get cost => throw _privateConstructorUsedError;
+  CostField get cost;
   @override
-  UnitField get unit => throw _privateConstructorUsedError;
+  UnitField get unit;
   @override
-  FormzStatus get statusSubmission => throw _privateConstructorUsedError;
+  FormzStatus get statusSubmission;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$$_FormProductStateCopyWith<_$_FormProductState> get copyWith =>

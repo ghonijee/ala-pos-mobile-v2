@@ -214,15 +214,15 @@ abstract class _RegisterState extends RegisterState {
   const _RegisterState._() : super._();
 
   @override
-  UsernameField get usernameField => throw _privateConstructorUsedError;
+  UsernameField get usernameField;
   @override
-  PhoneField get phoneField => throw _privateConstructorUsedError;
+  PhoneField get phoneField;
   @override
-  PasswordField get passwordField => throw _privateConstructorUsedError;
+  PasswordField get passwordField;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
-  FormzStatus get statusSubmission => throw _privateConstructorUsedError;
+  FormzStatus get statusSubmission;
   @override
   @JsonKey(ignore: true)
   _$$_RegisterStateCopyWith<_$_RegisterState> get copyWith =>

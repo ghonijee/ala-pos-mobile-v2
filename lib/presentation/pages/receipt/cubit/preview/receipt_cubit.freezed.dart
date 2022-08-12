@@ -342,8 +342,8 @@ abstract class _Loaded implements ReceiptState {
   factory _Loaded(final TransactionModel transactionModel,
       final StoreModel storeModel) = _$_Loaded;
 
-  TransactionModel get transactionModel => throw _privateConstructorUsedError;
-  StoreModel get storeModel => throw _privateConstructorUsedError;
+  TransactionModel get transactionModel;
+  StoreModel get storeModel;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

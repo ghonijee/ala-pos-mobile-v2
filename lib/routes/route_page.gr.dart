@@ -62,8 +62,7 @@ class _$RoutePage extends RootStackRouter {
     },
     CustomItemPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: WrappedRoute(child: const CustomItemPage()));
+          routeData: routeData, child: const CustomItemPage());
     },
     CartPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -76,9 +75,7 @@ class _$RoutePage extends RootStackRouter {
               indexItem: pathParams.getInt('index')));
       return MaterialPageX<dynamic>(
           routeData: routeData,
-          child: WrappedRoute(
-              child: CartItemDetailPage(
-                  key: args.key, indexItem: args.indexItem)));
+          child: CartItemDetailPage(key: args.key, indexItem: args.indexItem));
     },
     ResumeOrderPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(

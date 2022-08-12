@@ -142,7 +142,7 @@ abstract class _TransactionResumeState extends TransactionResumeState {
   const _TransactionResumeState._() : super._();
 
   @override
-  TransactionModel? get model => throw _privateConstructorUsedError;
+  TransactionModel? get model;
   @override
   @JsonKey(ignore: true)
   _$$_TransactionResumeStateCopyWith<_$_TransactionResumeState> get copyWith =>

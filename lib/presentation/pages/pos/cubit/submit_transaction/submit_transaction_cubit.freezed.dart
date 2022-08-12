@@ -465,7 +465,7 @@ class _$_Success implements _Success {
 abstract class _Success implements SubmitTransactionState {
   const factory _Success(final TransactionModel model) = _$_Success;
 
-  TransactionModel get model => throw _privateConstructorUsedError;
+  TransactionModel get model;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -629,8 +629,8 @@ abstract class _Failed implements SubmitTransactionState {
   const factory _Failed(final String message, final TransactionModel model) =
       _$_Failed;
 
-  String get message => throw _privateConstructorUsedError;
-  TransactionModel get model => throw _privateConstructorUsedError;
+  String get message;
+  TransactionModel get model;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;
