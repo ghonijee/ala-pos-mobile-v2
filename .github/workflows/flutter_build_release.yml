@@ -36,7 +36,7 @@ jobs:
         with:
           fileName: play_config.json
           encodedString: ${{ secrets.PLAY_CONFIG_JSON }}
-      - Create service_account_key.json
+      - name: Create service_account_key.json
         run: |
           echo "${{ steps.google_key_api.outputs.filePath }}" > android/service_account_key.json
       - name: Install pub Dependencies
@@ -50,3 +50,8 @@ jobs:
         with:
           lane: internal_testing_release
           subdirectory: android
+      - name: Create Github Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab"
+          token: ${{ secrets.GITHUB_TOKEN }}
