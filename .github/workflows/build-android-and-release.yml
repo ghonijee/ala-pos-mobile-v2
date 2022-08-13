@@ -46,7 +46,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab"
-          token: ${{ secrets.RELEASES_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Decode Google Play Key API
         id: google_key_api
         uses: timheuer/base64-to-file@v1.0.3
@@ -60,6 +60,7 @@ jobs:
           packageName: com.ala.alapos
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: internal
+          status: inProgress
       
       # - name: Upload to Firebase App Distribution
       #   uses: wzieba/Firebase-Distribution-Github-Action@v1

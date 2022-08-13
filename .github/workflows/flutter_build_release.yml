@@ -1,0 +1,52 @@
+# cd.yml
+name: "Flutter Build and Release Internal Testing"
+on:
+  push:
+    branches:
+      - "v*"
+jobs:
+  # CI
+  build_android:
+    name: Build App
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - name: Download Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: key.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      - name: Create key.properties
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+      - name: Decode Google Play Key API
+        id: google_key_api
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: play_config.json
+          encodedString: ${{ secrets.PLAY_CONFIG_JSON }}
+      - Create service_account_key.json
+        run: |
+          echo "${{ steps.google_key_api.outputs.filePath }}" > android/service_account_key.json
+      - name: Install pub Dependencies
+        run: flutter pub get
+      - name: Run build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+      - name: Build APK QAS API Server
+        run: flutter build appbundle --release --dart-define ENV=.env.production
+      - name: Run Fastlane
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: internal_testing_release
+          subdirectory: android
