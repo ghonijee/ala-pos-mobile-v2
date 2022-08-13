@@ -1,6 +1,8 @@
+import 'package:ala_pos/domain/models/store/store_category_model.dart';
 import 'package:ala_pos/domain/models/store/store_model.dart';
 import 'package:ala_pos/domain/repositories/store_repository.dart';
 import 'package:ala_pos/presentation/fields/fields.dart';
+import 'package:ala_pos/presentation/fields/store_category_field.dart';
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,7 +15,11 @@ part 'form_store_cubit.freezed.dart';
 class FormStoreCubit extends Cubit<FormStoreState> {
   StoreRepository repository;
   late bool isUpdate;
-  FormStoreCubit(this.repository) : super(FormStoreState(id: 0));
+  late List<StoreCategoryModel> listCategory;
+
+  FormStoreCubit(this.repository) : super(FormStoreState(id: 0)) {
+    listCategory = repository.getStoreCategory();
+  }
 
   show(StoreModel model) {
     isUpdate = true;
@@ -23,6 +29,7 @@ class FormStoreCubit extends Cubit<FormStoreState> {
       storeNameField: StoreNameField.dirty(model.name),
       addressField: AddressField.dirty(model.address!),
       useStockOpnameField: UseStockOpnameField.dirty(model.useStockOpname),
+      storeCategoryField: StoreCategoryField.dirty(StoreCategoryModel(id: model.storeCategoryId, name: '')),
       phoneField: PhoneField.dirty(model.phone!),
     ));
   }
@@ -66,5 +73,9 @@ class FormStoreCubit extends Cubit<FormStoreState> {
 
   changePhone(value) {
     emit(state.copyWith(phoneField: PhoneField.dirty(value)));
+  }
+
+  changeCategory(StoreCategoryModel? model) {
+    emit(state.copyWith(storeCategoryField: StoreCategoryField.dirty(model)));
   }
 }

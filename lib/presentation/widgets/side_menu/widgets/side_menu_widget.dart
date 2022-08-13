@@ -52,7 +52,7 @@ class SideMenuView extends StatelessWidget {
                     children: [
                       Icon(
                         Ionicons.person_circle,
-                        size: 28.sp,
+                        size: 32.sp,
                         color: Theme.of(context).primaryColorDark,
                       ),
                       SizedBox(

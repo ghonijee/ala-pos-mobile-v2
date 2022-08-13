@@ -9,7 +9,7 @@ class AppColors {
   static const sidebarDark = BaseColor.brandAccent6;
 
   static const primary = BaseColor.brandPrimary;
-  static const accent = BaseColor.brandAccent5;
+  static const accent = BaseColor.brandAccent4;
   static const tertiary = BaseColor.brandAccent3;
   static const surface = BaseColor.whiteTrue;
 

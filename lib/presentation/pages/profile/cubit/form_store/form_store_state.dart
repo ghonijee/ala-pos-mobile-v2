@@ -10,6 +10,7 @@ class FormStoreState with _$FormStoreState {
     @Default(AddressField.pure()) AddressField addressField,
     @Default(PhoneField.pure()) PhoneField phoneField,
     @Default(UseStockOpnameField.pure()) UseStockOpnameField useStockOpnameField,
+    @Default(StoreCategoryField.pure()) StoreCategoryField storeCategoryField,
     @Default('') String message,
     @Default(FormzStatus.pure) FormzStatus statusSubmission,
   }) = _FormStoreState;
@@ -24,6 +25,8 @@ class FormStoreState with _$FormStoreState {
         address: addressField.value,
         phone: phoneField.value,
         useStockOpname: useStockOpnameField.value,
+        storeCategoryId: storeCategoryField.value!.id,
+        storeCategoryName: storeCategoryField.value!.name,
       );
 
   loading() {

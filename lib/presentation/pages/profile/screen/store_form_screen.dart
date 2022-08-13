@@ -1,3 +1,4 @@
+import 'package:ala_pos/domain/models/store/store_category_model.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:formz/formz.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../widgets/form_input/dropdown_custom.dart';
 import '../cubit/form_store/form_store_cubit.dart';
 import '../cubit/user/user_profile_cubit.dart';
 
@@ -66,6 +68,10 @@ class StoreFormScreen extends StatelessWidget {
                       height: AppSpacings.m.sp,
                     ),
                     _PhoneField(),
+                    SizedBox(
+                      height: AppSpacings.m.sp,
+                    ),
+                    _StoreCategoryField(),
                     SizedBox(
                       height: AppSpacings.m.sp,
                     ),
@@ -255,6 +261,39 @@ class _UseStockOpnameToggle extends StatelessWidget {
               activeColor: Theme.of(context).colorScheme.primary,
               splashRadius: 90.0,
             ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _StoreCategoryField extends StatelessWidget {
+  const _StoreCategoryField({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var cubit = context.read<FormStoreCubit>();
+    return BlocBuilder<FormStoreCubit, FormStoreState>(
+      builder: (context, state) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Jenis Usaha"),
+            SizedBox(
+              height: 40.sp,
+              child: CustomDropDown<StoreCategoryModel>(
+                defaultSelectedIndex: cubit.listCategory.indexWhere((element) => state.storeCategoryField.value!.id == element.id),
+                maxListHeight: 300,
+                hintText: "Pilih jenis usaha",
+                // value: cubit.listCategory.first,
+                items: cubit.listCategory.map((e) => CustomDropdownMenuItem<StoreCategoryModel>(value: e, child: Text(e.name))).toList(),
+                onChanged: (StoreCategoryModel? value) {
+                  cubit.changeCategory(value);
+                },
+              ),
+            )
           ],
         );
       },

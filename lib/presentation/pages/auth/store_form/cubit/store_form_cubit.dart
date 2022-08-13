@@ -1,3 +1,4 @@
+import 'package:ala_pos/domain/models/store/store_category_model.dart';
 import 'package:ala_pos/domain/models/store/store_model.dart';
 import 'package:ala_pos/domain/repositories/store_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -10,7 +11,11 @@ part 'store_form_cubit.freezed.dart';
 @injectable
 class StoreFormCubit extends Cubit<StoreFormState> {
   final StoreRepository storeRepository;
-  StoreFormCubit(this.storeRepository) : super(StoreFormState.initial());
+  late List<StoreCategoryModel> listCategory;
+
+  StoreFormCubit(this.storeRepository) : super(StoreFormState.initial()) {
+    listCategory = storeRepository.getStoreCategory();
+  }
 
   submitted(String name, String address, String phone) async {
     emit(StoreFormState.submitted());

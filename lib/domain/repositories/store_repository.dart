@@ -1,4 +1,5 @@
 import 'package:ala_pos/data/remote/store_remote_source.dart';
+import 'package:ala_pos/domain/models/store/store_category_model.dart';
 import 'package:ala_pos/domain/models/store/store_model.dart';
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
@@ -71,5 +72,12 @@ class StoreRepository {
     var json = await storage.getValueJson(Constant.mainStore);
     StoreModel model = StoreModel.fromJson(json);
     return model;
+  }
+
+  List<StoreCategoryModel> getStoreCategory() {
+    return <StoreCategoryModel>[
+      StoreCategoryModel(name: "Toko Retail/Kelontong", id: 1),
+      StoreCategoryModel(name: "Warung/Kafe", id: 2),
+    ];
   }
 }

@@ -22,6 +22,8 @@ mixin _$FormStoreState {
   PhoneField get phoneField => throw _privateConstructorUsedError;
   UseStockOpnameField get useStockOpnameField =>
       throw _privateConstructorUsedError;
+  StoreCategoryField get storeCategoryField =>
+      throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   FormzStatus get statusSubmission => throw _privateConstructorUsedError;
 
@@ -41,6 +43,7 @@ abstract class $FormStoreStateCopyWith<$Res> {
       AddressField addressField,
       PhoneField phoneField,
       UseStockOpnameField useStockOpnameField,
+      StoreCategoryField storeCategoryField,
       String message,
       FormzStatus statusSubmission});
 }
@@ -61,6 +64,7 @@ class _$FormStoreStateCopyWithImpl<$Res>
     Object? addressField = freezed,
     Object? phoneField = freezed,
     Object? useStockOpnameField = freezed,
+    Object? storeCategoryField = freezed,
     Object? message = freezed,
     Object? statusSubmission = freezed,
   }) {
@@ -85,6 +89,10 @@ class _$FormStoreStateCopyWithImpl<$Res>
           ? _value.useStockOpnameField
           : useStockOpnameField // ignore: cast_nullable_to_non_nullable
               as UseStockOpnameField,
+      storeCategoryField: storeCategoryField == freezed
+          ? _value.storeCategoryField
+          : storeCategoryField // ignore: cast_nullable_to_non_nullable
+              as StoreCategoryField,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -110,6 +118,7 @@ abstract class _$$_FormStoreStateCopyWith<$Res>
       AddressField addressField,
       PhoneField phoneField,
       UseStockOpnameField useStockOpnameField,
+      StoreCategoryField storeCategoryField,
       String message,
       FormzStatus statusSubmission});
 }
@@ -132,6 +141,7 @@ class __$$_FormStoreStateCopyWithImpl<$Res>
     Object? addressField = freezed,
     Object? phoneField = freezed,
     Object? useStockOpnameField = freezed,
+    Object? storeCategoryField = freezed,
     Object? message = freezed,
     Object? statusSubmission = freezed,
   }) {
@@ -156,6 +166,10 @@ class __$$_FormStoreStateCopyWithImpl<$Res>
           ? _value.useStockOpnameField
           : useStockOpnameField // ignore: cast_nullable_to_non_nullable
               as UseStockOpnameField,
+      storeCategoryField: storeCategoryField == freezed
+          ? _value.storeCategoryField
+          : storeCategoryField // ignore: cast_nullable_to_non_nullable
+              as StoreCategoryField,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -177,6 +191,7 @@ class _$_FormStoreState extends _FormStoreState {
       this.addressField = const AddressField.pure(),
       this.phoneField = const PhoneField.pure(),
       this.useStockOpnameField = const UseStockOpnameField.pure(),
+      this.storeCategoryField = const StoreCategoryField.pure(),
       this.message = '',
       this.statusSubmission = FormzStatus.pure})
       : super._();
@@ -197,6 +212,9 @@ class _$_FormStoreState extends _FormStoreState {
   final UseStockOpnameField useStockOpnameField;
   @override
   @JsonKey()
+  final StoreCategoryField storeCategoryField;
+  @override
+  @JsonKey()
   final String message;
   @override
   @JsonKey()
@@ -204,7 +222,7 @@ class _$_FormStoreState extends _FormStoreState {
 
   @override
   String toString() {
-    return 'FormStoreState(id: $id, storeNameField: $storeNameField, addressField: $addressField, phoneField: $phoneField, useStockOpnameField: $useStockOpnameField, message: $message, statusSubmission: $statusSubmission)';
+    return 'FormStoreState(id: $id, storeNameField: $storeNameField, addressField: $addressField, phoneField: $phoneField, useStockOpnameField: $useStockOpnameField, storeCategoryField: $storeCategoryField, message: $message, statusSubmission: $statusSubmission)';
   }
 
   @override
@@ -221,6 +239,8 @@ class _$_FormStoreState extends _FormStoreState {
                 .equals(other.phoneField, phoneField) &&
             const DeepCollectionEquality()
                 .equals(other.useStockOpnameField, useStockOpnameField) &&
+            const DeepCollectionEquality()
+                .equals(other.storeCategoryField, storeCategoryField) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
                 .equals(other.statusSubmission, statusSubmission));
@@ -234,6 +254,7 @@ class _$_FormStoreState extends _FormStoreState {
       const DeepCollectionEquality().hash(addressField),
       const DeepCollectionEquality().hash(phoneField),
       const DeepCollectionEquality().hash(useStockOpnameField),
+      const DeepCollectionEquality().hash(storeCategoryField),
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(statusSubmission));
 
@@ -250,6 +271,7 @@ abstract class _FormStoreState extends FormStoreState {
       final AddressField addressField,
       final PhoneField phoneField,
       final UseStockOpnameField useStockOpnameField,
+      final StoreCategoryField storeCategoryField,
       final String message,
       final FormzStatus statusSubmission}) = _$_FormStoreState;
   const _FormStoreState._() : super._();
@@ -264,6 +286,8 @@ abstract class _FormStoreState extends FormStoreState {
   PhoneField get phoneField;
   @override
   UseStockOpnameField get useStockOpnameField;
+  @override
+  StoreCategoryField get storeCategoryField;
   @override
   String get message;
   @override

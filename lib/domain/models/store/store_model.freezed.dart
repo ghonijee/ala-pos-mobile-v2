@@ -30,6 +30,10 @@ mixin _$StoreModel {
   String? get phone => throw _privateConstructorUsedError;
   @JsonKey(name: 'use_stock_opname')
   bool get useStockOpname => throw _privateConstructorUsedError;
+  @JsonKey(name: 'store_category_id')
+  int? get storeCategoryId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'store_category_name')
+  String? get storeCategoryName => throw _privateConstructorUsedError;
   @JsonKey(name: 'image_url')
   String? get imageUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'image_path')
@@ -58,6 +62,8 @@ abstract class $StoreModelCopyWith<$Res> {
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone') String? phone,
       @JsonKey(name: 'use_stock_opname') bool useStockOpname,
+      @JsonKey(name: 'store_category_id') int? storeCategoryId,
+      @JsonKey(name: 'store_category_name') String? storeCategoryName,
       @JsonKey(name: 'image_url') String? imageUrl,
       @JsonKey(name: 'image_path') String? imagePath,
       @JsonKey(name: 'created_at') DateTime? createdAt,
@@ -80,6 +86,8 @@ class _$StoreModelCopyWithImpl<$Res> implements $StoreModelCopyWith<$Res> {
     Object? address = freezed,
     Object? phone = freezed,
     Object? useStockOpname = freezed,
+    Object? storeCategoryId = freezed,
+    Object? storeCategoryName = freezed,
     Object? imageUrl = freezed,
     Object? imagePath = freezed,
     Object? createdAt = freezed,
@@ -107,6 +115,14 @@ class _$StoreModelCopyWithImpl<$Res> implements $StoreModelCopyWith<$Res> {
           ? _value.useStockOpname
           : useStockOpname // ignore: cast_nullable_to_non_nullable
               as bool,
+      storeCategoryId: storeCategoryId == freezed
+          ? _value.storeCategoryId
+          : storeCategoryId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      storeCategoryName: storeCategoryName == freezed
+          ? _value.storeCategoryName
+          : storeCategoryName // ignore: cast_nullable_to_non_nullable
+              as String?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -144,6 +160,8 @@ abstract class _$$_StoreModelCopyWith<$Res>
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone') String? phone,
       @JsonKey(name: 'use_stock_opname') bool useStockOpname,
+      @JsonKey(name: 'store_category_id') int? storeCategoryId,
+      @JsonKey(name: 'store_category_name') String? storeCategoryName,
       @JsonKey(name: 'image_url') String? imageUrl,
       @JsonKey(name: 'image_path') String? imagePath,
       @JsonKey(name: 'created_at') DateTime? createdAt,
@@ -168,6 +186,8 @@ class __$$_StoreModelCopyWithImpl<$Res> extends _$StoreModelCopyWithImpl<$Res>
     Object? address = freezed,
     Object? phone = freezed,
     Object? useStockOpname = freezed,
+    Object? storeCategoryId = freezed,
+    Object? storeCategoryName = freezed,
     Object? imageUrl = freezed,
     Object? imagePath = freezed,
     Object? createdAt = freezed,
@@ -195,6 +215,14 @@ class __$$_StoreModelCopyWithImpl<$Res> extends _$StoreModelCopyWithImpl<$Res>
           ? _value.useStockOpname
           : useStockOpname // ignore: cast_nullable_to_non_nullable
               as bool,
+      storeCategoryId: storeCategoryId == freezed
+          ? _value.storeCategoryId
+          : storeCategoryId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      storeCategoryName: storeCategoryName == freezed
+          ? _value.storeCategoryName
+          : storeCategoryName // ignore: cast_nullable_to_non_nullable
+              as String?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -228,6 +256,8 @@ class _$_StoreModel implements _StoreModel {
       @JsonKey(name: 'address') this.address,
       @JsonKey(name: 'phone') this.phone,
       @JsonKey(name: 'use_stock_opname') this.useStockOpname = true,
+      @JsonKey(name: 'store_category_id') this.storeCategoryId,
+      @JsonKey(name: 'store_category_name') this.storeCategoryName,
       @JsonKey(name: 'image_url') this.imageUrl,
       @JsonKey(name: 'image_path') this.imagePath,
       @JsonKey(name: 'created_at') this.createdAt,
@@ -253,6 +283,12 @@ class _$_StoreModel implements _StoreModel {
   @JsonKey(name: 'use_stock_opname')
   final bool useStockOpname;
   @override
+  @JsonKey(name: 'store_category_id')
+  final int? storeCategoryId;
+  @override
+  @JsonKey(name: 'store_category_name')
+  final String? storeCategoryName;
+  @override
   @JsonKey(name: 'image_url')
   final String? imageUrl;
   @override
@@ -270,7 +306,7 @@ class _$_StoreModel implements _StoreModel {
 
   @override
   String toString() {
-    return 'StoreModel(id: $id, name: $name, address: $address, phone: $phone, useStockOpname: $useStockOpname, imageUrl: $imageUrl, imagePath: $imagePath, createdAt: $createdAt, updatedAt: $updatedAt, laravelThroughKey: $laravelThroughKey)';
+    return 'StoreModel(id: $id, name: $name, address: $address, phone: $phone, useStockOpname: $useStockOpname, storeCategoryId: $storeCategoryId, storeCategoryName: $storeCategoryName, imageUrl: $imageUrl, imagePath: $imagePath, createdAt: $createdAt, updatedAt: $updatedAt, laravelThroughKey: $laravelThroughKey)';
   }
 
   @override
@@ -284,6 +320,10 @@ class _$_StoreModel implements _StoreModel {
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality()
                 .equals(other.useStockOpname, useStockOpname) &&
+            const DeepCollectionEquality()
+                .equals(other.storeCategoryId, storeCategoryId) &&
+            const DeepCollectionEquality()
+                .equals(other.storeCategoryName, storeCategoryName) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
@@ -301,6 +341,8 @@ class _$_StoreModel implements _StoreModel {
       const DeepCollectionEquality().hash(address),
       const DeepCollectionEquality().hash(phone),
       const DeepCollectionEquality().hash(useStockOpname),
+      const DeepCollectionEquality().hash(storeCategoryId),
+      const DeepCollectionEquality().hash(storeCategoryName),
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(imagePath),
       const DeepCollectionEquality().hash(createdAt),
@@ -327,6 +369,8 @@ abstract class _StoreModel implements StoreModel {
           @JsonKey(name: 'address') final String? address,
           @JsonKey(name: 'phone') final String? phone,
           @JsonKey(name: 'use_stock_opname') final bool useStockOpname,
+          @JsonKey(name: 'store_category_id') final int? storeCategoryId,
+          @JsonKey(name: 'store_category_name') final String? storeCategoryName,
           @JsonKey(name: 'image_url') final String? imageUrl,
           @JsonKey(name: 'image_path') final String? imagePath,
           @JsonKey(name: 'created_at') final DateTime? createdAt,
@@ -352,6 +396,12 @@ abstract class _StoreModel implements StoreModel {
   @override
   @JsonKey(name: 'use_stock_opname')
   bool get useStockOpname;
+  @override
+  @JsonKey(name: 'store_category_id')
+  int? get storeCategoryId;
+  @override
+  @JsonKey(name: 'store_category_name')
+  String? get storeCategoryName;
   @override
   @JsonKey(name: 'image_url')
   String? get imageUrl;

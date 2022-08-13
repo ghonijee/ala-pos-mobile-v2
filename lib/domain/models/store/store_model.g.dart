@@ -13,6 +13,8 @@ _$_StoreModel _$$_StoreModelFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
       phone: json['phone'] as String?,
       useStockOpname: json['use_stock_opname'] as bool? ?? true,
+      storeCategoryId: json['store_category_id'] as int?,
+      storeCategoryName: json['store_category_name'] as String?,
       imageUrl: json['image_url'] as String?,
       imagePath: json['image_path'] as String?,
       createdAt: json['created_at'] == null
@@ -31,6 +33,8 @@ Map<String, dynamic> _$$_StoreModelToJson(_$_StoreModel instance) =>
       'address': instance.address,
       'phone': instance.phone,
       'use_stock_opname': instance.useStockOpname,
+      'store_category_id': instance.storeCategoryId,
+      'store_category_name': instance.storeCategoryName,
       'image_url': instance.imageUrl,
       'image_path': instance.imagePath,
       'created_at': instance.createdAt?.toIso8601String(),
