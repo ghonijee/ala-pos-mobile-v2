@@ -1,56 +1,72 @@
-# name: Build apk and distribute app
-# on: 
-#   pull_request:
-#     types: [closed]
-#     branches:
-#       -  production
+name: Build apk and distribute app
+on: 
+  pull_request:
+    types: [closed]
+    branches:
+      -  production
+  push:
+    branches:
+      - development
 
-# jobs:
-#   build:
-#     name: Build App and Upload to Internal Testing
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-java@v2
-#         with:
-#           distribution: 'zulu'
-#           java-version: '11'
-#       - uses: subosito/flutter-action@v1
-#         with:
-#           channel: 'stable'
+jobs:
+  build:
+    name: Build App and Upload to Internal Testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
 
-#       - name: Download Android keystore
-#         id: android_keystore
-#         uses: timheuer/base64-to-file@v1.0.3
-#         with:
-#           fileName: key.jks
-#           encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      - name: Download Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: key.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
 
-#       - name: Create key.properties
-#         run: |
-#           echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
-#           echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
-#           echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
-#           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+      - name: Create key.properties
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
       
-#       - name: Install pub Dependencies
-#         run: flutter pub get
-        # - name: Run build_runner
-        #   run: flutter pub run build_runner build --delete-conflicting-outputs
-#       - name: Build APK QAS API Server
-#         run: flutter build apk --dart-define ENVIRONMENT=QAS
+      - name: Install pub Dependencies
+        run: flutter pub get
+      - name: Run build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+      - name: Build APK QAS API Server
+        run: flutter build appbundle --release --dart-define ENV=.env.production
 
-        # - name: Create Github Release
-        #   uses: ncipollo/release-action@v1
-        #   with:
-        #     artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab"
-        #     token: ${{ secrets.RELEASES_TOKEN }}
+      - name: Create Github Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab"
+          token: ${{ secrets.RELEASES_TOKEN }}
+        - name: Decode Google Play Key API
+          id: android_keystore
+          uses: timheuer/base64-to-file@v1.0.3
+          with:
+            fileName: play_config.json
+            encodedString: ${{ secrets.PLAY_CONFIG_JSON }}
+        - name: upload to playstore (Internal Testing)
+          uses: r0adkll/upload-google-play@v1
+          with:
+            serviceAccountJsonPlainText: ${{ steps.android_keystore.filePath }}
+            packageName: com.ala.alapos
+            releaseFiles: app/build/outputs/bundle/release/app-release.aab
+            track: internal
       
-#       - name: Upload to Firebase App Distribution
-#         uses: wzieba/Firebase-Distribution-Github-Action@v1
-#         with:
-#           appId: ${{secrets.FIREBASE_APP_ID}}
-#           token: ${{secrets.FIREBASE_TOKEN_ID}}
-#           groups: internal-group
-#           file: build/app/outputs/flutter-apk/app-release.apk
-#           releaseNotesFile: release_notes.md
+      # - name: Upload to Firebase App Distribution
+      #   uses: wzieba/Firebase-Distribution-Github-Action@v1
+      #   with:
+      #     appId: ${{secrets.FIREBASE_APP_ID}}
+      #     token: ${{secrets.FIREBASE_TOKEN_ID}}
+      #     groups: internal-group
+      #     file: build/app/outputs/flutter-apk/app-release.apk
+      #     releaseNotesFile: release_notes.md
