@@ -54,7 +54,7 @@ jobs:
       - name: upload to playstore (Internal Testing)
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJsonPlainText: android/service_account_key.json
+          serviceAccountJson: android/service_account_key.json
           packageName: com.ala.alapos
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: internal
@@ -68,6 +68,6 @@ jobs:
       - name: Tag
         uses: K-Phoen/semver-release-action@master
         with:
-          release_branch: master
+          release_branch: production
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
