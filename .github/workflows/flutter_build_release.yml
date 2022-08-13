@@ -2,7 +2,7 @@
 name: "Flutter Build and Release Internal Testing"
 on:
   push:
-    branches:
+    tags:
       - "v*"
 jobs:
   # CI

@@ -59,7 +59,7 @@ jobs:
       - name: upload to playstore (Internal Testing)
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJsonPlainText: ${{ steps.google_key_api.filePath }}
+          serviceAccountJson: ${{ steps.google_key_api.filePath }}
           packageName: com.ala.alapos
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: internal
