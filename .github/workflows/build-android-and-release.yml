@@ -42,25 +42,24 @@ jobs:
         run: flutter pub run build_runner build --delete-conflicting-outputs
       - name: Build APK QAS API Server
         run: flutter build appbundle --release --dart-define ENV=.env.production
-
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab"
           token: ${{ secrets.RELEASES_TOKEN }}
-        - name: Decode Google Play Key API
-          id: android_keystore
-          uses: timheuer/base64-to-file@v1.0.3
-          with:
-            fileName: play_config.json
-            encodedString: ${{ secrets.PLAY_CONFIG_JSON }}
-        - name: upload to playstore (Internal Testing)
-          uses: r0adkll/upload-google-play@v1
-          with:
-            serviceAccountJsonPlainText: ${{ steps.android_keystore.filePath }}
-            packageName: com.ala.alapos
-            releaseFiles: app/build/outputs/bundle/release/app-release.aab
-            track: internal
+      - name: Decode Google Play Key API
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: play_config.json
+          encodedString: ${{ secrets.PLAY_CONFIG_JSON }}
+      - name: upload to playstore (Internal Testing)
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ steps.android_keystore.filePath }}
+          packageName: com.ala.alapos
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
+          track: internal
       
       # - name: Upload to Firebase App Distribution
       #   uses: wzieba/Firebase-Distribution-Github-Action@v1
