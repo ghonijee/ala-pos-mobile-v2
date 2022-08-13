@@ -42,26 +42,21 @@ jobs:
         run: flutter pub run build_runner build --delete-conflicting-outputs
       - name: Build APK QAS API Server
         run: flutter build appbundle --release --dart-define ENV=.env.production
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.36.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          INITIAL_VERSION: 1.0.3
-          DEFAULT_BUMP: "#patch"
-          PRERELEASE_SUFFIX: null
       - name: Decode Google Play Key API
         id: google_key_api
         uses: timheuer/base64-to-file@v1.0.3
         with:
           fileName: play_config.json
           encodedString: ${{ secrets.PLAY_CONFIG_JSON }}
+      - name: Create service_account_key.json
+        run: |
+          echo "${{ steps.google_key_api.outputs.filePath }}" > android/service_account_key.json
       - name: upload to playstore (Internal Testing)
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJson: ${{ steps.google_key_api.filePath }}
+          serviceAccountJsonPlainText: android/service_account_key.json
           packageName: com.ala.alapos
-          releaseFiles: app/build/outputs/bundle/release/app-release.aab
+          releaseFiles: build/outputs/bundle/release/app-release.aab
           track: internal
           status: inProgress
       
