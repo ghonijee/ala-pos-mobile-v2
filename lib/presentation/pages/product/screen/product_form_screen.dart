@@ -22,7 +22,6 @@ class ProductFormScreen extends HookWidget {
       appBar: AppBar(
         title: Text(
           "Tambah Produk",
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.surface),
         ),
         actions: [],
       ),
@@ -60,7 +59,7 @@ class ProductFormScreen extends HookWidget {
               style: ElevatedButton.styleFrom(
                 minimumSize: Size.fromHeight(40.sp),
               ),
-              onPressed: state.status == FormzStatus.invalid
+              onPressed: state.status == FormzStatus.invalid || state.status == FormzStatus.pure
                   ? null
                   : () {
                       if (context.read<FormProductCubit>().isUpdate) {

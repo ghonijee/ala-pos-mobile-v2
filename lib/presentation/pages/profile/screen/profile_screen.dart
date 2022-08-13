@@ -37,13 +37,9 @@ class ProfileScreen extends HookWidget {
             context.router.pop();
           },
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
+        // backgroundColor: Theme.of(context).backgroundColor,
         title: Text(
           "Profil & Pengaturan",
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
         ),
         centerTitle: false,
         elevation: 0,
@@ -98,7 +94,7 @@ class ProfileScreen extends HookWidget {
                   ProfileMenuItemWidget(
                     icon: Icon(Ionicons.storefront_outline),
                     title: "Ubah Profil Usaha",
-                    subtitle: store.name,
+                    // subtitle: store.name,
                     onTap: () {
                       var formCubit = context.read<FormStoreCubit>();
                       formCubit.show(store);

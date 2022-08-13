@@ -44,10 +44,10 @@ class ProductFormStockWidget extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Stok Produk *"),
+                    Text("Stok Produk"),
                     TextFormField(
                       key: Key("field_stock_product"),
-                      initialValue: formProductCubit.state.stock.value!.toThousandSeparator(),
+                      initialValue: state.stock.value?.toThousandSeparator(),
                       style: Theme.of(context).textTheme.bodyText1,
                       onChanged: (value) => formProductCubit.stockChange(value.toNumber()),
                       inputFormatters: [
@@ -86,12 +86,12 @@ class ProductFormStockWidget extends HookWidget {
                       inputFormatters: [
                         formater,
                       ],
-                      initialValue: formProductCubit.state.minStock.value.toThousandSeparator(),
+                      initialValue: formProductCubit.state.minStock.value?.toThousandSeparator(),
                       style: Theme.of(context).textTheme.bodyText1,
                       onChanged: (value) => formProductCubit.minStockChange(value.toNumber()),
                       decoration: InputDecoration(
                         errorText: state.minStock.invalid ? state.minStock.error!.message : null,
-                        hintText: "0",
+                        hintText: "Minimal stock untuk peringatan",
                         prefixStyle: Theme.of(context).textTheme.bodyText1,
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(

@@ -109,6 +109,7 @@ class PosPage extends HookWidget {
                             suffixIcon: SizedBox(
                               width: 25.w,
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   IconButton(
                                     icon: Icon(
@@ -131,11 +132,11 @@ class PosPage extends HookWidget {
                                       });
                                     },
                                   ),
-                                  IconButton(
-                                    onPressed: () {
+                                  InkWell(
+                                    onTap: () {
                                       context.router.pushNamed(RouteName.posCustomProduct);
                                     },
-                                    icon: Icon(
+                                    child: Icon(
                                       Ionicons.flash_outline,
                                       color: Theme.of(context).colorScheme.primary,
                                       size: 18.sp,
@@ -211,7 +212,7 @@ class PosPage extends HookWidget {
                                               }
 
                                               // Jika store tidak menggunakan stock opname
-                                              if (item.stock > 0) {
+                                              if (item.stock! > 0) {
                                                 cartCubit.add(item);
                                               } else {
                                                 SnackbarMessage.failed(context, "Stok product tidak tersedia");

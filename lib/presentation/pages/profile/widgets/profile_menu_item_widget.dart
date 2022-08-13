@@ -22,7 +22,7 @@ class ProfileMenuItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        height: 30.sp,
+        height: 32.sp,
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           SizedBox(
             width: 50.sp,
@@ -34,8 +34,8 @@ class ProfileMenuItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(title, style: Theme.of(context).textTheme.bodyText1),
-                    Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
+                    Text(title, style: Theme.of(context).textTheme.bodyText2),
+                    Text(subtitle, style: Theme.of(context).textTheme.bodyText2),
                   ],
                 ))
               : Expanded(child: Text(title, style: Theme.of(context).textTheme.bodyText1)),

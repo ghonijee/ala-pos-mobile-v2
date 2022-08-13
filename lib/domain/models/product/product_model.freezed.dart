@@ -29,7 +29,7 @@ mixin _$ProductModel {
   @JsonKey(name: "price")
   int get price => throw _privateConstructorUsedError;
   @JsonKey(name: "stock")
-  int get stock => throw _privateConstructorUsedError;
+  int? get stock => throw _privateConstructorUsedError;
   @JsonKey(name: "description", nullable: true)
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: "code", nullable: true)
@@ -63,7 +63,7 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: "store_id") int? storeId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "price") int price,
-      @JsonKey(name: "stock") int stock,
+      @JsonKey(name: "stock") int? stock,
       @JsonKey(name: "description", nullable: true) String? description,
       @JsonKey(name: "code", nullable: true) String? code,
       @JsonKey(name: "cost", nullable: true) int? cost,
@@ -118,7 +118,7 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
       stock: stock == freezed
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -167,7 +167,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       @JsonKey(name: "store_id") int? storeId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "price") int price,
-      @JsonKey(name: "stock") int stock,
+      @JsonKey(name: "stock") int? stock,
       @JsonKey(name: "description", nullable: true) String? description,
       @JsonKey(name: "code", nullable: true) String? code,
       @JsonKey(name: "cost", nullable: true) int? cost,
@@ -225,7 +225,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
       stock: stock == freezed
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -297,7 +297,7 @@ class _$_ProductModel implements _ProductModel {
   final int price;
   @override
   @JsonKey(name: "stock")
-  final int stock;
+  final int? stock;
   @override
   @JsonKey(name: "description", nullable: true)
   final String? description;
@@ -392,7 +392,7 @@ abstract class _ProductModel implements ProductModel {
       @JsonKey(name: "price")
           required final int price,
       @JsonKey(name: "stock")
-          final int stock,
+          final int? stock,
       @JsonKey(name: "description", nullable: true)
           final String? description,
       @JsonKey(name: "code", nullable: true)
@@ -427,7 +427,7 @@ abstract class _ProductModel implements ProductModel {
   int get price;
   @override
   @JsonKey(name: "stock")
-  int get stock;
+  int? get stock;
   @override
   @JsonKey(name: "description", nullable: true)
   String? get description;

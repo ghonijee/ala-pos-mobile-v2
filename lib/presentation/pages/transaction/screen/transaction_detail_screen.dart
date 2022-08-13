@@ -120,7 +120,7 @@ class TransactionDetailScreen extends StatelessWidget {
                         ),
                         Container(
                           // constraints: BoxConstraints(minHeight: 8.h),
-                          height: 80.sp,
+                          // height: 80.sp,
                           padding: EdgeInsets.symmetric(
                             horizontal: AppSpacings.m.sp,
                             vertical: AppSpacings.s.sp,

@@ -36,12 +36,12 @@ class FormProductState with _$FormProductState {
         id: id!,
         storeId: storeId!,
         name: name.value,
-        price: price.value!,
-        stock: stock.value!,
-        minStock: minStock.value,
-        code: code.value!,
+        price: price.value ?? 0,
+        stock: stock.value ?? 0,
+        minStock: minStock.value ?? 0,
+        code: code.value,
         cost: cost.value,
-        description: desc.value!,
-        unit: unit.value!,
+        description: desc.value,
+        unit: unit.value,
       );
 }

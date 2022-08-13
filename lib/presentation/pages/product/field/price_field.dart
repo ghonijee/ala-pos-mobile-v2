@@ -11,7 +11,7 @@ enum PriceValidationError {
 
 class PriceField extends FormzInput<int?, PriceValidationError> {
   // Call super.pure to represent an unmodified form input.
-  const PriceField.pure() : super.pure(0);
+  const PriceField.pure() : super.pure(null);
 
   // Call super.dirty to represent a modified form input.
   const PriceField.dirty([int? value]) : super.dirty(value);

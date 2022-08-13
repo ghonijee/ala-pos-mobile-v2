@@ -18,7 +18,7 @@ class ProductFormDetailWidget extends HookWidget {
     var formProductCubit = context.read<FormProductCubit>();
 
     var codeController = useTextEditingController();
-    codeController.text = formProductCubit.state.code.value!;
+    codeController.text = formProductCubit.state.code.value ?? "";
 
     return BlocBuilder<FormProductCubit, FormProductState>(
       builder: (context, state) {

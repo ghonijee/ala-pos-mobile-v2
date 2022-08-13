@@ -24,78 +24,75 @@ class ProductFormMainWidget extends HookWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.inversePrimary,
           ),
-          child: Column(
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Nama *"),
-                    TextFormField(
-                      initialValue: formProductCubit.state.name.value,
-                      style: Theme.of(context).textTheme.bodyText1,
-                      onChanged: (value) => formProductCubit.nameChange(value),
-                      decoration: InputDecoration(
-                        errorText: state.name.invalid ? state.name.error?.message : null,
-                        hintText: "Nama Produk",
-                        prefixStyle: Theme.of(context).textTheme.bodyText1,
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,
-                          ),
-                        ),
+                Text("Nama *"),
+                TextFormField(
+                  initialValue: state.name.value,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  onChanged: (value) => formProductCubit.nameChange(value),
+                  decoration: InputDecoration(
+                    errorText: state.name.invalid ? state.name.error?.message : null,
+                    hintText: "Nama Produk",
+                    prefixStyle: Theme.of(context).textTheme.bodyText1,
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
-                  ],
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,
+                      ),
+                    ),
+                  ),
                 ),
+              ],
+            ),
+            SizedBox(
+              height: AppSpacings.m.sp,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Harga *"),
                 SizedBox(
-                  height: AppSpacings.m.sp,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Harga *"),
-                    SizedBox(
-                        // height: AppSpacings.s,
-                        ),
-                    TextFormField(
-                      // controller: priceField,
-                      initialValue: formProductCubit.state.price.value!.toThousandSeparator(),
-                      onChanged: (value) => formProductCubit.priceChange(value.toNumber()),
-                      style: Theme.of(context).textTheme.bodyText1,
-                      inputFormatters: [
-                        MoneyInputFormatter(
-                          thousandSeparator: ThousandSeparator.Period,
-                          mantissaLength: 0,
-                        ),
-                      ],
-                      decoration: InputDecoration(
-                        hintText: "Rp. 0",
-                        errorText: state.price.error?.message,
-                        prefixStyle: Theme.of(context).textTheme.bodyText1,
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,
-                          ),
-                        ),
-                      ),
+                    // height: AppSpacings.s,
+                    ),
+                TextFormField(
+                  // controller: priceField,
+                  initialValue: state.price.value?.toThousandSeparator(),
+                  onChanged: (value) => formProductCubit.priceChange(value.toNumber()),
+                  style: Theme.of(context).textTheme.bodyText1,
+                  inputFormatters: [
+                    MoneyInputFormatter(
+                      thousandSeparator: ThousandSeparator.Period,
+                      mantissaLength: 0,
                     ),
                   ],
+                  decoration: InputDecoration(
+                    hintText: "Rp. 0",
+                    errorText: state.price.invalid ? state.price.error?.message : null,
+                    prefixStyle: Theme.of(context).textTheme.bodyText1,
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,
+                      ),
+                    ),
+                  ),
                 ),
-              ]),
+              ],
+            ),
+          ]),
         );
       },
     );

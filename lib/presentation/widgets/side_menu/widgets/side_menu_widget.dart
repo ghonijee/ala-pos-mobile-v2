@@ -43,7 +43,6 @@ class SideMenuView extends StatelessWidget {
             children: <Widget>[
               SizedBox(
                 height: 100.sp,
-                // width: 0.w,
                 child: DrawerHeader(
                   margin: EdgeInsets.zero,
                   padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl.sp, vertical: AppSpacings.m.sp),

@@ -43,7 +43,6 @@ class ProductGridScreen extends HookWidget {
           appBar: AppBar(
             title: Text(
               "Daftar Produk",
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.surface),
             ),
             actions: [
               IconButton(

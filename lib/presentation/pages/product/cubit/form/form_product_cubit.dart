@@ -30,7 +30,7 @@ class FormProductCubit extends Cubit<FormProductState> {
     emit(FormProductState(
       id: 0,
       storeId: storeActive.id,
-      stock: StockField.dirty(0),
+      statusSubmission: FormzStatus.pure,
     ));
   }
 
@@ -103,7 +103,7 @@ class FormProductCubit extends Cubit<FormProductState> {
   }
 
   minStockChange(int? value) {
-    final minStockField = MinStockField.dirty(value ?? 0);
+    final minStockField = MinStockField.dirty(value);
     emit(state.copyWith(
       minStock: minStockField,
     ));
