@@ -56,15 +56,18 @@ jobs:
         with:
           serviceAccountJsonPlainText: android/service_account_key.json
           packageName: com.ala.alapos
-          releaseFiles: build/outputs/bundle/release/app-release.aab
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: internal
           status: inProgress
-      
-      # - name: Upload to Firebase App Distribution
-      #   uses: wzieba/Firebase-Distribution-Github-Action@v1
-      #   with:
-      #     appId: ${{secrets.FIREBASE_APP_ID}}
-      #     token: ${{secrets.FIREBASE_TOKEN_ID}}
-      #     groups: internal-group
-      #     file: build/app/outputs/flutter-apk/app-release.apk
-      #     releaseNotesFile: release_notes.md
+  # https://github.com/marketplace/actions/semver-release
+  release:
+    name: Create Tag by PR Semver
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
+    steps:
+      - name: Tag
+        uses: K-Phoen/semver-release-action@master
+        with:
+          release_branch: master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
