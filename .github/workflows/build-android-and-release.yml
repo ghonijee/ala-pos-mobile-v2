@@ -50,11 +50,14 @@ jobs:
           encodedString: ${{ secrets.PLAY_CONFIG_JSON }}
       - name: Create service_account_key.json
         run: |
-          echo "${{ steps.google_key_api.outputs.filePath }}" > android/service_account_key.json
+          cp ${{ steps.google_key_api.outputs.filePath }} android/service_account_key.json
+      # - name: Create service_account_key.json
+      #   run: |
+      #     echo "${{ steps.google_key_api.outputs.filePath }}" > android/service_account_key.json
       - name: upload to playstore (Internal Testing)
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJson: android/service_account_key.json
+          serviceAccountJson: ${{ steps.google_key_api.outputs.filePath }}
           packageName: com.ala.alapos
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: internal

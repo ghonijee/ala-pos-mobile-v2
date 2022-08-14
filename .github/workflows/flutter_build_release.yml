@@ -39,7 +39,7 @@ jobs:
           encodedString: ${{ secrets.PLAY_CONFIG_JSON }}
       - name: Create service_account_key.json
         run: |
-          cp steps.google_key_api.outputs.filePath android/service_account_key.json
+          cp ${{ steps.google_key_api.outputs.filePath }} android/service_account_key.json
       - name: Install pub Dependencies
         run: flutter pub get
       - name: Run build_runner
