@@ -36,4 +36,8 @@ class RouteName {
   static const profileChangePassword = "profile/change-password";
   static const profileStoreForm = "profile/store/form";
   static const profileStoreList = "profile/store";
+
+  // Setting
+  static const setting = "setting";
+  static const settingPrinter = "setting/printer";
 }

@@ -92,7 +92,7 @@ class SideMenuView extends StatelessWidget {
                               children: [
                                 Text(
                                   userModel.fullname!,
-                                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
                                         color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -109,7 +109,7 @@ class SideMenuView extends StatelessWidget {
                                       decoration: BoxDecoration(color: Theme.of(context).primaryColorDark, borderRadius: BorderRadius.all(Radius.circular(2.sp))),
                                       child: Text(
                                         userModel.userStatus ?? "Free",
-                                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                        style: Theme.of(context).textTheme.caption!.copyWith(
                                               color: Theme.of(context).primaryColor,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -151,11 +151,19 @@ class SideMenuView extends StatelessWidget {
                 iconData: Icons.outbox_rounded,
               ),
               SideMenuItemWidget(
-                  title: "Produk ",
-                  onTap: () {
-                    AutoRouter.of(context).replaceNamed(RouteName.product);
-                  },
-                  iconData: Icons.shopping_bag_rounded),
+                title: "Produk ",
+                onTap: () {
+                  AutoRouter.of(context).replaceNamed(RouteName.product);
+                },
+                iconData: Icons.shopping_bag_rounded,
+              ),
+              SideMenuItemWidget(
+                title: "Pengaturan ",
+                onTap: () {
+                  AutoRouter.of(context).pushNamed(RouteName.setting);
+                },
+                iconData: Ionicons.settings_outline,
+              ),
               Expanded(child: SizedBox()),
               SideMenuItemWidget(
                 title: "Keluar ",
