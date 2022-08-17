@@ -49,6 +49,8 @@ class ProductRepository {
     //
     try {
       ApiResponse response = await remoteSource.create(model.toJson());
+      print(response.toString());
+      print(model.toJson());
       if (response.status! == false) {
         throw Exception(response.message);
       }

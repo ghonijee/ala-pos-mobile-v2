@@ -33,8 +33,8 @@ class FormProductState with _$FormProductState {
   }
 
   ProductModel toModel() => ProductModel(
-        id: id!,
-        storeId: storeId!,
+        id: id,
+        storeId: storeId,
         name: name.value,
         price: price.value ?? 0,
         stock: stock.value ?? 0,

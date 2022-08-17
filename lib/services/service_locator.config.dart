@@ -109,8 +109,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i25.ReceiptCubit(get<_i11.StoreRepository>()));
   gh.factory<_i26.RegisterCubit>(
       () => _i26.RegisterCubit(get<_i16.AuthRepository>()));
-  gh.factory<_i27.SideMenuCubit>(
-      () => _i27.SideMenuCubit(get<_i16.AuthRepository>()));
+  gh.factory<_i27.SideMenuCubit>(() => _i27.SideMenuCubit(
+      get<_i16.AuthRepository>(), get<_i11.StoreRepository>()));
   gh.factory<_i28.SplashCubit>(
       () => _i28.SplashCubit(authRepository: get<_i16.AuthRepository>()));
   gh.factory<_i29.StoreFormCubit>(

@@ -19,15 +19,15 @@ class AlaApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Ala Pos",
         useInheritedMediaQuery: true,
-        supportedLocales: [
-          Locale('en'),
-          Locale('id'),
-        ],
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
+        // supportedLocales: [
+        //   Locale('en'),
+        //   Locale('id'),
+        // ],
+        // localizationsDelegates: [
+        //   GlobalMaterialLocalizations.delegate,
+        //   GlobalWidgetsLocalizations.delegate,
+        //   GlobalCupertinoLocalizations.delegate,
+        // ],
       );
     });
   }

@@ -9,7 +9,9 @@ import 'package:get_it/get_it.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../../domain/models/store/store_category_model.dart';
 import '../../../../../routes/route_page.dart';
+import '../../../../widgets/form_input/dropdown_custom.dart';
 
 class NewStoreFormPage extends StatelessWidget {
   const NewStoreFormPage({Key? key}) : super(key: key);
@@ -32,6 +34,7 @@ class NewStoreFormScreen extends HookWidget {
     final nameController = useTextEditingController();
     final phoneController = useTextEditingController();
     final addressController = useTextEditingController();
+    final selectedCategory = useState<StoreCategoryModel?>(null);
 
     final cubit = context.read<StoreFormCubit>();
 
@@ -111,6 +114,30 @@ class NewStoreFormScreen extends HookWidget {
                       controller: phoneController,
                       decoration: InputDecoration(label: Text("No. Telp")),
                     ),
+                    // SizedBox(
+                    //   height: AppSpacings.l.sp,
+                    // ),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Container(
+                    //       height: 40.sp,
+                    //       decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Color.fromARGB(255, 204, 204, 204)))),
+                    //       child: CustomDropDown<StoreCategoryModel>(
+                    //         // defaultSelectedIndex: cubit.listCategory.indexWhere((element) => state.storeCategoryField.value!.id == element.id),
+                    //         maxListHeight: 300,
+                    //         hintText: "Pilih jenis usaha",
+                    //         underline: false,
+                    //         items: cubit.listCategory.map((e) => CustomDropdownMenuItem<StoreCategoryModel>(value: e, child: Text(e.name))).toList(),
+                    //         onChanged: (StoreCategoryModel? value) {
+                    //           cubit.changeCategory(value);
+                    //           selectedCategory.value = value;
+                    //         },
+                    //       ),
+                    //     )
+                    //   ],
+                    // ),
                     SizedBox(
                       height: 24.sp,
                     ),

@@ -20,21 +20,22 @@ mixin _$SideMenuState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserModel userModel) loaded,
+    required TResult Function(UserModel userModel, StoreModel storeModel)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserModel userModel)? loaded,
+    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserModel userModel)? loaded,
+    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +121,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserModel userModel) loaded,
+    required TResult Function(UserModel userModel, StoreModel storeModel)
+        loaded,
   }) {
     return initial();
   }
@@ -130,7 +132,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserModel userModel)? loaded,
+    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
   }) {
     return initial?.call();
   }
@@ -140,7 +142,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserModel userModel)? loaded,
+    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -229,7 +231,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserModel userModel) loaded,
+    required TResult Function(UserModel userModel, StoreModel storeModel)
+        loaded,
   }) {
     return loading();
   }
@@ -239,7 +242,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserModel userModel)? loaded,
+    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
   }) {
     return loading?.call();
   }
@@ -249,7 +252,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserModel userModel)? loaded,
+    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -301,7 +304,9 @@ abstract class _Loading implements SideMenuState {
 abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
-  $Res call({UserModel userModel});
+  $Res call({UserModel userModel, StoreModel storeModel});
+
+  $StoreModelCopyWith<$Res> get storeModel;
 }
 
 /// @nodoc
@@ -316,27 +321,41 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$SideMenuStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userModel = freezed,
+    Object? storeModel = freezed,
   }) {
     return _then(_$_Loaded(
       userModel == freezed
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      storeModel == freezed
+          ? _value.storeModel
+          : storeModel // ignore: cast_nullable_to_non_nullable
+              as StoreModel,
     ));
+  }
+
+  @override
+  $StoreModelCopyWith<$Res> get storeModel {
+    return $StoreModelCopyWith<$Res>(_value.storeModel, (value) {
+      return _then(_value.copyWith(storeModel: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(this.userModel);
+  const _$_Loaded(this.userModel, this.storeModel);
 
   @override
   final UserModel userModel;
+  @override
+  final StoreModel storeModel;
 
   @override
   String toString() {
-    return 'SideMenuState.loaded(userModel: $userModel)';
+    return 'SideMenuState.loaded(userModel: $userModel, storeModel: $storeModel)';
   }
 
   @override
@@ -344,12 +363,16 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other.userModel, userModel));
+            const DeepCollectionEquality().equals(other.userModel, userModel) &&
+            const DeepCollectionEquality()
+                .equals(other.storeModel, storeModel));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(userModel));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userModel),
+      const DeepCollectionEquality().hash(storeModel));
 
   @JsonKey(ignore: true)
   @override
@@ -361,9 +384,10 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserModel userModel) loaded,
+    required TResult Function(UserModel userModel, StoreModel storeModel)
+        loaded,
   }) {
-    return loaded(userModel);
+    return loaded(userModel, storeModel);
   }
 
   @override
@@ -371,9 +395,9 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserModel userModel)? loaded,
+    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
   }) {
-    return loaded?.call(userModel);
+    return loaded?.call(userModel, storeModel);
   }
 
   @override
@@ -381,11 +405,11 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserModel userModel)? loaded,
+    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(userModel);
+      return loaded(userModel, storeModel);
     }
     return orElse();
   }
@@ -426,9 +450,11 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements SideMenuState {
-  const factory _Loaded(final UserModel userModel) = _$_Loaded;
+  const factory _Loaded(
+      final UserModel userModel, final StoreModel storeModel) = _$_Loaded;
 
   UserModel get userModel;
+  StoreModel get storeModel;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

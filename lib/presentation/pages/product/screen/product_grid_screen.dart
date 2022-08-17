@@ -46,8 +46,8 @@ class ProductGridScreen extends HookWidget {
             ),
             actions: [
               IconButton(
-                onPressed: () {
-                  context.read<FormProductCubit>().createProduct();
+                onPressed: () async {
+                  await context.read<FormProductCubit>().createProduct();
                   context.router.navigateNamed(RouteName.productForm);
                 },
                 icon: Icon(
@@ -149,7 +149,9 @@ class ProductGridScreen extends HookWidget {
                                 ),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(fixedSize: Size(60.w, 35.sp)),
-                                  onPressed: () {
+                                  onPressed: () async {
+                                    await context.read<FormProductCubit>().createProduct();
+
                                     context.router.pushNamed(RouteName.productForm);
                                   },
                                   child: Text("Buat Sekarang"),
