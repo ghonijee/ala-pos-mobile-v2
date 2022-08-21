@@ -48,20 +48,20 @@ class SideMenuView extends StatelessWidget {
                 child: DrawerHeader(
                   margin: EdgeInsets.zero,
                   padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl.sp, vertical: AppSpacings.m.sp),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Ionicons.person_circle,
-                        size: 32.sp,
-                        color: Theme.of(context).primaryColorDark,
-                      ),
-                      SizedBox(
-                        width: AppSpacings.l,
-                      ),
-                      state.maybeWhen(
-                        orElse: () {
-                          return Column(
+                  child: state.maybeWhen(
+                    orElse: () {
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Ionicons.person_circle,
+                            size: 32.sp,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                          SizedBox(
+                            width: AppSpacings.l,
+                          ),
+                          Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -79,16 +79,37 @@ class SideMenuView extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.surface.withOpacity(0.1),
                               )
                             ],
-                          );
-                        },
-                        loaded: ((UserModel userModel, StoreModel storeModel) {
-                          return GestureDetector(
-                            onTap: () {
-                              context.router.pop();
+                          ),
+                          SizedBox(
+                            width: AppSpacings.s.sp,
+                          ),
+                          Expanded(child: SizedBox()),
+                          Icon(
+                            Ionicons.arrow_forward,
+                            color: Theme.of(context).primaryColorDark,
+                          ),
+                        ],
+                      );
+                    },
+                    loaded: ((UserModel userModel, StoreModel storeModel) {
+                      return GestureDetector(
+                        onTap: () {
+                          context.router.pop();
 
-                              AutoRouter.of(context).pushNamed(RouteName.profile);
-                            },
-                            child: Column(
+                          AutoRouter.of(context).pushNamed(RouteName.profile);
+                        },
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Ionicons.person_circle,
+                              size: 32.sp,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            SizedBox(
+                              width: AppSpacings.l,
+                            ),
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -112,34 +133,22 @@ class SideMenuView extends StatelessWidget {
                                             color: Theme.of(context).primaryColorDark,
                                           ),
                                     ),
-
-                                    // Container(
-                                    //   padding: EdgeInsets.symmetric(horizontal: 2.sp, vertical: 1.sp),
-                                    //   decoration: BoxDecoration(color: Theme.of(context).primaryColorDark, borderRadius: BorderRadius.all(Radius.circular(2.sp))),
-                                    //   child: Text(
-                                    //     userModel.userStatus ?? "Free",
-                                    //     style: Theme.of(context).textTheme.caption!.copyWith(
-                                    //           color: Theme.of(context).primaryColor,
-                                    //           fontWeight: FontWeight.bold,
-                                    //         ),
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                               ],
                             ),
-                          );
-                        }),
-                      ),
-                      SizedBox(
-                        width: AppSpacings.s.sp,
-                      ),
-                      Expanded(child: SizedBox()),
-                      Icon(
-                        Ionicons.arrow_forward,
-                        color: Theme.of(context).primaryColorDark,
-                      )
-                    ],
+                            SizedBox(
+                              width: AppSpacings.s.sp,
+                            ),
+                            Expanded(child: SizedBox()),
+                            Icon(
+                              Ionicons.arrow_forward,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
                   ),
                 ),
               ),
