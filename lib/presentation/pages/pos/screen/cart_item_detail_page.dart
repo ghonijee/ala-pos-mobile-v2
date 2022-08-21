@@ -1,3 +1,4 @@
+import 'package:ala_pos/presentation/pages/pages.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     var cartCubit = BlocProvider.of<CartCubit>(context);
+    var listProductCubit = BlocProvider.of<ListProductCubit>(context);
 
     var itemCart = useState(cartCubit.state.items[indexItem]);
     var namaProductField = useTextEditingController(text: itemCart.value.productName);
@@ -55,7 +57,7 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
                 SizedBox(
                     // height: AppSpacings.s,
                     ),
-                TextFormField(
+                TextField(
                   controller: namaProductField,
                   decoration: InputDecoration(
                     hintText: "Nama Product",
@@ -84,7 +86,7 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
                 SizedBox(
                     // height: AppSpacings.s,
                     ),
-                TextFormField(
+                TextField(
                   controller: jumlahProductField,
                   decoration: InputDecoration(
                     hintText: "Jumlah Item",
@@ -113,7 +115,7 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
                 SizedBox(
                     // height: AppSpacings.s,
                     ),
-                TextFormField(
+                TextField(
                   controller: hargaProductField,
                   inputFormatters: [
                     MoneyInputFormatter(
@@ -150,7 +152,7 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
                 SizedBox(
                     // height: AppSpacings.s,
                     ),
-                TextFormField(
+                TextField(
                   controller: discountProductField,
                   style: Theme.of(context).textTheme.bodyText1,
                   inputFormatters: [
@@ -189,7 +191,7 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
                 SizedBox(
                     // height: AppSpacings.s,
                     ),
-                TextFormField(
+                TextField(
                   controller: noteProductField,
                   minLines: 3,
                   maxLines: 5,
@@ -247,14 +249,17 @@ class CartItemDetailPage extends HookWidget implements AutoRouteWrapper {
                       minimumSize: Size.fromWidth(45.w),
                     ),
                     onPressed: () async {
-                      // context.pop();
-                      // context.router.pop();
-
                       itemCart.value.productName = namaProductField.text;
                       itemCart.value.price = hargaProductField.text.toNumber()!;
                       itemCart.value.quantity = jumlahProductField.text.toNumber()!;
                       itemCart.value.discountPrice = discountProductField.text.toNumber()!;
                       itemCart.value.note = noteProductField.text;
+
+                      if (listProductCubit.checkStock(itemCart.value.productId, itemCart.value.quantity)) {
+                        SnackbarMessage.failed(context, "Stok product tidak tersedia");
+                        return;
+                      }
+
                       await cartCubit.updateItem(itemCart.value, indexItem);
                       context.router.pop();
                     },
