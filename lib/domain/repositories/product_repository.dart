@@ -74,6 +74,19 @@ class ProductRepository {
     }
   }
 
+  Future<Either<FailureModel, ApiResponse>> delete(ProductModel model) async {
+    try {
+      ApiResponse response = await remoteSource.delete(model.id!.toString());
+      if (response.status! == false) {
+        throw Exception(response.message);
+      }
+
+      return Right(response);
+    } catch (e) {
+      return Left(FailureModel.serverError(e.toString()));
+    }
+  }
+
   Future<Either<FailureModel, ApiResponse>> show(String key) async {
     try {
       ApiResponse response = await remoteSource.show(key);
