@@ -19,10 +19,10 @@ class AlaApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Ala Pos",
         useInheritedMediaQuery: true,
-        // supportedLocales: [
-        //   Locale('en'),
-        //   Locale('id'),
-        // ],
+        supportedLocales: [
+          Locale('en'),
+          Locale('id'),
+        ],
         // localizationsDelegates: [
         //   GlobalMaterialLocalizations.delegate,
         //   GlobalWidgetsLocalizations.delegate,

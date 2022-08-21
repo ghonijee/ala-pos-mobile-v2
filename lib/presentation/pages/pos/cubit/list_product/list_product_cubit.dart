@@ -85,4 +85,14 @@ class ListProductCubit extends Cubit<ListProductState> {
       emit(ListProductState.fetchError());
     }
   }
+
+  /// Check product stock, `id` is Product ID and `quantity` is qty of product
+  bool checkStock(id, quantity) {
+    return state.maybeWhen(loaded: (data, nextPage) {
+      var product = data.firstWhere((element) => element.id == id);
+      return product.stock! < quantity;
+    }, orElse: () {
+      return false;
+    });
+  }
 }

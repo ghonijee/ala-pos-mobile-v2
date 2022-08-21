@@ -81,6 +81,21 @@ class FormProductCubit extends Cubit<FormProductState> {
     }
   }
 
+  deleteProduct() async {
+    try {
+      emit(state.copyWith(statusSubmission: FormzStatus.submissionInProgress));
+
+      var result = await productRepository.delete(state.toModel());
+      result.fold((failure) {
+        emit(state.copyWith(statusSubmission: FormzStatus.submissionFailure, message: failure.message));
+      }, (response) {
+        emit(state.copyWith(statusSubmission: FormzStatus.submissionSuccess, message: response.message!));
+      });
+    } catch (e) {
+      emit(state.copyWith(statusSubmission: FormzStatus.submissionFailure, message: e.toString()));
+    }
+  }
+
   nameChange(value) {
     final nameField = NameField.dirty(value);
     emit(state.copyWith(

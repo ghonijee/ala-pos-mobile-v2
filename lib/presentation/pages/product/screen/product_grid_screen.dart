@@ -30,6 +30,9 @@ class ProductGridScreen extends HookWidget {
       if (scrollController.offset == scrollController.position.maxScrollExtent) {
         masterProductCubit.getProductList(nextPage: true, initialData: false);
       }
+      if (scrollController.offset <= (scrollController.position.maxScrollExtent / -5)) {
+        masterProductCubit.getProductList(initialData: true);
+      }
     });
 
     return BlocConsumer<MasterProductCubit, MasterProductState>(
