@@ -19,9 +19,8 @@ mixin _$FormStoreState {
   int get id => throw _privateConstructorUsedError;
   StoreNameField get storeNameField => throw _privateConstructorUsedError;
   AddressField get addressField => throw _privateConstructorUsedError;
-  PhoneField get phoneField => throw _privateConstructorUsedError;
-  UseStockOpnameField get useStockOpnameField =>
-      throw _privateConstructorUsedError;
+  PhoneField get phoneField =>
+      throw _privateConstructorUsedError; // @Default(UseStockOpnameField.pure()) UseStockOpnameField useStockOpnameField,
   StoreCategoryField get storeCategoryField =>
       throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
@@ -42,7 +41,6 @@ abstract class $FormStoreStateCopyWith<$Res> {
       StoreNameField storeNameField,
       AddressField addressField,
       PhoneField phoneField,
-      UseStockOpnameField useStockOpnameField,
       StoreCategoryField storeCategoryField,
       String message,
       FormzStatus statusSubmission});
@@ -63,7 +61,6 @@ class _$FormStoreStateCopyWithImpl<$Res>
     Object? storeNameField = freezed,
     Object? addressField = freezed,
     Object? phoneField = freezed,
-    Object? useStockOpnameField = freezed,
     Object? storeCategoryField = freezed,
     Object? message = freezed,
     Object? statusSubmission = freezed,
@@ -85,10 +82,6 @@ class _$FormStoreStateCopyWithImpl<$Res>
           ? _value.phoneField
           : phoneField // ignore: cast_nullable_to_non_nullable
               as PhoneField,
-      useStockOpnameField: useStockOpnameField == freezed
-          ? _value.useStockOpnameField
-          : useStockOpnameField // ignore: cast_nullable_to_non_nullable
-              as UseStockOpnameField,
       storeCategoryField: storeCategoryField == freezed
           ? _value.storeCategoryField
           : storeCategoryField // ignore: cast_nullable_to_non_nullable
@@ -117,7 +110,6 @@ abstract class _$$_FormStoreStateCopyWith<$Res>
       StoreNameField storeNameField,
       AddressField addressField,
       PhoneField phoneField,
-      UseStockOpnameField useStockOpnameField,
       StoreCategoryField storeCategoryField,
       String message,
       FormzStatus statusSubmission});
@@ -140,7 +132,6 @@ class __$$_FormStoreStateCopyWithImpl<$Res>
     Object? storeNameField = freezed,
     Object? addressField = freezed,
     Object? phoneField = freezed,
-    Object? useStockOpnameField = freezed,
     Object? storeCategoryField = freezed,
     Object? message = freezed,
     Object? statusSubmission = freezed,
@@ -162,10 +153,6 @@ class __$$_FormStoreStateCopyWithImpl<$Res>
           ? _value.phoneField
           : phoneField // ignore: cast_nullable_to_non_nullable
               as PhoneField,
-      useStockOpnameField: useStockOpnameField == freezed
-          ? _value.useStockOpnameField
-          : useStockOpnameField // ignore: cast_nullable_to_non_nullable
-              as UseStockOpnameField,
       storeCategoryField: storeCategoryField == freezed
           ? _value.storeCategoryField
           : storeCategoryField // ignore: cast_nullable_to_non_nullable
@@ -190,7 +177,6 @@ class _$_FormStoreState extends _FormStoreState {
       this.storeNameField = const StoreNameField.pure(),
       this.addressField = const AddressField.pure(),
       this.phoneField = const PhoneField.pure(),
-      this.useStockOpnameField = const UseStockOpnameField.pure(),
       this.storeCategoryField = const StoreCategoryField.pure(),
       this.message = '',
       this.statusSubmission = FormzStatus.pure})
@@ -207,9 +193,7 @@ class _$_FormStoreState extends _FormStoreState {
   @override
   @JsonKey()
   final PhoneField phoneField;
-  @override
-  @JsonKey()
-  final UseStockOpnameField useStockOpnameField;
+// @Default(UseStockOpnameField.pure()) UseStockOpnameField useStockOpnameField,
   @override
   @JsonKey()
   final StoreCategoryField storeCategoryField;
@@ -222,7 +206,7 @@ class _$_FormStoreState extends _FormStoreState {
 
   @override
   String toString() {
-    return 'FormStoreState(id: $id, storeNameField: $storeNameField, addressField: $addressField, phoneField: $phoneField, useStockOpnameField: $useStockOpnameField, storeCategoryField: $storeCategoryField, message: $message, statusSubmission: $statusSubmission)';
+    return 'FormStoreState(id: $id, storeNameField: $storeNameField, addressField: $addressField, phoneField: $phoneField, storeCategoryField: $storeCategoryField, message: $message, statusSubmission: $statusSubmission)';
   }
 
   @override
@@ -238,8 +222,6 @@ class _$_FormStoreState extends _FormStoreState {
             const DeepCollectionEquality()
                 .equals(other.phoneField, phoneField) &&
             const DeepCollectionEquality()
-                .equals(other.useStockOpnameField, useStockOpnameField) &&
-            const DeepCollectionEquality()
                 .equals(other.storeCategoryField, storeCategoryField) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
@@ -253,7 +235,6 @@ class _$_FormStoreState extends _FormStoreState {
       const DeepCollectionEquality().hash(storeNameField),
       const DeepCollectionEquality().hash(addressField),
       const DeepCollectionEquality().hash(phoneField),
-      const DeepCollectionEquality().hash(useStockOpnameField),
       const DeepCollectionEquality().hash(storeCategoryField),
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(statusSubmission));
@@ -270,7 +251,6 @@ abstract class _FormStoreState extends FormStoreState {
       final StoreNameField storeNameField,
       final AddressField addressField,
       final PhoneField phoneField,
-      final UseStockOpnameField useStockOpnameField,
       final StoreCategoryField storeCategoryField,
       final String message,
       final FormzStatus statusSubmission}) = _$_FormStoreState;
@@ -284,9 +264,7 @@ abstract class _FormStoreState extends FormStoreState {
   AddressField get addressField;
   @override
   PhoneField get phoneField;
-  @override
-  UseStockOpnameField get useStockOpnameField;
-  @override
+  @override // @Default(UseStockOpnameField.pure()) UseStockOpnameField useStockOpnameField,
   StoreCategoryField get storeCategoryField;
   @override
   String get message;

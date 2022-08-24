@@ -28,8 +28,10 @@ mixin _$ProductModel {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
   int get price => throw _privateConstructorUsedError;
+  @JsonKey(name: 'use_stock_opname')
+  bool get useStockOpname => throw _privateConstructorUsedError;
   @JsonKey(name: "stock")
-  int get stock => throw _privateConstructorUsedError;
+  int? get stock => throw _privateConstructorUsedError;
   @JsonKey(name: "description", nullable: true)
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: "code", nullable: true)
@@ -63,7 +65,8 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: "store_id") int? storeId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "price") int price,
-      @JsonKey(name: "stock") int stock,
+      @JsonKey(name: 'use_stock_opname') bool useStockOpname,
+      @JsonKey(name: "stock") int? stock,
       @JsonKey(name: "description", nullable: true) String? description,
       @JsonKey(name: "code", nullable: true) String? code,
       @JsonKey(name: "cost", nullable: true) int? cost,
@@ -88,6 +91,7 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
     Object? storeId = freezed,
     Object? name = freezed,
     Object? price = freezed,
+    Object? useStockOpname = freezed,
     Object? stock = freezed,
     Object? description = freezed,
     Object? code = freezed,
@@ -115,10 +119,14 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      useStockOpname: useStockOpname == freezed
+          ? _value.useStockOpname
+          : useStockOpname // ignore: cast_nullable_to_non_nullable
+              as bool,
       stock: stock == freezed
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -167,7 +175,8 @@ abstract class _$$_ProductModelCopyWith<$Res>
       @JsonKey(name: "store_id") int? storeId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "price") int price,
-      @JsonKey(name: "stock") int stock,
+      @JsonKey(name: 'use_stock_opname') bool useStockOpname,
+      @JsonKey(name: "stock") int? stock,
       @JsonKey(name: "description", nullable: true) String? description,
       @JsonKey(name: "code", nullable: true) String? code,
       @JsonKey(name: "cost", nullable: true) int? cost,
@@ -195,6 +204,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? storeId = freezed,
     Object? name = freezed,
     Object? price = freezed,
+    Object? useStockOpname = freezed,
     Object? stock = freezed,
     Object? description = freezed,
     Object? code = freezed,
@@ -222,10 +232,14 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      useStockOpname: useStockOpname == freezed
+          ? _value.useStockOpname
+          : useStockOpname // ignore: cast_nullable_to_non_nullable
+              as bool,
       stock: stock == freezed
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -270,6 +284,7 @@ class _$_ProductModel implements _ProductModel {
       @JsonKey(name: "store_id") this.storeId,
       @JsonKey(name: "name") required this.name,
       @JsonKey(name: "price") required this.price,
+      @JsonKey(name: 'use_stock_opname') this.useStockOpname = true,
       @JsonKey(name: "stock") this.stock = 0,
       @JsonKey(name: "description", nullable: true) this.description,
       @JsonKey(name: "code", nullable: true) this.code,
@@ -296,8 +311,11 @@ class _$_ProductModel implements _ProductModel {
   @JsonKey(name: "price")
   final int price;
   @override
+  @JsonKey(name: 'use_stock_opname')
+  final bool useStockOpname;
+  @override
   @JsonKey(name: "stock")
-  final int stock;
+  final int? stock;
   @override
   @JsonKey(name: "description", nullable: true)
   final String? description;
@@ -325,7 +343,7 @@ class _$_ProductModel implements _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, storeId: $storeId, name: $name, price: $price, stock: $stock, description: $description, code: $code, cost: $cost, minStock: $minStock, unit: $unit, reducePrice: $reducePrice, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ProductModel(id: $id, storeId: $storeId, name: $name, price: $price, useStockOpname: $useStockOpname, stock: $stock, description: $description, code: $code, cost: $cost, minStock: $minStock, unit: $unit, reducePrice: $reducePrice, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -337,6 +355,8 @@ class _$_ProductModel implements _ProductModel {
             const DeepCollectionEquality().equals(other.storeId, storeId) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality()
+                .equals(other.useStockOpname, useStockOpname) &&
             const DeepCollectionEquality().equals(other.stock, stock) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
@@ -358,6 +378,7 @@ class _$_ProductModel implements _ProductModel {
       const DeepCollectionEquality().hash(storeId),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(useStockOpname),
       const DeepCollectionEquality().hash(stock),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(code),
@@ -391,8 +412,10 @@ abstract class _ProductModel implements ProductModel {
           required final String name,
       @JsonKey(name: "price")
           required final int price,
+      @JsonKey(name: 'use_stock_opname')
+          final bool useStockOpname,
       @JsonKey(name: "stock")
-          final int stock,
+          final int? stock,
       @JsonKey(name: "description", nullable: true)
           final String? description,
       @JsonKey(name: "code", nullable: true)
@@ -426,8 +449,11 @@ abstract class _ProductModel implements ProductModel {
   @JsonKey(name: "price")
   int get price;
   @override
+  @JsonKey(name: 'use_stock_opname')
+  bool get useStockOpname;
+  @override
   @JsonKey(name: "stock")
-  int get stock;
+  int? get stock;
   @override
   @JsonKey(name: "description", nullable: true)
   String? get description;

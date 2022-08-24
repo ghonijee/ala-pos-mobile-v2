@@ -6,12 +6,12 @@ import 'package:core/core.dart';
 import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
-import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import '../widget/bluetooth_inactive.dart';
 import 'device_screen.dart';
 import 'printer_widget.dart';
+import 'receipt_screen.dart';
 
 // import 'package:flutter_blue/flutter_blue.dart';
 
@@ -26,12 +26,12 @@ class ScanPrinterScreen extends StatelessWidget {
     final generator = Generator(PaperSize.mm58, profile);
     List<int> bytes = [];
 
-    bytes += generator.text(storeModel.name + " Meredea Raya",
+    bytes += generator.text(storeModel.name,
         maxCharsPerLine: 15,
         styles: PosStyles(
           bold: true,
-          height: PosTextSize.size2,
-          width: PosTextSize.size2,
+          height: PosTextSize.size1,
+          width: PosTextSize.size1,
           align: PosAlign.center,
         ));
     bytes += generator.text(storeModel.address!,
@@ -158,6 +158,7 @@ class ScanPrinterScreen extends StatelessWidget {
           initialData: BluetoothState.unknown,
           builder: (c, snapshot) {
             final state = snapshot.data;
+
             if (state == BluetoothState.on) {
               return Column(
                 children: [
@@ -257,68 +258,55 @@ class ScanPrinterScreen extends StatelessWidget {
                 ],
               );
             }
-            return BluetoothInactiveWidget();
+            return BluetoothStateNonactive();
           }),
     );
   }
 }
 
-class BluePrint {
-  BluePrint({this.chunkLen = 512});
+class BluetoothStateNonactive extends StatelessWidget {
+  const BluetoothStateNonactive({Key? key}) : super(key: key);
 
-  final int chunkLen;
-  var _data = List<int>.empty();
-
-  void add(List<int> data) {
-    _data.addAll(data);
-  }
-
-  void setData(List<int> data) {
-    _data = data;
-  }
-
-  List<List<int>> getChunks() {
-    final chunks = List<List<int>>.empty(growable: true);
-    for (var i = 0; i < _data.length; i += chunkLen) {
-      chunks.add(_data.sublist(i, min(i + chunkLen, _data.length)));
-    }
-    return chunks;
-  }
-
-  Future<void> printData(BluetoothDevice device) async {
-    final data = getChunks();
-    final characs = await _getCharacteristics(device);
-    for (var charac in characs) {
-      if (await _tryPrint(charac, data)) {
-        break;
-      }
-    }
-  }
-
-  Future<bool> _tryPrint(
-    BluetoothCharacteristic charac,
-    List<List<int>> data,
-  ) async {
-    for (var i = 0; i < data.length; i++) {
-      try {
-        await charac.write(data[i]);
-      } catch (e) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  Future<List<BluetoothCharacteristic>> _getCharacteristics(
-    BluetoothDevice device,
-  ) async {
-    final services = await device.discoverServices();
-    final res = List<BluetoothCharacteristic>.empty(growable: true);
-    for (var service in services) {
-      res.addAll(service.characteristics);
-    }
-
-    return res;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          flex: 1,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.bluetooth_disabled,
+                size: 15.h,
+                color: Colors.grey,
+              ),
+              SizedBox(
+                height: 20.sp,
+              ),
+              Text(
+                'Bluetooth tidak aktif',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 35.sp,
+          child: ElevatedButton(
+            child: Text("Aktifkan Bluetooth"),
+            style: ElevatedButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.bodyMedium,
+              minimumSize: Size.fromWidth(80.w),
+            ),
+            onPressed: Platform.isAndroid ? () => FlutterBluePlus.instance.turnOn() : null,
+          ),
+        ),
+        SizedBox(
+          height: 20.sp,
+        )
+      ],
+    );
   }
 }

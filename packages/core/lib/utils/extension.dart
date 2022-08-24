@@ -23,6 +23,10 @@ extension extensionString on String {
     return name;
   }
 
+  String firstCapitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
+
   /// Convert from [String] to [int?]
   /// with formated Currency Rupiah (Rp.)
   ///

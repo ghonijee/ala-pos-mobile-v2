@@ -44,14 +44,15 @@ class BaseTheme {
       onSecondaryContainer: AppColors.emptyContainer,
     ),
     appBarTheme: AppBarTheme(
-      color: AppColors.primary,
+      elevation: 1.0,
+      color: AppColors.backgroundLight,
       iconTheme: const IconThemeData(
-        color: AppColors.iconLight,
+        color: AppColors.primary,
       ),
       titleTextStyle: GoogleFonts.openSans(
-        color: AppColors.textPrimaryDark,
+        color: AppColors.primary,
         fontSize: 16,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.bold,
         letterSpacing: 0.15,
       ),
     ),

@@ -19,7 +19,7 @@ void main() async {
 
   configureDependencies();
 
-  // await initializeDateFormatting('id', null);
+  await initializeDateFormatting('id', null);
 
   await Core.initLocalDB();
 

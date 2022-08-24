@@ -27,4 +27,6 @@ class StoreFormCubit extends Cubit<StoreFormState> {
       emit(StoreFormState.success());
     });
   }
+
+  changeCategory(StoreCategoryModel? value) {}
 }

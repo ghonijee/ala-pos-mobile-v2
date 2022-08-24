@@ -56,6 +56,14 @@ class _$RoutePage extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const ProfileWrapper());
     },
+    SettingPageRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SettingPage());
+    },
+    SettingPrintPageRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SettingPrintPage());
+    },
     PosPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const PosPage());
@@ -201,7 +209,9 @@ class _$RoutePage extends RootStackRouter {
               path: 'profile/store', parent: ProfileWrapperRoute.name),
           RouteConfig(StoreFormScreenRoute.name,
               path: 'profile/store/form', parent: ProfileWrapperRoute.name)
-        ])
+        ]),
+        RouteConfig(SettingPageRoute.name, path: 'setting'),
+        RouteConfig(SettingPrintPageRoute.name, path: 'setting/printer')
       ];
 }
 
@@ -301,6 +311,23 @@ class ProfileWrapperRoute extends PageRouteInfo<void> {
             path: 'profile', initialChildren: children);
 
   static const String name = 'ProfileWrapperRoute';
+}
+
+/// generated route for
+/// [SettingPage]
+class SettingPageRoute extends PageRouteInfo<void> {
+  const SettingPageRoute() : super(SettingPageRoute.name, path: 'setting');
+
+  static const String name = 'SettingPageRoute';
+}
+
+/// generated route for
+/// [SettingPrintPage]
+class SettingPrintPageRoute extends PageRouteInfo<void> {
+  const SettingPrintPageRoute()
+      : super(SettingPrintPageRoute.name, path: 'setting/printer');
+
+  static const String name = 'SettingPrintPageRoute';
 }
 
 /// generated route for

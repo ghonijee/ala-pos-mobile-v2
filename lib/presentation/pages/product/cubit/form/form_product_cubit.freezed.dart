@@ -21,6 +21,8 @@ mixin _$FormProductState {
   NameField get name => throw _privateConstructorUsedError;
   PriceField get price => throw _privateConstructorUsedError;
   StockField get stock => throw _privateConstructorUsedError;
+  UseStockOpnameField get useStockOpnameField =>
+      throw _privateConstructorUsedError;
   MinStockField get minStock => throw _privateConstructorUsedError;
   CodeField get code => throw _privateConstructorUsedError;
   DescField get desc => throw _privateConstructorUsedError;
@@ -45,6 +47,7 @@ abstract class $FormProductStateCopyWith<$Res> {
       NameField name,
       PriceField price,
       StockField stock,
+      UseStockOpnameField useStockOpnameField,
       MinStockField minStock,
       CodeField code,
       DescField desc,
@@ -70,6 +73,7 @@ class _$FormProductStateCopyWithImpl<$Res>
     Object? name = freezed,
     Object? price = freezed,
     Object? stock = freezed,
+    Object? useStockOpnameField = freezed,
     Object? minStock = freezed,
     Object? code = freezed,
     Object? desc = freezed,
@@ -99,6 +103,10 @@ class _$FormProductStateCopyWithImpl<$Res>
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
               as StockField,
+      useStockOpnameField: useStockOpnameField == freezed
+          ? _value.useStockOpnameField
+          : useStockOpnameField // ignore: cast_nullable_to_non_nullable
+              as UseStockOpnameField,
       minStock: minStock == freezed
           ? _value.minStock
           : minStock // ignore: cast_nullable_to_non_nullable
@@ -144,6 +152,7 @@ abstract class _$$_FormProductStateCopyWith<$Res>
       NameField name,
       PriceField price,
       StockField stock,
+      UseStockOpnameField useStockOpnameField,
       MinStockField minStock,
       CodeField code,
       DescField desc,
@@ -171,6 +180,7 @@ class __$$_FormProductStateCopyWithImpl<$Res>
     Object? name = freezed,
     Object? price = freezed,
     Object? stock = freezed,
+    Object? useStockOpnameField = freezed,
     Object? minStock = freezed,
     Object? code = freezed,
     Object? desc = freezed,
@@ -200,6 +210,10 @@ class __$$_FormProductStateCopyWithImpl<$Res>
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
               as StockField,
+      useStockOpnameField: useStockOpnameField == freezed
+          ? _value.useStockOpnameField
+          : useStockOpnameField // ignore: cast_nullable_to_non_nullable
+              as UseStockOpnameField,
       minStock: minStock == freezed
           ? _value.minStock
           : minStock // ignore: cast_nullable_to_non_nullable
@@ -242,6 +256,7 @@ class _$_FormProductState extends _FormProductState
       this.name = const NameField.pure(),
       this.price = const PriceField.pure(),
       this.stock = const StockField.pure(),
+      this.useStockOpnameField = const UseStockOpnameField.pure(),
       this.minStock = const MinStockField.pure(),
       this.code = const CodeField.pure(),
       this.desc = const DescField.pure(),
@@ -266,6 +281,9 @@ class _$_FormProductState extends _FormProductState
   final StockField stock;
   @override
   @JsonKey()
+  final UseStockOpnameField useStockOpnameField;
+  @override
+  @JsonKey()
   final MinStockField minStock;
   @override
   @JsonKey()
@@ -288,7 +306,7 @@ class _$_FormProductState extends _FormProductState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FormProductState(id: $id, storeId: $storeId, name: $name, price: $price, stock: $stock, minStock: $minStock, code: $code, desc: $desc, cost: $cost, unit: $unit, statusSubmission: $statusSubmission, message: $message)';
+    return 'FormProductState(id: $id, storeId: $storeId, name: $name, price: $price, stock: $stock, useStockOpnameField: $useStockOpnameField, minStock: $minStock, code: $code, desc: $desc, cost: $cost, unit: $unit, statusSubmission: $statusSubmission, message: $message)';
   }
 
   @override
@@ -301,6 +319,7 @@ class _$_FormProductState extends _FormProductState
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('price', price))
       ..add(DiagnosticsProperty('stock', stock))
+      ..add(DiagnosticsProperty('useStockOpnameField', useStockOpnameField))
       ..add(DiagnosticsProperty('minStock', minStock))
       ..add(DiagnosticsProperty('code', code))
       ..add(DiagnosticsProperty('desc', desc))
@@ -320,6 +339,8 @@ class _$_FormProductState extends _FormProductState
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality().equals(other.stock, stock) &&
+            const DeepCollectionEquality()
+                .equals(other.useStockOpnameField, useStockOpnameField) &&
             const DeepCollectionEquality().equals(other.minStock, minStock) &&
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.desc, desc) &&
@@ -338,6 +359,7 @@ class _$_FormProductState extends _FormProductState
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(price),
       const DeepCollectionEquality().hash(stock),
+      const DeepCollectionEquality().hash(useStockOpnameField),
       const DeepCollectionEquality().hash(minStock),
       const DeepCollectionEquality().hash(code),
       const DeepCollectionEquality().hash(desc),
@@ -359,6 +381,7 @@ abstract class _FormProductState extends FormProductState {
       final NameField name,
       final PriceField price,
       final StockField stock,
+      final UseStockOpnameField useStockOpnameField,
       final MinStockField minStock,
       final CodeField code,
       final DescField desc,
@@ -378,6 +401,8 @@ abstract class _FormProductState extends FormProductState {
   PriceField get price;
   @override
   StockField get stock;
+  @override
+  UseStockOpnameField get useStockOpnameField;
   @override
   MinStockField get minStock;
   @override

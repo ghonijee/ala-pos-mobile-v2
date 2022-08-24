@@ -18,7 +18,7 @@ class ProductFormDetailWidget extends HookWidget {
     var formProductCubit = context.read<FormProductCubit>();
 
     var codeController = useTextEditingController();
-    codeController.text = formProductCubit.state.code.value!;
+    codeController.text = formProductCubit.state.code.value ?? "";
 
     return BlocBuilder<FormProductCubit, FormProductState>(
       builder: (context, state) {
@@ -92,7 +92,7 @@ class ProductFormDetailWidget extends HookWidget {
                 children: [
                   Text("Harga Modal Per Item"),
                   TextFormField(
-                    initialValue: formProductCubit.state.cost.value.toThousandSeparator(),
+                    initialValue: formProductCubit.state.cost.value?.toThousandSeparator(),
                     style: Theme.of(context).textTheme.bodyText1,
                     onChanged: (value) => formProductCubit.costChange(value.toNumber()!),
                     inputFormatters: [

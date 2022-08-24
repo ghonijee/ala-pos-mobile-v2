@@ -6,6 +6,7 @@ import 'package:ala_pos/presentation/pages/profile/screen/profile_user_form_scre
 import 'package:ala_pos/presentation/pages/profile/screen/profile_wrapper.dart';
 import 'package:ala_pos/presentation/pages/profile/screen/store_form_screen.dart';
 import 'package:ala_pos/presentation/pages/profile/screen/store_list_screen.dart';
+import 'package:ala_pos/presentation/pages/setting/screen/setting_page.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_detail_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_list_screen.dart';
 import 'package:ala_pos/presentation/pages/transaction/screen/transaction_wrapper.dart';
@@ -15,6 +16,7 @@ import '../presentation/pages/pages.dart';
 import '../presentation/pages/product/product.dart';
 import '../presentation/pages/receipt/screen/receipt_page.dart';
 import '../domain/models/transaction/transaction_model.dart';
+import '../presentation/pages/setting/screen/setting_print_page.dart';
 
 part "route_name.dart";
 part 'route_page.gr.dart';
@@ -51,6 +53,8 @@ part 'route_page.gr.dart';
       AutoRoute(page: StoreListScreen, path: RouteName.profileStoreList),
       AutoRoute(page: StoreFormScreen, path: RouteName.profileStoreForm),
     ]),
+    AutoRoute(page: SettingPage, path: RouteName.setting),
+    AutoRoute(page: SettingPrintPage, path: RouteName.settingPrinter),
   ],
 )
 class RoutePage extends _$RoutePage {}

@@ -41,8 +41,8 @@ class ProductContainer extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    product.name.titleProduct,
-                    style: Theme.of(context).primaryTextTheme.caption,
+                    product.name,
+                    style: Theme.of(context).primaryTextTheme.caption!.copyWith(overflow: TextOverflow.ellipsis),
                   ),
                 ),
                 Text(

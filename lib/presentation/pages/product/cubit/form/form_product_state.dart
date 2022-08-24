@@ -10,6 +10,7 @@ class FormProductState with _$FormProductState {
     @Default(NameField.pure()) NameField name,
     @Default(PriceField.pure()) PriceField price,
     @Default(StockField.pure()) StockField stock,
+    @Default(UseStockOpnameField.pure()) UseStockOpnameField useStockOpnameField,
     @Default(MinStockField.pure()) MinStockField minStock,
     @Default(CodeField.pure()) CodeField code,
     @Default(DescField.pure()) DescField desc,
@@ -24,6 +25,7 @@ class FormProductState with _$FormProductState {
       name,
       price,
       stock,
+      useStockOpnameField,
       minStock,
       code,
       cost,
@@ -33,15 +35,16 @@ class FormProductState with _$FormProductState {
   }
 
   ProductModel toModel() => ProductModel(
-        id: id!,
-        storeId: storeId!,
+        id: id,
+        storeId: storeId,
         name: name.value,
-        price: price.value!,
-        stock: stock.value!,
-        minStock: minStock.value,
-        code: code.value!,
+        price: price.value ?? 0,
+        stock: stock.value ?? 0,
+        minStock: minStock.value ?? 0,
+        code: code.value,
         cost: cost.value,
-        description: desc.value!,
-        unit: unit.value!,
+        description: desc.value,
+        unit: unit.value,
+        useStockOpname: useStockOpnameField.value,
       );
 }

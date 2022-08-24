@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
-class ProfileMenuItemWidget extends StatelessWidget {
+class SettingMenuItemWidget extends StatelessWidget {
   late Icon icon;
   bool hasTrailIcon;
   late String title;
   late String subtitle;
   Function()? onTap;
-  ProfileMenuItemWidget({
+  SettingMenuItemWidget({
     Key? key,
     this.hasTrailIcon = false,
     required this.icon,

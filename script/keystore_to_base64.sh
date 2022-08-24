@@ -1,0 +1,1 @@
+openssl base64 < ../android/keystore.jks | tr -d '\n' | tee keystore_base64.txt

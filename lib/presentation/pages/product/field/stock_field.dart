@@ -1,7 +1,8 @@
 import 'package:formz/formz.dart';
 
 enum StockValidationError {
-  empty('Stok produk harus diisi');
+  empty('Stok produk harus diisi'),
+  smaller('Min. stok harus lebih besar dari 0');
 
   final String message;
 
@@ -17,8 +18,9 @@ class StockField extends FormzInput<int?, StockValidationError> {
 
   @override
   StockValidationError? validator(int? value) {
-    if (value == null || value.isNegative) {
-      return StockValidationError.empty;
+    if (value == null) return null;
+    if (value < 0) {
+      return StockValidationError.smaller;
     } else {
       return null;
     }

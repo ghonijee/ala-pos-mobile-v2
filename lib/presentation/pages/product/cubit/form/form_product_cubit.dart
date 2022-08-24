@@ -2,6 +2,7 @@ import 'package:ala_pos/domain/models/product/product_model.dart';
 import 'package:ala_pos/domain/repositories/auth_repository.dart';
 import 'package:ala_pos/domain/repositories/product_repository.dart';
 import 'package:ala_pos/domain/repositories/store_repository.dart';
+import 'package:ala_pos/presentation/fields/fields.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:formz/formz.dart';
@@ -30,7 +31,7 @@ class FormProductCubit extends Cubit<FormProductState> {
     emit(FormProductState(
       id: 0,
       storeId: storeActive.id,
-      stock: StockField.dirty(0),
+      statusSubmission: FormzStatus.pure,
     ));
   }
 
@@ -42,6 +43,7 @@ class FormProductCubit extends Cubit<FormProductState> {
       name: NameField.dirty(model.name),
       price: PriceField.dirty(model.price),
       stock: StockField.dirty(model.stock),
+      useStockOpnameField: UseStockOpnameField.dirty(model.useStockOpname),
       minStock: MinStockField.dirty(model.minStock!),
       code: CodeField.dirty(model.code),
       cost: CostField.dirty(model.cost!),
@@ -81,6 +83,21 @@ class FormProductCubit extends Cubit<FormProductState> {
     }
   }
 
+  deleteProduct() async {
+    try {
+      emit(state.copyWith(statusSubmission: FormzStatus.submissionInProgress));
+
+      var result = await productRepository.delete(state.toModel());
+      result.fold((failure) {
+        emit(state.copyWith(statusSubmission: FormzStatus.submissionFailure, message: failure.message));
+      }, (response) {
+        emit(state.copyWith(statusSubmission: FormzStatus.submissionSuccess, message: response.message!));
+      });
+    } catch (e) {
+      emit(state.copyWith(statusSubmission: FormzStatus.submissionFailure, message: e.toString()));
+    }
+  }
+
   nameChange(value) {
     final nameField = NameField.dirty(value);
     emit(state.copyWith(
@@ -103,7 +120,7 @@ class FormProductCubit extends Cubit<FormProductState> {
   }
 
   minStockChange(int? value) {
-    final minStockField = MinStockField.dirty(value ?? 0);
+    final minStockField = MinStockField.dirty(value);
     emit(state.copyWith(
       minStock: minStockField,
     ));
@@ -135,5 +152,9 @@ class FormProductCubit extends Cubit<FormProductState> {
     emit(state.copyWith(
       unit: field,
     ));
+  }
+
+  changeUseStockOpname(value) {
+    emit(state.copyWith(useStockOpnameField: UseStockOpnameField.dirty(value)));
   }
 }
