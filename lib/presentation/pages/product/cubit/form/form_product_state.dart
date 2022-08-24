@@ -10,6 +10,7 @@ class FormProductState with _$FormProductState {
     @Default(NameField.pure()) NameField name,
     @Default(PriceField.pure()) PriceField price,
     @Default(StockField.pure()) StockField stock,
+    @Default(UseStockOpnameField.pure()) UseStockOpnameField useStockOpnameField,
     @Default(MinStockField.pure()) MinStockField minStock,
     @Default(CodeField.pure()) CodeField code,
     @Default(DescField.pure()) DescField desc,
@@ -24,6 +25,7 @@ class FormProductState with _$FormProductState {
       name,
       price,
       stock,
+      useStockOpnameField,
       minStock,
       code,
       cost,
@@ -43,5 +45,6 @@ class FormProductState with _$FormProductState {
         cost: cost.value,
         description: desc.value,
         unit: unit.value,
+        useStockOpname: useStockOpnameField.value,
       );
 }

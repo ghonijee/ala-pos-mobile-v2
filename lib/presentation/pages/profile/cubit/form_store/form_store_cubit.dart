@@ -28,7 +28,6 @@ class FormStoreCubit extends Cubit<FormStoreState> {
       id: model.id!,
       storeNameField: StoreNameField.dirty(model.name),
       addressField: AddressField.dirty(model.address!),
-      useStockOpnameField: UseStockOpnameField.dirty(model.useStockOpname),
       storeCategoryField: StoreCategoryField.dirty(StoreCategoryModel(id: model.storeCategoryId, name: '')),
       phoneField: PhoneField.dirty(model.phone!),
     ));
@@ -57,10 +56,6 @@ class FormStoreCubit extends Cubit<FormStoreState> {
         message: e.toString(),
       ));
     }
-  }
-
-  changeUseStockOpname(value) {
-    emit(state.copyWith(useStockOpnameField: UseStockOpnameField.dirty(value)));
   }
 
   changeStoreName(value) {

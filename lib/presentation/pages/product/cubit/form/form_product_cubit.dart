@@ -2,6 +2,7 @@ import 'package:ala_pos/domain/models/product/product_model.dart';
 import 'package:ala_pos/domain/repositories/auth_repository.dart';
 import 'package:ala_pos/domain/repositories/product_repository.dart';
 import 'package:ala_pos/domain/repositories/store_repository.dart';
+import 'package:ala_pos/presentation/fields/fields.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:formz/formz.dart';
@@ -42,6 +43,7 @@ class FormProductCubit extends Cubit<FormProductState> {
       name: NameField.dirty(model.name),
       price: PriceField.dirty(model.price),
       stock: StockField.dirty(model.stock),
+      useStockOpnameField: UseStockOpnameField.dirty(model.useStockOpname),
       minStock: MinStockField.dirty(model.minStock!),
       code: CodeField.dirty(model.code),
       cost: CostField.dirty(model.cost!),
@@ -150,5 +152,9 @@ class FormProductCubit extends Cubit<FormProductState> {
     emit(state.copyWith(
       unit: field,
     ));
+  }
+
+  changeUseStockOpname(value) {
+    emit(state.copyWith(useStockOpnameField: UseStockOpnameField.dirty(value)));
   }
 }

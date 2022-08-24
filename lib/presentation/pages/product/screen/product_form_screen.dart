@@ -23,7 +23,7 @@ class ProductFormScreen extends HookWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text(
-          "Tambah Produk",
+          formCubit.isUpdate ? "Update Produk" : "Tambah Produk",
         ),
         actions: [
           InkWell(

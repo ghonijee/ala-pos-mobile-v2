@@ -72,10 +72,10 @@ class StoreFormScreen extends StatelessWidget {
                       height: AppSpacings.m.sp,
                     ),
                     _StoreCategoryField(),
-                    SizedBox(
-                      height: AppSpacings.m.sp,
-                    ),
-                    _UseStockOpnameToggle(),
+                    // SizedBox(
+                    //   height: AppSpacings.m.sp,
+                    // ),
+                    // _UseStockOpnameToggle(),
                     Expanded(child: SizedBox()),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(40.sp)),
@@ -214,52 +214,6 @@ class _PhoneField extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class _UseStockOpnameToggle extends StatelessWidget {
-  const _UseStockOpnameToggle({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var cubit = context.read<FormStoreCubit>();
-    return BlocBuilder<FormStoreCubit, FormStoreState>(
-      builder: (context, state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 65.w,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Stok Opname"),
-                  SizedBox(
-                    height: AppSpacings.xs.sp,
-                  ),
-                  Wrap(
-                    children: [
-                      Text(
-                        "Aktifkan jika usahamu menggunaka manajemen stok",
-                        style: Theme.of(context).textTheme.bodySmall,
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Switch.adaptive(
-              value: state.useStockOpnameField.value,
-              onChanged: (value) => cubit.changeUseStockOpname(value),
-              activeColor: Theme.of(context).colorScheme.primary,
-              splashRadius: 90.0,
             ),
           ],
         );

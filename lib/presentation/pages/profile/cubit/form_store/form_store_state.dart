@@ -9,14 +9,14 @@ class FormStoreState with _$FormStoreState {
     @Default(StoreNameField.pure()) StoreNameField storeNameField,
     @Default(AddressField.pure()) AddressField addressField,
     @Default(PhoneField.pure()) PhoneField phoneField,
-    @Default(UseStockOpnameField.pure()) UseStockOpnameField useStockOpnameField,
+    // @Default(UseStockOpnameField.pure()) UseStockOpnameField useStockOpnameField,
     @Default(StoreCategoryField.pure()) StoreCategoryField storeCategoryField,
     @Default('') String message,
     @Default(FormzStatus.pure) FormzStatus statusSubmission,
   }) = _FormStoreState;
 
   FormzStatus get status {
-    return Formz.validate([storeNameField, addressField, phoneField, useStockOpnameField]);
+    return Formz.validate([storeNameField, addressField, phoneField]);
   }
 
   StoreModel toModel() => StoreModel(
@@ -24,7 +24,7 @@ class FormStoreState with _$FormStoreState {
         name: storeNameField.value,
         address: addressField.value,
         phone: phoneField.value,
-        useStockOpname: useStockOpnameField.value,
+        // useStockOpname: useStockOpnameField.value,
         storeCategoryId: storeCategoryField.value!.id,
         storeCategoryName: storeCategoryField.value!.name,
       );

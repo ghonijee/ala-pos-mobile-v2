@@ -10,6 +10,7 @@ class ProductModel with _$ProductModel {
     @JsonKey(name: "store_id") int? storeId,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "price") required int price,
+    @JsonKey(name: 'use_stock_opname') @Default(true) bool useStockOpname,
     @JsonKey(name: "stock") @Default(0) int? stock,
     @JsonKey(name: "description", nullable: true) String? description,
     @JsonKey(name: "code", nullable: true) String? code,

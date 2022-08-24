@@ -148,7 +148,7 @@ class ResumeOrderPage extends HookWidget {
                               return ListView.separated(
                                   separatorBuilder: (context, index) => Divider(
                                         height: 0,
-                                        thickness: 0.2,
+                                        thickness: 0.5,
                                       ),
                                   shrinkWrap: false,
                                   itemCount: state.items.length,

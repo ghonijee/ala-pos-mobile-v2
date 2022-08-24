@@ -92,6 +92,9 @@ class ProductFormMainWidget extends HookWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: AppSpacings.m.sp,
+            ),
           ]),
         );
       },
