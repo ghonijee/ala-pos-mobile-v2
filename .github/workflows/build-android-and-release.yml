@@ -67,7 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged
     steps:
-       - name: Compute next SemVer tag
+      - name: Compute next SemVer tag
         id: semver
         uses: K-Phoen/semver-release-action@master
         with:
