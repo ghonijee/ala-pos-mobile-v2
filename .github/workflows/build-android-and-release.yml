@@ -61,16 +61,24 @@ jobs:
           packageName: com.ala.alapos
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: internal
-          status: inProgress
   # https://github.com/marketplace/actions/semver-release
   release:
     name: Create Tag by PR Semver
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged
     steps:
+       - name: Compute next SemVer tag
+        id: semver
+        uses: K-Phoen/semver-release-action@master
+        with:
+          release_branch: production
+          release_strategy: none
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Tag
         uses: K-Phoen/semver-release-action@master
         with:
           release_branch: production
+          tag: ${{ steps.semver.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
