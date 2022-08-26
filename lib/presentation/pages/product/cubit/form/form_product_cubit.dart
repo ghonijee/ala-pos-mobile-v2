@@ -46,7 +46,7 @@ class FormProductCubit extends Cubit<FormProductState> {
       useStockOpnameField: UseStockOpnameField.dirty(model.useStockOpname),
       minStock: MinStockField.dirty(model.minStock!),
       code: CodeField.dirty(model.code),
-      cost: CostField.dirty(model.cost!),
+      cost: CostField.dirty(model.cost),
       desc: DescField.dirty(model.description),
       unit: UnitField.dirty(model.unit),
       statusSubmission: FormzStatus.pure,

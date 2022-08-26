@@ -37,6 +37,7 @@
             "type": "dart",
             "flutterMode": "release",
             "args": [
+                "-v",
                 "--dart-define",
                 "ENV=.env.production",
             ],
