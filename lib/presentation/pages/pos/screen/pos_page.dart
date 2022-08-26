@@ -212,7 +212,7 @@ class PosPage extends HookWidget {
                                           : InkWell(
                                               onTap: () {
                                                 // Jika store tidak menggunakan stock opname
-                                                if (!cartCubit.storeModel.useStockOpname) {
+                                                if (!item.useStockOpname) {
                                                   cartCubit.add(item);
                                                   return;
                                                 }

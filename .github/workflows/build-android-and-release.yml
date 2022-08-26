@@ -7,7 +7,6 @@ on:
   # push:
   #   branches:
   #     - development
-
 jobs:
   build:
     name: Build App and Upload to Internal Testing
@@ -61,6 +60,7 @@ jobs:
           packageName: com.ala.alapos
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: internal
+          status: completed
   # https://github.com/marketplace/actions/semver-release
   release:
     name: Create Tag by PR Semver
@@ -82,3 +82,4 @@ jobs:
           tag: ${{ steps.semver.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
