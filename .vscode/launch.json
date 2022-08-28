@@ -5,43 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ala_pos",
+            "name": "Launch development",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main_development.dart",
             "args": [
-                "--dart-define",
-                "ENV=.env",
+              "--target",
+              "lib/main_development.dart"
             ]
-        },
-        {
-            "name": "ala_pos emu. android",
-            "request": "launch",
-            "type": "dart",
-            "args": [
-                "--dart-define",
-                "ENV=.env.android.emulator",
-            ]
-        },
-        {
-            "name": "ala_pos prod",
-            "request": "launch",
-            "type": "dart",
-            "args": [
-                "--dart-define",
-                "ENV=.env.production",
-            ],
-        },
-        {
-            "name": "ala_pos prod (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release",
-            "args": [
-                "-v",
-                "--dart-define",
-                "ENV=.env.production",
-            ],
-        },
+          },
         {
             "name": "ala_pos (profile mode)",
             "request": "launch",

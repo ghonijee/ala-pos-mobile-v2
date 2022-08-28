@@ -1,1 +1,0 @@
-enum DiscountType { cash, percent }

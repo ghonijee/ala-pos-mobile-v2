@@ -1,0 +1,22 @@
+{
+    "@@locale": "en",
+    "login_heading": "Selamat Datang",
+    "@login_welcome": {
+        "description": "Text shown in login screen"
+    },
+    "login_subheading" : "Silakan masuk terlebih dahulu dan mulai berjualan dengan Alapos",
+    "register_heading" : "Pendaftaran Akun",
+    "register_subheading" : "Dapatkan kemudahan untuk mengelola dan memantau usahamu",
+    "not_have_account" : "Belum punya akun? Daftar disini!",
+    "have_account" : "Sudah punya akun? Masuk disini!",
+    "field_login_username_label": "Username/Nomor HP",
+    "field_login_username_hint": "Username/Nomor HP",
+    "field_register_username_label": "Username",
+    "field_register_username_hint": "Username",
+    "field_password_label": "Kata Sandi",
+    "field_password_hint": "Kata sandi",
+    "field_number_phone_label": "Nomor HP",
+    "field_number_phone_hint": "Nomor HP",
+    "sign_in" : "Masuk",
+    "sign_up" : "Daftar"
+}
