@@ -2,7 +2,7 @@ import 'package:core/styles/app_color.dart';
 import 'package:core/styles/app_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class BaseTheme {
   static final ThemeData light = ThemeData(

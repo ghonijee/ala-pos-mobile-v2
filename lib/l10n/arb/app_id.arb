@@ -4,7 +4,7 @@
     "@login_welcome": {
         "description": "Text shown in login screen"
     },
-    "login_subheading" : "Silakan masuk terlebih dahulu dan mulai berjualan dengan Alapos",
+    "login_subheading" : "Silakan masuk terlebih dahulu \ndan mulai berjualan dengan Alapos",
     "register_heading" : "Pendaftaran Akun",
     "register_subheading" : "Dapatkan kemudahan untuk mengelola dan memantau usahamu",
     "not_have_account" : "Belum punya akun? Daftar disini!",

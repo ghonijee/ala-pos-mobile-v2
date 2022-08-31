@@ -1,7 +1,7 @@
 import 'package:atomic_design/atomic_design.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class TextStyleFoundation {
   static TextStyle heading1 = GoogleFonts.openSans(

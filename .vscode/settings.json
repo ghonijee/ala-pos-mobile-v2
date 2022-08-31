@@ -9,4 +9,5 @@
         "**/.fvm": true
     },
     "dart.lineLength": 200,
+
 }

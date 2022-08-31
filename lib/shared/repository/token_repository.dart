@@ -4,7 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/store_key.dart';
-import '../model/token.dart';
+import '../models/token/token.dart';
 import '../utils/platform_type.dart';
 
 abstract class TokenRepositoryProtocol {

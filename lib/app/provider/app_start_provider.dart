@@ -22,6 +22,8 @@ class AppStartNotifier extends StateNotifier<AppStartState> {
   final Reader _reader;
 
   Future<void> _init() async {
+    state = const AppStartState.initial();
+
     Future.delayed(const Duration(seconds: 3), () async {
       await authCheck();
     });
@@ -31,20 +33,22 @@ class AppStartNotifier extends StateNotifier<AppStartState> {
     try {
       final token = await _tokenRepository.fetchToken();
       if (token == null) {
-        throw new Exception("Token not found");
+        state = const AppStartState.unauthenticated();
+        return;
       }
 
       // check validate token
       var tokenValid = await _tokenRepository.checkToken();
       if (!tokenValid) {
-        throw new Exception("Token invalid");
+        state = const AppStartState.unauthenticated();
+        return;
       }
 
       // Set State User Authenticated
       if (mounted) {
         state = const AppStartState.authenticated();
       }
-    } catch (e) {
+    } on Exception catch (e) {
       if (mounted) {
         state = const AppStartState.unauthenticated();
       }

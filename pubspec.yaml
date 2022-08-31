@@ -37,11 +37,13 @@ dependencies:
   open_file: ^3.2.1
   permission_handler: ^10.0.0
   pretty_dio_logger: ^1.1.1
+  primer_flutter:
+    path: packages/primer_flutter
   result_type: ^0.2.0
+  responsive_sizer: ^3.1.0
   share_plus: ^4.0.10
   shared_preferences: ^2.0.15
   simple_animations: ^4.0.2
-  sizer: ^2.0.15
   uuid: ^3.0.6
 
 dev_dependencies:

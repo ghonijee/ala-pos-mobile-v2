@@ -913,6 +913,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0-beta-1"
+  primer_flutter:
+    dependency: "direct main"
+    description:
+      path: "packages/primer_flutter"
+      relative: true
+    source: path
+    version: "1.0.0"
   process:
     dependency: transitive
     description:
@@ -941,6 +948,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  responsive_sizer:
+    dependency: "direct main"
+    description:
+      name: responsive_sizer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   result_type:
     dependency: "direct main"
     description:
@@ -1095,13 +1109,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.0"
-  sizer:
-    dependency: "direct main"
-    description:
-      name: sizer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.15"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -1261,13 +1268,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.1"
-  universal_io:
-    dependency: transitive
-    description:
-      name: universal_io
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.4"
   url_launcher:
     dependency: transitive
     description:

@@ -5,8 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'token.freezed.dart';
 part 'token.g.dart';
 
-Token tokenFromJson(String str) =>
-    Token.fromJson(json.decode(str) as Map<String, dynamic>);
+Token tokenFromJson(String str) => Token.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String tokenToJson(Token data) => json.encode(data.toJson());
 

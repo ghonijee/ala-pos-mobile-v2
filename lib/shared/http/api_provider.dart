@@ -8,7 +8,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
 import '../repository/token_repository.dart';
 import 'api_response.dart';
 import 'app_exception.dart';
@@ -90,7 +89,7 @@ class ApiProvider {
       };
       final _appToken = await _tokenRepository.fetchToken();
       if (_appToken != null) {
-        headers['Authorization'] = 'Bearer ${_appToken}';
+        headers['Authorization'] = 'Bearer ${_appToken.token}';
       }
       //Sometime for some specific endpoint it may require to use different Token
       if (token != null) {

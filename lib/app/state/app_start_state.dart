@@ -12,7 +12,3 @@ class AppStartState with _$AppStartState {
 
   const factory AppStartState.authenticated() = AppAuthenticated;
 }
-
-abstract class AppAuthenticated implements AppStartState {
-  const factory AppAuthenticated() = _$AppAuthenticated;
-}
