@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:ala_pos/shared/models/json/json_resource.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
@@ -8,9 +9,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import '../models/exception/app_exception.dart';
+import '../models/response/api_response.dart';
 import '../repository/token_repository.dart';
-import 'api_response.dart';
-import 'app_exception.dart';
 import 'interceptor/dio_connectivity_request_retrier.dart';
 import 'interceptor/retry_interceptor.dart';
 
@@ -21,11 +22,25 @@ final apiProvider = Provider<ApiProvider>(
 );
 
 class ApiProvider {
+  final headers = {
+    'accept': '*/*',
+    'Content-Type': "application/json",
+  };
+
+  final Reader _reader;
+
+  late Dio _dio;
+
+  late final TokenRepository _tokenRepository = _reader(tokenRepositoryProvider);
+
+  late String _baseUrl;
+
   ApiProvider(this._reader) {
     _dio = Dio();
     _dio.options.sendTimeout = 30000;
     _dio.options.connectTimeout = 30000;
     _dio.options.receiveTimeout = 30000;
+
     _dio.interceptors.add(
       RetryOnConnectionChangeInterceptor(
         requestRetrier: DioConnectivityRequestRetrier(
@@ -50,446 +65,167 @@ class ApiProvider {
     }
   }
 
-  final Reader _reader;
-
-  late Dio _dio;
-
-  late final TokenRepository _tokenRepository = _reader(tokenRepositoryProvider);
-
-  late String _baseUrl;
-
-  Future<APIResponse> post(
-    String path,
-    dynamic body, {
-    String? newBaseUrl,
-    String? token,
-    Map<String, String?>? query,
-    ContentType contentType = ContentType.json,
-  }) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      return const APIResponse.error(AppException.connectivity());
-    }
-    String url;
-    if (newBaseUrl != null) {
-      url = newBaseUrl + path;
-    } else {
-      url = this._baseUrl + path;
-    }
-    var content = 'application/x-www-form-urlencoded';
-
-    if (contentType == ContentType.json) {
-      content = 'application/json';
-    }
-
-    try {
-      final headers = {
-        'accept': '*/*',
-        'Content-Type': content,
-      };
-      final _appToken = await _tokenRepository.fetchToken();
-      if (_appToken != null) {
-        headers['Authorization'] = 'Bearer ${_appToken.token}';
-      }
-      //Sometime for some specific endpoint it may require to use different Token
-      if (token != null) {
-        headers['Authorization'] = 'Bearer ${token}';
-      }
-
-      final response = await _dio.post(
-        url,
-        data: body,
-        queryParameters: query,
-        options: Options(validateStatus: (status) => true, headers: headers),
-      );
-
-      if (response.statusCode == null) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-
-      if (response.statusCode! < 300) {
-        if (response.data['data'] != null) {
-          return APIResponse.success(response.data['data']);
-        } else {
-          return APIResponse.success(response.data);
-        }
-      } else {
-        // if (response.statusCode! == 404) {
-        //   return const APIResponse.error(AppException.connectivity());
-        // } else
-        if (response.statusCode! == 401) {
-          return APIResponse.error(AppException.unauthorized());
-        } else if (response.statusCode! == 502) {
-          return const APIResponse.error(AppException.error());
-        } else {
-          if (response.data['message'] != null) {
-            return APIResponse.error(AppException.errorWithMessage(response.data['message'] as String));
-          } else {
-            return const APIResponse.error(AppException.error());
-          }
-        }
-      }
-    } on DioError catch (e) {
-      if (e.error is SocketException) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-      if (e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-
-      if (e.response != null) {
-        if (e.response!.data['message'] != null) {
-          return APIResponse.error(AppException.errorWithMessage(e.response!.data['message'] as String));
-        }
-      }
-      return APIResponse.error(AppException.errorWithMessage(e.message));
-    } on Error catch (e) {
-      return APIResponse.error(AppException.errorWithMessage(e.stackTrace.toString()));
-    }
-  }
-
-  Future<APIResponse> put(
-    String path,
-    dynamic body, {
-    String? newBaseUrl,
-    String? token,
-    Map<String, String?>? query,
-    ContentType contentType = ContentType.json,
-  }) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      return const APIResponse.error(AppException.connectivity());
-    }
-    String url;
-    if (newBaseUrl != null) {
-      url = newBaseUrl + path;
-    } else {
-      url = this._baseUrl + path;
-    }
-    var content = 'application/x-www-form-urlencoded';
-
-    if (contentType == ContentType.json) {
-      content = 'application/json';
-    }
-
-    try {
-      final headers = {
-        'accept': '*/*',
-        'Content-Type': content,
-      };
-      final _appToken = await _tokenRepository.fetchToken();
-      if (_appToken != null) {
-        headers['Authorization'] = 'Bearer ${_appToken}';
-      }
-      //Sometime for some specific endpoint it may require to use different Token
-      if (token != null) {
-        headers['Authorization'] = 'Bearer ${token}';
-      }
-
-      final response = await _dio.post(
-        url,
-        data: body,
-        queryParameters: query,
-        options: Options(validateStatus: (status) => true, headers: headers),
-      );
-
-      if (response.statusCode == null) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-
-      if (response.statusCode! < 300) {
-        if (response.data['data'] != null) {
-          return APIResponse.success(response.data['data']);
-        } else {
-          return APIResponse.success(response.data);
-        }
-      } else {
-        // if (response.statusCode! == 404) {
-        //   return const APIResponse.error(AppException.connectivity());
-        // } else
-        if (response.statusCode! == 401) {
-          return APIResponse.error(AppException.unauthorized());
-        } else if (response.statusCode! == 502) {
-          return const APIResponse.error(AppException.error());
-        } else {
-          if (response.data['message'] != null) {
-            return APIResponse.error(AppException.errorWithMessage(response.data['message'] as String));
-          } else {
-            return const APIResponse.error(AppException.error());
-          }
-        }
-      }
-    } on DioError catch (e) {
-      if (e.error is SocketException) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-      if (e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-
-      if (e.response != null) {
-        if (e.response!.data['message'] != null) {
-          return APIResponse.error(AppException.errorWithMessage(e.response!.data['message'] as String));
-        }
-      }
-      return APIResponse.error(AppException.errorWithMessage(e.message));
-    } on Error catch (e) {
-      return APIResponse.error(AppException.errorWithMessage(e.stackTrace.toString()));
-    }
-  }
-
-  Future<APIResponse> patch(
-    String path,
-    dynamic body, {
-    String? newBaseUrl,
-    String? token,
-    Map<String, String?>? query,
-    ContentType contentType = ContentType.json,
-  }) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      return const APIResponse.error(AppException.connectivity());
-    }
-    String url;
-    if (newBaseUrl != null) {
-      url = newBaseUrl + path;
-    } else {
-      url = this._baseUrl + path;
-    }
-    var content = 'application/x-www-form-urlencoded';
-
-    if (contentType == ContentType.json) {
-      content = 'application/json';
-    }
-
-    try {
-      final headers = {
-        'accept': '*/*',
-        'Content-Type': content,
-      };
-      final _appToken = await _tokenRepository.fetchToken();
-      if (_appToken != null) {
-        headers['Authorization'] = 'Bearer ${_appToken}';
-      }
-      //Sometime for some specific endpoint it may require to use different Token
-      if (token != null) {
-        headers['Authorization'] = 'Bearer ${token}';
-      }
-
-      final response = await _dio.post(
-        url,
-        data: body,
-        queryParameters: query,
-        options: Options(validateStatus: (status) => true, headers: headers),
-      );
-
-      if (response.statusCode == null) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-
-      if (response.statusCode! < 300) {
-        if (response.data['data'] != null) {
-          return APIResponse.success(response.data['data']);
-        } else {
-          return APIResponse.success(response.data);
-        }
-      } else {
-        // if (response.statusCode! == 404) {
-        //   return const APIResponse.error(AppException.connectivity());
-        // } else
-        if (response.statusCode! == 401) {
-          return APIResponse.error(AppException.unauthorized());
-        } else if (response.statusCode! == 502) {
-          return const APIResponse.error(AppException.error());
-        } else {
-          if (response.data['message'] != null) {
-            return APIResponse.error(AppException.errorWithMessage(response.data['message'] as String));
-          } else {
-            return const APIResponse.error(AppException.error());
-          }
-        }
-      }
-    } on DioError catch (e) {
-      if (e.error is SocketException) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-      if (e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-
-      if (e.response != null) {
-        if (e.response!.data['message'] != null) {
-          return APIResponse.error(AppException.errorWithMessage(e.response!.data['message'] as String));
-        }
-      }
-      return APIResponse.error(AppException.errorWithMessage(e.message));
-    } on Error catch (e) {
-      return APIResponse.error(AppException.errorWithMessage(e.stackTrace.toString()));
-    }
-  }
-
-  Future<APIResponse> delete(
-    String path,
-    dynamic body, {
-    String? newBaseUrl,
-    String? token,
-    Map<String, String?>? query,
-    ContentType contentType = ContentType.json,
-  }) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      return const APIResponse.error(AppException.connectivity());
-    }
-    String url;
-    if (newBaseUrl != null) {
-      url = newBaseUrl + path;
-    } else {
-      url = this._baseUrl + path;
-    }
-    var content = 'application/x-www-form-urlencoded';
-
-    if (contentType == ContentType.json) {
-      content = 'application/json';
-    }
-
-    try {
-      final headers = {
-        'accept': '*/*',
-        'Content-Type': content,
-      };
-      final _appToken = await _tokenRepository.fetchToken();
-      if (_appToken != null) {
-        headers['Authorization'] = 'Bearer ${_appToken}';
-      }
-      //Sometime for some specific endpoint it may require to use different Token
-      if (token != null) {
-        headers['Authorization'] = 'Bearer ${token}';
-      }
-
-      final response = await _dio.post(
-        url,
-        data: body,
-        queryParameters: query,
-        options: Options(validateStatus: (status) => true, headers: headers),
-      );
-
-      if (response.statusCode == null) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-
-      if (response.statusCode! < 300) {
-        if (response.data['data'] != null) {
-          return APIResponse.success(response.data['data']);
-        } else {
-          return APIResponse.success(response.data);
-        }
-      } else {
-        // if (response.statusCode! == 404) {
-        //   return const APIResponse.error(AppException.connectivity());
-        // } else
-        if (response.statusCode! == 401) {
-          return APIResponse.error(AppException.unauthorized());
-        } else if (response.statusCode! == 502) {
-          return const APIResponse.error(AppException.error());
-        } else {
-          if (response.data['message'] != null) {
-            return APIResponse.error(AppException.errorWithMessage(response.data['message'] as String));
-          } else {
-            return const APIResponse.error(AppException.error());
-          }
-        }
-      }
-    } on DioError catch (e) {
-      if (e.error is SocketException) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-      if (e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-
-      if (e.response != null) {
-        if (e.response!.data['message'] != null) {
-          return APIResponse.error(AppException.errorWithMessage(e.response!.data['message'] as String));
-        }
-      }
-      return APIResponse.error(AppException.errorWithMessage(e.message));
-    } on Error catch (e) {
-      return APIResponse.error(AppException.errorWithMessage(e.stackTrace.toString()));
-    }
-  }
-
-  Future<APIResponse> get(
-    String path, {
-    String? newBaseUrl,
-    String? token,
-    Map<String, dynamic>? query,
-    ContentType contentType = ContentType.json,
-  }) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      return const APIResponse.error(AppException.connectivity());
-    }
-    String url;
-    if (newBaseUrl != null) {
-      url = newBaseUrl + path;
-    } else {
-      url = this._baseUrl + path;
-    }
-
-    var content = 'application/x-www-form-urlencoded';
-
-    if (contentType == ContentType.json) {
-      content = 'application/json; charset=utf-8';
-    }
-
-    final headers = {
-      'accept': '*/*',
-      'Content-Type': content,
-    };
-
+  Future<Dio> instance() async {
     final _appToken = await _tokenRepository.fetchToken();
     if (_appToken != null) {
-      headers['Authorization'] = 'Bearer ${_appToken}';
+      headers['Authorization'] = 'Bearer ${_appToken.token}';
+    }
+    _dio.options.headers = headers;
+    _dio.options.baseUrl = _baseUrl;
+    return _dio;
+  }
+
+  APIResponse responseHandle(response) {
+    if (response.statusCode == null) {
+      return const APIResponse.error(AppException.connectivity());
     }
 
+    JsonResource resource = JsonResource.fromJson(response.data);
+
+    if (response.statusCode! < 300) {
+      return APIResponse.success(resource);
+    } else {
+      if (response.statusCode! == 401) {
+        return APIResponse.error(AppException.unauthorized());
+      } else if (response.statusCode! == 502) {
+        return const APIResponse.error(AppException.error());
+      } else {
+        return APIResponse.error(AppException.errorWithMessage(resource.error ?? resource.message ?? "Server error"));
+      }
+    }
+  }
+
+  APIResponse dioErrorHandle(e) {
+    if (e.error is SocketException) {
+      return const APIResponse.error(AppException.connectivity());
+    }
+    if (e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout) {
+      return const APIResponse.error(AppException.connectivity());
+    }
+
+    if (e.response != null) {
+      JsonResource resource = JsonResource.fromJson(e.response!.data);
+      APIResponse.error(AppException.errorWithMessage(resource.error ?? resource.message ?? "Server error"));
+    }
+    return APIResponse.error(AppException.errorWithMessage(e.message));
+  }
+
+  Future<APIResponse> post(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      return const APIResponse.error(AppException.connectivity());
+    }
+
+    await instance();
     try {
+      var url = "${_baseUrl}/${path}";
+      final response = await _dio.post(
+        url,
+        data: body,
+        queryParameters: query,
+        options: Options(validateStatus: (status) => true, headers: headers),
+      );
+
+      return responseHandle(response);
+    } on DioError catch (e) {
+      return dioErrorHandle(e);
+    } on Error catch (e) {
+      return APIResponse.error(AppException.errorWithMessage(e.stackTrace.toString()));
+    }
+  }
+
+  Future<APIResponse> get(String path, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      return const APIResponse.error(AppException.connectivity());
+    }
+    await instance();
+
+    try {
+      var url = "${_baseUrl}/${path}";
       final response = await _dio.get(
         url,
         queryParameters: query,
         options: Options(validateStatus: (status) => true, headers: headers),
       );
-      if (response == null) {
-        return const APIResponse.error(AppException.error());
-      }
-      if (response.statusCode == null) {
-        return const APIResponse.error(AppException.connectivity());
-      }
 
-      if (response.statusCode! < 300) {
-        return APIResponse.success(response.data);
-      } else {
-        if (response.statusCode! == 404) {
-          return const APIResponse.error(AppException.connectivity());
-        } else if (response.statusCode! == 401) {
-          return APIResponse.error(AppException.unauthorized());
-        } else if (response.statusCode! == 502) {
-          return const APIResponse.error(AppException.error());
-        } else {
-          if (response.data['message'] != null) {
-            return APIResponse.error(AppException.errorWithMessage(response.data['message'] as String));
-          } else {
-            return const APIResponse.error(AppException.error());
-          }
-        }
-      }
+      return responseHandle(response);
     } on DioError catch (e) {
-      if (e.error is SocketException) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-      if (e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout) {
-        return const APIResponse.error(AppException.connectivity());
-      }
-      return const APIResponse.error(AppException.error());
+      return dioErrorHandle(e);
+    } on Error catch (e) {
+      return APIResponse.error(AppException.errorWithMessage(e.stackTrace.toString()));
+    }
+  }
+
+  Future<APIResponse> put(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      return const APIResponse.error(AppException.connectivity());
+    }
+    await instance();
+
+    try {
+      var url = "${_baseUrl}/${path}";
+      final response = await _dio.put(
+        url,
+        data: body,
+        queryParameters: query,
+        options: Options(validateStatus: (status) => true, headers: headers),
+      );
+
+      return responseHandle(response);
+    } on DioError catch (e) {
+      return dioErrorHandle(e);
+    } on Error catch (e) {
+      return APIResponse.error(AppException.errorWithMessage(e.stackTrace.toString()));
+    }
+  }
+
+  Future<APIResponse> delete(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      return const APIResponse.error(AppException.connectivity());
+    }
+    await instance();
+
+    try {
+      var url = "${_baseUrl}/${path}";
+      final response = await _dio.delete(
+        url,
+        data: body,
+        queryParameters: query,
+        options: Options(validateStatus: (status) => true, headers: headers),
+      );
+
+      return responseHandle(response);
+    } on DioError catch (e) {
+      return dioErrorHandle(e);
+    } on Error catch (e) {
+      return APIResponse.error(AppException.errorWithMessage(e.stackTrace.toString()));
+    }
+  }
+
+  Future<APIResponse> patch(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      return const APIResponse.error(AppException.connectivity());
+    }
+    await instance();
+
+    try {
+      var url = "${_baseUrl}/${path}";
+      final response = await _dio.patch(
+        url,
+        data: body,
+        queryParameters: query,
+        options: Options(validateStatus: (status) => true, headers: headers),
+      );
+
+      return responseHandle(response);
+    } on DioError catch (e) {
+      return dioErrorHandle(e);
+    } on Error catch (e) {
+      return APIResponse.error(AppException.errorWithMessage(e.stackTrace.toString()));
     }
   }
 }

@@ -1,8 +1,8 @@
-import 'package:ala_pos/shared/http/api_response.dart';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../http/api_provider.dart';
+import '../models/response/api_response.dart';
 
 abstract class TokenServiceInterface {
   Future<APIResponse> checkToken();

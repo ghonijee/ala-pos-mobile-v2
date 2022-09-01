@@ -10,36 +10,13 @@ import 'package:mocktail/mocktail.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../widget_wrap_material.dart';
+
 // 1. Create mock tokenRepo
 class MockTokenRepository extends Mock implements TokenRepository {}
 
 // 2. Create mock appStartNotifier
 class MockAppStartNotifier extends Mock implements AppStartNotifier {}
-
-// 3/ Create mock appStateProvider
-
-// final fakeAppStartProvider = StateNotifierProvider<AppStartNotifier, AppStartState>((ref) {
-//   return MockAppStartNotifier(AppStartState.initial(), ref.read);
-// });
-
-startWidget(widgetChild) {
-  return ResponsiveSizer(builder: (context, orientation, deviceType) {
-    return MaterialApp(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale("en"),
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.system,
-      builder: (context, child) {
-        return PrimerApp(
-          child: widgetChild,
-          parentBrightness: Theme.of(context).brightness,
-        );
-      },
-    );
-  });
-}
 
 // Start Testing widget
 void main() {

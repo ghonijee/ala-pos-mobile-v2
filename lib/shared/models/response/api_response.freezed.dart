@@ -15,153 +15,160 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$APIResponse<T> {
+mixin _$APIResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T value) success,
+    required TResult Function(JsonResource resource) success,
     required TResult Function(AppException exception) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T value)? success,
+    TResult Function(JsonResource resource)? success,
     TResult Function(AppException exception)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T value)? success,
+    TResult Function(JsonResource resource)? success,
     TResult Function(AppException exception)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(APISuccess<T> value) success,
-    required TResult Function(APIError<T> value) error,
+    required TResult Function(APISuccess value) success,
+    required TResult Function(APIError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(APISuccess<T> value)? success,
-    TResult Function(APIError<T> value)? error,
+    TResult Function(APISuccess value)? success,
+    TResult Function(APIError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(APISuccess<T> value)? success,
-    TResult Function(APIError<T> value)? error,
+    TResult Function(APISuccess value)? success,
+    TResult Function(APIError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $APIResponseCopyWith<T, $Res> {
+abstract class $APIResponseCopyWith<$Res> {
   factory $APIResponseCopyWith(
-          APIResponse<T> value, $Res Function(APIResponse<T>) then) =
-      _$APIResponseCopyWithImpl<T, $Res>;
+          APIResponse value, $Res Function(APIResponse) then) =
+      _$APIResponseCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$APIResponseCopyWithImpl<T, $Res>
-    implements $APIResponseCopyWith<T, $Res> {
+class _$APIResponseCopyWithImpl<$Res> implements $APIResponseCopyWith<$Res> {
   _$APIResponseCopyWithImpl(this._value, this._then);
 
-  final APIResponse<T> _value;
+  final APIResponse _value;
   // ignore: unused_field
-  final $Res Function(APIResponse<T>) _then;
+  final $Res Function(APIResponse) _then;
 }
 
 /// @nodoc
-abstract class _$$APISuccessCopyWith<T, $Res> {
+abstract class _$$APISuccessCopyWith<$Res> {
   factory _$$APISuccessCopyWith(
-          _$APISuccess<T> value, $Res Function(_$APISuccess<T>) then) =
-      __$$APISuccessCopyWithImpl<T, $Res>;
-  $Res call({T value});
+          _$APISuccess value, $Res Function(_$APISuccess) then) =
+      __$$APISuccessCopyWithImpl<$Res>;
+  $Res call({JsonResource resource});
+
+  $JsonResourceCopyWith<$Res> get resource;
 }
 
 /// @nodoc
-class __$$APISuccessCopyWithImpl<T, $Res>
-    extends _$APIResponseCopyWithImpl<T, $Res>
-    implements _$$APISuccessCopyWith<T, $Res> {
+class __$$APISuccessCopyWithImpl<$Res> extends _$APIResponseCopyWithImpl<$Res>
+    implements _$$APISuccessCopyWith<$Res> {
   __$$APISuccessCopyWithImpl(
-      _$APISuccess<T> _value, $Res Function(_$APISuccess<T>) _then)
-      : super(_value, (v) => _then(v as _$APISuccess<T>));
+      _$APISuccess _value, $Res Function(_$APISuccess) _then)
+      : super(_value, (v) => _then(v as _$APISuccess));
 
   @override
-  _$APISuccess<T> get _value => super._value as _$APISuccess<T>;
+  _$APISuccess get _value => super._value as _$APISuccess;
 
   @override
   $Res call({
-    Object? value = freezed,
+    Object? resource = freezed,
   }) {
-    return _then(_$APISuccess<T>(
-      value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as T,
+    return _then(_$APISuccess(
+      resource == freezed
+          ? _value.resource
+          : resource // ignore: cast_nullable_to_non_nullable
+              as JsonResource,
     ));
+  }
+
+  @override
+  $JsonResourceCopyWith<$Res> get resource {
+    return $JsonResourceCopyWith<$Res>(_value.resource, (value) {
+      return _then(_value.copyWith(resource: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$APISuccess<T> implements APISuccess<T> {
-  const _$APISuccess(this.value);
+class _$APISuccess implements APISuccess {
+  const _$APISuccess(this.resource);
 
   @override
-  final T value;
+  final JsonResource resource;
 
   @override
   String toString() {
-    return 'APIResponse<$T>.success(value: $value)';
+    return 'APIResponse.success(resource: $resource)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$APISuccess<T> &&
-            const DeepCollectionEquality().equals(other.value, value));
+            other is _$APISuccess &&
+            const DeepCollectionEquality().equals(other.resource, resource));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(resource));
 
   @JsonKey(ignore: true)
   @override
-  _$$APISuccessCopyWith<T, _$APISuccess<T>> get copyWith =>
-      __$$APISuccessCopyWithImpl<T, _$APISuccess<T>>(this, _$identity);
+  _$$APISuccessCopyWith<_$APISuccess> get copyWith =>
+      __$$APISuccessCopyWithImpl<_$APISuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T value) success,
+    required TResult Function(JsonResource resource) success,
     required TResult Function(AppException exception) error,
   }) {
-    return success(value);
+    return success(resource);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T value)? success,
+    TResult Function(JsonResource resource)? success,
     TResult Function(AppException exception)? error,
   }) {
-    return success?.call(value);
+    return success?.call(resource);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T value)? success,
+    TResult Function(JsonResource resource)? success,
     TResult Function(AppException exception)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(value);
+      return success(resource);
     }
     return orElse();
   }
@@ -169,8 +176,8 @@ class _$APISuccess<T> implements APISuccess<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(APISuccess<T> value) success,
-    required TResult Function(APIError<T> value) error,
+    required TResult Function(APISuccess value) success,
+    required TResult Function(APIError value) error,
   }) {
     return success(this);
   }
@@ -178,8 +185,8 @@ class _$APISuccess<T> implements APISuccess<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(APISuccess<T> value)? success,
-    TResult Function(APIError<T> value)? error,
+    TResult Function(APISuccess value)? success,
+    TResult Function(APIError value)? error,
   }) {
     return success?.call(this);
   }
@@ -187,8 +194,8 @@ class _$APISuccess<T> implements APISuccess<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(APISuccess<T> value)? success,
-    TResult Function(APIError<T> value)? error,
+    TResult Function(APISuccess value)? success,
+    TResult Function(APIError value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -198,41 +205,39 @@ class _$APISuccess<T> implements APISuccess<T> {
   }
 }
 
-abstract class APISuccess<T> implements APIResponse<T> {
-  const factory APISuccess(final T value) = _$APISuccess<T>;
+abstract class APISuccess implements APIResponse {
+  const factory APISuccess(final JsonResource resource) = _$APISuccess;
 
-  T get value;
+  JsonResource get resource;
   @JsonKey(ignore: true)
-  _$$APISuccessCopyWith<T, _$APISuccess<T>> get copyWith =>
+  _$$APISuccessCopyWith<_$APISuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$APIErrorCopyWith<T, $Res> {
+abstract class _$$APIErrorCopyWith<$Res> {
   factory _$$APIErrorCopyWith(
-          _$APIError<T> value, $Res Function(_$APIError<T>) then) =
-      __$$APIErrorCopyWithImpl<T, $Res>;
+          _$APIError value, $Res Function(_$APIError) then) =
+      __$$APIErrorCopyWithImpl<$Res>;
   $Res call({AppException exception});
 
   $AppExceptionCopyWith<$Res> get exception;
 }
 
 /// @nodoc
-class __$$APIErrorCopyWithImpl<T, $Res>
-    extends _$APIResponseCopyWithImpl<T, $Res>
-    implements _$$APIErrorCopyWith<T, $Res> {
-  __$$APIErrorCopyWithImpl(
-      _$APIError<T> _value, $Res Function(_$APIError<T>) _then)
-      : super(_value, (v) => _then(v as _$APIError<T>));
+class __$$APIErrorCopyWithImpl<$Res> extends _$APIResponseCopyWithImpl<$Res>
+    implements _$$APIErrorCopyWith<$Res> {
+  __$$APIErrorCopyWithImpl(_$APIError _value, $Res Function(_$APIError) _then)
+      : super(_value, (v) => _then(v as _$APIError));
 
   @override
-  _$APIError<T> get _value => super._value as _$APIError<T>;
+  _$APIError get _value => super._value as _$APIError;
 
   @override
   $Res call({
     Object? exception = freezed,
   }) {
-    return _then(_$APIError<T>(
+    return _then(_$APIError(
       exception == freezed
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -250,7 +255,7 @@ class __$$APIErrorCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$APIError<T> implements APIError<T> {
+class _$APIError implements APIError {
   const _$APIError(this.exception);
 
   @override
@@ -258,14 +263,14 @@ class _$APIError<T> implements APIError<T> {
 
   @override
   String toString() {
-    return 'APIResponse<$T>.error(exception: $exception)';
+    return 'APIResponse.error(exception: $exception)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$APIError<T> &&
+            other is _$APIError &&
             const DeepCollectionEquality().equals(other.exception, exception));
   }
 
@@ -275,13 +280,13 @@ class _$APIError<T> implements APIError<T> {
 
   @JsonKey(ignore: true)
   @override
-  _$$APIErrorCopyWith<T, _$APIError<T>> get copyWith =>
-      __$$APIErrorCopyWithImpl<T, _$APIError<T>>(this, _$identity);
+  _$$APIErrorCopyWith<_$APIError> get copyWith =>
+      __$$APIErrorCopyWithImpl<_$APIError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T value) success,
+    required TResult Function(JsonResource resource) success,
     required TResult Function(AppException exception) error,
   }) {
     return error(exception);
@@ -290,7 +295,7 @@ class _$APIError<T> implements APIError<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T value)? success,
+    TResult Function(JsonResource resource)? success,
     TResult Function(AppException exception)? error,
   }) {
     return error?.call(exception);
@@ -299,7 +304,7 @@ class _$APIError<T> implements APIError<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T value)? success,
+    TResult Function(JsonResource resource)? success,
     TResult Function(AppException exception)? error,
     required TResult orElse(),
   }) {
@@ -312,8 +317,8 @@ class _$APIError<T> implements APIError<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(APISuccess<T> value) success,
-    required TResult Function(APIError<T> value) error,
+    required TResult Function(APISuccess value) success,
+    required TResult Function(APIError value) error,
   }) {
     return error(this);
   }
@@ -321,8 +326,8 @@ class _$APIError<T> implements APIError<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(APISuccess<T> value)? success,
-    TResult Function(APIError<T> value)? error,
+    TResult Function(APISuccess value)? success,
+    TResult Function(APIError value)? error,
   }) {
     return error?.call(this);
   }
@@ -330,8 +335,8 @@ class _$APIError<T> implements APIError<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(APISuccess<T> value)? success,
-    TResult Function(APIError<T> value)? error,
+    TResult Function(APISuccess value)? success,
+    TResult Function(APIError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -341,11 +346,11 @@ class _$APIError<T> implements APIError<T> {
   }
 }
 
-abstract class APIError<T> implements APIResponse<T> {
-  const factory APIError(final AppException exception) = _$APIError<T>;
+abstract class APIError implements APIResponse {
+  const factory APIError(final AppException exception) = _$APIError;
 
   AppException get exception;
   @JsonKey(ignore: true)
-  _$$APIErrorCopyWith<T, _$APIError<T>> get copyWith =>
+  _$$APIErrorCopyWith<_$APIError> get copyWith =>
       throw _privateConstructorUsedError;
 }
