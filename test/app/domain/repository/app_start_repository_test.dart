@@ -34,6 +34,7 @@ void main() {
     // Setting Mock
     when(() => rolePermissionRemote.userRole(userId)).thenAnswer((invocation) => Future.value(APIResponse.success(JsonResource(status: true, data: roleModelTemp.toJson()))));
     when(() => localStorage.read(Constant.userModel)).thenAnswer((invocation) => Future.value(userEncoded));
+    when(() => localStorage.store(any(), any())).thenAnswer((_) => Future.value());
 
     var repository = AppStartRepository(rolePermissionRemoteSource: rolePermissionRemote, tokenRemoteSource: tokenRemoteResource, localStorage: localStorage);
     var result = await repository.userRole();

@@ -7,6 +7,7 @@ import 'package:ala_pos/shared/models/json/json_resource.dart';
 import 'package:ala_pos/shared/models/response/api_response.dart';
 import 'package:ala_pos/shared/utils/device_info.dart';
 import 'package:ala_pos/shared/utils/local_storage.dart';
+import 'package:ala_pos/shared/utils/platform_type.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
@@ -21,16 +22,10 @@ class MockLocalStorage extends Mock implements LocalStorage {}
 void main() {
   // Create instance from Mock class
   final AuthRemoteSource remoteSource = MockAuthRemoteSource();
-  final LocalStorage localStorage = MockLocalStorage();
   final DeviceInfo deviceInfo = MockDeviceInfo();
+  final LocalStorage localStorage = MockLocalStorage();
 
   test("Login method return LoginModel when login success", () async {
-    // Override Riverpod provider
-    var container = ProviderContainer(overrides: [
-      authRepositoryProvider.overrideWithValue(
-        AuthRepository(remoteSource, deviceInfo, localStorage),
-      )
-    ]);
     // Setup Dummy Response Data
     var dataResponse = {
       "personal_access_token": "token",
@@ -43,9 +38,10 @@ void main() {
       () => remoteSource.login("username", "password", "unit-test"),
     ).thenAnswer((invocation) => Future.value(APIResponse.success(jsonResource)));
     when(() => deviceInfo.deviceName).thenAnswer((_) => Future.value("unit-test"));
+    when(() => localStorage.store(any(), any())).thenAnswer((_) => Future.value());
 
     // Create instance from Repository Provider
-    var authRepository = container.read(authRepositoryProvider);
+    var authRepository = AuthRepository(remoteSource, deviceInfo, localStorage);
     var result = await authRepository.signIn("username", "password");
 
     // Check Expected Result
