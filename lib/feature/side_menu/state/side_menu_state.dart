@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../auth/domain/models/store/store_model.dart';
 import '../../auth/domain/models/user/user_model.dart';
+import '../../store/domain/models/store/store_model.dart';
 
 part 'side_menu_state.freezed.dart';
 

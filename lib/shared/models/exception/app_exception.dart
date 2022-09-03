@@ -6,6 +6,6 @@ part 'app_exception.freezed.dart';
 class AppException with _$AppException {
   const factory AppException.connectivity() = AppExceptionConnectivity;
   const factory AppException.unauthorized() = AppExceptionUnauthorized;
-  const factory AppException.errorWithMessage(String message) = _AppExceptionErrorMessage;
-  const factory AppException.error() = _AppExceptionError;
+  const factory AppException.errorWithMessage(String message) = AppExceptionErrorMessage;
+  const factory AppException.error() = AppExceptionError;
 }

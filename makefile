@@ -14,9 +14,9 @@ help: ## This help dialog.
 		printf "%-30s %s\n" $$help_command $$help_info ; \
 	done
 
-run_unit: ## Runs unit tests
-	@echo "╠ Running the tests"
-	@flutter test || (echo "Error while running tests"; exit 1)
+run_test: ## Runs unit tests
+	@echo "╠ Running the tests and show expanded"
+	@flutter test -r expanded|| (echo "Error while running tests"; exit 1)
 
 clean: ## Cleans the environment
 	@echo "╠ Cleaning the project..."

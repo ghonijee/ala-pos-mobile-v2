@@ -45,24 +45,24 @@ mixin _$AppException {
   TResult map<TResult extends Object?>({
     required TResult Function(AppExceptionConnectivity value) connectivity,
     required TResult Function(AppExceptionUnauthorized value) unauthorized,
-    required TResult Function(_AppExceptionErrorMessage value) errorWithMessage,
-    required TResult Function(_AppExceptionError value) error,
+    required TResult Function(AppExceptionErrorMessage value) errorWithMessage,
+    required TResult Function(AppExceptionError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -166,8 +166,8 @@ class _$AppExceptionConnectivity implements AppExceptionConnectivity {
   TResult map<TResult extends Object?>({
     required TResult Function(AppExceptionConnectivity value) connectivity,
     required TResult Function(AppExceptionUnauthorized value) unauthorized,
-    required TResult Function(_AppExceptionErrorMessage value) errorWithMessage,
-    required TResult Function(_AppExceptionError value) error,
+    required TResult Function(AppExceptionErrorMessage value) errorWithMessage,
+    required TResult Function(AppExceptionError value) error,
   }) {
     return connectivity(this);
   }
@@ -177,8 +177,8 @@ class _$AppExceptionConnectivity implements AppExceptionConnectivity {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
   }) {
     return connectivity?.call(this);
   }
@@ -188,8 +188,8 @@ class _$AppExceptionConnectivity implements AppExceptionConnectivity {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
     required TResult orElse(),
   }) {
     if (connectivity != null) {
@@ -285,8 +285,8 @@ class _$AppExceptionUnauthorized implements AppExceptionUnauthorized {
   TResult map<TResult extends Object?>({
     required TResult Function(AppExceptionConnectivity value) connectivity,
     required TResult Function(AppExceptionUnauthorized value) unauthorized,
-    required TResult Function(_AppExceptionErrorMessage value) errorWithMessage,
-    required TResult Function(_AppExceptionError value) error,
+    required TResult Function(AppExceptionErrorMessage value) errorWithMessage,
+    required TResult Function(AppExceptionError value) error,
   }) {
     return unauthorized(this);
   }
@@ -296,8 +296,8 @@ class _$AppExceptionUnauthorized implements AppExceptionUnauthorized {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
   }) {
     return unauthorized?.call(this);
   }
@@ -307,8 +307,8 @@ class _$AppExceptionUnauthorized implements AppExceptionUnauthorized {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -323,31 +323,30 @@ abstract class AppExceptionUnauthorized implements AppException {
 }
 
 /// @nodoc
-abstract class _$$_AppExceptionErrorMessageCopyWith<$Res> {
-  factory _$$_AppExceptionErrorMessageCopyWith(
-          _$_AppExceptionErrorMessage value,
-          $Res Function(_$_AppExceptionErrorMessage) then) =
-      __$$_AppExceptionErrorMessageCopyWithImpl<$Res>;
+abstract class _$$AppExceptionErrorMessageCopyWith<$Res> {
+  factory _$$AppExceptionErrorMessageCopyWith(_$AppExceptionErrorMessage value,
+          $Res Function(_$AppExceptionErrorMessage) then) =
+      __$$AppExceptionErrorMessageCopyWithImpl<$Res>;
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_AppExceptionErrorMessageCopyWithImpl<$Res>
+class __$$AppExceptionErrorMessageCopyWithImpl<$Res>
     extends _$AppExceptionCopyWithImpl<$Res>
-    implements _$$_AppExceptionErrorMessageCopyWith<$Res> {
-  __$$_AppExceptionErrorMessageCopyWithImpl(_$_AppExceptionErrorMessage _value,
-      $Res Function(_$_AppExceptionErrorMessage) _then)
-      : super(_value, (v) => _then(v as _$_AppExceptionErrorMessage));
+    implements _$$AppExceptionErrorMessageCopyWith<$Res> {
+  __$$AppExceptionErrorMessageCopyWithImpl(_$AppExceptionErrorMessage _value,
+      $Res Function(_$AppExceptionErrorMessage) _then)
+      : super(_value, (v) => _then(v as _$AppExceptionErrorMessage));
 
   @override
-  _$_AppExceptionErrorMessage get _value =>
-      super._value as _$_AppExceptionErrorMessage;
+  _$AppExceptionErrorMessage get _value =>
+      super._value as _$AppExceptionErrorMessage;
 
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(_$_AppExceptionErrorMessage(
+    return _then(_$AppExceptionErrorMessage(
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -358,8 +357,8 @@ class __$$_AppExceptionErrorMessageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
-  const _$_AppExceptionErrorMessage(this.message);
+class _$AppExceptionErrorMessage implements AppExceptionErrorMessage {
+  const _$AppExceptionErrorMessage(this.message);
 
   @override
   final String message;
@@ -373,7 +372,7 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AppExceptionErrorMessage &&
+            other is _$AppExceptionErrorMessage &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
@@ -383,9 +382,10 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
 
   @JsonKey(ignore: true)
   @override
-  _$$_AppExceptionErrorMessageCopyWith<_$_AppExceptionErrorMessage>
-      get copyWith => __$$_AppExceptionErrorMessageCopyWithImpl<
-          _$_AppExceptionErrorMessage>(this, _$identity);
+  _$$AppExceptionErrorMessageCopyWith<_$AppExceptionErrorMessage>
+      get copyWith =>
+          __$$AppExceptionErrorMessageCopyWithImpl<_$AppExceptionErrorMessage>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -429,8 +429,8 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
   TResult map<TResult extends Object?>({
     required TResult Function(AppExceptionConnectivity value) connectivity,
     required TResult Function(AppExceptionUnauthorized value) unauthorized,
-    required TResult Function(_AppExceptionErrorMessage value) errorWithMessage,
-    required TResult Function(_AppExceptionError value) error,
+    required TResult Function(AppExceptionErrorMessage value) errorWithMessage,
+    required TResult Function(AppExceptionError value) error,
   }) {
     return errorWithMessage(this);
   }
@@ -440,8 +440,8 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
   }) {
     return errorWithMessage?.call(this);
   }
@@ -451,8 +451,8 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
     required TResult orElse(),
   }) {
     if (errorWithMessage != null) {
@@ -462,39 +462,39 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
   }
 }
 
-abstract class _AppExceptionErrorMessage implements AppException {
-  const factory _AppExceptionErrorMessage(final String message) =
-      _$_AppExceptionErrorMessage;
+abstract class AppExceptionErrorMessage implements AppException {
+  const factory AppExceptionErrorMessage(final String message) =
+      _$AppExceptionErrorMessage;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_AppExceptionErrorMessageCopyWith<_$_AppExceptionErrorMessage>
+  _$$AppExceptionErrorMessageCopyWith<_$AppExceptionErrorMessage>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_AppExceptionErrorCopyWith<$Res> {
-  factory _$$_AppExceptionErrorCopyWith(_$_AppExceptionError value,
-          $Res Function(_$_AppExceptionError) then) =
-      __$$_AppExceptionErrorCopyWithImpl<$Res>;
+abstract class _$$AppExceptionErrorCopyWith<$Res> {
+  factory _$$AppExceptionErrorCopyWith(
+          _$AppExceptionError value, $Res Function(_$AppExceptionError) then) =
+      __$$AppExceptionErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AppExceptionErrorCopyWithImpl<$Res>
+class __$$AppExceptionErrorCopyWithImpl<$Res>
     extends _$AppExceptionCopyWithImpl<$Res>
-    implements _$$_AppExceptionErrorCopyWith<$Res> {
-  __$$_AppExceptionErrorCopyWithImpl(
-      _$_AppExceptionError _value, $Res Function(_$_AppExceptionError) _then)
-      : super(_value, (v) => _then(v as _$_AppExceptionError));
+    implements _$$AppExceptionErrorCopyWith<$Res> {
+  __$$AppExceptionErrorCopyWithImpl(
+      _$AppExceptionError _value, $Res Function(_$AppExceptionError) _then)
+      : super(_value, (v) => _then(v as _$AppExceptionError));
 
   @override
-  _$_AppExceptionError get _value => super._value as _$_AppExceptionError;
+  _$AppExceptionError get _value => super._value as _$AppExceptionError;
 }
 
 /// @nodoc
 
-class _$_AppExceptionError implements _AppExceptionError {
-  const _$_AppExceptionError();
+class _$AppExceptionError implements AppExceptionError {
+  const _$AppExceptionError();
 
   @override
   String toString() {
@@ -504,7 +504,7 @@ class _$_AppExceptionError implements _AppExceptionError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AppExceptionError);
+        (other.runtimeType == runtimeType && other is _$AppExceptionError);
   }
 
   @override
@@ -552,8 +552,8 @@ class _$_AppExceptionError implements _AppExceptionError {
   TResult map<TResult extends Object?>({
     required TResult Function(AppExceptionConnectivity value) connectivity,
     required TResult Function(AppExceptionUnauthorized value) unauthorized,
-    required TResult Function(_AppExceptionErrorMessage value) errorWithMessage,
-    required TResult Function(_AppExceptionError value) error,
+    required TResult Function(AppExceptionErrorMessage value) errorWithMessage,
+    required TResult Function(AppExceptionError value) error,
   }) {
     return error(this);
   }
@@ -563,8 +563,8 @@ class _$_AppExceptionError implements _AppExceptionError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
   }) {
     return error?.call(this);
   }
@@ -574,8 +574,8 @@ class _$_AppExceptionError implements _AppExceptionError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppExceptionConnectivity value)? connectivity,
     TResult Function(AppExceptionUnauthorized value)? unauthorized,
-    TResult Function(_AppExceptionErrorMessage value)? errorWithMessage,
-    TResult Function(_AppExceptionError value)? error,
+    TResult Function(AppExceptionErrorMessage value)? errorWithMessage,
+    TResult Function(AppExceptionError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -585,6 +585,6 @@ class _$_AppExceptionError implements _AppExceptionError {
   }
 }
 
-abstract class _AppExceptionError implements AppException {
-  const factory _AppExceptionError() = _$_AppExceptionError;
+abstract class AppExceptionError implements AppException {
+  const factory AppExceptionError() = _$AppExceptionError;
 }
