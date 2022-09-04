@@ -12,6 +12,7 @@ class Constant {
   static const mainStore = "MAIN_STORE";
   static const userRole = "USER_ROLE";
   static const userPermissionList = "USER_PERMISSION_LIST";
+  static const storeCategoryList = "STORE_CATEGORY_LIST";
 }
 
 class UserStatus {
