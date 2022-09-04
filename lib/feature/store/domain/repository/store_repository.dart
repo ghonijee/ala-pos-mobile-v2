@@ -36,45 +36,50 @@ class StoreRepository {
     }
   }
 
-  // Future<Either<FailureModel, ApiResponse>> update(StoreModel model) async {
-  //   try {
-  //     ApiResponse response = await remoteSource.update(model.toJson(), model.id!);
+  Future<Result<bool, AppException>> update(StoreModel model) async {
+    try {
+      APIResponse response = await storeRemoteSource.update(model.toJson(), model.id!);
 
-  //     if (!response.status!) {
-  //       throw Exception(response.message);
-  //     }
+      if (response is APIError) {
+        throw response.exception;
+      }
+      response as APISuccess;
+      localStorage.store(Constant.mainStore, jsonEncode(model.toJson()));
 
-  //     storage.setValue(Constant.mainStore, model.toJson());
+      return Success(response.resource.status);
+    } on AppException catch (e) {
+      return Failure(e);
+    }
+  }
 
-  //     return Right(response);
-  //   } catch (e) {
-  //     return Left(FailureModel.serverError(e.toString()));
-  //   }
-  // }
+  Future<Result<bool, AppException>> mainStore() async {
+    try {
+      APIResponse response = await storeRemoteSource.main();
 
-  // Future<Either<FailureModel, bool>> mainStore() async {
-  //   try {
-  //     ApiResponse response = await remoteSource.main();
+      if (response is APIError) {
+        throw response.exception;
+      }
+      response as APISuccess;
 
-  //     if (response.status! == false) {
-  //       throw Exception(response.message);
-  //     }
+      StoreModel data = StoreModel.fromJson(response.resource.data);
 
-  //     StoreModel data = StoreModel.fromJson(response.data);
+      localStorage.store(Constant.mainStore, jsonEncode(data.toJson()));
 
-  //     storage.setValue(Constant.mainStore, data.toJson());
+      return Success(true);
+    } on AppException catch (e) {
+      return Failure(e);
+    }
+  }
 
-  //     return Right(true);
-  //   } catch (e) {
-  //     return Left(FailureModel.serverError(e.toString()));
-  //   }
-  // }
-
-  // Future<StoreModel> activeStore() async {
-  //   var json = await storage.getValueJson(Constant.mainStore);
-  //   StoreModel model = StoreModel.fromJson(json);
-  //   return model;
-  // }
+  Future<StoreModel?> activeStore() async {
+    var jsonEncode = await localStorage.read(Constant.mainStore);
+    if (jsonEncode == null) {
+      return null;
+    }
+    Map<String, dynamic> json = jsonDecode(jsonEncode);
+    StoreModel model = StoreModel.fromJson(json);
+    return model;
+  }
 
   // List<StoreCategoryModel> getStoreCategory() {
   //   return <StoreCategoryModel>[
