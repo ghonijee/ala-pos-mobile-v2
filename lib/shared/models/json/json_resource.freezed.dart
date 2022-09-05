@@ -24,7 +24,7 @@ mixin _$JsonResource {
   bool get status => throw _privateConstructorUsedError;
   @JsonKey(name: "message", defaultValue: "success")
   String? get message => throw _privateConstructorUsedError;
-  @JsonKey(name: "error", defaultValue: "error")
+  @JsonKey(name: "error", nullable: true)
   String? get error => throw _privateConstructorUsedError;
   @JsonKey(name: "data", defaultValue: null)
   dynamic get data => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $JsonResourceCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "status", defaultValue: true) bool status,
       @JsonKey(name: "message", defaultValue: "success") String? message,
-      @JsonKey(name: "error", defaultValue: "error") String? error,
+      @JsonKey(name: "error", nullable: true) String? error,
       @JsonKey(name: "data", defaultValue: null) dynamic data,
       @JsonKey(ignore: true) AppException? exception});
 
@@ -114,7 +114,7 @@ abstract class _$$_JsonResourceCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "status", defaultValue: true) bool status,
       @JsonKey(name: "message", defaultValue: "success") String? message,
-      @JsonKey(name: "error", defaultValue: "error") String? error,
+      @JsonKey(name: "error", nullable: true) String? error,
       @JsonKey(name: "data", defaultValue: null) dynamic data,
       @JsonKey(ignore: true) AppException? exception});
 
@@ -172,7 +172,7 @@ class _$_JsonResource implements _JsonResource {
   const _$_JsonResource(
       {@JsonKey(name: "status", defaultValue: true) required this.status,
       @JsonKey(name: "message", defaultValue: "success") this.message,
-      @JsonKey(name: "error", defaultValue: "error") this.error,
+      @JsonKey(name: "error", nullable: true) this.error,
       @JsonKey(name: "data", defaultValue: null) this.data,
       @JsonKey(ignore: true) this.exception});
 
@@ -186,7 +186,7 @@ class _$_JsonResource implements _JsonResource {
   @JsonKey(name: "message", defaultValue: "success")
   final String? message;
   @override
-  @JsonKey(name: "error", defaultValue: "error")
+  @JsonKey(name: "error", nullable: true)
   final String? error;
   @override
   @JsonKey(name: "data", defaultValue: null)
@@ -239,7 +239,7 @@ abstract class _JsonResource implements JsonResource {
   const factory _JsonResource(
       {@JsonKey(name: "status", defaultValue: true) required final bool status,
       @JsonKey(name: "message", defaultValue: "success") final String? message,
-      @JsonKey(name: "error", defaultValue: "error") final String? error,
+      @JsonKey(name: "error", nullable: true) final String? error,
       @JsonKey(name: "data", defaultValue: null) final dynamic data,
       @JsonKey(ignore: true) final AppException? exception}) = _$_JsonResource;
 
@@ -253,7 +253,7 @@ abstract class _JsonResource implements JsonResource {
   @JsonKey(name: "message", defaultValue: "success")
   String? get message;
   @override
-  @JsonKey(name: "error", defaultValue: "error")
+  @JsonKey(name: "error", nullable: true)
   String? get error;
   @override
   @JsonKey(name: "data", defaultValue: null)

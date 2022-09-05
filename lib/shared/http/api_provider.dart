@@ -8,6 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../models/exception/app_exception.dart';
 import '../models/response/api_response.dart';
@@ -17,8 +18,12 @@ import 'interceptor/retry_interceptor.dart';
 
 enum ContentType { urlEncoded, json }
 
+final dioProvider = Provider.autoDispose(
+  (ref) => Dio(),
+);
+
 final apiProvider = Provider<ApiProvider>(
-  (ref) => ApiProvider(ref.read),
+  (ref) => ApiProvider(ref.read(tokenRepositoryProvider), ref.read(dioProvider)),
 );
 
 class ApiProvider {
@@ -27,16 +32,15 @@ class ApiProvider {
     'Content-Type': "application/json",
   };
 
-  final Reader _reader;
-
   late Dio _dio;
 
-  late final TokenRepository _tokenRepository = _reader(tokenRepositoryProvider);
+  TokenRepository _tokenRepository;
 
   late String _baseUrl;
 
-  ApiProvider(this._reader) {
-    _dio = Dio();
+  Dio get dio => _dio;
+
+  ApiProvider(this._tokenRepository, this._dio) {
     _dio.options.sendTimeout = 30000;
     _dio.options.connectTimeout = 30000;
     _dio.options.receiveTimeout = 30000;
@@ -57,7 +61,7 @@ class ApiProvider {
     };
 
     if (kDebugMode) {
-      _dio.interceptors.add(PrettyDioLogger(requestBody: true));
+      _dio.interceptors.add(PrettyDioLogger(request: false));
     }
 
     if (dotenv.env['BASE_URL'] != null) {
@@ -111,14 +115,14 @@ class ApiProvider {
   }
 
   Future<APIResponse> post(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      return const APIResponse.error(AppException.connectivity());
-    }
+    // final connectivityResult = await (Connectivity().checkConnectivity());
+    // if (connectivityResult == ConnectivityResult.none) {
+    //   return const APIResponse.error(AppException.connectivity());
+    // }
 
     await instance();
     try {
-      var url = "${_baseUrl}/${path}";
+      var url = "${path}";
       final response = await _dio.post(
         url,
         data: body,

@@ -34,13 +34,13 @@ class TokenRepository implements TokenRepositoryProtocol {
     if (_platform == PlatformType.iOS || _platform == PlatformType.android || _platform == PlatformType.linux) {
       const storage = FlutterSecureStorage();
       try {
-        await storage.delete(key: StoreKey.token.toString());
+        await storage.delete(key: Constant.token);
       } on Exception catch (e) {}
     } else {
-      await prefs.remove(StoreKey.token.toString());
+      await prefs.remove(Constant.token);
     }
 
-    await prefs.remove(StoreKey.user.toString());
+    await prefs.remove(Constant.userModel);
   }
 
   @override
@@ -50,10 +50,10 @@ class TokenRepository implements TokenRepositoryProtocol {
     if (_platform == PlatformType.iOS || _platform == PlatformType.android || _platform == PlatformType.linux) {
       const storage = FlutterSecureStorage();
       try {
-        await storage.write(key: StoreKey.token.toString(), value: tokenToJson(token));
+        await storage.write(key: Constant.token, value: tokenToJson(token));
       } on Exception catch (e) {}
     } else {
-      await prefs.setString(StoreKey.token.toString(), tokenToJson(token));
+      await prefs.setString(Constant.token, tokenToJson(token));
     }
   }
 
@@ -63,10 +63,10 @@ class TokenRepository implements TokenRepositoryProtocol {
 
     if (_platform == PlatformType.iOS || _platform == PlatformType.android || _platform == PlatformType.linux) {
       const storage = FlutterSecureStorage();
-      tokenValue = await storage.read(key: StoreKey.token.toString());
+      tokenValue = await storage.read(key: Constant.token);
     } else {
       final prefs = await SharedPreferences.getInstance();
-      tokenValue = prefs.getString(StoreKey.token.toString());
+      tokenValue = prefs.getString(Constant.token);
     }
     try {
       if (tokenValue != null) {

@@ -10,7 +10,7 @@ _$_JsonResource _$$_JsonResourceFromJson(Map<String, dynamic> json) =>
     _$_JsonResource(
       status: json['status'] as bool? ?? true,
       message: json['message'] as String? ?? 'success',
-      error: json['error'] as String? ?? 'error',
+      error: json['error'] as String?,
       data: json['data'],
     );
 
