@@ -18,12 +18,16 @@ import 'interceptor/retry_interceptor.dart';
 
 enum ContentType { urlEncoded, json }
 
+final connectivityProvider = Provider.autoDispose(
+  (ref) => Connectivity(),
+);
+
 final dioProvider = Provider.autoDispose(
   (ref) => Dio(),
 );
 
 final apiProvider = Provider<ApiProvider>(
-  (ref) => ApiProvider(ref.read(tokenRepositoryProvider), ref.read(dioProvider)),
+  (ref) => ApiProvider(ref.read(tokenRepositoryProvider), ref.read(dioProvider), ref.read(connectivityProvider)),
 );
 
 class ApiProvider {
@@ -34,13 +38,15 @@ class ApiProvider {
 
   late Dio _dio;
 
+  Connectivity connectivity;
+
   TokenRepository _tokenRepository;
 
   late String _baseUrl;
 
   Dio get dio => _dio;
 
-  ApiProvider(this._tokenRepository, this._dio) {
+  ApiProvider(this._tokenRepository, this._dio, this.connectivity) {
     _dio.options.sendTimeout = 30000;
     _dio.options.connectTimeout = 30000;
     _dio.options.receiveTimeout = 30000;
@@ -115,10 +121,10 @@ class ApiProvider {
   }
 
   Future<APIResponse> post(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
-    // final connectivityResult = await (Connectivity().checkConnectivity());
-    // if (connectivityResult == ConnectivityResult.none) {
-    //   return const APIResponse.error(AppException.connectivity());
-    // }
+    final connectivityResult = await connectivity.checkConnectivity();
+    if (connectivityResult == ConnectivityResult.none) {
+      return const APIResponse.error(AppException.connectivity());
+    }
 
     await instance();
     try {
@@ -139,14 +145,14 @@ class ApiProvider {
   }
 
   Future<APIResponse> get(String path, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
+    final connectivityResult = await connectivity.checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       return const APIResponse.error(AppException.connectivity());
     }
     await instance();
 
     try {
-      var url = "${_baseUrl}/${path}";
+      var url = "${path}";
       final response = await _dio.get(
         url,
         queryParameters: query,
@@ -162,14 +168,14 @@ class ApiProvider {
   }
 
   Future<APIResponse> put(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
+    final connectivityResult = await connectivity.checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       return const APIResponse.error(AppException.connectivity());
     }
     await instance();
 
     try {
-      var url = "${_baseUrl}/${path}";
+      var url = "${path}";
       final response = await _dio.put(
         url,
         data: body,
@@ -186,14 +192,14 @@ class ApiProvider {
   }
 
   Future<APIResponse> delete(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
+    final connectivityResult = await connectivity.checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       return const APIResponse.error(AppException.connectivity());
     }
     await instance();
 
     try {
-      var url = "${_baseUrl}/${path}";
+      var url = "${path}";
       final response = await _dio.delete(
         url,
         data: body,
@@ -210,14 +216,14 @@ class ApiProvider {
   }
 
   Future<APIResponse> patch(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
+    final connectivityResult = await connectivity.checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       return const APIResponse.error(AppException.connectivity());
     }
     await instance();
 
     try {
-      var url = "${_baseUrl}/${path}";
+      var url = "${path}";
       final response = await _dio.patch(
         url,
         data: body,
