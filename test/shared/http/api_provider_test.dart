@@ -309,7 +309,7 @@ void main() {
         queryParameters: null,
       );
 
-      var response = await apiProvider.delete("/test", null);
+      var response = await apiProvider.delete("/test");
       response as APISuccess;
       expect(response.resource, isA<JsonResource>());
       expect(response.resource.status, true);
@@ -325,7 +325,7 @@ void main() {
         queryParameters: null,
       );
 
-      var response = await apiProvider.delete("/test", null);
+      var response = await apiProvider.delete("/test");
       response as APIError;
       var exception = response.exception as AppExceptionErrorMessage;
       expect(response.exception, isA<AppException>());
@@ -341,7 +341,7 @@ void main() {
         queryParameters: null,
       );
 
-      var response = await apiProvider.delete("/test", null);
+      var response = await apiProvider.delete("/test");
       response as APIError;
       var exception = response.exception as AppExceptionErrorMessage;
       expect(response.exception, isA<AppException>());
@@ -357,7 +357,7 @@ void main() {
         queryParameters: null,
       );
 
-      var response = await apiProvider.delete("/test", null);
+      var response = await apiProvider.delete("/test");
       response as APIError;
       var exception = response.exception as AppExceptionUnauthorized;
       expect(response.exception, isA<AppException>());
@@ -372,7 +372,7 @@ void main() {
         queryParameters: null,
       );
 
-      var response = await apiProvider.delete("/test", null);
+      var response = await apiProvider.delete("/test");
       response as APIError;
       var exception = response.exception as AppExceptionErrorMessage;
       expect(response.exception, isA<AppException>());

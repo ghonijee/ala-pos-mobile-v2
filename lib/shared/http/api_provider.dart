@@ -191,7 +191,7 @@ class ApiProvider {
     }
   }
 
-  Future<APIResponse> delete(String path, dynamic body, {String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
+  Future<APIResponse> delete(String path, {dynamic body, String? newBaseUrl, String? token, Map<String, String?>? query, ContentType contentType = ContentType.json}) async {
     final connectivityResult = await connectivity.checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       return const APIResponse.error(AppException.connectivity());
