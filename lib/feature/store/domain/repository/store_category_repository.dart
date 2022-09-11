@@ -35,7 +35,7 @@ class StoreCategoryRepository {
       return List<StoreCategoryModel>.empty();
     }
     var json = jsonDecode(jsonEncodeList);
-    List<StoreCategoryModel> listCategory = (json as List<dynamic>).map((e) => StoreCategoryModel.fromJson(e as Map<String, dynamic>)).toList();
+    List<StoreCategoryModel> listCategory = storeCategoryFromStringDecode(json);
     return listCategory;
   }
 }

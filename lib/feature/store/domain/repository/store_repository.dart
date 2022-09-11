@@ -80,11 +80,4 @@ class StoreRepository {
     StoreModel model = StoreModel.fromJson(json);
     return model;
   }
-
-  // List<StoreCategoryModel> getStoreCategory() {
-  //   return <StoreCategoryModel>[
-  //     StoreCategoryModel(name: "Toko Retail/Kelontong", id: 1),
-  //     StoreCategoryModel(name: "Warung/Kafe", id: 2),
-  //   ];
-  // }
 }
