@@ -8,7 +8,7 @@ class PermissionRemoteSource {
   String resource = "/permission";
 
   /// Get List All Permission.
-  Future<APIResponse> list(String filter) async {
+  Future<APIResponse> list() async {
     var response = await _api.get(resource);
     return response;
   }
