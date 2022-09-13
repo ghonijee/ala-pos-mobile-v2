@@ -19,7 +19,7 @@ class RoleRemoteSource {
 
   /// Get role of user by send `userId`
   Future<APIResponse> userRole(String userId) async {
-    var response = await _api.get("/user/role/${userId}");
+    var response = await _api.get("/role/user/${userId}");
     return response;
   }
 
