@@ -1,6 +1,6 @@
 import 'package:ala_pos/feature/auth/data/remote/auth_remote_source.dart';
 import 'package:ala_pos/feature/auth/domain/models/login/login_model.dart';
-import 'package:ala_pos/feature/auth/domain/models/user/user_model.dart';
+import 'package:ala_pos/feature/user_management/domain/models/user/user_model.dart';
 import 'package:ala_pos/feature/auth/domain/repository/auth_repository.dart';
 import 'package:ala_pos/shared/models/exception/app_exception.dart';
 import 'package:ala_pos/shared/models/json/json_resource.dart';

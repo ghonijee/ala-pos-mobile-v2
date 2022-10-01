@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:ala_pos/feature/auth/domain/models/user/user_model.dart';
+import 'package:ala_pos/feature/user_management/domain/models/user/user_model.dart';
 import 'package:ala_pos/feature/user_management/data/remote/user_remote_source.dart';
 import 'package:ala_pos/shared/http/api_provider.dart';
 import 'package:ala_pos/shared/models/exception/app_exception.dart';

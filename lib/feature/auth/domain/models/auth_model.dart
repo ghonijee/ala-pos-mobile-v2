@@ -1,4 +1,4 @@
-import 'user/user_model.dart';
+import '../../../user_management/domain/models/user/user_model.dart';
 
 class AuthModel {
   bool loggedStatus;

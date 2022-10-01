@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:ala_pos/app/data/role_permission_remote_source.dart';
 import 'package:ala_pos/app/data/token_remote_source.dart';
-import 'package:ala_pos/feature/auth/domain/models/user/user_model.dart';
 import 'package:ala_pos/shared/models/exception/app_exception.dart';
 import 'package:ala_pos/shared/models/response/api_response.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:result_type/result_type.dart';
 
 import '../../../feature/user_management/domain/models/role/role_model.dart';
+import '../../../feature/user_management/domain/models/user/user_model.dart';
 import '../../../shared/constants/store_key.dart';
 import '../../../shared/utils/local_storage.dart';
 

@@ -64,7 +64,7 @@ class LoginScreen extends HookConsumerWidget {
                           )
                         : Text(
                             localization.sign_in,
-                            style: Theme.of(context).primaryTextTheme.button,
+                            style: TextStyle(),
                           ),
                     style: ElevatedButton.styleFrom(
                       primary: primeTheme.accent.emphasis,
