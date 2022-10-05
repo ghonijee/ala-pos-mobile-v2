@@ -1,6 +1,7 @@
 import 'package:ala_pos/app/screen/splash_screen.dart';
 import 'package:ala_pos/feature/auth/screen/login_screen.dart';
 import 'package:ala_pos/feature/pos/screen/pos_main_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +18,7 @@ class AppStartScreen extends ConsumerWidget {
 
     return state.maybeWhen(
       initial: () => const SplashScreen(),
-      authenticated: () => const PosMainScreen(),
+      authenticated: () => Text("Haii"),
       unauthenticated: () => LoginScreen(),
       internetUnAvailable: () => const ConnectionUnavailableWidget(),
       orElse: () => const LoadingWidget(),

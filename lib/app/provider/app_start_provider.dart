@@ -1,25 +1,24 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../shared/repository/token_repository.dart';
+import '../domain/repository/token_repository.dart';
 import '../state/app_start_state.dart';
 
 final appStartProvider = StateNotifierProvider<AppStartNotifier, AppStartState>((ref) {
   return AppStartNotifier(
     const AppStartState.initial(),
-    ref.read,
+    ref.read(tokenRepositoryProvider),
   );
 });
 
 class AppStartNotifier extends StateNotifier<AppStartState> {
   AppStartNotifier(
     AppStartState appStartState,
-    this._reader,
+    tokenRepository,
   ) : super(appStartState) {
     _init();
+    _tokenRepository = tokenRepository;
   }
 
-  late final TokenRepository _tokenRepository = _reader(tokenRepositoryProvider);
-  final Reader _reader;
+  late TokenRepository _tokenRepository;
 
   Future<void> _init() async {
     state = const AppStartState.initial();

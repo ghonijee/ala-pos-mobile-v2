@@ -1,18 +1,20 @@
 import 'dart:async';
 import 'dart:io';
-
-import 'package:ala_pos/shared/models/json/json_resource.dart';
+import 'package:ala_pos/app/domain/repository/token_repository.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import '../models/exception/app_exception.dart';
-import '../models/response/api_response.dart';
-import '../repository/token_repository.dart';
+import '../../app/domain/models/exception/app_exception.dart';
+import '../../app/domain/models/json/json_resource.dart';
+import '../../app/domain/models/response/api_response.dart';
+import '../../app/domain/models/token/token_model.dart';
+import '../constants/store_key.dart';
 import 'interceptor/dio_connectivity_request_retrier.dart';
 import 'interceptor/retry_interceptor.dart';
 
@@ -27,7 +29,7 @@ final dioProvider = Provider.autoDispose(
 );
 
 final apiProvider = Provider<ApiProvider>(
-  (ref) => ApiProvider(ref.read(tokenRepositoryProvider), ref.read(dioProvider), ref.read(connectivityProvider)),
+  (ref) => ApiProvider(ref.read(dioProvider), ref.read(connectivityProvider)),
 );
 
 class ApiProvider {
@@ -40,13 +42,13 @@ class ApiProvider {
 
   Connectivity connectivity;
 
-  TokenRepository _tokenRepository;
+  // TokenRepository _tokenRepository;
 
   late String _baseUrl;
 
   Dio get dio => _dio;
 
-  ApiProvider(this._tokenRepository, this._dio, this.connectivity) {
+  ApiProvider(this._dio, this.connectivity) {
     _dio.options.sendTimeout = 30000;
     _dio.options.connectTimeout = 30000;
     _dio.options.receiveTimeout = 30000;
@@ -76,13 +78,26 @@ class ApiProvider {
   }
 
   Future<Dio> instance() async {
-    final _appToken = await _tokenRepository.fetchToken();
-    if (_appToken != null) {
-      headers['Authorization'] = 'Bearer ${_appToken.token}';
+    try {
+      String? tokenValue;
+      Token? _appToken;
+
+      const storage = FlutterSecureStorage();
+      tokenValue = await storage.read(key: Constant.token);
+      if (tokenValue != null) {
+        _appToken = tokenFromJson(tokenValue);
+      }
+      // _appToken = await _tokenRepository.fetchToken();
+      // final _appToken = null;
+      if (_appToken != null) {
+        headers['Authorization'] = 'Bearer ${_appToken.token}';
+      }
+      _dio.options.headers = headers;
+      _dio.options.baseUrl = _baseUrl;
+      return _dio;
+    } on Exception catch (e) {
+      return _dio;
     }
-    _dio.options.headers = headers;
-    _dio.options.baseUrl = _baseUrl;
-    return _dio;
   }
 
   APIResponse responseHandle(response) {

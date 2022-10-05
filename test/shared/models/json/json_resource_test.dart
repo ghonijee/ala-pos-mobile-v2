@@ -1,4 +1,4 @@
-import 'package:ala_pos/shared/models/json/json_resource.dart';
+import 'package:ala_pos/app/app.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

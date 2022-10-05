@@ -1,11 +1,7 @@
 import 'dart:convert';
 
+import 'package:ala_pos/app/app.dart';
 import 'package:ala_pos/shared/http/api_provider.dart';
-import 'package:ala_pos/shared/models/exception/app_exception.dart';
-import 'package:ala_pos/shared/models/json/json_resource.dart';
-import 'package:ala_pos/shared/models/response/api_response.dart';
-import 'package:ala_pos/shared/models/token/token.dart';
-import 'package:ala_pos/shared/repository/token_repository.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -47,7 +43,7 @@ void main() {
     ).thenAnswer((invocation) => Future.value(ConnectivityResult.mobile));
 
     dotenv.testLoad(fileInput: '''BASE_URL=https://alapos.id''');
-    apiProvider = ApiProvider(tokenRepository, dio, connectivity);
+    apiProvider = ApiProvider(dio, connectivity);
     dioAdapter = DioAdapter(dio: await apiProvider.instance());
   });
 

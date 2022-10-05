@@ -1,8 +1,11 @@
 {
     "@@locale": "en",
-    "login_heading": "Selamat Datang",
-    "@login_welcome": {
-        "description": "Text shown in login screen"
+    "login":"Login",
+    "@login": {
+        "heading": "Login",
+        "subheading": "Masukan username/nomor handphone yang digunakan untuk masuk ke aplikasi Alapos.",
+        "field_login": "Username/Nomor HP",
+        "field_password": "Kata sandi"
     },
     "login_subheading" : "Silakan masuk terlebih dahulu dan mulai berjualan dengan Alapos",
     "register_heading" : "Pendaftaran Akun",

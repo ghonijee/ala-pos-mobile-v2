@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:ala_pos/app/app.dart';
 import 'package:ala_pos/shared/http/api_provider.dart';
-import 'package:ala_pos/shared/models/response/api_response.dart';
 
 class ProductRemoteSource {
   ApiProvider _api;

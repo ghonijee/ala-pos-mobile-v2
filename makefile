@@ -30,7 +30,6 @@ watch: ## Watches the files for changes
 
 gen_force: ## Generates the build runner code with --delete-conflicting-outputs
 	@echo "╠ Generating the build runner..."
-	@flutter pub get
 	@flutter packages pub run build_runner build --delete-conflicting-outputs
 
 gen: ## Generates the assets

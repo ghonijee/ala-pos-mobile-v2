@@ -4,9 +4,7 @@ import 'package:ala_pos/feature/store/data/remote/store_category_remote_source.d
 import 'package:ala_pos/feature/store/domain/models/store_category/store_category_model.dart';
 import 'package:ala_pos/feature/store/domain/repository/store_category_repository.dart';
 import 'package:ala_pos/shared/constants/store_key.dart';
-import 'package:ala_pos/shared/models/exception/app_exception.dart';
-import 'package:ala_pos/shared/models/json/json_resource.dart';
-import 'package:ala_pos/shared/models/response/api_response.dart';
+import 'package:ala_pos/app/app.dart';
 import 'package:ala_pos/shared/utils/local_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

@@ -1,6 +1,6 @@
 import 'package:ala_pos/shared/http/api_provider.dart';
-import 'package:ala_pos/shared/models/response/api_response.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ala_pos/app/app.dart';
 
 final storeRemoteSourceProvider = Provider<StoreRemoteSource>((ref) => StoreRemoteSource(ref.read(apiProvider)));
 

@@ -1,8 +1,5 @@
 // 1. Create mock tokenRepo
-import 'package:ala_pos/app/provider/app_start_provider.dart';
-import 'package:ala_pos/app/state/app_start_state.dart';
-import 'package:ala_pos/shared/models/token/token.dart';
-import 'package:ala_pos/shared/repository/token_repository.dart';
+import 'package:ala_pos/app/app.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';

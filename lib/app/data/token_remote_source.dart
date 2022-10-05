@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
+import 'package:ala_pos/app/domain/models/response/api_response.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../shared/http/api_provider.dart';
-import '../../shared/models/response/api_response.dart';
 
 final tokenRemoteSourceProvider = Provider<TokenRemoteSource>((ref) => TokenRemoteSource(
       ref.read(apiProvider),

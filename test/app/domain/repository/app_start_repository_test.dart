@@ -1,15 +1,10 @@
 import 'dart:convert';
 
-import 'package:ala_pos/app/data/role_permission_remote_source.dart';
-import 'package:ala_pos/app/data/token_remote_source.dart';
-import 'package:ala_pos/app/domain/repository/app_start_repository.dart';
+import 'package:ala_pos/app/app.dart';
 import 'package:ala_pos/feature/user_management/domain/models/permission/permission_model.dart';
 import 'package:ala_pos/feature/user_management/domain/models/role/role_model.dart';
 import 'package:ala_pos/feature/user_management/domain/models/user/user_model.dart';
 import 'package:ala_pos/shared/constants/store_key.dart';
-import 'package:ala_pos/shared/models/exception/app_exception.dart';
-import 'package:ala_pos/shared/models/json/json_resource.dart';
-import 'package:ala_pos/shared/models/response/api_response.dart';
 import 'package:ala_pos/shared/utils/local_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

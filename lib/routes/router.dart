@@ -1,6 +1,7 @@
 // @CupertinoAutoRouter
 // @AdaptiveAutoRouter
 // @CustomAutoRouter
+import 'package:ala_pos/feature/auth/router/auth_router.dart';
 import 'package:ala_pos/feature/auth/screen/new_store_form_screen.dart';
 import 'package:ala_pos/feature/auth/screen/register_screen.dart';
 import 'package:ala_pos/feature/pos/screen/pos_main_screen.dart';
@@ -18,9 +19,7 @@ class AppRouteObserver extends AutoRouterObserver {
   replaceInRouteName: 'Page,Route,Screen',
   routes: <AutoRoute>[
     AutoRoute(page: AppStartScreen, initial: true),
-    AutoRoute(page: LoginScreen, path: "/login"),
-    AutoRoute(page: RegisterScreen, path: "/register"),
-    AutoRoute(page: NewStoreFormScreen, path: "/register/store"),
+    ...authRouter,
     AutoRoute(page: PosMainScreen, path: "/pos/index"),
   ],
 )

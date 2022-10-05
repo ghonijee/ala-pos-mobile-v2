@@ -8,6 +8,8 @@
 // ignore_for_file: directives_ordering,unnecessary_import
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 
 class $AssetsEnvGen {
   const $AssetsEnvGen();
@@ -20,6 +22,9 @@ class $AssetsEnvGen {
 
   /// File path: assets/env/.env.production
   String get envProduction => 'assets/env/.env.production';
+
+  /// List of all assets
+  List<String> get values => [envDevelopment, envEmulator, envProduction];
 }
 
 class $AssetsIconGen {
@@ -28,12 +33,16 @@ class $AssetsIconGen {
   /// File path: assets/icon/launch_icon.png
   AssetGenImage get launchIcon =>
       const AssetGenImage('assets/icon/launch_icon.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [launchIcon];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   $AssetsImagesEmptyGen get empty => const $AssetsImagesEmptyGen();
+  $AssetsImagesLogoGen get logo => const $AssetsImagesLogoGen();
 
   /// File path: assets/images/pos_logo.png
   AssetGenImage get posLogo =>
@@ -42,6 +51,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/pos_logo_light.png
   AssetGenImage get posLogoLight =>
       const AssetGenImage('assets/images/pos_logo_light.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [posLogo, posLogoLight];
 }
 
 class $AssetsImagesEmptyGen {
@@ -66,6 +78,34 @@ class $AssetsImagesEmptyGen {
   /// File path: assets/images/empty/transaction_empty.png
   AssetGenImage get transactionEmpty =>
       const AssetGenImage('assets/images/empty/transaction_empty.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [cartEmpty, productEmpty, searchEmptyState, stateDone, transactionEmpty];
+}
+
+class $AssetsImagesLogoGen {
+  const $AssetsImagesLogoGen();
+
+  /// File path: assets/images/logo/logo-fourth-color.svg
+  SvgGenImage get logoFourthColor =>
+      const SvgGenImage('assets/images/logo/logo-fourth-color.svg');
+
+  /// File path: assets/images/logo/logo-primary-second.svg
+  SvgGenImage get logoPrimarySecond =>
+      const SvgGenImage('assets/images/logo/logo-primary-second.svg');
+
+  /// File path: assets/images/logo/logo-second-color.svg
+  SvgGenImage get logoSecondColor =>
+      const SvgGenImage('assets/images/logo/logo-second-color.svg');
+
+  /// File path: assets/images/logo/logo-thrid-color.svg
+  SvgGenImage get logoThridColor =>
+      const SvgGenImage('assets/images/logo/logo-thrid-color.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values =>
+      [logoFourthColor, logoPrimarySecond, logoSecondColor, logoThridColor];
 }
 
 class Assets {
@@ -134,7 +174,58 @@ class AssetGenImage {
     );
   }
 
+  ImageProvider provider() => AssetImage(_assetName);
+
   String get path => _assetName;
 
   String get keyName => _assetName;
+}
+
+class SvgGenImage {
+  const SvgGenImage(this._assetName);
+
+  final String _assetName;
+
+  SvgPicture svg({
+    Key? key,
+    bool matchTextDirection = false,
+    AssetBundle? bundle,
+    String? package,
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.contain,
+    AlignmentGeometry alignment = Alignment.center,
+    bool allowDrawingOutsideViewBox = false,
+    WidgetBuilder? placeholderBuilder,
+    Color? color,
+    BlendMode colorBlendMode = BlendMode.srcIn,
+    String? semanticsLabel,
+    bool excludeFromSemantics = false,
+    Clip clipBehavior = Clip.hardEdge,
+    bool cacheColorFilter = false,
+    SvgTheme? theme,
+  }) {
+    return SvgPicture.asset(
+      _assetName,
+      key: key,
+      matchTextDirection: matchTextDirection,
+      bundle: bundle,
+      package: package,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+      placeholderBuilder: placeholderBuilder,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      semanticsLabel: semanticsLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      clipBehavior: clipBehavior,
+      cacheColorFilter: cacheColorFilter,
+      theme: theme,
+    );
+  }
+
+  String get path => _assetName;
 }

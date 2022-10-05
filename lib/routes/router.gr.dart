@@ -27,40 +27,69 @@ class AppRouter extends _i6.RootStackRouter {
   final Map<String, _i6.PageFactory> pagesMap = {
     AppStartScreenRoute.name: (routeData) {
       return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.AppStartScreen());
+        routeData: routeData,
+        child: const _i1.AppStartScreen(),
+      );
     },
     LoginScreenRoute.name: (routeData) {
       return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i2.LoginScreen());
+        routeData: routeData,
+        child: const _i2.LoginScreen(),
+      );
     },
     RegisterScreenRoute.name: (routeData) {
       return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i3.RegisterScreen());
+        routeData: routeData,
+        child: const _i3.RegisterScreen(),
+      );
     },
     NewStoreFormScreenRoute.name: (routeData) {
       return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i4.NewStoreFormScreen());
+        routeData: routeData,
+        child: const _i4.NewStoreFormScreen(),
+      );
     },
     PosMainScreenRoute.name: (routeData) {
       return _i6.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i5.PosMainScreen());
-    }
+        routeData: routeData,
+        child: const _i5.PosMainScreen(),
+      );
+    },
   };
 
   @override
   List<_i6.RouteConfig> get routes => [
-        _i6.RouteConfig(AppStartScreenRoute.name, path: '/'),
-        _i6.RouteConfig(LoginScreenRoute.name, path: '/login'),
-        _i6.RouteConfig(RegisterScreenRoute.name, path: '/register'),
-        _i6.RouteConfig(NewStoreFormScreenRoute.name, path: '/register/store'),
-        _i6.RouteConfig(PosMainScreenRoute.name, path: '/pos/index')
+        _i6.RouteConfig(
+          AppStartScreenRoute.name,
+          path: '/',
+        ),
+        _i6.RouteConfig(
+          LoginScreenRoute.name,
+          path: '/login',
+        ),
+        _i6.RouteConfig(
+          RegisterScreenRoute.name,
+          path: '/register',
+        ),
+        _i6.RouteConfig(
+          NewStoreFormScreenRoute.name,
+          path: '/new-store-form',
+        ),
+        _i6.RouteConfig(
+          PosMainScreenRoute.name,
+          path: '/pos/index',
+        ),
       ];
 }
 
 /// generated route for
 /// [_i1.AppStartScreen]
 class AppStartScreenRoute extends _i6.PageRouteInfo<void> {
-  const AppStartScreenRoute() : super(AppStartScreenRoute.name, path: '/');
+  const AppStartScreenRoute()
+      : super(
+          AppStartScreenRoute.name,
+          path: '/',
+        );
 
   static const String name = 'AppStartScreenRoute';
 }
@@ -68,7 +97,11 @@ class AppStartScreenRoute extends _i6.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.LoginScreen]
 class LoginScreenRoute extends _i6.PageRouteInfo<void> {
-  const LoginScreenRoute() : super(LoginScreenRoute.name, path: '/login');
+  const LoginScreenRoute()
+      : super(
+          LoginScreenRoute.name,
+          path: '/login',
+        );
 
   static const String name = 'LoginScreenRoute';
 }
@@ -77,7 +110,10 @@ class LoginScreenRoute extends _i6.PageRouteInfo<void> {
 /// [_i3.RegisterScreen]
 class RegisterScreenRoute extends _i6.PageRouteInfo<void> {
   const RegisterScreenRoute()
-      : super(RegisterScreenRoute.name, path: '/register');
+      : super(
+          RegisterScreenRoute.name,
+          path: '/register',
+        );
 
   static const String name = 'RegisterScreenRoute';
 }
@@ -86,7 +122,10 @@ class RegisterScreenRoute extends _i6.PageRouteInfo<void> {
 /// [_i4.NewStoreFormScreen]
 class NewStoreFormScreenRoute extends _i6.PageRouteInfo<void> {
   const NewStoreFormScreenRoute()
-      : super(NewStoreFormScreenRoute.name, path: '/register/store');
+      : super(
+          NewStoreFormScreenRoute.name,
+          path: '/new-store-form',
+        );
 
   static const String name = 'NewStoreFormScreenRoute';
 }
@@ -95,7 +134,10 @@ class NewStoreFormScreenRoute extends _i6.PageRouteInfo<void> {
 /// [_i5.PosMainScreen]
 class PosMainScreenRoute extends _i6.PageRouteInfo<void> {
   const PosMainScreenRoute()
-      : super(PosMainScreenRoute.name, path: '/pos/index');
+      : super(
+          PosMainScreenRoute.name,
+          path: '/pos/index',
+        );
 
   static const String name = 'PosMainScreenRoute';
 }

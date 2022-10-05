@@ -1,6 +1,7 @@
 import 'package:ala_pos/shared/http/api_provider.dart';
-import 'package:ala_pos/shared/models/response/api_response.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../domain/models/response/api_response.dart';
 
 final rolePermissionRemoteSourceProvider = Provider.autoDispose((ref) {
   return RolePermissionRemoteSource(ref.read(apiProvider));

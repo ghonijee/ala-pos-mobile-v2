@@ -2,9 +2,7 @@ import 'dart:convert';
 
 import 'package:ala_pos/feature/user_management/data/remote/permission_remote_source.dart';
 import 'package:ala_pos/shared/http/api_provider.dart';
-import 'package:ala_pos/shared/models/exception/app_exception.dart';
-import 'package:ala_pos/shared/models/json/json_resource.dart';
-import 'package:ala_pos/shared/models/response/api_response.dart';
+import 'package:ala_pos/app/app.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
