@@ -52,8 +52,15 @@ class $AssetsImagesGen {
   AssetGenImage get posLogoLight =>
       const AssetGenImage('assets/images/pos_logo_light.png');
 
+  /// File path: assets/images/rocket_loading.svg
+  SvgGenImage get rocketLoading =>
+      const SvgGenImage('assets/images/rocket_loading.svg');
+
+  /// File path: assets/images/shop.svg
+  SvgGenImage get shop => const SvgGenImage('assets/images/shop.svg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [posLogo, posLogoLight];
+  List<dynamic> get values => [posLogo, posLogoLight, rocketLoading, shop];
 }
 
 class $AssetsImagesEmptyGen {

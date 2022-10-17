@@ -6,10 +6,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 
-class TextFieldComponent extends StatefulWidget {
-  TextFieldComponent({
+class TextAreaComponent extends StatefulWidget {
+  TextAreaComponent({
     Key? key,
-    this.height = 56.0,
+    this.height = 100.0,
     this.labelText = "Label",
     this.onChange,
     this.isSecureText = false,
@@ -19,6 +19,7 @@ class TextFieldComponent extends StatefulWidget {
     this.textInputType = TextInputType.text,
     this.isValid = true,
     this.errorText,
+    this.maxLines = 4,
   }) : super(key: key);
   final double height;
   final String labelText;
@@ -30,12 +31,13 @@ class TextFieldComponent extends StatefulWidget {
   TextInputType? textInputType;
   bool? isValid;
   String? errorText;
+  int? maxLines;
 
   @override
-  State<TextFieldComponent> createState() => _TextFieldComponentState();
+  State<TextAreaComponent> createState() => _TextAreaComponentState();
 }
 
-class _TextFieldComponentState extends State<TextFieldComponent> {
+class _TextAreaComponentState extends State<TextAreaComponent> {
   late PrimerThemeData primeTheme;
   late Color _color;
 
@@ -51,6 +53,7 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
@@ -73,9 +76,12 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
               keyboardType: widget.textInputType,
               controller: widget.controller,
               onChanged: widget.onChange,
-              style: primeTheme.typography.normal,
+              style: PrimerTheme.of(context).typography.normal,
               obscureText: widget.isSecureText,
+              maxLines: widget.maxLines,
+              textAlignVertical: TextAlignVertical.top,
               decoration: InputDecoration(
+                alignLabelWithHint: true,
                 contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,

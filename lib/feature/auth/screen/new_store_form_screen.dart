@@ -1,6 +1,9 @@
+import 'package:ala_pos/feature/store/domain/models/store_category/store_category_model.dart';
 import 'package:ala_pos/gen/assets.gen.dart';
 import 'package:ala_pos/shared/styles/app_spacing.dart';
 import 'package:ala_pos/shared/widget/button/button_component.dart';
+import 'package:ala_pos/shared/widget/form/dropdown_component.dart';
+import 'package:ala_pos/shared/widget/form/text_area_form_component.dart';
 import 'package:ala_pos/shared/widget/form/text_form_component.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +25,7 @@ class NewStoreFormScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var primeTheme = PrimerTheme.of(context);
     var hidePassword = useState<bool>(true);
+    var isSubmitLoading = useState<bool>(false);
 
     return Scaffold(
       backgroundColor: primeTheme.canvas.inset,
@@ -39,20 +43,24 @@ class NewStoreFormScreen extends HookConsumerWidget {
                     SizedBox(
                       height: 10.sp,
                     ),
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                      InkWell(
-                        onTap: () {
-                          context.router.pop();
-                        },
-                        child: Icon(Ionicons.arrow_back),
-                      ),
-                      Text(
-                        "2/2",
-                        style: primeTheme.typography.normal.copyWith(
-                          color: primeTheme.foreground.dflt,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            context.router.pop();
+                          },
+                          child: Icon(Ionicons.arrow_back),
                         ),
-                      ),
-                    ]),
+                        Text(
+                          "2/2",
+                          style: primeTheme.typography.normal.copyWith(
+                            color: primeTheme.foreground.dflt,
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: 20.sp,
                     ),
@@ -71,33 +79,51 @@ class NewStoreFormScreen extends HookConsumerWidget {
                     ),
                     // _FieldUsername(),
                     TextFieldComponent(
-                      labelText: "Username",
+                      labelText: "Nama Usaha",
                     ),
                     SizedBox(
                       height: AppSpacings.l.sp,
                     ),
                     TextFieldComponent(
-                      labelText: "Nomor Handphone",
+                      labelText: "Nomor Handphone Toko",
                     ),
                     SizedBox(
                       height: AppSpacings.l.sp,
                     ),
-                    TextFieldComponent(
-                      labelText: "Katasandi",
-                      isSecureText: hidePassword.value,
-                      suffixIcon: InkWell(
-                        child: hidePassword.value ? Icon(Ionicons.eye) : Icon(Ionicons.eye_off),
-                        onTap: () {
-                          hidePassword.value = !hidePassword.value;
-                        },
-                      ),
+                    DropdownComponent<StoreCategoryModel>(
+                      hintText: "Pilih Kategori Usaha",
+                      labelText: "Kategori",
+                      items: [
+                        DropdownComponentMenuItem(
+                            value: StoreCategoryModel(id: 1, name: "Pilih test"),
+                            child: Text(
+                              "Kelontong",
+                              style: primeTheme.typography.normal.copyWith(
+                                color: primeTheme.foreground.dflt,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ))
+                      ],
+                      onChanged: (value) {
+                        //
+                      },
+                    ),
+                    SizedBox(
+                      height: AppSpacings.l.sp,
+                    ),
+                    TextAreaComponent(
+                      labelText: "Alamat Usaha",
                     ),
                     SizedBox(
                       height: AppSpacings.x4l,
                     ),
                     ButtonFullText(
-                      onPress: FormzStatus.invalid == FormzStatus.invalid ? () {} : () {},
-                      text: "Selanjutnya",
+                      onPress: FormzStatus.invalid == FormzStatus.invalid
+                          ? () {
+                              context.router.navigateNamed(AuthRouteName.RegisterLoading);
+                            }
+                          : () {},
+                      text: "Daftar Sekarang",
                     ),
                     SizedBox(
                       height: 16.sp,
