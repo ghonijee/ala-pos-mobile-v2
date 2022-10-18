@@ -99,7 +99,7 @@ class AppRouter extends _i8.RootStackRouter {
         ),
         _i8.RouteConfig(
           PosMainScreenRoute.name,
-          path: '/pos/index',
+          path: '/pos',
         ),
       ];
 }
@@ -182,7 +182,7 @@ class PosMainScreenRoute extends _i8.PageRouteInfo<void> {
   const PosMainScreenRoute()
       : super(
           PosMainScreenRoute.name,
-          path: '/pos/index',
+          path: '/pos',
         );
 
   static const String name = 'PosMainScreenRoute';

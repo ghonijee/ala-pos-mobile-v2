@@ -19,7 +19,7 @@ class SignUpLoadingScreen extends HookConsumerWidget {
     var primeTheme = PrimerTheme.of(context);
 
     Future.delayed(Duration(seconds: 5), () {
-      context.router.navigateNamed(AuthRouteName.RegisterSuccess);
+      context.router.pushNamed(AuthRouteName.RegisterSuccess);
     });
 
     return Scaffold(

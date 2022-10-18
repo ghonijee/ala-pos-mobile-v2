@@ -1,3 +1,4 @@
+import 'package:ala_pos/feature/pos/routes/pos_router.dart';
 import 'package:ala_pos/gen/assets.gen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,8 @@ class SignUpSuccessScreen extends StatelessWidget {
                 ButtonFullText(
                   onPress: FormzStatus.invalid == FormzStatus.invalid
                       ? () {
-                          context.router.navigateNamed(AuthRouteName.RegisterLoading);
+                          context.router.popUntilRoot();
+                          context.router.navigateNamed(PosRouteName.Pos);
                         }
                       : () {},
                   text: "Mulai Sekarang",
