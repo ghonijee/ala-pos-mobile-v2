@@ -1,22 +1,31 @@
+import 'package:ala_pos/feature/pos/screen/pos_cart_screen.dart';
 import 'package:ala_pos/shared/styles/styles.dart';
+import 'package:ala_pos/shared/utils/extension.dart';
 import 'package:ala_pos/shared/widget/appbar/appbar_search_component.dart';
 import 'package:ala_pos/shared/widget/card/product_item_grid_component.dart';
+import 'package:ala_pos/shared/widget/card/product_item_list_component.dart';
 import 'package:ala_pos/shared/widget/form/text_form_component.dart';
 import 'package:ala_pos/shared/widget/tags/tags_component.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class PosMainScreen extends StatelessWidget {
+enum ViewMode { Grid, List }
+
+class PosMainScreen extends HookConsumerWidget {
   const PosMainScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var primeTheme = PrimerTheme.of(context);
+    var viewMode = useState(ViewMode.List);
 
     return Scaffold(
       backgroundColor: primeTheme.canvas.dflt,
@@ -95,12 +104,15 @@ class PosMainScreen extends StatelessWidget {
                                   Spacing.width(
                                     size: 8,
                                   ),
-                                  // InkWell(
-                                  //   child: Icon(FeatherIcons.list),
-                                  // ),
-                                  InkWell(
-                                    child: Icon(FeatherIcons.grid),
-                                  ),
+                                  viewMode.value == ViewMode.List
+                                      ? InkWell(
+                                          onTap: () => viewMode.value = ViewMode.Grid,
+                                          child: Icon(FeatherIcons.list),
+                                        )
+                                      : InkWell(
+                                          onTap: () => viewMode.value = ViewMode.List,
+                                          child: Icon(FeatherIcons.grid),
+                                        ),
                                 ],
                               ),
                             ],
@@ -108,22 +120,17 @@ class PosMainScreen extends StatelessWidget {
                           Spacing.height(
                             size: 16,
                           ),
-                          Expanded(
-                            child: GridView.builder(
-                                itemCount: 10,
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: AppSpacings.m,
-                                  mainAxisSpacing: AppSpacings.m,
-                                ),
-                                itemBuilder: (context, index) {
-                                  return false
-                                      ? Center(
-                                          child: CircularProgressIndicator(
-                                            color: Theme.of(context).primaryColor,
-                                          ),
-                                        )
-                                      : InkWell(
+                          viewMode.value == ViewMode.Grid
+                              ? Expanded(
+                                  child: GridView.builder(
+                                      itemCount: 10,
+                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: AppSpacings.m,
+                                        mainAxisSpacing: AppSpacings.m,
+                                      ),
+                                      itemBuilder: (context, index) {
+                                        return InkWell(
                                           onTap: () {
                                             // Jika store tidak menggunakan stock opname
                                             // if (!item.useStockOpname) {
@@ -140,8 +147,16 @@ class PosMainScreen extends StatelessWidget {
                                           },
                                           child: ProductItemGridComponent(),
                                         );
-                                }),
-                          ),
+                                      }),
+                                )
+                              : Expanded(
+                                  child: ListView.separated(
+                                  separatorBuilder: (_, index) => Divider(),
+                                  itemCount: 10,
+                                  itemBuilder: (context, index) {
+                                    return ProductItemListComponent();
+                                  },
+                                )),
                         ],
                       ),
                     ),
@@ -151,7 +166,9 @@ class PosMainScreen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              context.router.pushWidget(PosCartScreen());
+            },
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -164,8 +181,16 @@ class PosMainScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Total ", style: Theme.of(context).primaryTextTheme.titleMedium),
-                    Text("Rp. 120.000 (10 Item)", style: Theme.of(context).primaryTextTheme.titleMedium),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(FeatherIcons.shoppingCart, color: primeTheme.foreground.onEmphasis),
+                        Spacing.width(),
+                        Text("Total ", style: primeTheme.typography.bold.copyWith(color: primeTheme.foreground.onEmphasis)),
+                      ],
+                    ),
+                    Text("Rp. 120.000 (10 Item)", style: primeTheme.typography.h5.copyWith(color: primeTheme.foreground.onEmphasis)),
                   ],
                 ),
               ),
