@@ -80,7 +80,7 @@ class LoginScreen extends HookConsumerWidget {
                   Center(
                     child: InkWell(
                       onTap: () {
-                        context.router.navigateNamed(AuthRouteName.Register);
+                        context.router.pushNamed(AuthRouteName.Register);
                       },
                       child: RichText(
                         text: TextSpan(

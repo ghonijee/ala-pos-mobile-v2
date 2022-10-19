@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class AppSpacings {
   /// Double 4
   static const double xs = 4;
@@ -22,4 +24,15 @@ class AppSpacings {
 
   /// Double 32
   static const double x4l = 32;
+}
+
+class Spacing extends SizedBox {
+  Spacing({double height = 0.0, double width = 0.0}) : super(height: height, width: width);
+
+  factory Spacing.height({double size = 8}) => Spacing(
+        height: size,
+      );
+  factory Spacing.width({double size = 8}) => Spacing(
+        width: size,
+      );
 }

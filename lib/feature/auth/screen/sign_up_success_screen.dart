@@ -50,7 +50,8 @@ class SignUpSuccessScreen extends StatelessWidget {
                 ButtonFullText(
                   onPress: FormzStatus.invalid == FormzStatus.invalid
                       ? () {
-                          context.router.popUntilRoot();
+                          // context.router.popUntilRoot();
+                          context.router.removeWhere((route) => false);
                           context.router.navigateNamed(PosRouteName.Pos);
                         }
                       : () {},

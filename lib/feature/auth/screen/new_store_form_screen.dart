@@ -120,7 +120,7 @@ class NewStoreFormScreen extends HookConsumerWidget {
                     ButtonFullText(
                       onPress: FormzStatus.invalid == FormzStatus.invalid
                           ? () {
-                              context.router.navigateNamed(AuthRouteName.RegisterLoading);
+                              context.router.pushNamed(AuthRouteName.RegisterLoading);
                             }
                           : () {},
                       text: "Daftar Sekarang",
@@ -128,27 +128,27 @@ class NewStoreFormScreen extends HookConsumerWidget {
                     SizedBox(
                       height: 16.sp,
                     ),
-                    Center(
-                      child: InkWell(
-                        onTap: () {
-                          context.router.navigateNamed(AuthRouteName.Login);
-                        },
-                        child: RichText(
-                          text: TextSpan(
-                            text: "Sudah punya akun? ",
-                            style: primeTheme.typography.normal,
-                            children: [
-                              TextSpan(
-                                text: "Masuk disini.",
-                                style: primeTheme.typography.bold.copyWith(
-                                  color: primeTheme.brand.primary,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Center(
+                    //   child: InkWell(
+                    //     onTap: () {
+                    //       context.router.navigateNamed(AuthRouteName.Login);
+                    //     },
+                    //     child: RichText(
+                    //       text: TextSpan(
+                    //         text: "Sudah punya akun? ",
+                    //         style: primeTheme.typography.normal,
+                    //         children: [
+                    //           TextSpan(
+                    //             text: "Masuk disini.",
+                    //             style: primeTheme.typography.bold.copyWith(
+                    //               color: primeTheme.brand.primary,
+                    //             ),
+                    //           )
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
                 Positioned(

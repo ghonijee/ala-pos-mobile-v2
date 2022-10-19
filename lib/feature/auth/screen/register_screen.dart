@@ -104,7 +104,7 @@ class RegisterScreen extends HookConsumerWidget {
                     Center(
                       child: InkWell(
                         onTap: () {
-                          context.router.navigateNamed(AuthRouteName.Login);
+                          context.router.pop();
                         },
                         child: RichText(
                           text: TextSpan(
