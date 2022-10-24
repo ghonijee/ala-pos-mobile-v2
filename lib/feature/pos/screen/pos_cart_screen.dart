@@ -1,7 +1,7 @@
 import 'package:ala_pos/feature/pos/widgets/cart_item_widget.dart';
 import 'package:ala_pos/feature/pos/widgets/resume_label_value_widget.dart';
 import 'package:ala_pos/shared/styles/app_spacing.dart';
-import 'package:ala_pos/shared/widget/button/button_component.dart';
+import 'package:ala_pos/shared/widget/button/button_full_component.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -10,6 +10,8 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../widgets/add_customer_bottom_sheet.dart';
 
 class PosCartScreen extends HookConsumerWidget {
   const PosCartScreen({super.key});
@@ -56,7 +58,7 @@ class PosCartScreen extends HookConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.router.pop();
+                          // context.router.pop();
                         },
                         child: Icon(FeatherIcons.tag),
                       ),
@@ -65,7 +67,17 @@ class PosCartScreen extends HookConsumerWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          context.router.pop();
+                          showModalBottomSheet(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                            ),
+                            isScrollControlled: true,
+                            // isDismissible: true,
+                            context: context,
+                            builder: (context) {
+                              return AddCustomerBottomSheet();
+                            },
+                          );
                         },
                         child: Icon(FeatherIcons.userPlus),
                       ),
@@ -84,7 +96,11 @@ class PosCartScreen extends HookConsumerWidget {
                   ),
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    return CartItemWidget();
+                    return CartItemWidget(
+                      onTap: () {
+                        //
+                      },
+                    );
                   },
                 ),
               ),
