@@ -1,7 +1,7 @@
 import 'package:ala_pos/feature/store/domain/models/store_category/store_category_model.dart';
 import 'package:ala_pos/gen/assets.gen.dart';
 import 'package:ala_pos/shared/styles/app_spacing.dart';
-import 'package:ala_pos/shared/widget/button/button_component.dart';
+import 'package:ala_pos/shared/widget/button/button_full_component.dart';
 import 'package:ala_pos/shared/widget/form/dropdown_component.dart';
 import 'package:ala_pos/shared/widget/form/text_area_form_component.dart';
 import 'package:ala_pos/shared/widget/form/text_form_component.dart';

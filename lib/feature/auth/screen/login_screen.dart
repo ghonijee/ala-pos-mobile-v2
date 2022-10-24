@@ -1,6 +1,7 @@
 import 'package:ala_pos/feature/auth/router/auth_router.dart';
+import 'package:ala_pos/feature/pos/routes/pos_router.dart';
 import 'package:ala_pos/gen/assets.gen.dart';
-import 'package:ala_pos/shared/widget/button/button_component.dart';
+import 'package:ala_pos/shared/widget/button/button_full_component.dart';
 import 'package:ala_pos/shared/widget/form/text_form_component.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,11 @@ class LoginScreen extends HookConsumerWidget {
                     height: AppSpacings.x4l,
                   ),
                   ButtonFullText(
-                    onPress: FormzStatus.invalid == FormzStatus.invalid ? () {} : () {},
+                    onPress: FormzStatus.invalid == FormzStatus.invalid
+                        ? () {
+                            context.router.replaceNamed(PosRouteName.Pos);
+                          }
+                        : () {},
                     text: "Masuk",
                   ),
                   SizedBox(

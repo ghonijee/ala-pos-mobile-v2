@@ -10,7 +10,8 @@ class TextFieldComponent extends StatefulWidget {
   TextFieldComponent({
     Key? key,
     this.height = 56.0,
-    this.labelText = "Label",
+    this.labelText,
+    this.hintText,
     this.onChange,
     this.isSecureText = false,
     this.controller,
@@ -21,7 +22,8 @@ class TextFieldComponent extends StatefulWidget {
     this.errorText,
   }) : super(key: key);
   final double height;
-  final String labelText;
+  String? labelText;
+  String? hintText;
   final bool isSecureText;
   Function(String)? onChange;
   Widget? suffixIcon;
@@ -89,6 +91,10 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
                 ),
                 suffixIcon: widget.suffixIcon,
                 prefixIcon: widget.prefixIcon,
+                hintText: widget.hintText,
+                hintStyle: primeTheme.typography.normal.copyWith(
+                  color: primeTheme.foreground.subtle,
+                ),
               ),
             ),
           ),

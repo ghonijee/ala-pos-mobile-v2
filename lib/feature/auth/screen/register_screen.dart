@@ -1,6 +1,6 @@
 import 'package:ala_pos/gen/assets.gen.dart';
 import 'package:ala_pos/shared/styles/app_spacing.dart';
-import 'package:ala_pos/shared/widget/button/button_component.dart';
+import 'package:ala_pos/shared/widget/button/button_full_component.dart';
 import 'package:ala_pos/shared/widget/form/text_form_component.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';

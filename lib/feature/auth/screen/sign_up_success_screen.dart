@@ -7,7 +7,7 @@ import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../shared/styles/styles.dart';
-import '../../../shared/widget/button/button_component.dart';
+import '../../../shared/widget/button/button_full_component.dart';
 import '../router/auth_router.dart';
 
 class SignUpSuccessScreen extends StatelessWidget {
