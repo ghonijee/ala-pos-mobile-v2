@@ -12,6 +12,7 @@ import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../widgets/add_customer_bottom_sheet.dart';
+import '../widgets/add_discount_bottom_sheet.dart';
 
 class PosCartScreen extends HookConsumerWidget {
   const PosCartScreen({super.key});
@@ -58,6 +59,17 @@ class PosCartScreen extends HookConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () {
+                          showModalBottomSheet(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                            ),
+                            isScrollControlled: true,
+                            // isDismissible: true,
+                            context: context,
+                            builder: (context) {
+                              return AddDiscountBottomSheet();
+                            },
+                          );
                           // context.router.pop();
                         },
                         child: Icon(FeatherIcons.tag),
