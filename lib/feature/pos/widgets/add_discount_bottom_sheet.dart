@@ -39,7 +39,7 @@ class AddDiscountBottomSheet extends HookConsumerWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Diskon Transaksi", style: primerTheme.typography.h5),
+              Text("Diskon Transaksi", style: primerTheme.typography.h4),
               Spacing.height(size: 24),
               ButtonGroupComponent(children: [
                 ButtonGroupItem<String>(
@@ -65,6 +65,14 @@ class AddDiscountBottomSheet extends HookConsumerWidget {
               TextFieldCollapseComponent(
                 hintText: "Nilai Diskon",
                 collapseMode: discountModeState.value == "harga" ? InputCollapseMode.Left : InputCollapseMode.Right,
+                prefix: Text(
+                  "Rp.",
+                  style: primerTheme.typography.bold,
+                ),
+                suffix: Text(
+                  "%",
+                  style: primerTheme.typography.bold,
+                ),
               ),
               Spacing.height(size: 100)
             ],

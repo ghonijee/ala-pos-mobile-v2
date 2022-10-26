@@ -1,3 +1,4 @@
+import 'package:ala_pos/feature/pos/routes/pos_router.dart';
 import 'package:ala_pos/feature/pos/widgets/cart_item_widget.dart';
 import 'package:ala_pos/feature/pos/widgets/resume_label_value_widget.dart';
 import 'package:ala_pos/shared/styles/app_spacing.dart';
@@ -110,7 +111,7 @@ class PosCartScreen extends HookConsumerWidget {
                   itemBuilder: (context, index) {
                     return CartItemWidget(
                       onTap: () {
-                        //
+                        context.router.pushNamed(PosRouteName.PosCartDetail.replaceFirst(RegExp(r":id"), "10"));
                       },
                     );
                   },

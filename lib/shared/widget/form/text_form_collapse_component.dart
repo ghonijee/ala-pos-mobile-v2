@@ -14,25 +14,27 @@ class TextFieldCollapseComponent extends StatefulWidget {
     this.onChange,
     this.isSecureText = false,
     this.controller,
-    this.prefixIcon,
-    this.suffixIcon,
+    this.prefix,
+    this.suffix,
     this.textInputType = TextInputType.text,
     this.isValid = true,
     this.errorText,
     this.collapseMode = InputCollapseMode.Left,
+    this.textAlign = TextAlign.start,
   }) : super(key: key);
   final double height;
   String? labelText;
   String? hintText;
   final bool isSecureText;
   Function(String)? onChange;
-  Widget? suffixIcon;
-  Widget? prefixIcon;
+  Widget? suffix;
+  Widget? prefix;
   TextEditingController? controller;
   TextInputType? textInputType;
   bool? isValid;
   String? errorText;
   InputCollapseMode collapseMode;
+  TextAlign textAlign;
 
   @override
   State<TextFieldCollapseComponent> createState() => _TextFieldCollapseComponentState();
@@ -73,10 +75,7 @@ class _TextFieldCollapseComponentState extends State<TextFieldCollapseComponent>
                         width: 1.0,
                       ),
                     ),
-                    child: Text(
-                      "Rp.",
-                      style: primeTheme.typography.bold,
-                    ),
+                    child: widget.prefix,
                   )
                 : SizedBox(),
             Expanded(
@@ -85,10 +84,10 @@ class _TextFieldCollapseComponentState extends State<TextFieldCollapseComponent>
                 decoration: BoxDecoration(
                   color: primeTheme.canvas.dflt,
                   borderRadius: BorderRadius.only(
-                    topLeft: [InputCollapseMode.Both, InputCollapseMode.Right].contains(widget.collapseMode) ? Radius.circular(8) : Radius.zero,
-                    bottomLeft: [InputCollapseMode.Both, InputCollapseMode.Right].contains(widget.collapseMode) ? Radius.circular(8) : Radius.zero,
-                    topRight: [InputCollapseMode.Both, InputCollapseMode.Left].contains(widget.collapseMode) ? Radius.circular(8) : Radius.zero,
-                    bottomRight: [InputCollapseMode.Both, InputCollapseMode.Left].contains(widget.collapseMode) ? Radius.circular(8) : Radius.zero,
+                    topLeft: [InputCollapseMode.Right].contains(widget.collapseMode) ? Radius.circular(8) : Radius.zero,
+                    bottomLeft: [InputCollapseMode.Right].contains(widget.collapseMode) ? Radius.circular(8) : Radius.zero,
+                    topRight: [InputCollapseMode.Left].contains(widget.collapseMode) ? Radius.circular(8) : Radius.zero,
+                    bottomRight: [InputCollapseMode.Left].contains(widget.collapseMode) ? Radius.circular(8) : Radius.zero,
                   ),
                   border: Border.all(
                     color: widget.isValid! ? _color : primeTheme.danger.foreground,
@@ -102,6 +101,7 @@ class _TextFieldCollapseComponentState extends State<TextFieldCollapseComponent>
                     });
                   },
                   child: TextField(
+                    textAlign: widget.textAlign,
                     keyboardType: widget.textInputType,
                     controller: widget.controller,
                     onChanged: widget.onChange,
@@ -119,8 +119,6 @@ class _TextFieldCollapseComponentState extends State<TextFieldCollapseComponent>
                       floatingLabelStyle: primeTheme.typography.normal.copyWith(
                         color: primeTheme.foreground.muted,
                       ),
-                      suffixIcon: widget.suffixIcon,
-                      prefixIcon: widget.prefixIcon,
                       hintText: widget.hintText,
                       hintStyle: primeTheme.typography.normal.copyWith(
                         color: primeTheme.foreground.subtle,
@@ -145,11 +143,7 @@ class _TextFieldCollapseComponentState extends State<TextFieldCollapseComponent>
                         width: 1.0,
                       ),
                     ),
-                    child: Text(
-                      "%",
-                      style: primeTheme.typography.bold,
-                    ),
-                  )
+                    child: widget.suffix)
                 : SizedBox(),
           ],
         ),

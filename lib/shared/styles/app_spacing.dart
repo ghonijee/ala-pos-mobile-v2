@@ -32,6 +32,26 @@ class Spacing extends SizedBox {
   factory Spacing.height({double size = 8}) => Spacing(
         height: size,
       );
+  factory Spacing.large({double size = AppSpacings.l}) => Spacing(
+        height: size,
+        width: size,
+      );
+  factory Spacing.extraLarge({double size = AppSpacings.xl}) => Spacing(
+        height: size,
+        width: size,
+      );
+  factory Spacing.medium({double size = AppSpacings.m}) => Spacing(
+        height: size,
+        width: size,
+      );
+  factory Spacing.small({double size = AppSpacings.s}) => Spacing(
+        height: size,
+        width: size,
+      );
+  factory Spacing.extraSmall({double size = AppSpacings.xs}) => Spacing(
+        height: size,
+        width: size,
+      );
   factory Spacing.width({double size = 8}) => Spacing(
         width: size,
       );

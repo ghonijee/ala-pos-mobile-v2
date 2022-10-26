@@ -40,7 +40,7 @@ class _AddCustomerBottomSheetState extends State<AddCustomerBottomSheet> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Data Pelanggan", style: primerTheme.typography.h5),
+                Text("Data Pelanggan", style: primerTheme.typography.h4),
                 Spacing.height(size: 24),
                 TextFieldComponent(
                   hintText: "Nama Pelanggan",

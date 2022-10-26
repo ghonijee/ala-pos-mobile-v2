@@ -1,3 +1,4 @@
+import 'package:ala_pos/feature/pos/routes/pos_router.dart';
 import 'package:ala_pos/feature/pos/screen/pos_cart_screen.dart';
 import 'package:ala_pos/shared/styles/styles.dart';
 import 'package:ala_pos/shared/utils/extension.dart';
@@ -167,7 +168,7 @@ class PosMainScreen extends HookConsumerWidget {
           ),
           GestureDetector(
             onTap: () {
-              context.router.pushWidget(PosCartScreen());
+              context.router.pushNamed(PosRouteName.PosCart);
             },
             child: Align(
               alignment: Alignment.bottomCenter,
