@@ -65,8 +65,31 @@ class PosCartItemScreen extends HookConsumerWidget {
                       InkWell(
                         onTap: () {
                           // context.router.pop();
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text("Hapus Item"),
+                                content: Container(
+                                  child: Text("Yakin menghapus produk ini dari keranjang?"),
+                                ),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        context.router.pop();
+                                      },
+                                      child: Text("Batal")),
+                                  TextButton(
+                                      onPressed: () {
+                                        context.router.pop();
+                                      },
+                                      child: Text("Hapus!")),
+                                ],
+                              );
+                            },
+                          );
                         },
-                        child: Icon(FeatherIcons.trash),
+                        child: Icon(FeatherIcons.trash, size: 20),
                       ),
                     ],
                   ))

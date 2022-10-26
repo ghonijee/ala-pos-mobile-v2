@@ -154,7 +154,7 @@ class PosCartScreen extends HookConsumerWidget {
                   ButtonFullText(
                     text: "Bayar",
                     onPress: () {
-                      //
+                      context.router.pushNamed(PosRouteName.PosPayment);
                     },
                     buttonType: ButtonType.Primary,
                   ),

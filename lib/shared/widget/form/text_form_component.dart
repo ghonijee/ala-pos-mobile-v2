@@ -20,6 +20,7 @@ class TextFieldComponent extends StatefulWidget {
     this.textInputType = TextInputType.text,
     this.isValid = true,
     this.errorText,
+    this.textAlign = TextAlign.start,
   }) : super(key: key);
   final double height;
   String? labelText;
@@ -32,6 +33,7 @@ class TextFieldComponent extends StatefulWidget {
   TextInputType? textInputType;
   bool? isValid;
   String? errorText;
+  TextAlign textAlign;
 
   @override
   State<TextFieldComponent> createState() => _TextFieldComponentState();
@@ -72,6 +74,7 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
               });
             },
             child: TextField(
+              textAlign: widget.textAlign,
               keyboardType: widget.textInputType,
               controller: widget.controller,
               onChanged: widget.onChange,

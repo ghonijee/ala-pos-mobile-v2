@@ -40,6 +40,10 @@ class Spacing extends SizedBox {
         height: size,
         width: size,
       );
+  factory Spacing.extra2Large({double size = AppSpacings.x3l}) => Spacing(
+        height: size,
+        width: size,
+      );
   factory Spacing.medium({double size = AppSpacings.m}) => Spacing(
         height: size,
         width: size,
