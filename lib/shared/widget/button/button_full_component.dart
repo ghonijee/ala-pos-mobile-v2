@@ -29,6 +29,7 @@ class ButtonFullText extends StatefulWidget {
 class _ButtonFullState extends State<ButtonFullText> {
   late PrimerThemeData primeTheme;
   late Color _color;
+  late Color _textColor;
 
   @override
   void initState() {
@@ -41,9 +42,12 @@ class _ButtonFullState extends State<ButtonFullText> {
     switch (widget.buttonType) {
       case ButtonType.Primary:
         _color = primeTheme.brand.primary;
+        _textColor = primeTheme.foreground.onEmphasis;
         break;
       case ButtonType.Secondary:
-        _color = primeTheme.brand.primary;
+        _color = primeTheme.brand.quaternary;
+        _textColor = primeTheme.brand.primary;
+
         break;
       default:
     }
@@ -59,11 +63,11 @@ class _ButtonFullState extends State<ButtonFullText> {
             )
           : Text(
               widget.text,
-              style: TextStyle(),
+              style: PrimerTheme.of(context).typography.h5.copyWith(color: _textColor),
             ),
       style: ElevatedButton.styleFrom(
-        primary: _color,
-        textStyle: PrimerTheme.of(context).typography.h5,
+        backgroundColor: _color,
+        textStyle: PrimerTheme.of(context).typography.h5.copyWith(color: _textColor),
         minimumSize: Size.fromHeight(48),
       ),
     );

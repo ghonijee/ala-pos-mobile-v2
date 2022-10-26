@@ -55,13 +55,13 @@ class _AddCustomerBottomSheetState extends State<AddCustomerBottomSheet> {
                   ButtonFixedText(
                     onPress: () {},
                     text: "Batal",
-                    size: Size(43.w, 48),
+                    size: Size(42.w, 48),
                     buttonType: ButtonType.Secondary,
                   ),
                   ButtonFixedText(
                     onPress: () {},
                     text: "Simpan",
-                    size: Size(43.w, 48),
+                    size: Size(42.w, 48),
                   ),
                 ],
               ),

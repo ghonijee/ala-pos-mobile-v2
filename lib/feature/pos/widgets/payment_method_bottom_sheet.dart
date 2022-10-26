@@ -9,8 +9,8 @@ import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../shared/widget/form/text_form_component.dart';
 
-class AddDiscountBottomSheet extends HookConsumerWidget {
-  const AddDiscountBottomSheet({super.key});
+class PaymentMethodBottomSheet extends HookConsumerWidget {
+  const PaymentMethodBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,44 +39,21 @@ class AddDiscountBottomSheet extends HookConsumerWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Diskon Transaksi", style: primerTheme.typography.h4),
+              Text("Pilih Metode Pembayaran", style: primerTheme.typography.h4),
               Spacing.height(size: 24),
-              ButtonGroupComponent(children: [
-                ButtonGroupItem<String>(
-                  text: "Harga (Rp)",
-                  value: "Harga",
-                  isActive: discountModeState.value == "harga",
-                  isFirst: true,
-                  onTap: () {
-                    discountModeState.value = "harga";
-                  },
-                ),
-                ButtonGroupItem<String>(
-                  text: "Persen (%)",
-                  value: "Persen",
-                  isActive: discountModeState.value == "persen",
-                  isLast: true,
-                  onTap: () {
-                    discountModeState.value = "persen";
-                  },
-                ),
-              ]),
-              Spacing.height(size: 24),
-              TextFieldCollapseComponent(
-                hintText: "Nilai Diskon",
-                collapseMode: discountModeState.value == "harga" ? InputCollapseMode.Left : InputCollapseMode.Right,
-                prefix: Text(
-                  "Rp.",
-                  style: primerTheme.typography.bold,
-                ),
-                suffix: Text(
-                  "%",
-                  style: primerTheme.typography.bold,
-                ),
-              ),
-              Spacing.height(size: 100)
+              Column(
+                children: [
+                  RadioListTile(value: "CASH", groupValue: "CASH", onChanged: (value) {}, title: Text("Cash")),
+                  RadioListTile(value: "TRANSFER", groupValue: "CASH", onChanged: (value) {}, title: Text("Transfer")),
+                  RadioListTile(value: "GOPAY", groupValue: "CASH", onChanged: (value) {}, title: Text("GoPay")),
+                  RadioListTile(value: "SHOOPEPAY", groupValue: "CASH", onChanged: (value) {}, title: Text("ShoopePay")),
+                  RadioListTile(value: "QRIA", groupValue: "CASH", onChanged: (value) {}, title: Text("QRIS")),
+                  RadioListTile(value: "DANA", groupValue: "CASH", onChanged: (value) {}, title: Text("Dana")),
+                ],
+              )
             ],
           ),
+          Spacing.height(size: 100),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,6 +72,7 @@ class AddDiscountBottomSheet extends HookConsumerWidget {
               ],
             ),
           ),
+          Spacing.height(size: 24),
         ],
       ),
     );

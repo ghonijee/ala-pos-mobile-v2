@@ -1,4 +1,5 @@
 import 'package:ala_pos/feature/pos/widgets/cash_value_button.dart';
+import 'package:ala_pos/feature/pos/widgets/payment_method_bottom_sheet.dart';
 import 'package:ala_pos/shared/styles/styles.dart';
 import 'package:ala_pos/shared/widget/button/button_full_component.dart';
 import 'package:ala_pos/shared/widget/form/text_form_component.dart';
@@ -99,17 +100,31 @@ class PosPaymentScreen extends StatelessWidget {
                                           "Metode Pembayaran",
                                           style: primerTheme.typography.normal,
                                         ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "Cash",
-                                              style: primerTheme.typography.h5,
-                                            ),
-                                            Spacing.small(),
-                                            Icon(FeatherIcons.chevronRight),
-                                          ],
+                                        InkWell(
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                                              ),
+                                              isScrollControlled: true,
+                                              context: context,
+                                              builder: (context) {
+                                                return PaymentMethodBottomSheet();
+                                              },
+                                            );
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "Cash",
+                                                style: primerTheme.typography.h5,
+                                              ),
+                                              Spacing.small(),
+                                              Icon(FeatherIcons.chevronRight),
+                                            ],
+                                          ),
                                         )
                                       ],
                                     ),
@@ -138,6 +153,7 @@ class PosPaymentScreen extends StatelessWidget {
                                     ),
                                     Spacing.extra2Large(),
                                     GridView(
+                                      padding: EdgeInsets.zero,
                                       physics: NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       gridDelegate:
@@ -153,6 +169,14 @@ class PosPaymentScreen extends StatelessWidget {
                                         CashValueButton(label: "Rp. 2.000", onTap: () {}),
                                         CashValueButton(label: "Rp. 1.000", onTap: () {}),
                                       ],
+                                    ),
+                                    Spacing.large(),
+                                    ButtonFullText(
+                                      text: "Uang Pas Rp. 98.000",
+                                      onPress: () {
+                                        //
+                                      },
+                                      buttonType: ButtonType.Secondary,
                                     ),
                                   ],
                                 ),
