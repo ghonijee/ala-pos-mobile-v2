@@ -18,6 +18,8 @@ import 'package:ionicons/ionicons.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../side_menu/screen/side_menu_widget.dart';
+
 enum ViewMode { Grid, List }
 
 class PosMainScreen extends HookConsumerWidget {
@@ -25,11 +27,15 @@ class PosMainScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
     var primeTheme = PrimerTheme.of(context);
     var viewMode = useState(ViewMode.List);
 
     return Scaffold(
+      drawerEnableOpenDragGesture: false,
+      key: _scaffoldKey,
       backgroundColor: primeTheme.canvas.dflt,
+      drawer: SideMenuView(),
       body: Stack(
         children: [
           SafeArea(
@@ -39,7 +45,8 @@ class PosMainScreen extends HookConsumerWidget {
                 AppBarSearchComponent(
                   leadingIcon: Icon(FeatherIcons.menu),
                   leadingOnTap: () {
-                    //
+                    _scaffoldKey.currentState!.openDrawer();
+                    // Scaffold.of(context).openDrawer();
                   },
                   actions: [
                     InkWell(
