@@ -1,3 +1,4 @@
+import 'package:ala_pos/feature/pos/routes/pos_router.dart';
 import 'package:ala_pos/feature/pos/widgets/cash_value_button.dart';
 import 'package:ala_pos/feature/pos/widgets/payment_method_bottom_sheet.dart';
 import 'package:ala_pos/shared/styles/styles.dart';
@@ -21,7 +22,7 @@ class PosPaymentScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: primerTheme.canvas.dflt,
       body: SafeArea(
-        bottom: false,
+        // bottom: false,
         child: Column(
           children: [
             // AppBar
@@ -172,6 +173,7 @@ class PosPaymentScreen extends StatelessWidget {
                                     ),
                                     Spacing.large(),
                                     ButtonFullText(
+                                      elevation: 0,
                                       text: "Uang Pas Rp. 98.000",
                                       onPress: () {
                                         //
@@ -189,11 +191,11 @@ class PosPaymentScreen extends StatelessWidget {
                     Spacing.small(),
                     Container(
                       color: primerTheme.canvas.dflt,
-                      padding: EdgeInsets.fromLTRB(AppSpacings.l, AppSpacings.l, AppSpacings.l, AppSpacings.x4l),
+                      padding: EdgeInsets.fromLTRB(AppSpacings.l, AppSpacings.l, AppSpacings.l, AppSpacings.l),
                       child: ButtonFullText(
                         text: "Bayar",
                         onPress: () {
-                          //
+                          context.router.pushNamed(PosRouteName.PosResultSuccess);
                         },
                         buttonType: ButtonType.Primary,
                       ),

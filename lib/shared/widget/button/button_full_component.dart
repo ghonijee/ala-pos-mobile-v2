@@ -15,12 +15,14 @@ class ButtonFullText extends StatefulWidget {
     this.onPress,
     this.isLoading = false,
     this.buttonType = ButtonType.Primary,
+    this.elevation = 1.0,
     required this.text,
   }) : super(key: key);
   Function()? onPress;
   bool isLoading;
   ButtonType buttonType;
   String text;
+  double elevation;
 
   @override
   State<ButtonFullText> createState() => _ButtonFullState();
@@ -66,6 +68,7 @@ class _ButtonFullState extends State<ButtonFullText> {
               style: PrimerTheme.of(context).typography.h5.copyWith(color: _textColor),
             ),
       style: ElevatedButton.styleFrom(
+        elevation: widget.elevation,
         backgroundColor: _color,
         textStyle: PrimerTheme.of(context).typography.h5.copyWith(color: _textColor),
         minimumSize: Size.fromHeight(48),
