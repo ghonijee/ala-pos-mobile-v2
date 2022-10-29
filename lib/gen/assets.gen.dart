@@ -41,6 +41,9 @@ class $AssetsIconGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/done.svg
+  SvgGenImage get done => const SvgGenImage('assets/images/done.svg');
+
   $AssetsImagesEmptyGen get empty => const $AssetsImagesEmptyGen();
   $AssetsImagesLogoGen get logo => const $AssetsImagesLogoGen();
 
@@ -60,7 +63,8 @@ class $AssetsImagesGen {
   SvgGenImage get shop => const SvgGenImage('assets/images/shop.svg');
 
   /// List of all assets
-  List<dynamic> get values => [posLogo, posLogoLight, rocketLoading, shop];
+  List<dynamic> get values =>
+      [done, posLogo, posLogoLight, rocketLoading, shop];
 }
 
 class $AssetsImagesEmptyGen {

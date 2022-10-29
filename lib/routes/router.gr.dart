@@ -21,125 +21,137 @@ import 'package:ala_pos/feature/pos/screen/pos_cart_item_screen.dart' as _i9;
 import 'package:ala_pos/feature/pos/screen/pos_cart_screen.dart' as _i8;
 import 'package:ala_pos/feature/pos/screen/pos_main_screen.dart' as _i7;
 import 'package:ala_pos/feature/pos/screen/pos_payment_screen.dart' as _i10;
-import 'package:auto_route/auto_route.dart' as _i11;
-import 'package:flutter/material.dart' as _i12;
+import 'package:ala_pos/feature/pos/screen/pos_result_success_screen.dart'
+    as _i11;
+import 'package:auto_route/auto_route.dart' as _i12;
+import 'package:flutter/material.dart' as _i13;
 
-class AppRouter extends _i11.RootStackRouter {
-  AppRouter([_i12.GlobalKey<_i12.NavigatorState>? navigatorKey])
+class AppRouter extends _i12.RootStackRouter {
+  AppRouter([_i13.GlobalKey<_i13.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i11.PageFactory> pagesMap = {
+  final Map<String, _i12.PageFactory> pagesMap = {
     AppStartScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i1.AppStartScreen(),
       );
     },
     LoginScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i2.LoginScreen(),
       );
     },
     RegisterScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i3.RegisterScreen(),
       );
     },
     NewStoreFormScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i4.NewStoreFormScreen(),
       );
     },
     SignUpLoadingScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i5.SignUpLoadingScreen(),
       );
     },
     SignUpSuccessScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i6.SignUpSuccessScreen(),
       );
     },
     PosMainScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i7.PosMainScreen(),
       );
     },
     PosCartScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i8.PosCartScreen(),
       );
     },
     PosCartItemScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i9.PosCartItemScreen(),
       );
     },
     PosPaymentScreenRoute.name: (routeData) {
-      return _i11.AdaptivePage<dynamic>(
+      return _i12.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i10.PosPaymentScreen(),
+      );
+    },
+    PosResultSuccessScreenRoute.name: (routeData) {
+      return _i12.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i11.PosResultSuccessScreen(),
       );
     },
   };
 
   @override
-  List<_i11.RouteConfig> get routes => [
-        _i11.RouteConfig(
+  List<_i12.RouteConfig> get routes => [
+        _i12.RouteConfig(
           AppStartScreenRoute.name,
           path: '/',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           LoginScreenRoute.name,
           path: '/login',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           RegisterScreenRoute.name,
           path: '/register',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           NewStoreFormScreenRoute.name,
           path: '/new-store-form',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           SignUpLoadingScreenRoute.name,
           path: '/register-loading',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           SignUpSuccessScreenRoute.name,
           path: '/register-success',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           PosMainScreenRoute.name,
           path: '/pos',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           PosCartScreenRoute.name,
           path: '/pos/cart',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           PosCartItemScreenRoute.name,
           path: '/pos/cart/:id',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           PosPaymentScreenRoute.name,
           path: '/pos/payment',
+        ),
+        _i12.RouteConfig(
+          PosResultSuccessScreenRoute.name,
+          path: '/pos/payment/success',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.AppStartScreen]
-class AppStartScreenRoute extends _i11.PageRouteInfo<void> {
+class AppStartScreenRoute extends _i12.PageRouteInfo<void> {
   const AppStartScreenRoute()
       : super(
           AppStartScreenRoute.name,
@@ -151,7 +163,7 @@ class AppStartScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.LoginScreen]
-class LoginScreenRoute extends _i11.PageRouteInfo<void> {
+class LoginScreenRoute extends _i12.PageRouteInfo<void> {
   const LoginScreenRoute()
       : super(
           LoginScreenRoute.name,
@@ -163,7 +175,7 @@ class LoginScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.RegisterScreen]
-class RegisterScreenRoute extends _i11.PageRouteInfo<void> {
+class RegisterScreenRoute extends _i12.PageRouteInfo<void> {
   const RegisterScreenRoute()
       : super(
           RegisterScreenRoute.name,
@@ -175,7 +187,7 @@ class RegisterScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.NewStoreFormScreen]
-class NewStoreFormScreenRoute extends _i11.PageRouteInfo<void> {
+class NewStoreFormScreenRoute extends _i12.PageRouteInfo<void> {
   const NewStoreFormScreenRoute()
       : super(
           NewStoreFormScreenRoute.name,
@@ -187,7 +199,7 @@ class NewStoreFormScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.SignUpLoadingScreen]
-class SignUpLoadingScreenRoute extends _i11.PageRouteInfo<void> {
+class SignUpLoadingScreenRoute extends _i12.PageRouteInfo<void> {
   const SignUpLoadingScreenRoute()
       : super(
           SignUpLoadingScreenRoute.name,
@@ -199,7 +211,7 @@ class SignUpLoadingScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.SignUpSuccessScreen]
-class SignUpSuccessScreenRoute extends _i11.PageRouteInfo<void> {
+class SignUpSuccessScreenRoute extends _i12.PageRouteInfo<void> {
   const SignUpSuccessScreenRoute()
       : super(
           SignUpSuccessScreenRoute.name,
@@ -211,7 +223,7 @@ class SignUpSuccessScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.PosMainScreen]
-class PosMainScreenRoute extends _i11.PageRouteInfo<void> {
+class PosMainScreenRoute extends _i12.PageRouteInfo<void> {
   const PosMainScreenRoute()
       : super(
           PosMainScreenRoute.name,
@@ -223,7 +235,7 @@ class PosMainScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.PosCartScreen]
-class PosCartScreenRoute extends _i11.PageRouteInfo<void> {
+class PosCartScreenRoute extends _i12.PageRouteInfo<void> {
   const PosCartScreenRoute()
       : super(
           PosCartScreenRoute.name,
@@ -235,7 +247,7 @@ class PosCartScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.PosCartItemScreen]
-class PosCartItemScreenRoute extends _i11.PageRouteInfo<void> {
+class PosCartItemScreenRoute extends _i12.PageRouteInfo<void> {
   const PosCartItemScreenRoute()
       : super(
           PosCartItemScreenRoute.name,
@@ -247,7 +259,7 @@ class PosCartItemScreenRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.PosPaymentScreen]
-class PosPaymentScreenRoute extends _i11.PageRouteInfo<void> {
+class PosPaymentScreenRoute extends _i12.PageRouteInfo<void> {
   const PosPaymentScreenRoute()
       : super(
           PosPaymentScreenRoute.name,
@@ -255,4 +267,16 @@ class PosPaymentScreenRoute extends _i11.PageRouteInfo<void> {
         );
 
   static const String name = 'PosPaymentScreenRoute';
+}
+
+/// generated route for
+/// [_i11.PosResultSuccessScreen]
+class PosResultSuccessScreenRoute extends _i12.PageRouteInfo<void> {
+  const PosResultSuccessScreenRoute()
+      : super(
+          PosResultSuccessScreenRoute.name,
+          path: '/pos/payment/success',
+        );
+
+  static const String name = 'PosResultSuccessScreenRoute';
 }
