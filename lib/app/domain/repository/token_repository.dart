@@ -14,46 +14,46 @@ abstract class TokenRepositoryProtocol {
 }
 
 final tokenRepositoryProvider = Provider<TokenRepository>((ref) {
-  return TokenRepository(ref.read(platformTypeProvider), ref.read(tokenRemoteSourceProvider));
+  return TokenRepository(ref.read(platformTypeProvider), ref.read(tokenRemoteSourceProvider), FlutterSecureStorage());
 });
 
 class TokenRepository implements TokenRepositoryProtocol {
-  TokenRepository(platformType, tokenRemoteSource) {
+  TokenRepository(platformType, tokenRemoteSource, flutterSecureStorage) {
     _platform = platformType;
     _tokenRemoteSource = tokenRemoteSource;
+    _storage = flutterSecureStorage;
   }
 
   late PlatformType _platform;
   late TokenRemoteSource _tokenRemoteSource;
+  late FlutterSecureStorage _storage;
   Token? _token;
 
   @override
   Future<void> remove() async {
     _token = null;
-    final prefs = await SharedPreferences.getInstance();
 
     if (_platform == PlatformType.iOS || _platform == PlatformType.android || _platform == PlatformType.linux) {
-      const storage = FlutterSecureStorage();
       try {
-        await storage.delete(key: Constant.token);
+        await _storage.delete(key: Constant.token);
       } on Exception catch (e) {}
     } else {
-      await prefs.remove(Constant.token);
-    }
+      final prefs = await SharedPreferences.getInstance();
 
-    await prefs.remove(Constant.userModel);
+      await prefs.remove(Constant.token);
+      await prefs.remove(Constant.userModel);
+    }
   }
 
   @override
   Future<void> saveToken(Token token) async {
-    final prefs = await SharedPreferences.getInstance();
     _token = token;
     if (_platform == PlatformType.iOS || _platform == PlatformType.android || _platform == PlatformType.linux) {
-      const storage = FlutterSecureStorage();
       try {
-        await storage.write(key: Constant.token, value: tokenToJson(token));
+        await _storage.write(key: Constant.token, value: tokenToJson(token));
       } on Exception catch (e) {}
     } else {
+      final prefs = await SharedPreferences.getInstance();
       await prefs.setString(Constant.token, tokenToJson(token));
     }
   }
@@ -63,8 +63,8 @@ class TokenRepository implements TokenRepositoryProtocol {
     String? tokenValue;
 
     if (_platform == PlatformType.iOS || _platform == PlatformType.android || _platform == PlatformType.linux) {
-      const storage = FlutterSecureStorage();
-      tokenValue = await storage.read(key: Constant.token);
+      // const storage = FlutterSecureStorage();
+      tokenValue = await _storage.read(key: Constant.token);
     } else {
       final prefs = await SharedPreferences.getInstance();
       tokenValue = prefs.getString(Constant.token);

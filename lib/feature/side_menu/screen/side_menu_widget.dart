@@ -1,3 +1,5 @@
+import 'package:ala_pos/feature/pos/routes/pos_router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
@@ -49,7 +51,7 @@ class SideMenuView extends StatelessWidget {
                       "Ghoni Jee",
                       style: primerTheme.typography.bold,
                     ),
-                    Spacing.small(),
+                    Spacing.extraSmall(),
                     Text(
                       "Owner",
                       style: primerTheme.typography.small,
@@ -59,7 +61,7 @@ class SideMenuView extends StatelessWidget {
                 Expanded(child: SizedBox()),
                 Icon(
                   FeatherIcons.chevronRight,
-                  size: 32,
+                  size: 28,
                 ),
               ],
             )),
@@ -72,47 +74,60 @@ class SideMenuView extends StatelessWidget {
             onTap: () {
               // AutoRouter.of(context).replaceNamed(RouteName.posWrapper);
             },
-            iconData: Icons.cases_rounded,
+            iconData: FeatherIcons.plusSquare,
+            isActive: context.router.currentPath == PosRouteName.Pos,
           ),
+          Spacing.small(),
           SideMenuItemWidget(
-            title: "Transaksi ",
+            title: "Riwayat Transaksi",
             onTap: () {
-              // AutoRouter.of(context).replaceNamed(RouteName.transaction);
+              // AutoRouter.of(context).replaceNamed(RouteName.posWrapper);
             },
-            iconData: Icons.outbox_rounded,
+            iconData: FeatherIcons.book,
           ),
+          Spacing.small(),
           SideMenuItemWidget(
-            title: "Produk ",
+            title: "Laporan",
             onTap: () {
-              // AutoRouter.of(context).replaceNamed(RouteName.product);
+              // AutoRouter.of(context).replaceNamed(RouteName.posWrapper);
             },
-            iconData: Icons.shopping_bag_rounded,
+            iconData: FeatherIcons.bookOpen,
           ),
+          Spacing.small(),
           SideMenuItemWidget(
-            title: "Pengaturan ",
+            title: "Kelola Produk",
             onTap: () {
-              // AutoRouter.of(context).pushNamed(RouteName.setting);
+              // AutoRouter.of(context).replaceNamed(RouteName.posWrapper);
             },
-            iconData: Ionicons.settings_outline,
+            iconData: FeatherIcons.package,
           ),
-          Expanded(child: SizedBox()),
+          Spacing.small(),
           SideMenuItemWidget(
-            title: "Keluar ",
-            onTap: () async {
-              // var status = await sideMenuCubit.singOut();
-              // if (status) {
-              //   context.router.replaceNamed(RouteName.login);
-              // } else {
-              //   context.router.pop();
-              //   var snackBar = SnackBar(
-              //     content: Text("Terjadi kesalahan"),
-              //   );
+            title: "Kelola Toko",
+            onTap: () {
+              // AutoRouter.of(context).replaceNamed(RouteName.posWrapper);
+            },
+            iconData: FeatherIcons.settings,
+          ),
 
-              //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              // }
-            },
-            iconData: Icons.logout_rounded,
-          ),
+          // Expanded(child: SizedBox()),
+          // SideMenuItemWidget(
+          //   title: "Keluar ",
+          //   onTap: () async {
+          //     // var status = await sideMenuCubit.singOut();
+          //     // if (status) {
+          //     //   context.router.replaceNamed(RouteName.login);
+          //     // } else {
+          //     //   context.router.pop();
+          //     //   var snackBar = SnackBar(
+          //     //     content: Text("Terjadi kesalahan"),
+          //     //   );
+
+          //     //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          //     // }
+          //   },
+          //   iconData: Icons.logout_rounded,
+          // ),
         ],
       ),
     );

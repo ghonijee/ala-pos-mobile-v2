@@ -5,7 +5,9 @@ import 'package:ala_pos/shared/http/api_provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -14,6 +16,8 @@ import 'package:mocktail/mocktail.dart';
 class MockTokenRepository extends Mock implements TokenRepository {}
 
 class MockConnectivity extends Mock implements Connectivity {}
+
+class MockFlutterSecureStorage extends Mock implements FlutterSecureStorage {}
 
 void main() {
   late Dio dio;
@@ -43,7 +47,13 @@ void main() {
     ).thenAnswer((invocation) => Future.value(ConnectivityResult.mobile));
 
     dotenv.testLoad(fileInput: '''BASE_URL=https://alapos.id''');
-    apiProvider = ApiProvider(dio, connectivity);
+    when(() => tokenRepository.fetchToken()).thenAnswer((_) => Future.value(null));
+
+    apiProvider = ApiProvider(
+      dio,
+      connectivity,
+      tokenRepository,
+    );
     dioAdapter = DioAdapter(dio: await apiProvider.instance());
   });
 

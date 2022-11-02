@@ -1,4 +1,5 @@
 // 1. Create mock tokenRepo
+
 import 'package:ala_pos/app/app.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,16 +22,14 @@ void main() {
     appStartNotifier = MockAppStartNotifier();
   });
 
-  group("App Start Provider Test", () {
+  group("App Start Provider Test ", () {
     tokenRepository = MockTokenRepository();
     test("State is unauthenticated when token not found", () async {
       when(() => tokenRepository.fetchToken()).thenAnswer((_) => Future.value(null));
-      // when(() => mockRepository.checkToken()).thenAnswer((_) => Future.value(false));
+
       final container = ProviderContainer(overrides: [
         tokenRepositoryProvider.overrideWithValue(tokenRepository),
-        appStartProvider.overrideWithProvider(StateNotifierProvider<AppStartNotifier, AppStartState>((ref) {
-          return AppStartNotifier(AppStartState.initial(), ref.read);
-        }))
+        appStartProvider.overrideWith((ref) => AppStartNotifier(AppStartState.initial(), ref.read(tokenRepositoryProvider))),
       ]);
 
       expect(container.read(appStartProvider), AppStartState.initial());
@@ -43,9 +42,7 @@ void main() {
       when(() => tokenRepository.checkToken()).thenAnswer((_) => Future.value(false));
       final container = ProviderContainer(overrides: [
         tokenRepositoryProvider.overrideWithValue(tokenRepository),
-        appStartProvider.overrideWithProvider(StateNotifierProvider<AppStartNotifier, AppStartState>((ref) {
-          return AppStartNotifier(AppStartState.initial(), ref.read);
-        }))
+        appStartProvider.overrideWith((ref) => AppStartNotifier(AppStartState.initial(), ref.read(tokenRepositoryProvider))),
       ]);
 
       expect(container.read(appStartProvider), AppStartState.initial());
@@ -58,9 +55,7 @@ void main() {
       when(() => tokenRepository.checkToken()).thenAnswer((_) => Future.value(true));
       final container = ProviderContainer(overrides: [
         tokenRepositoryProvider.overrideWithValue(tokenRepository),
-        appStartProvider.overrideWithProvider(StateNotifierProvider<AppStartNotifier, AppStartState>((ref) {
-          return AppStartNotifier(AppStartState.initial(), ref.read);
-        }))
+        appStartProvider.overrideWith((ref) => AppStartNotifier(AppStartState.initial(), ref.read(tokenRepositoryProvider))),
       ]);
 
       expect(container.read(appStartProvider), AppStartState.initial());

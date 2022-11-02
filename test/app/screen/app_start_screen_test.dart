@@ -1,5 +1,6 @@
 import 'package:ala_pos/app/app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
@@ -30,7 +31,7 @@ void main() {
 
     final imageFinder = find.byWidgetPredicate(
       (widget) {
-        return widget is Image;
+        return widget is SvgPicture;
       },
     );
     // await widgetTester.pump();
@@ -39,7 +40,7 @@ void main() {
     expect(find.byType(TextField), findsWidgets);
   });
 
-  testWidgets("Open login screen when token  invalid", (widgetTester) async {
+  testWidgets("Open login screen when token invalid", (widgetTester) async {
     final mockRepository = MockTokenRepository();
     // final mockAppStartNotifier = MockAppStartNotifier();
     when(() => mockRepository.fetchToken()).thenAnswer((_) => Future.value(Token(token: "token-valid")));
@@ -56,7 +57,7 @@ void main() {
 
     final imageFinder = find.byWidgetPredicate(
       (widget) {
-        return widget is Image;
+        return widget is SvgPicture;
       },
     );
     // await widgetTester.pump();
@@ -64,7 +65,7 @@ void main() {
     await widgetTester.pump(Duration(seconds: 3));
     expect(find.byType(TextField), findsWidgets);
     expect(find.text("Masuk"), findsWidgets);
-    expect(find.text("Belum punya akun? Daftar disini!"), findsWidgets);
+    expect(find.text("Login"), findsWidgets);
   });
 
   testWidgets("Open Main POS Screen when token is valid", (widgetTester) async {
@@ -82,15 +83,9 @@ void main() {
     // Start Pump
     await widgetTester.pumpWidget(startWidget(testerWidget));
 
-    final imageFinder = find.byWidgetPredicate(
-      (widget) {
-        return widget is Image;
-      },
-    );
-    // await widgetTester.pump();
-    // expect(imageFinder, findsOneWidget);
-    // await widgetTester.pump(Duration(seconds: 3));
-    // expect(find.text("Pos Main Screen"), findsWidgets);
+    await widgetTester.pump();
+    await widgetTester.pump(Duration(seconds: 3));
+    expect(find.text("Mode Tampilan"), findsWidgets);
   });
 }
 // Tested  when state is unauthenticated

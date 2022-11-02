@@ -15,6 +15,7 @@ import '../../app/domain/models/json/json_resource.dart';
 import '../../app/domain/models/response/api_response.dart';
 import '../../app/domain/models/token/token_model.dart';
 import '../constants/store_key.dart';
+import '../utils/local_storage.dart';
 import 'interceptor/dio_connectivity_request_retrier.dart';
 import 'interceptor/retry_interceptor.dart';
 
@@ -29,7 +30,11 @@ final dioProvider = Provider.autoDispose(
 );
 
 final apiProvider = Provider<ApiProvider>(
-  (ref) => ApiProvider(ref.read(dioProvider), ref.read(connectivityProvider)),
+  (ref) => ApiProvider(
+    ref.read(dioProvider),
+    ref.read(connectivityProvider),
+    ref.read(tokenRepositoryProvider),
+  ),
 );
 
 class ApiProvider {
@@ -40,6 +45,8 @@ class ApiProvider {
 
   late Dio _dio;
 
+  late TokenRepository tokenRepository;
+
   Connectivity connectivity;
 
   // TokenRepository _tokenRepository;
@@ -48,7 +55,11 @@ class ApiProvider {
 
   Dio get dio => _dio;
 
-  ApiProvider(this._dio, this.connectivity) {
+  ApiProvider(
+    this._dio,
+    this.connectivity,
+    this.tokenRepository,
+  ) {
     _dio.options.sendTimeout = 30000;
     _dio.options.connectTimeout = 30000;
     _dio.options.receiveTimeout = 30000;
@@ -79,16 +90,12 @@ class ApiProvider {
 
   Future<Dio> instance() async {
     try {
-      String? tokenValue;
+      // String? tokenValue;
       Token? _appToken;
 
-      const storage = FlutterSecureStorage();
-      tokenValue = await storage.read(key: Constant.token);
-      if (tokenValue != null) {
-        _appToken = tokenFromJson(tokenValue);
-      }
-      // _appToken = await _tokenRepository.fetchToken();
-      // final _appToken = null;
+      _appToken = await tokenRepository.fetchToken();
+      // _appToken = tokenFromJson(tokenValue);
+
       if (_appToken != null) {
         headers['Authorization'] = 'Bearer ${_appToken.token}';
       }
