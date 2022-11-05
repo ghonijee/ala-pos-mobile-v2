@@ -85,7 +85,9 @@ class ApiProvider {
     };
 
     if (kDebugMode) {
-      _dio.interceptors.add(PrettyDioLogger(request: false));
+      _dio.interceptors.add(PrettyDioLogger(
+        request: false,
+      ));
     }
 
     if (dotenv.env['BASE_URL'] != null) {
@@ -99,9 +101,9 @@ class ApiProvider {
       Token? _appToken;
       tokenValue = await _storage.read(key: Constant.token);
 
-      // if (tokenValue != null) {
-      //   _appToken = tokenFromJson(tokenValue);
-      // }
+      if (tokenValue != null) {
+        _appToken = tokenFromJson(tokenValue);
+      }
 
       if (_appToken != null) {
         headers['Authorization'] = 'Bearer ${_appToken.token}';

@@ -1,3 +1,5 @@
+import 'package:ala_pos/feature/auth/provider/register_provider.dart';
+import 'package:ala_pos/feature/auth/state/register/register_state.dart';
 import 'package:ala_pos/gen/assets.gen.dart';
 import 'package:ala_pos/shared/styles/app_spacing.dart';
 import 'package:ala_pos/shared/widget/button/button_full_component.dart';
@@ -22,6 +24,20 @@ class RegisterScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var primeTheme = PrimerTheme.of(context);
     var hidePassword = useState<bool>(true);
+    final controller = ref.read(registerProvider.notifier);
+    var state = ref.watch(registerProvider);
+
+    ref.listen<RegisterState>(registerProvider, (previous, next) {
+      if (next.statusSubmission.isSubmissionFailure) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(next.message),
+          ),
+        );
+      } else if (next.statusSubmission.isSubmissionSuccess) {
+        context.router.replaceNamed(AuthRouteName.NewStoreForm);
+      }
+    });
 
     return Scaffold(
       backgroundColor: primeTheme.canvas.inset,
@@ -67,17 +83,26 @@ class RegisterScreen extends HookConsumerWidget {
                     // _FieldUsername(),
                     TextFieldComponent(
                       labelText: "Username",
+                      onChange: (value) => controller.changeUsername(value),
+                      errorText: state.usernameField.error?.message,
+                      isValid: state.usernameField.pure ? true : state.usernameField.valid,
                     ),
                     SizedBox(
                       height: AppSpacings.l.sp,
                     ),
                     TextFieldComponent(
                       labelText: "Nomor Handphone",
+                      onChange: (value) => controller.changePhone(value),
+                      errorText: state.phoneField.error?.message,
+                      isValid: state.phoneField.pure ? true : state.phoneField.valid,
                     ),
                     SizedBox(
                       height: AppSpacings.l.sp,
                     ),
                     TextFieldComponent(
+                      onChange: (value) => controller.changePassword(value),
+                      errorText: state.passwordField.error?.message,
+                      isValid: state.passwordField.pure ? true : state.passwordField.valid,
                       labelText: "Katasandi",
                       isSecureText: hidePassword.value,
                       suffixIcon: InkWell(
@@ -91,11 +116,12 @@ class RegisterScreen extends HookConsumerWidget {
                       height: AppSpacings.x4l,
                     ),
                     ButtonFullText(
-                      onPress: FormzStatus.invalid == FormzStatus.valid
-                          ? () {}
-                          : () {
+                      onPress: state.formRegisteredStatus == FormzStatus.valid
+                          ? () {
+                              // controller.submit();
                               context.router.pushNamed(AuthRouteName.NewStoreForm);
-                            },
+                            }
+                          : null,
                       text: "Selanjutnya",
                     ),
                     SizedBox(

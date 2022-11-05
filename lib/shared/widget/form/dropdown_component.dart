@@ -198,7 +198,6 @@ class _DropdownComponentState<T> extends State<DropdownComponent<T>> with Widget
             onTap: widget.enabled
                 ? () {
                     _isOpen ? _removeOverlay() : _addOverlay();
-                    print(_isOpen);
                   }
                 : null,
             child: Container(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:ala_pos/app/app.dart';
 import 'package:ala_pos/feature/auth/data/remote/auth_remote_source.dart';
+import 'package:ala_pos/feature/auth/domain/models/sign_up/sign_up_model.dart';
 import 'package:ala_pos/shared/constants/store_key.dart';
 import 'package:ala_pos/shared/utils/device_info.dart';
 import 'package:ala_pos/shared/utils/local_storage.dart';
@@ -49,8 +50,35 @@ class AuthRepository {
   }
 
   Future<bool> signOut() async {
+    localStorage.remove(Constant.token);
+    localStorage.remove(Constant.userModel);
     return true;
   }
 
-  Future signUp({required String username, required String password, required String phone}) async {}
+  Future<Result<LoginModel, AppException>> signUp(SignUpModel data) async {
+    var deviceName = await deviceInfo.deviceName;
+    APIResponse response = await authRemoteSource.register(username: data.username, phone: data.phone, password: data.password, deviceName: deviceName);
+    late LoginModel userLogin;
+    var result = response.when(
+      success: (resource) {
+        userLogin = LoginModel.fromJson(resource.data);
+        var _token = Token(token: userLogin.personalAccessToken);
+        // Save Token
+        localStorage.store(Constant.token, tokenToJson(_token));
+        // Save data User
+        localStorage.store(Constant.userModel, jsonEncode(userLogin.userModel.toJson()));
+        return userLogin;
+      },
+      error: (exception) {
+        return exception;
+      },
+    );
+    if (result is AppException) {
+      return Failure(result);
+    }
+
+    return Success(userLogin);
+  }
+
+  Future storeSignUp({required String storeName, required String storeCategoryId, required String phone, required String address}) async {}
 }

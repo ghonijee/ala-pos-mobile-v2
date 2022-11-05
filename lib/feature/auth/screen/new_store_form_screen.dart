@@ -1,3 +1,4 @@
+import 'package:ala_pos/feature/auth/provider/list_store_category_provider.dart';
 import 'package:ala_pos/feature/store/domain/models/store_category/store_category_model.dart';
 import 'package:ala_pos/gen/assets.gen.dart';
 import 'package:ala_pos/shared/styles/app_spacing.dart';
@@ -24,8 +25,11 @@ class NewStoreFormScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var primeTheme = PrimerTheme.of(context);
-    var hidePassword = useState<bool>(true);
-    var isSubmitLoading = useState<bool>(false);
+
+    var listStoreCategory = ref.watch(listStoreCategoryProvider);
+
+    print(listStoreCategory.value!.length.toString());
+    // ref.refresh(listStoreCategoryProvider);
 
     return Scaffold(
       backgroundColor: primeTheme.canvas.inset,
@@ -93,17 +97,19 @@ class NewStoreFormScreen extends HookConsumerWidget {
                     DropdownComponent<StoreCategoryModel>(
                       hintText: "Pilih Kategori Usaha",
                       labelText: "Kategori",
-                      items: [
-                        DropdownComponentMenuItem(
-                            value: StoreCategoryModel(id: 1, name: "Pilih test"),
-                            child: Text(
-                              "Kelontong",
-                              style: primeTheme.typography.normal.copyWith(
-                                color: primeTheme.foreground.dflt,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ))
-                      ],
+                      items: listStoreCategory.isLoading
+                          ? []
+                          : listStoreCategory.value!.map((e) {
+                              return DropdownComponentMenuItem(
+                                  value: e,
+                                  child: Text(
+                                    e.name,
+                                    style: primeTheme.typography.normal.copyWith(
+                                      color: primeTheme.foreground.dflt,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ));
+                            }).toList(),
                       onChanged: (value) {
                         //
                       },
