@@ -1,5 +1,6 @@
 import 'package:ala_pos/app/domain/models/exception/exception.dart';
 import 'package:ala_pos/feature/auth/state/login/login_state.dart';
+import 'package:ala_pos/feature/user_management/domain/repository/user_repository.dart';
 import 'package:ala_pos/shared/fields/password_field.dart';
 import 'package:ala_pos/shared/fields/username_field.dart';
 import 'package:formz/formz.dart';
@@ -10,15 +11,15 @@ import '../domain/repository/auth_repository.dart';
 
 final loginProvider = StateNotifierProvider<LoginNotifier, LoginState>(
   (ref) => LoginNotifier(
-    ref.read(
-      authRepositoryProvider,
-    ),
+    ref.read(authRepositoryProvider),
+    ref.read(userRepositoryProvider),
   ),
 );
 
 class LoginNotifier extends StateNotifier<LoginState> {
   AuthRepository loginRepository;
-  LoginNotifier(this.loginRepository) : super(LoginState());
+  UserRepository userRepository;
+  LoginNotifier(this.loginRepository, this.userRepository) : super(LoginState());
 
   changeUsername(String value) async {
     state = state.copyWith(
@@ -37,13 +38,31 @@ class LoginNotifier extends StateNotifier<LoginState> {
   submit() async {
     var result = await loginRepository.signIn(state.usernameField.value!, state.passwordField.value!);
     if (result.isFailure) {
-      var error = result.failure as AppExceptionErrorMessage;
-      state = state.copyWith(
-        statusSubmission: FormzStatus.submissionFailure,
-        message: error.message,
-      );
+      // var error = result.failure as AppExceptionErrorMessage;
+      result.failure.maybeWhen(errorWithMessage: (message) {
+        state = state.copyWith(
+          statusSubmission: FormzStatus.submissionFailure,
+          message: message,
+        );
+      }, unauthorized: () {
+        state = state.copyWith(
+          statusSubmission: FormzStatus.submissionFailure,
+          message: "Unauthorized",
+        );
+      }, connectivity: () {
+        state = state.copyWith(
+          statusSubmission: FormzStatus.submissionFailure,
+          message: "Terjadi kesalahan pada koneksi",
+        );
+      }, orElse: () {
+        state = state.copyWith(
+          statusSubmission: FormzStatus.submissionFailure,
+          message: "Terjadi kesalahan pada aplikasi",
+        );
+      });
     } else {
       /// TODO: Check apakah user sudah punya toko
+      userRepository.rolePermissions();
       state = state.copyWith(
         statusSubmission: FormzStatus.submissionSuccess,
       );

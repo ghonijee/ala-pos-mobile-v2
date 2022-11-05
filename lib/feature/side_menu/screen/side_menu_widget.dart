@@ -1,6 +1,7 @@
 import 'package:ala_pos/feature/auth/router/auth_router.dart';
 import 'package:ala_pos/feature/pos/routes/pos_router.dart';
 import 'package:ala_pos/feature/side_menu/provider/sidebar_provider.dart';
+import 'package:ala_pos/shared/utils/permission_check.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -46,21 +47,24 @@ class SideMenuView extends HookConsumerWidget {
                   ),
                 ),
                 Spacing.large(),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Ghoni Jee",
-                      style: primerTheme.typography.bold,
+                ref.watch(userProfileProvider).maybeWhen(
+                      data: (data) => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data!.fullname,
+                            style: primerTheme.typography.bold,
+                          ),
+                          Spacing.extraSmall(),
+                          Text(
+                            data.userStatus?.toUpperCase() ?? "Free",
+                            style: primerTheme.typography.small,
+                          ),
+                        ],
+                      ),
+                      orElse: () => SizedBox(),
                     ),
-                    Spacing.extraSmall(),
-                    Text(
-                      "Owner",
-                      style: primerTheme.typography.small,
-                    ),
-                  ],
-                ),
                 Expanded(child: SizedBox()),
                 Icon(
                   FeatherIcons.chevronRight,
@@ -72,13 +76,22 @@ class SideMenuView extends HookConsumerWidget {
           SizedBox(
             height: AppSpacings.m.sp,
           ),
-          SideMenuItemWidget(
-            title: "Kasir",
-            onTap: () {
-              // AutoRouter.of(context).replaceNamed(RouteName.posWrapper);
+          FutureBuilder<bool>(
+            future: Permission.can("create-transaction"),
+            initialData: false,
+            builder: (context, snapshot) {
+              if (snapshot.data == false) {
+                return SizedBox();
+              }
+              return SideMenuItemWidget(
+                title: "Kasir",
+                onTap: () {
+                  // AutoRouter.of(context).replaceNamed(RouteName.posWrapper);
+                },
+                iconData: FeatherIcons.plusSquare,
+                isActive: context.router.currentPath == PosRouteName.Pos,
+              );
             },
-            iconData: FeatherIcons.plusSquare,
-            isActive: context.router.currentPath == PosRouteName.Pos,
           ),
           Spacing.small(),
           SideMenuItemWidget(
