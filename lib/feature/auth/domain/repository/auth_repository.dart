@@ -30,8 +30,9 @@ class AuthRepository {
     var result = response.when(
       success: (resource) {
         userLogin = LoginModel.fromJson(resource.data);
+        var _token = Token(token: userLogin.personalAccessToken);
         // Save Token
-        localStorage.store(Constant.token, userLogin.personalAccessToken);
+        localStorage.store(Constant.token, tokenToJson(_token));
         // Save data User
         localStorage.store(Constant.userModel, jsonEncode(userLogin.userModel.toJson()));
         return userLogin;

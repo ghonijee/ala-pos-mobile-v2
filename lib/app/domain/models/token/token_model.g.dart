@@ -11,5 +11,5 @@ _$_Token _$$_TokenFromJson(Map<String, dynamic> json) => _$_Token(
     );
 
 Map<String, dynamic> _$$_TokenToJson(_$_Token instance) => <String, dynamic>{
-      'token': instance.token,
+      "token": instance.token,
     };

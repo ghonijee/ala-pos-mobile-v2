@@ -35,7 +35,7 @@ class LoginScreen extends HookConsumerWidget {
             content: Text(next.message),
           ),
         );
-      } else {
+      } else if (next.statusSubmission.isSubmissionSuccess) {
         context.router.replaceNamed(PosRouteName.Pos);
       }
     });
@@ -73,7 +73,7 @@ class LoginScreen extends HookConsumerWidget {
                     labelText: "Username/Nomor HP",
                     onChange: (value) => loginController.changeUsername(value),
                     errorText: loginState.usernameField.error?.message,
-                    isValid: loginState.usernameField.valid,
+                    isValid: loginState.usernameField.pure ? true : loginState.usernameField.valid,
                   ),
                   SizedBox(
                     height: AppSpacings.l.sp,
@@ -81,7 +81,7 @@ class LoginScreen extends HookConsumerWidget {
                   TextFieldComponent(
                     onChange: (value) => loginController.changePassword(value),
                     errorText: loginState.passwordField.error?.message,
-                    isValid: loginState.passwordField.valid,
+                    isValid: loginState.passwordField.pure ? true : loginState.passwordField.valid,
                     labelText: "Katasandi",
                     isSecureText: hidePassword.value,
                     suffixIcon: InkWell(

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'package:ala_pos/app/domain/repository/token_repository.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -40,8 +41,9 @@ final apiProvider = Provider<ApiProvider>(
 
 class ApiProvider {
   final headers = {
-    'accept': '*/*',
+    // 'accept': '*/*',
     'Content-Type': "application/json",
+    'Accept': 'application/json; charset=UTF-8',
   };
 
   late Dio _dio;
@@ -96,9 +98,10 @@ class ApiProvider {
       String? tokenValue;
       Token? _appToken;
       tokenValue = await _storage.read(key: Constant.token);
-      if (tokenValue != null) {
-        _appToken = tokenFromJson(tokenValue);
-      }
+
+      // if (tokenValue != null) {
+      //   _appToken = tokenFromJson(tokenValue);
+      // }
 
       if (_appToken != null) {
         headers['Authorization'] = 'Bearer ${_appToken.token}';
