@@ -49,7 +49,7 @@ class AuthRepository {
     return Success(userLogin);
   }
 
-  Future<bool> signOut() async {
+  bool signOut() {
     localStorage.remove(Constant.token);
     localStorage.remove(Constant.userModel);
     return true;

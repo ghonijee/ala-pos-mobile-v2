@@ -23,28 +23,31 @@ class SideMenuItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var primerTheme = PrimerTheme.of(context);
 
-    return Container(
-      decoration: BoxDecoration(
-        color: isActive ? primerTheme.brand.tertiary : primerTheme.canvas.dflt,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      margin: EdgeInsets.only(left: 16, right: 16),
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(
-            iconData,
-            color: isActive ? primerTheme.brand.primary : primerTheme.foreground.dflt,
-          ),
-          Spacing.large(),
-          Text(
-            title,
-            style: primerTheme.typography.smallBold.copyWith(
+    return GestureDetector(
+      onTap: this.onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: isActive ? primerTheme.brand.tertiary : primerTheme.canvas.dflt,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        margin: EdgeInsets.only(left: 16, right: 16),
+        padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              iconData,
               color: isActive ? primerTheme.brand.primary : primerTheme.foreground.dflt,
             ),
-          ),
-        ],
+            Spacing.large(),
+            Text(
+              title,
+              style: primerTheme.typography.smallBold.copyWith(
+                color: isActive ? primerTheme.brand.primary : primerTheme.foreground.dflt,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
