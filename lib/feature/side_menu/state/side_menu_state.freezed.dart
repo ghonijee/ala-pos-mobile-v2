@@ -26,9 +26,9 @@ mixin _$SideMenuState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserModel userModel, StoreModel storeModel)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,9 +48,9 @@ mixin _$SideMenuState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,17 +67,18 @@ mixin _$SideMenuState {
 abstract class $SideMenuStateCopyWith<$Res> {
   factory $SideMenuStateCopyWith(
           SideMenuState value, $Res Function(SideMenuState) then) =
-      _$SideMenuStateCopyWithImpl<$Res>;
+      _$SideMenuStateCopyWithImpl<$Res, SideMenuState>;
 }
 
 /// @nodoc
-class _$SideMenuStateCopyWithImpl<$Res>
+class _$SideMenuStateCopyWithImpl<$Res, $Val extends SideMenuState>
     implements $SideMenuStateCopyWith<$Res> {
   _$SideMenuStateCopyWithImpl(this._value, this._then);
 
-  final SideMenuState _value;
   // ignore: unused_field
-  final $Res Function(SideMenuState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -88,13 +89,11 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$SideMenuStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$SideMenuStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
-
-  @override
-  _$_Initial get _value => super._value as _$_Initial;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -130,9 +129,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserModel userModel, StoreModel storeModel)? loaded,
   }) {
     return initial?.call();
   }
@@ -164,9 +163,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return initial?.call(this);
   }
@@ -198,13 +197,11 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$SideMenuStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$SideMenuStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, (v) => _then(v as _$_Loading));
-
-  @override
-  _$_Loading get _value => super._value as _$_Loading;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -240,9 +237,9 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserModel userModel, StoreModel storeModel)? loaded,
   }) {
     return loading?.call();
   }
@@ -274,9 +271,9 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -304,6 +301,7 @@ abstract class _Loading implements SideMenuState {
 abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
+  @useResult
   $Res call({UserModel userModel, StoreModel storeModel});
 
   $UserModelCopyWith<$Res> get userModel;
@@ -311,25 +309,24 @@ abstract class _$$_LoadedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadedCopyWithImpl<$Res> extends _$SideMenuStateCopyWithImpl<$Res>
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$SideMenuStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
-      : super(_value, (v) => _then(v as _$_Loaded));
+      : super(_value, _then);
 
-  @override
-  _$_Loaded get _value => super._value as _$_Loaded;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userModel = freezed,
-    Object? storeModel = freezed,
+    Object? userModel = null,
+    Object? storeModel = null,
   }) {
     return _then(_$_Loaded(
-      userModel == freezed
+      null == userModel
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
               as UserModel,
-      storeModel == freezed
+      null == storeModel
           ? _value.storeModel
           : storeModel // ignore: cast_nullable_to_non_nullable
               as StoreModel,
@@ -337,6 +334,7 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$SideMenuStateCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res> get userModel {
     return $UserModelCopyWith<$Res>(_value.userModel, (value) {
       return _then(_value.copyWith(userModel: value));
@@ -344,6 +342,7 @@ class __$$_LoadedCopyWithImpl<$Res> extends _$SideMenuStateCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $StoreModelCopyWith<$Res> get storeModel {
     return $StoreModelCopyWith<$Res>(_value.storeModel, (value) {
       return _then(_value.copyWith(storeModel: value));
@@ -371,19 +370,18 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other.userModel, userModel) &&
-            const DeepCollectionEquality()
-                .equals(other.storeModel, storeModel));
+            (identical(other.userModel, userModel) ||
+                other.userModel == userModel) &&
+            (identical(other.storeModel, storeModel) ||
+                other.storeModel == storeModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userModel),
-      const DeepCollectionEquality().hash(storeModel));
+  int get hashCode => Object.hash(runtimeType, userModel, storeModel);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
 
@@ -401,9 +399,9 @@ class _$_Loaded implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(UserModel userModel, StoreModel storeModel)? loaded,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserModel userModel, StoreModel storeModel)? loaded,
   }) {
     return loaded?.call(userModel, storeModel);
   }
@@ -435,9 +433,9 @@ class _$_Loaded implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return loaded?.call(this);
   }

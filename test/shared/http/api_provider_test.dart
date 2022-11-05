@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ala_pos/app/app.dart';
+import 'package:ala_pos/shared/constants/store_key.dart';
 import 'package:ala_pos/shared/http/api_provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
@@ -35,6 +36,7 @@ void main() {
     dio = Dio();
     tokenRepository = MockTokenRepository();
     connectivity = MockConnectivity();
+    var storage = MockFlutterSecureStorage();
 
     when(() => tokenRepository.fetchToken()).thenAnswer(
       (invocation) => Future.value(
@@ -47,12 +49,12 @@ void main() {
     ).thenAnswer((invocation) => Future.value(ConnectivityResult.mobile));
 
     dotenv.testLoad(fileInput: '''BASE_URL=https://alapos.id''');
-    when(() => tokenRepository.fetchToken()).thenAnswer((_) => Future.value(null));
+    when(() => storage.read(key: Constant.token)).thenAnswer((_) => Future.value(null));
 
     apiProvider = ApiProvider(
       dio,
       connectivity,
-      tokenRepository,
+      storage,
     );
     dioAdapter = DioAdapter(dio: await apiProvider.instance());
   });

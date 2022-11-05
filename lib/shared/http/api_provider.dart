@@ -33,7 +33,8 @@ final apiProvider = Provider<ApiProvider>(
   (ref) => ApiProvider(
     ref.read(dioProvider),
     ref.read(connectivityProvider),
-    ref.read(tokenRepositoryProvider),
+    FlutterSecureStorage(),
+    // ref.read(tokenRepositoryProvider),
   ),
 );
 
@@ -45,7 +46,8 @@ class ApiProvider {
 
   late Dio _dio;
 
-  late TokenRepository tokenRepository;
+  // late TokenRepository tokenRepository;
+  late FlutterSecureStorage _storage;
 
   Connectivity connectivity;
 
@@ -58,7 +60,8 @@ class ApiProvider {
   ApiProvider(
     this._dio,
     this.connectivity,
-    this.tokenRepository,
+    this._storage,
+    // this.tokenRepository,
   ) {
     _dio.options.sendTimeout = 30000;
     _dio.options.connectTimeout = 30000;
@@ -90,11 +93,12 @@ class ApiProvider {
 
   Future<Dio> instance() async {
     try {
-      // String? tokenValue;
+      String? tokenValue;
       Token? _appToken;
-
-      _appToken = await tokenRepository.fetchToken();
-      // _appToken = tokenFromJson(tokenValue);
+      tokenValue = await _storage.read(key: Constant.token);
+      if (tokenValue != null) {
+        _appToken = tokenFromJson(tokenValue);
+      }
 
       if (_appToken != null) {
         headers['Authorization'] = 'Bearer ${_appToken.token}';
@@ -118,6 +122,9 @@ class ApiProvider {
       return APIResponse.success(resource);
     } else {
       if (response.statusCode! == 401) {
+        if (resource.message != null) {
+          return APIResponse.error(AppException.errorWithMessage(resource.error ?? resource.message ?? "Server error"));
+        }
         return APIResponse.error(AppException.unauthorized());
       } else if (response.statusCode! == 502) {
         return const APIResponse.error(AppException.error());

@@ -24,8 +24,8 @@ mixin _$APIResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(JsonResource resource)? success,
-    TResult Function(AppException exception)? error,
+    TResult? Function(JsonResource resource)? success,
+    TResult? Function(AppException exception)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$APIResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(APISuccess value)? success,
-    TResult Function(APIError value)? error,
+    TResult? Function(APISuccess value)? success,
+    TResult? Function(APIError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,16 +60,18 @@ mixin _$APIResponse {
 abstract class $APIResponseCopyWith<$Res> {
   factory $APIResponseCopyWith(
           APIResponse value, $Res Function(APIResponse) then) =
-      _$APIResponseCopyWithImpl<$Res>;
+      _$APIResponseCopyWithImpl<$Res, APIResponse>;
 }
 
 /// @nodoc
-class _$APIResponseCopyWithImpl<$Res> implements $APIResponseCopyWith<$Res> {
+class _$APIResponseCopyWithImpl<$Res, $Val extends APIResponse>
+    implements $APIResponseCopyWith<$Res> {
   _$APIResponseCopyWithImpl(this._value, this._then);
 
-  final APIResponse _value;
   // ignore: unused_field
-  final $Res Function(APIResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -77,27 +79,27 @@ abstract class _$$APISuccessCopyWith<$Res> {
   factory _$$APISuccessCopyWith(
           _$APISuccess value, $Res Function(_$APISuccess) then) =
       __$$APISuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({JsonResource resource});
 
   $JsonResourceCopyWith<$Res> get resource;
 }
 
 /// @nodoc
-class __$$APISuccessCopyWithImpl<$Res> extends _$APIResponseCopyWithImpl<$Res>
+class __$$APISuccessCopyWithImpl<$Res>
+    extends _$APIResponseCopyWithImpl<$Res, _$APISuccess>
     implements _$$APISuccessCopyWith<$Res> {
   __$$APISuccessCopyWithImpl(
       _$APISuccess _value, $Res Function(_$APISuccess) _then)
-      : super(_value, (v) => _then(v as _$APISuccess));
+      : super(_value, _then);
 
-  @override
-  _$APISuccess get _value => super._value as _$APISuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? resource = freezed,
+    Object? resource = null,
   }) {
     return _then(_$APISuccess(
-      resource == freezed
+      null == resource
           ? _value.resource
           : resource // ignore: cast_nullable_to_non_nullable
               as JsonResource,
@@ -105,6 +107,7 @@ class __$$APISuccessCopyWithImpl<$Res> extends _$APIResponseCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $JsonResourceCopyWith<$Res> get resource {
     return $JsonResourceCopyWith<$Res>(_value.resource, (value) {
       return _then(_value.copyWith(resource: value));
@@ -130,15 +133,16 @@ class _$APISuccess implements APISuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$APISuccess &&
-            const DeepCollectionEquality().equals(other.resource, resource));
+            (identical(other.resource, resource) ||
+                other.resource == resource));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(resource));
+  int get hashCode => Object.hash(runtimeType, resource);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$APISuccessCopyWith<_$APISuccess> get copyWith =>
       __$$APISuccessCopyWithImpl<_$APISuccess>(this, _$identity);
 
@@ -154,8 +158,8 @@ class _$APISuccess implements APISuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(JsonResource resource)? success,
-    TResult Function(AppException exception)? error,
+    TResult? Function(JsonResource resource)? success,
+    TResult? Function(AppException exception)? error,
   }) {
     return success?.call(resource);
   }
@@ -185,8 +189,8 @@ class _$APISuccess implements APISuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(APISuccess value)? success,
-    TResult Function(APIError value)? error,
+    TResult? Function(APISuccess value)? success,
+    TResult? Function(APIError value)? error,
   }) {
     return success?.call(this);
   }
@@ -219,26 +223,26 @@ abstract class _$$APIErrorCopyWith<$Res> {
   factory _$$APIErrorCopyWith(
           _$APIError value, $Res Function(_$APIError) then) =
       __$$APIErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({AppException exception});
 
   $AppExceptionCopyWith<$Res> get exception;
 }
 
 /// @nodoc
-class __$$APIErrorCopyWithImpl<$Res> extends _$APIResponseCopyWithImpl<$Res>
+class __$$APIErrorCopyWithImpl<$Res>
+    extends _$APIResponseCopyWithImpl<$Res, _$APIError>
     implements _$$APIErrorCopyWith<$Res> {
   __$$APIErrorCopyWithImpl(_$APIError _value, $Res Function(_$APIError) _then)
-      : super(_value, (v) => _then(v as _$APIError));
+      : super(_value, _then);
 
-  @override
-  _$APIError get _value => super._value as _$APIError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? exception = freezed,
+    Object? exception = null,
   }) {
     return _then(_$APIError(
-      exception == freezed
+      null == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
               as AppException,
@@ -246,6 +250,7 @@ class __$$APIErrorCopyWithImpl<$Res> extends _$APIResponseCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AppExceptionCopyWith<$Res> get exception {
     return $AppExceptionCopyWith<$Res>(_value.exception, (value) {
       return _then(_value.copyWith(exception: value));
@@ -271,15 +276,16 @@ class _$APIError implements APIError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$APIError &&
-            const DeepCollectionEquality().equals(other.exception, exception));
+            (identical(other.exception, exception) ||
+                other.exception == exception));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(exception));
+  int get hashCode => Object.hash(runtimeType, exception);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$APIErrorCopyWith<_$APIError> get copyWith =>
       __$$APIErrorCopyWithImpl<_$APIError>(this, _$identity);
 
@@ -295,8 +301,8 @@ class _$APIError implements APIError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(JsonResource resource)? success,
-    TResult Function(AppException exception)? error,
+    TResult? Function(JsonResource resource)? success,
+    TResult? Function(AppException exception)? error,
   }) {
     return error?.call(exception);
   }
@@ -326,8 +332,8 @@ class _$APIError implements APIError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(APISuccess value)? success,
-    TResult Function(APIError value)? error,
+    TResult? Function(APISuccess value)? success,
+    TResult? Function(APIError value)? error,
   }) {
     return error?.call(this);
   }

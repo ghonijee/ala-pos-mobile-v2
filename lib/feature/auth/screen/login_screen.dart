@@ -1,4 +1,6 @@
+import 'package:ala_pos/feature/auth/provider/login_provider.dart';
 import 'package:ala_pos/feature/auth/router/auth_router.dart';
+import 'package:ala_pos/feature/auth/state/login/login_state.dart';
 import 'package:ala_pos/feature/pos/routes/pos_router.dart';
 import 'package:ala_pos/gen/assets.gen.dart';
 import 'package:ala_pos/shared/widget/button/button_full_component.dart';
@@ -19,9 +21,24 @@ class LoginScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localization = AppLocalizations.of(context);
+    // final localization = AppLocalizations.of(context);
     var primeTheme = PrimerTheme.of(context);
     var hidePassword = useState<bool>(true);
+
+    final loginController = ref.read(loginProvider.notifier);
+    final loginState = ref.watch(loginProvider);
+
+    ref.listen<LoginState>(loginProvider, (previous, next) {
+      if (next.statusSubmission.isSubmissionFailure) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(next.message),
+          ),
+        );
+      } else {
+        context.router.replaceNamed(PosRouteName.Pos);
+      }
+    });
 
     return Scaffold(
       backgroundColor: primeTheme.canvas.inset,
@@ -54,11 +71,17 @@ class LoginScreen extends HookConsumerWidget {
                   // _FieldUsername(),
                   TextFieldComponent(
                     labelText: "Username/Nomor HP",
+                    onChange: (value) => loginController.changeUsername(value),
+                    errorText: loginState.usernameField.error?.message,
+                    isValid: loginState.usernameField.valid,
                   ),
                   SizedBox(
                     height: AppSpacings.l.sp,
                   ),
                   TextFieldComponent(
+                    onChange: (value) => loginController.changePassword(value),
+                    errorText: loginState.passwordField.error?.message,
+                    isValid: loginState.passwordField.valid,
                     labelText: "Katasandi",
                     isSecureText: hidePassword.value,
                     suffixIcon: InkWell(
@@ -72,11 +95,11 @@ class LoginScreen extends HookConsumerWidget {
                     height: AppSpacings.x4l,
                   ),
                   ButtonFullText(
-                    onPress: FormzStatus.invalid == FormzStatus.invalid
-                        ? () {
-                            context.router.replaceNamed(PosRouteName.Pos);
+                    onPress: loginState.status == FormzStatus.valid
+                        ? () async {
+                            await loginController.submit();
                           }
-                        : () {},
+                        : null,
                     text: "Masuk",
                   ),
                   SizedBox(

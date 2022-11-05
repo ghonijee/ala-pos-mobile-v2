@@ -55,7 +55,8 @@ mixin _$StoreModel {
 abstract class $StoreModelCopyWith<$Res> {
   factory $StoreModelCopyWith(
           StoreModel value, $Res Function(StoreModel) then) =
-      _$StoreModelCopyWithImpl<$Res>;
+      _$StoreModelCopyWithImpl<$Res, StoreModel>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'name') String name,
@@ -72,20 +73,23 @@ abstract class $StoreModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StoreModelCopyWithImpl<$Res> implements $StoreModelCopyWith<$Res> {
+class _$StoreModelCopyWithImpl<$Res, $Val extends StoreModel>
+    implements $StoreModelCopyWith<$Res> {
   _$StoreModelCopyWithImpl(this._value, this._then);
 
-  final StoreModel _value;
   // ignore: unused_field
-  final $Res Function(StoreModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
+    Object? name = null,
     Object? address = freezed,
     Object? phone = freezed,
-    Object? useStockOpname = freezed,
+    Object? useStockOpname = null,
     Object? storeCategoryId = freezed,
     Object? storeCategoryName = freezed,
     Object? imageUrl = freezed,
@@ -95,55 +99,55 @@ class _$StoreModelCopyWithImpl<$Res> implements $StoreModelCopyWith<$Res> {
     Object? laravelThroughKey = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
-      phone: phone == freezed
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      useStockOpname: useStockOpname == freezed
+      useStockOpname: null == useStockOpname
           ? _value.useStockOpname
           : useStockOpname // ignore: cast_nullable_to_non_nullable
               as bool,
-      storeCategoryId: storeCategoryId == freezed
+      storeCategoryId: freezed == storeCategoryId
           ? _value.storeCategoryId
           : storeCategoryId // ignore: cast_nullable_to_non_nullable
               as int?,
-      storeCategoryName: storeCategoryName == freezed
+      storeCategoryName: freezed == storeCategoryName
           ? _value.storeCategoryName
           : storeCategoryName // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: imageUrl == freezed
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      imagePath: imagePath == freezed
+      imagePath: freezed == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      laravelThroughKey: laravelThroughKey == freezed
+      laravelThroughKey: freezed == laravelThroughKey
           ? _value.laravelThroughKey
           : laravelThroughKey // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -154,6 +158,7 @@ abstract class _$$_StoreModelCopyWith<$Res>
           _$_StoreModel value, $Res Function(_$_StoreModel) then) =
       __$$_StoreModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'name') String name,
@@ -170,22 +175,21 @@ abstract class _$$_StoreModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_StoreModelCopyWithImpl<$Res> extends _$StoreModelCopyWithImpl<$Res>
+class __$$_StoreModelCopyWithImpl<$Res>
+    extends _$StoreModelCopyWithImpl<$Res, _$_StoreModel>
     implements _$$_StoreModelCopyWith<$Res> {
   __$$_StoreModelCopyWithImpl(
       _$_StoreModel _value, $Res Function(_$_StoreModel) _then)
-      : super(_value, (v) => _then(v as _$_StoreModel));
+      : super(_value, _then);
 
-  @override
-  _$_StoreModel get _value => super._value as _$_StoreModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
+    Object? name = null,
     Object? address = freezed,
     Object? phone = freezed,
-    Object? useStockOpname = freezed,
+    Object? useStockOpname = null,
     Object? storeCategoryId = freezed,
     Object? storeCategoryName = freezed,
     Object? imageUrl = freezed,
@@ -195,51 +199,51 @@ class __$$_StoreModelCopyWithImpl<$Res> extends _$StoreModelCopyWithImpl<$Res>
     Object? laravelThroughKey = freezed,
   }) {
     return _then(_$_StoreModel(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
-      phone: phone == freezed
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      useStockOpname: useStockOpname == freezed
+      useStockOpname: null == useStockOpname
           ? _value.useStockOpname
           : useStockOpname // ignore: cast_nullable_to_non_nullable
               as bool,
-      storeCategoryId: storeCategoryId == freezed
+      storeCategoryId: freezed == storeCategoryId
           ? _value.storeCategoryId
           : storeCategoryId // ignore: cast_nullable_to_non_nullable
               as int?,
-      storeCategoryName: storeCategoryName == freezed
+      storeCategoryName: freezed == storeCategoryName
           ? _value.storeCategoryName
           : storeCategoryName // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: imageUrl == freezed
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      imagePath: imagePath == freezed
+      imagePath: freezed == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      laravelThroughKey: laravelThroughKey == freezed
+      laravelThroughKey: freezed == laravelThroughKey
           ? _value.laravelThroughKey
           : laravelThroughKey // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -314,43 +318,48 @@ class _$_StoreModel implements _StoreModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_StoreModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.phone, phone) &&
-            const DeepCollectionEquality()
-                .equals(other.useStockOpname, useStockOpname) &&
-            const DeepCollectionEquality()
-                .equals(other.storeCategoryId, storeCategoryId) &&
-            const DeepCollectionEquality()
-                .equals(other.storeCategoryName, storeCategoryName) &&
-            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
-            const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality()
-                .equals(other.laravelThroughKey, laravelThroughKey));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.useStockOpname, useStockOpname) ||
+                other.useStockOpname == useStockOpname) &&
+            (identical(other.storeCategoryId, storeCategoryId) ||
+                other.storeCategoryId == storeCategoryId) &&
+            (identical(other.storeCategoryName, storeCategoryName) ||
+                other.storeCategoryName == storeCategoryName) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.laravelThroughKey, laravelThroughKey) ||
+                other.laravelThroughKey == laravelThroughKey));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(useStockOpname),
-      const DeepCollectionEquality().hash(storeCategoryId),
-      const DeepCollectionEquality().hash(storeCategoryName),
-      const DeepCollectionEquality().hash(imageUrl),
-      const DeepCollectionEquality().hash(imagePath),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt),
-      const DeepCollectionEquality().hash(laravelThroughKey));
+      id,
+      name,
+      address,
+      phone,
+      useStockOpname,
+      storeCategoryId,
+      storeCategoryName,
+      imageUrl,
+      imagePath,
+      createdAt,
+      updatedAt,
+      laravelThroughKey);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_StoreModelCopyWith<_$_StoreModel> get copyWith =>
       __$$_StoreModelCopyWithImpl<_$_StoreModel>(this, _$identity);
 

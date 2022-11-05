@@ -35,11 +35,11 @@ mixin _$UserModel {
   @JsonKey(name: 'is_member')
   bool? get isMember => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_status')
-  DateTime? get userStatus => throw _privateConstructorUsedError;
+  String? get userStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'expired_date')
   DateTime? get expiredDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'referal_code')
-  DateTime? get referalCode => throw _privateConstructorUsedError;
+  String? get referalCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'img_profile_path')
   String? get imgProfilePath => throw _privateConstructorUsedError;
   @JsonKey(name: 'img_profile_url')
@@ -60,7 +60,8 @@ mixin _$UserModel {
 /// @nodoc
 abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
-      _$UserModelCopyWithImpl<$Res>;
+      _$UserModelCopyWithImpl<$Res, UserModel>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'fullname') String fullname,
@@ -69,9 +70,9 @@ abstract class $UserModelCopyWith<$Res> {
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'email_verified_at') DateTime? emailVerifiedAt,
       @JsonKey(name: 'is_member') bool? isMember,
-      @JsonKey(name: 'user_status') DateTime? userStatus,
+      @JsonKey(name: 'user_status') String? userStatus,
       @JsonKey(name: 'expired_date') DateTime? expiredDate,
-      @JsonKey(name: 'referal_code') DateTime? referalCode,
+      @JsonKey(name: 'referal_code') String? referalCode,
       @JsonKey(name: 'img_profile_path') String? imgProfilePath,
       @JsonKey(name: 'img_profile_url') String? imgProfileUrl,
       @JsonKey(name: 'device_name') String? deviceName,
@@ -80,19 +81,22 @@ abstract class $UserModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
+class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
+    implements $UserModelCopyWith<$Res> {
   _$UserModelCopyWithImpl(this._value, this._then);
 
-  final UserModel _value;
   // ignore: unused_field
-  final $Res Function(UserModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? fullname = freezed,
-    Object? username = freezed,
-    Object? phone = freezed,
+    Object? id = null,
+    Object? fullname = null,
+    Object? username = null,
+    Object? phone = null,
     Object? email = freezed,
     Object? emailVerifiedAt = freezed,
     Object? isMember = freezed,
@@ -106,67 +110,67 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      fullname: fullname == freezed
+      fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
               as String,
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: phone == freezed
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailVerifiedAt: emailVerifiedAt == freezed
+      emailVerifiedAt: freezed == emailVerifiedAt
           ? _value.emailVerifiedAt
           : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      isMember: isMember == freezed
+      isMember: freezed == isMember
           ? _value.isMember
           : isMember // ignore: cast_nullable_to_non_nullable
               as bool?,
-      userStatus: userStatus == freezed
+      userStatus: freezed == userStatus
           ? _value.userStatus
           : userStatus // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      expiredDate: expiredDate == freezed
+              as String?,
+      expiredDate: freezed == expiredDate
           ? _value.expiredDate
           : expiredDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      referalCode: referalCode == freezed
+      referalCode: freezed == referalCode
           ? _value.referalCode
           : referalCode // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      imgProfilePath: imgProfilePath == freezed
+              as String?,
+      imgProfilePath: freezed == imgProfilePath
           ? _value.imgProfilePath
           : imgProfilePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      imgProfileUrl: imgProfileUrl == freezed
+      imgProfileUrl: freezed == imgProfileUrl
           ? _value.imgProfileUrl
           : imgProfileUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      deviceName: deviceName == freezed
+      deviceName: freezed == deviceName
           ? _value.deviceName
           : deviceName // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -176,6 +180,7 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
           _$_UserModel value, $Res Function(_$_UserModel) then) =
       __$$_UserModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'fullname') String fullname,
@@ -184,9 +189,9 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'email_verified_at') DateTime? emailVerifiedAt,
       @JsonKey(name: 'is_member') bool? isMember,
-      @JsonKey(name: 'user_status') DateTime? userStatus,
+      @JsonKey(name: 'user_status') String? userStatus,
       @JsonKey(name: 'expired_date') DateTime? expiredDate,
-      @JsonKey(name: 'referal_code') DateTime? referalCode,
+      @JsonKey(name: 'referal_code') String? referalCode,
       @JsonKey(name: 'img_profile_path') String? imgProfilePath,
       @JsonKey(name: 'img_profile_url') String? imgProfileUrl,
       @JsonKey(name: 'device_name') String? deviceName,
@@ -195,21 +200,20 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
+class __$$_UserModelCopyWithImpl<$Res>
+    extends _$UserModelCopyWithImpl<$Res, _$_UserModel>
     implements _$$_UserModelCopyWith<$Res> {
   __$$_UserModelCopyWithImpl(
       _$_UserModel _value, $Res Function(_$_UserModel) _then)
-      : super(_value, (v) => _then(v as _$_UserModel));
+      : super(_value, _then);
 
-  @override
-  _$_UserModel get _value => super._value as _$_UserModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? fullname = freezed,
-    Object? username = freezed,
-    Object? phone = freezed,
+    Object? id = null,
+    Object? fullname = null,
+    Object? username = null,
+    Object? phone = null,
     Object? email = freezed,
     Object? emailVerifiedAt = freezed,
     Object? isMember = freezed,
@@ -223,63 +227,63 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
     Object? updatedAt = freezed,
   }) {
     return _then(_$_UserModel(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      fullname: fullname == freezed
+      fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
               as String,
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: phone == freezed
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailVerifiedAt: emailVerifiedAt == freezed
+      emailVerifiedAt: freezed == emailVerifiedAt
           ? _value.emailVerifiedAt
           : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      isMember: isMember == freezed
+      isMember: freezed == isMember
           ? _value.isMember
           : isMember // ignore: cast_nullable_to_non_nullable
               as bool?,
-      userStatus: userStatus == freezed
+      userStatus: freezed == userStatus
           ? _value.userStatus
           : userStatus // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      expiredDate: expiredDate == freezed
+              as String?,
+      expiredDate: freezed == expiredDate
           ? _value.expiredDate
           : expiredDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      referalCode: referalCode == freezed
+      referalCode: freezed == referalCode
           ? _value.referalCode
           : referalCode // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      imgProfilePath: imgProfilePath == freezed
+              as String?,
+      imgProfilePath: freezed == imgProfilePath
           ? _value.imgProfilePath
           : imgProfilePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      imgProfileUrl: imgProfileUrl == freezed
+      imgProfileUrl: freezed == imgProfileUrl
           ? _value.imgProfileUrl
           : imgProfileUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      deviceName: deviceName == freezed
+      deviceName: freezed == deviceName
           ? _value.deviceName
           : deviceName // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -333,13 +337,13 @@ class _$_UserModel implements _UserModel {
   final bool? isMember;
   @override
   @JsonKey(name: 'user_status')
-  final DateTime? userStatus;
+  final String? userStatus;
   @override
   @JsonKey(name: 'expired_date')
   final DateTime? expiredDate;
   @override
   @JsonKey(name: 'referal_code')
-  final DateTime? referalCode;
+  final String? referalCode;
   @override
   @JsonKey(name: 'img_profile_path')
   final String? imgProfilePath;
@@ -366,52 +370,58 @@ class _$_UserModel implements _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.fullname, fullname) &&
-            const DeepCollectionEquality().equals(other.username, username) &&
-            const DeepCollectionEquality().equals(other.phone, phone) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality()
-                .equals(other.emailVerifiedAt, emailVerifiedAt) &&
-            const DeepCollectionEquality().equals(other.isMember, isMember) &&
-            const DeepCollectionEquality()
-                .equals(other.userStatus, userStatus) &&
-            const DeepCollectionEquality()
-                .equals(other.expiredDate, expiredDate) &&
-            const DeepCollectionEquality()
-                .equals(other.referalCode, referalCode) &&
-            const DeepCollectionEquality()
-                .equals(other.imgProfilePath, imgProfilePath) &&
-            const DeepCollectionEquality()
-                .equals(other.imgProfileUrl, imgProfileUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.deviceName, deviceName) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fullname, fullname) ||
+                other.fullname == fullname) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.emailVerifiedAt, emailVerifiedAt) ||
+                other.emailVerifiedAt == emailVerifiedAt) &&
+            (identical(other.isMember, isMember) ||
+                other.isMember == isMember) &&
+            (identical(other.userStatus, userStatus) ||
+                other.userStatus == userStatus) &&
+            (identical(other.expiredDate, expiredDate) ||
+                other.expiredDate == expiredDate) &&
+            (identical(other.referalCode, referalCode) ||
+                other.referalCode == referalCode) &&
+            (identical(other.imgProfilePath, imgProfilePath) ||
+                other.imgProfilePath == imgProfilePath) &&
+            (identical(other.imgProfileUrl, imgProfileUrl) ||
+                other.imgProfileUrl == imgProfileUrl) &&
+            (identical(other.deviceName, deviceName) ||
+                other.deviceName == deviceName) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(fullname),
-      const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(emailVerifiedAt),
-      const DeepCollectionEquality().hash(isMember),
-      const DeepCollectionEquality().hash(userStatus),
-      const DeepCollectionEquality().hash(expiredDate),
-      const DeepCollectionEquality().hash(referalCode),
-      const DeepCollectionEquality().hash(imgProfilePath),
-      const DeepCollectionEquality().hash(imgProfileUrl),
-      const DeepCollectionEquality().hash(deviceName),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      id,
+      fullname,
+      username,
+      phone,
+      email,
+      emailVerifiedAt,
+      isMember,
+      userStatus,
+      expiredDate,
+      referalCode,
+      imgProfilePath,
+      imgProfileUrl,
+      deviceName,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>
       __$$_UserModelCopyWithImpl<_$_UserModel>(this, _$identity);
 
@@ -432,9 +442,9 @@ abstract class _UserModel implements UserModel {
       @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'email_verified_at') final DateTime? emailVerifiedAt,
       @JsonKey(name: 'is_member') final bool? isMember,
-      @JsonKey(name: 'user_status') final DateTime? userStatus,
+      @JsonKey(name: 'user_status') final String? userStatus,
       @JsonKey(name: 'expired_date') final DateTime? expiredDate,
-      @JsonKey(name: 'referal_code') final DateTime? referalCode,
+      @JsonKey(name: 'referal_code') final String? referalCode,
       @JsonKey(name: 'img_profile_path') final String? imgProfilePath,
       @JsonKey(name: 'img_profile_url') final String? imgProfileUrl,
       @JsonKey(name: 'device_name') final String? deviceName,
@@ -467,13 +477,13 @@ abstract class _UserModel implements UserModel {
   bool? get isMember;
   @override
   @JsonKey(name: 'user_status')
-  DateTime? get userStatus;
+  String? get userStatus;
   @override
   @JsonKey(name: 'expired_date')
   DateTime? get expiredDate;
   @override
   @JsonKey(name: 'referal_code')
-  DateTime? get referalCode;
+  String? get referalCode;
   @override
   @JsonKey(name: 'img_profile_path')
   String? get imgProfilePath;

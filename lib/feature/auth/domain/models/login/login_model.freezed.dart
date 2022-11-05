@@ -35,7 +35,8 @@ mixin _$LoginModel {
 abstract class $LoginModelCopyWith<$Res> {
   factory $LoginModelCopyWith(
           LoginModel value, $Res Function(LoginModel) then) =
-      _$LoginModelCopyWithImpl<$Res>;
+      _$LoginModelCopyWithImpl<$Res, LoginModel>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'personal_access_token') String personalAccessToken,
       @JsonKey(name: 'user') UserModel userModel});
@@ -44,34 +45,38 @@ abstract class $LoginModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LoginModelCopyWithImpl<$Res> implements $LoginModelCopyWith<$Res> {
+class _$LoginModelCopyWithImpl<$Res, $Val extends LoginModel>
+    implements $LoginModelCopyWith<$Res> {
   _$LoginModelCopyWithImpl(this._value, this._then);
 
-  final LoginModel _value;
   // ignore: unused_field
-  final $Res Function(LoginModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? personalAccessToken = freezed,
-    Object? userModel = freezed,
+    Object? personalAccessToken = null,
+    Object? userModel = null,
   }) {
     return _then(_value.copyWith(
-      personalAccessToken: personalAccessToken == freezed
+      personalAccessToken: null == personalAccessToken
           ? _value.personalAccessToken
           : personalAccessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      userModel: userModel == freezed
+      userModel: null == userModel
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
               as UserModel,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res> get userModel {
     return $UserModelCopyWith<$Res>(_value.userModel, (value) {
-      return _then(_value.copyWith(userModel: value));
+      return _then(_value.copyWith(userModel: value) as $Val);
     });
   }
 }
@@ -83,6 +88,7 @@ abstract class _$$_LoginModelCopyWith<$Res>
           _$_LoginModel value, $Res Function(_$_LoginModel) then) =
       __$$_LoginModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'personal_access_token') String personalAccessToken,
       @JsonKey(name: 'user') UserModel userModel});
@@ -92,26 +98,25 @@ abstract class _$$_LoginModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LoginModelCopyWithImpl<$Res> extends _$LoginModelCopyWithImpl<$Res>
+class __$$_LoginModelCopyWithImpl<$Res>
+    extends _$LoginModelCopyWithImpl<$Res, _$_LoginModel>
     implements _$$_LoginModelCopyWith<$Res> {
   __$$_LoginModelCopyWithImpl(
       _$_LoginModel _value, $Res Function(_$_LoginModel) _then)
-      : super(_value, (v) => _then(v as _$_LoginModel));
+      : super(_value, _then);
 
-  @override
-  _$_LoginModel get _value => super._value as _$_LoginModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? personalAccessToken = freezed,
-    Object? userModel = freezed,
+    Object? personalAccessToken = null,
+    Object? userModel = null,
   }) {
     return _then(_$_LoginModel(
-      personalAccessToken: personalAccessToken == freezed
+      personalAccessToken: null == personalAccessToken
           ? _value.personalAccessToken
           : personalAccessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      userModel: userModel == freezed
+      userModel: null == userModel
           ? _value.userModel
           : userModel // ignore: cast_nullable_to_non_nullable
               as UserModel,
@@ -148,20 +153,19 @@ class _$_LoginModel implements _LoginModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoginModel &&
-            const DeepCollectionEquality()
-                .equals(other.personalAccessToken, personalAccessToken) &&
-            const DeepCollectionEquality().equals(other.userModel, userModel));
+            (identical(other.personalAccessToken, personalAccessToken) ||
+                other.personalAccessToken == personalAccessToken) &&
+            (identical(other.userModel, userModel) ||
+                other.userModel == userModel));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(personalAccessToken),
-      const DeepCollectionEquality().hash(userModel));
+  int get hashCode => Object.hash(runtimeType, personalAccessToken, userModel);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LoginModelCopyWith<_$_LoginModel> get copyWith =>
       __$$_LoginModelCopyWithImpl<_$_LoginModel>(this, _$identity);
 

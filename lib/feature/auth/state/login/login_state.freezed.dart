@@ -31,7 +31,8 @@ mixin _$LoginState {
 abstract class $LoginStateCopyWith<$Res> {
   factory $LoginStateCopyWith(
           LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res>;
+      _$LoginStateCopyWithImpl<$Res, LoginState>;
+  @useResult
   $Res call(
       {UsernameField usernameField,
       PasswordField passwordField,
@@ -41,43 +42,46 @@ abstract class $LoginStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
+class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
+    implements $LoginStateCopyWith<$Res> {
   _$LoginStateCopyWithImpl(this._value, this._then);
 
-  final LoginState _value;
   // ignore: unused_field
-  final $Res Function(LoginState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? usernameField = freezed,
-    Object? passwordField = freezed,
-    Object? message = freezed,
-    Object? haveStore = freezed,
-    Object? statusSubmission = freezed,
+    Object? usernameField = null,
+    Object? passwordField = null,
+    Object? message = null,
+    Object? haveStore = null,
+    Object? statusSubmission = null,
   }) {
     return _then(_value.copyWith(
-      usernameField: usernameField == freezed
+      usernameField: null == usernameField
           ? _value.usernameField
           : usernameField // ignore: cast_nullable_to_non_nullable
               as UsernameField,
-      passwordField: passwordField == freezed
+      passwordField: null == passwordField
           ? _value.passwordField
           : passwordField // ignore: cast_nullable_to_non_nullable
               as PasswordField,
-      message: message == freezed
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      haveStore: haveStore == freezed
+      haveStore: null == haveStore
           ? _value.haveStore
           : haveStore // ignore: cast_nullable_to_non_nullable
               as bool,
-      statusSubmission: statusSubmission == freezed
+      statusSubmission: null == statusSubmission
           ? _value.statusSubmission
           : statusSubmission // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-    ));
+    ) as $Val);
   }
 }
 
@@ -88,6 +92,7 @@ abstract class _$$_LoginStateCopyWith<$Res>
           _$_LoginState value, $Res Function(_$_LoginState) then) =
       __$$_LoginStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {UsernameField usernameField,
       PasswordField passwordField,
@@ -97,41 +102,40 @@ abstract class _$$_LoginStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+class __$$_LoginStateCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res, _$_LoginState>
     implements _$$_LoginStateCopyWith<$Res> {
   __$$_LoginStateCopyWithImpl(
       _$_LoginState _value, $Res Function(_$_LoginState) _then)
-      : super(_value, (v) => _then(v as _$_LoginState));
+      : super(_value, _then);
 
-  @override
-  _$_LoginState get _value => super._value as _$_LoginState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? usernameField = freezed,
-    Object? passwordField = freezed,
-    Object? message = freezed,
-    Object? haveStore = freezed,
-    Object? statusSubmission = freezed,
+    Object? usernameField = null,
+    Object? passwordField = null,
+    Object? message = null,
+    Object? haveStore = null,
+    Object? statusSubmission = null,
   }) {
     return _then(_$_LoginState(
-      usernameField: usernameField == freezed
+      usernameField: null == usernameField
           ? _value.usernameField
           : usernameField // ignore: cast_nullable_to_non_nullable
               as UsernameField,
-      passwordField: passwordField == freezed
+      passwordField: null == passwordField
           ? _value.passwordField
           : passwordField // ignore: cast_nullable_to_non_nullable
               as PasswordField,
-      message: message == freezed
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      haveStore: haveStore == freezed
+      haveStore: null == haveStore
           ? _value.haveStore
           : haveStore // ignore: cast_nullable_to_non_nullable
               as bool,
-      statusSubmission: statusSubmission == freezed
+      statusSubmission: null == statusSubmission
           ? _value.statusSubmission
           : statusSubmission // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -176,27 +180,24 @@ class _$_LoginState extends _LoginState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoginState &&
-            const DeepCollectionEquality()
-                .equals(other.usernameField, usernameField) &&
-            const DeepCollectionEquality()
-                .equals(other.passwordField, passwordField) &&
-            const DeepCollectionEquality().equals(other.message, message) &&
-            const DeepCollectionEquality().equals(other.haveStore, haveStore) &&
-            const DeepCollectionEquality()
-                .equals(other.statusSubmission, statusSubmission));
+            (identical(other.usernameField, usernameField) ||
+                other.usernameField == usernameField) &&
+            (identical(other.passwordField, passwordField) ||
+                other.passwordField == passwordField) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.haveStore, haveStore) ||
+                other.haveStore == haveStore) &&
+            (identical(other.statusSubmission, statusSubmission) ||
+                other.statusSubmission == statusSubmission));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(usernameField),
-      const DeepCollectionEquality().hash(passwordField),
-      const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(haveStore),
-      const DeepCollectionEquality().hash(statusSubmission));
+  int get hashCode => Object.hash(runtimeType, usernameField, passwordField,
+      message, haveStore, statusSubmission);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
       __$$_LoginStateCopyWithImpl<_$_LoginState>(this, _$identity);
 }

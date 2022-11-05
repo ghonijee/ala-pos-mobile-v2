@@ -40,7 +40,8 @@ mixin _$PermissionModel {
 abstract class $PermissionModelCopyWith<$Res> {
   factory $PermissionModelCopyWith(
           PermissionModel value, $Res Function(PermissionModel) then) =
-      _$PermissionModelCopyWithImpl<$Res>;
+      _$PermissionModelCopyWithImpl<$Res, PermissionModel>;
+  @useResult
   $Res call(
       {int id,
       @JsonKey(name: "key") String key,
@@ -50,44 +51,46 @@ abstract class $PermissionModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PermissionModelCopyWithImpl<$Res>
+class _$PermissionModelCopyWithImpl<$Res, $Val extends PermissionModel>
     implements $PermissionModelCopyWith<$Res> {
   _$PermissionModelCopyWithImpl(this._value, this._then);
 
-  final PermissionModel _value;
   // ignore: unused_field
-  final $Res Function(PermissionModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? key = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? isActive = freezed,
+    Object? id = null,
+    Object? key = null,
+    Object? name = null,
+    Object? description = null,
+    Object? isActive = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      key: key == freezed
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      isActive: isActive == freezed
+      isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -98,6 +101,7 @@ abstract class _$$_PermissionModelCopyWith<$Res>
           _$_PermissionModel value, $Res Function(_$_PermissionModel) then) =
       __$$_PermissionModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int id,
       @JsonKey(name: "key") String key,
@@ -108,41 +112,39 @@ abstract class _$$_PermissionModelCopyWith<$Res>
 
 /// @nodoc
 class __$$_PermissionModelCopyWithImpl<$Res>
-    extends _$PermissionModelCopyWithImpl<$Res>
+    extends _$PermissionModelCopyWithImpl<$Res, _$_PermissionModel>
     implements _$$_PermissionModelCopyWith<$Res> {
   __$$_PermissionModelCopyWithImpl(
       _$_PermissionModel _value, $Res Function(_$_PermissionModel) _then)
-      : super(_value, (v) => _then(v as _$_PermissionModel));
+      : super(_value, _then);
 
-  @override
-  _$_PermissionModel get _value => super._value as _$_PermissionModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? key = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? isActive = freezed,
+    Object? id = null,
+    Object? key = null,
+    Object? name = null,
+    Object? description = null,
+    Object? isActive = null,
   }) {
     return _then(_$_PermissionModel(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      key: key == freezed
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      isActive: isActive == freezed
+      isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as int,
@@ -188,26 +190,23 @@ class _$_PermissionModel implements _PermissionModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PermissionModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.key, key) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.isActive, isActive));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(key),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(isActive));
+  int get hashCode =>
+      Object.hash(runtimeType, id, key, name, description, isActive);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PermissionModelCopyWith<_$_PermissionModel> get copyWith =>
       __$$_PermissionModelCopyWithImpl<_$_PermissionModel>(this, _$identity);
 

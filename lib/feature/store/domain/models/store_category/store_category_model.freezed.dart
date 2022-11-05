@@ -35,34 +35,37 @@ mixin _$StoreCategoryModel {
 abstract class $StoreCategoryModelCopyWith<$Res> {
   factory $StoreCategoryModelCopyWith(
           StoreCategoryModel value, $Res Function(StoreCategoryModel) then) =
-      _$StoreCategoryModelCopyWithImpl<$Res>;
+      _$StoreCategoryModelCopyWithImpl<$Res, StoreCategoryModel>;
+  @useResult
   $Res call({@JsonKey(name: 'id') int? id, @JsonKey(name: 'name') String name});
 }
 
 /// @nodoc
-class _$StoreCategoryModelCopyWithImpl<$Res>
+class _$StoreCategoryModelCopyWithImpl<$Res, $Val extends StoreCategoryModel>
     implements $StoreCategoryModelCopyWith<$Res> {
   _$StoreCategoryModelCopyWithImpl(this._value, this._then);
 
-  final StoreCategoryModel _value;
   // ignore: unused_field
-  final $Res Function(StoreCategoryModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -73,31 +76,30 @@ abstract class _$$_StoreCategoryModelCopyWith<$Res>
           $Res Function(_$_StoreCategoryModel) then) =
       __$$_StoreCategoryModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'id') int? id, @JsonKey(name: 'name') String name});
 }
 
 /// @nodoc
 class __$$_StoreCategoryModelCopyWithImpl<$Res>
-    extends _$StoreCategoryModelCopyWithImpl<$Res>
+    extends _$StoreCategoryModelCopyWithImpl<$Res, _$_StoreCategoryModel>
     implements _$$_StoreCategoryModelCopyWith<$Res> {
   __$$_StoreCategoryModelCopyWithImpl(
       _$_StoreCategoryModel _value, $Res Function(_$_StoreCategoryModel) _then)
-      : super(_value, (v) => _then(v as _$_StoreCategoryModel));
+      : super(_value, _then);
 
-  @override
-  _$_StoreCategoryModel get _value => super._value as _$_StoreCategoryModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
+    Object? name = null,
   }) {
     return _then(_$_StoreCategoryModel(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
@@ -132,19 +134,17 @@ class _$_StoreCategoryModel implements _StoreCategoryModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_StoreCategoryModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name));
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_StoreCategoryModelCopyWith<_$_StoreCategoryModel> get copyWith =>
       __$$_StoreCategoryModelCopyWithImpl<_$_StoreCategoryModel>(
           this, _$identity);

@@ -39,7 +39,8 @@ mixin _$RoleModel {
 /// @nodoc
 abstract class $RoleModelCopyWith<$Res> {
   factory $RoleModelCopyWith(RoleModel value, $Res Function(RoleModel) then) =
-      _$RoleModelCopyWithImpl<$Res>;
+      _$RoleModelCopyWithImpl<$Res, RoleModel>;
+  @useResult
   $Res call(
       {int id,
       @JsonKey(name: "store_id") int storeId,
@@ -49,43 +50,46 @@ abstract class $RoleModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RoleModelCopyWithImpl<$Res> implements $RoleModelCopyWith<$Res> {
+class _$RoleModelCopyWithImpl<$Res, $Val extends RoleModel>
+    implements $RoleModelCopyWith<$Res> {
   _$RoleModelCopyWithImpl(this._value, this._then);
 
-  final RoleModel _value;
   // ignore: unused_field
-  final $Res Function(RoleModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? storeId = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? permissions = freezed,
+    Object? id = null,
+    Object? storeId = null,
+    Object? name = null,
+    Object? description = null,
+    Object? permissions = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      storeId: storeId == freezed
+      storeId: null == storeId
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      permissions: permissions == freezed
+      permissions: null == permissions
           ? _value.permissions
           : permissions // ignore: cast_nullable_to_non_nullable
               as List<PermissionModel>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -95,6 +99,7 @@ abstract class _$$_RoleModelCopyWith<$Res> implements $RoleModelCopyWith<$Res> {
           _$_RoleModel value, $Res Function(_$_RoleModel) then) =
       __$$_RoleModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int id,
       @JsonKey(name: "store_id") int storeId,
@@ -104,41 +109,40 @@ abstract class _$$_RoleModelCopyWith<$Res> implements $RoleModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_RoleModelCopyWithImpl<$Res> extends _$RoleModelCopyWithImpl<$Res>
+class __$$_RoleModelCopyWithImpl<$Res>
+    extends _$RoleModelCopyWithImpl<$Res, _$_RoleModel>
     implements _$$_RoleModelCopyWith<$Res> {
   __$$_RoleModelCopyWithImpl(
       _$_RoleModel _value, $Res Function(_$_RoleModel) _then)
-      : super(_value, (v) => _then(v as _$_RoleModel));
+      : super(_value, _then);
 
-  @override
-  _$_RoleModel get _value => super._value as _$_RoleModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? storeId = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? permissions = freezed,
+    Object? id = null,
+    Object? storeId = null,
+    Object? name = null,
+    Object? description = null,
+    Object? permissions = null,
   }) {
     return _then(_$_RoleModel(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      storeId: storeId == freezed
+      storeId: null == storeId
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      permissions: permissions == freezed
+      permissions: null == permissions
           ? _value._permissions
           : permissions // ignore: cast_nullable_to_non_nullable
               as List<PermissionModel>,
@@ -193,27 +197,23 @@ class _$_RoleModel implements _RoleModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoleModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.storeId, storeId) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.storeId, storeId) || other.storeId == storeId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             const DeepCollectionEquality()
                 .equals(other._permissions, _permissions));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(storeId),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description),
+  int get hashCode => Object.hash(runtimeType, id, storeId, name, description,
       const DeepCollectionEquality().hash(_permissions));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_RoleModelCopyWith<_$_RoleModel> get copyWith =>
       __$$_RoleModelCopyWithImpl<_$_RoleModel>(this, _$identity);
 

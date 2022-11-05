@@ -41,7 +41,8 @@ mixin _$JsonResource {
 abstract class $JsonResourceCopyWith<$Res> {
   factory $JsonResourceCopyWith(
           JsonResource value, $Res Function(JsonResource) then) =
-      _$JsonResourceCopyWithImpl<$Res>;
+      _$JsonResourceCopyWithImpl<$Res, JsonResource>;
+  @useResult
   $Res call(
       {@JsonKey(name: "status", defaultValue: true) bool status,
       @JsonKey(name: "message", defaultValue: "success") String? message,
@@ -53,53 +54,57 @@ abstract class $JsonResourceCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$JsonResourceCopyWithImpl<$Res> implements $JsonResourceCopyWith<$Res> {
+class _$JsonResourceCopyWithImpl<$Res, $Val extends JsonResource>
+    implements $JsonResourceCopyWith<$Res> {
   _$JsonResourceCopyWithImpl(this._value, this._then);
 
-  final JsonResource _value;
   // ignore: unused_field
-  final $Res Function(JsonResource) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
+    Object? status = null,
     Object? message = freezed,
     Object? error = freezed,
-    Object? data = freezed,
+    Object? data = null,
     Object? exception = freezed,
   }) {
     return _then(_value.copyWith(
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool,
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      error: error == freezed
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: data == freezed
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      exception: exception == freezed
+      exception: freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
               as AppException?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AppExceptionCopyWith<$Res>? get exception {
     if (_value.exception == null) {
       return null;
     }
 
     return $AppExceptionCopyWith<$Res>(_value.exception!, (value) {
-      return _then(_value.copyWith(exception: value));
+      return _then(_value.copyWith(exception: value) as $Val);
     });
   }
 }
@@ -111,6 +116,7 @@ abstract class _$$_JsonResourceCopyWith<$Res>
           _$_JsonResource value, $Res Function(_$_JsonResource) then) =
       __$$_JsonResourceCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: "status", defaultValue: true) bool status,
       @JsonKey(name: "message", defaultValue: "success") String? message,
@@ -124,41 +130,39 @@ abstract class _$$_JsonResourceCopyWith<$Res>
 
 /// @nodoc
 class __$$_JsonResourceCopyWithImpl<$Res>
-    extends _$JsonResourceCopyWithImpl<$Res>
+    extends _$JsonResourceCopyWithImpl<$Res, _$_JsonResource>
     implements _$$_JsonResourceCopyWith<$Res> {
   __$$_JsonResourceCopyWithImpl(
       _$_JsonResource _value, $Res Function(_$_JsonResource) _then)
-      : super(_value, (v) => _then(v as _$_JsonResource));
+      : super(_value, _then);
 
-  @override
-  _$_JsonResource get _value => super._value as _$_JsonResource;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
+    Object? status = null,
     Object? message = freezed,
     Object? error = freezed,
-    Object? data = freezed,
+    Object? data = null,
     Object? exception = freezed,
   }) {
     return _then(_$_JsonResource(
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool,
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      error: error == freezed
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: data == freezed
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      exception: exception == freezed
+      exception: freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
               as AppException?,
@@ -205,25 +209,22 @@ class _$_JsonResource implements _JsonResource {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_JsonResource &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.message, message) &&
-            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality().equals(other.data, data) &&
-            const DeepCollectionEquality().equals(other.exception, exception));
+            (identical(other.exception, exception) ||
+                other.exception == exception));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(error),
-      const DeepCollectionEquality().hash(data),
-      const DeepCollectionEquality().hash(exception));
+  int get hashCode => Object.hash(runtimeType, status, message, error,
+      const DeepCollectionEquality().hash(data), exception);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_JsonResourceCopyWith<_$_JsonResource> get copyWith =>
       __$$_JsonResourceCopyWithImpl<_$_JsonResource>(this, _$identity);
 

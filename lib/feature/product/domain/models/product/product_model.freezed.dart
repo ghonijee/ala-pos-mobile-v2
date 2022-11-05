@@ -59,7 +59,8 @@ mixin _$ProductModel {
 abstract class $ProductModelCopyWith<$Res> {
   factory $ProductModelCopyWith(
           ProductModel value, $Res Function(ProductModel) then) =
-      _$ProductModelCopyWithImpl<$Res>;
+      _$ProductModelCopyWithImpl<$Res, ProductModel>;
+  @useResult
   $Res call(
       {@JsonKey(name: "id") int? id,
       @JsonKey(name: "store_id") int? storeId,
@@ -78,20 +79,23 @@ abstract class $ProductModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
+class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
+    implements $ProductModelCopyWith<$Res> {
   _$ProductModelCopyWithImpl(this._value, this._then);
 
-  final ProductModel _value;
   // ignore: unused_field
-  final $Res Function(ProductModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? storeId = freezed,
-    Object? name = freezed,
-    Object? price = freezed,
-    Object? useStockOpname = freezed,
+    Object? name = null,
+    Object? price = null,
+    Object? useStockOpname = null,
     Object? stock = freezed,
     Object? description = freezed,
     Object? code = freezed,
@@ -103,63 +107,63 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      storeId: storeId == freezed
+      storeId: freezed == storeId
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      price: price == freezed
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
-      useStockOpname: useStockOpname == freezed
+      useStockOpname: null == useStockOpname
           ? _value.useStockOpname
           : useStockOpname // ignore: cast_nullable_to_non_nullable
               as bool,
-      stock: stock == freezed
+      stock: freezed == stock
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
               as int?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      cost: cost == freezed
+      cost: freezed == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
               as int?,
-      minStock: minStock == freezed
+      minStock: freezed == minStock
           ? _value.minStock
           : minStock // ignore: cast_nullable_to_non_nullable
               as int?,
-      unit: unit == freezed
+      unit: freezed == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as String?,
-      reducePrice: reducePrice == freezed
+      reducePrice: freezed == reducePrice
           ? _value.reducePrice
           : reducePrice // ignore: cast_nullable_to_non_nullable
               as int?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -170,6 +174,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
           _$_ProductModel value, $Res Function(_$_ProductModel) then) =
       __$$_ProductModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: "id") int? id,
       @JsonKey(name: "store_id") int? storeId,
@@ -189,22 +194,20 @@ abstract class _$$_ProductModelCopyWith<$Res>
 
 /// @nodoc
 class __$$_ProductModelCopyWithImpl<$Res>
-    extends _$ProductModelCopyWithImpl<$Res>
+    extends _$ProductModelCopyWithImpl<$Res, _$_ProductModel>
     implements _$$_ProductModelCopyWith<$Res> {
   __$$_ProductModelCopyWithImpl(
       _$_ProductModel _value, $Res Function(_$_ProductModel) _then)
-      : super(_value, (v) => _then(v as _$_ProductModel));
+      : super(_value, _then);
 
-  @override
-  _$_ProductModel get _value => super._value as _$_ProductModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? storeId = freezed,
-    Object? name = freezed,
-    Object? price = freezed,
-    Object? useStockOpname = freezed,
+    Object? name = null,
+    Object? price = null,
+    Object? useStockOpname = null,
     Object? stock = freezed,
     Object? description = freezed,
     Object? code = freezed,
@@ -216,59 +219,59 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? updatedAt = freezed,
   }) {
     return _then(_$_ProductModel(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      storeId: storeId == freezed
+      storeId: freezed == storeId
           ? _value.storeId
           : storeId // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      price: price == freezed
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
-      useStockOpname: useStockOpname == freezed
+      useStockOpname: null == useStockOpname
           ? _value.useStockOpname
           : useStockOpname // ignore: cast_nullable_to_non_nullable
               as bool,
-      stock: stock == freezed
+      stock: freezed == stock
           ? _value.stock
           : stock // ignore: cast_nullable_to_non_nullable
               as int?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      cost: cost == freezed
+      cost: freezed == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
               as int?,
-      minStock: minStock == freezed
+      minStock: freezed == minStock
           ? _value.minStock
           : minStock // ignore: cast_nullable_to_non_nullable
               as int?,
-      unit: unit == freezed
+      unit: freezed == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as String?,
-      reducePrice: reducePrice == freezed
+      reducePrice: freezed == reducePrice
           ? _value.reducePrice
           : reducePrice // ignore: cast_nullable_to_non_nullable
               as int?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -351,46 +354,50 @@ class _$_ProductModel implements _ProductModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.storeId, storeId) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.price, price) &&
-            const DeepCollectionEquality()
-                .equals(other.useStockOpname, useStockOpname) &&
-            const DeepCollectionEquality().equals(other.stock, stock) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.cost, cost) &&
-            const DeepCollectionEquality().equals(other.minStock, minStock) &&
-            const DeepCollectionEquality().equals(other.unit, unit) &&
-            const DeepCollectionEquality()
-                .equals(other.reducePrice, reducePrice) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.storeId, storeId) || other.storeId == storeId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.useStockOpname, useStockOpname) ||
+                other.useStockOpname == useStockOpname) &&
+            (identical(other.stock, stock) || other.stock == stock) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.cost, cost) || other.cost == cost) &&
+            (identical(other.minStock, minStock) ||
+                other.minStock == minStock) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.reducePrice, reducePrice) ||
+                other.reducePrice == reducePrice) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(storeId),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(price),
-      const DeepCollectionEquality().hash(useStockOpname),
-      const DeepCollectionEquality().hash(stock),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(cost),
-      const DeepCollectionEquality().hash(minStock),
-      const DeepCollectionEquality().hash(unit),
-      const DeepCollectionEquality().hash(reducePrice),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      id,
+      storeId,
+      name,
+      price,
+      useStockOpname,
+      stock,
+      description,
+      code,
+      cost,
+      minStock,
+      unit,
+      reducePrice,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>
       __$$_ProductModelCopyWithImpl<_$_ProductModel>(this, _$identity);
 
