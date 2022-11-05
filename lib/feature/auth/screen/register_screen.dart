@@ -118,8 +118,8 @@ class RegisterScreen extends HookConsumerWidget {
                     ButtonFullText(
                       onPress: state.formRegisteredStatus == FormzStatus.valid
                           ? () {
-                              // controller.submit();
-                              context.router.pushNamed(AuthRouteName.NewStoreForm);
+                              controller.submit();
+                              // context.router.pushNamed(AuthRouteName.NewStoreForm);
                             }
                           : null,
                       text: "Selanjutnya",

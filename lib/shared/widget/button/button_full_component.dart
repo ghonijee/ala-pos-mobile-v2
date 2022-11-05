@@ -60,8 +60,12 @@ class _ButtonFullState extends State<ButtonFullText> {
     return ElevatedButton(
       onPressed: widget.onPress,
       child: widget.isLoading
-          ? CircularProgressIndicator(
-              color: primeTheme.foreground.onEmphasis,
+          ? SizedBox(
+              height: 24,
+              width: 24,
+              child: CircularProgressIndicator(
+                color: primeTheme.foreground.onEmphasis,
+              ),
             )
           : Text(
               widget.text,

@@ -1,6 +1,8 @@
 import 'package:ala_pos/feature/auth/provider/list_store_category_provider.dart';
+import 'package:ala_pos/feature/auth/provider/store_register_provider.dart';
 import 'package:ala_pos/feature/store/domain/models/store_category/store_category_model.dart';
 import 'package:ala_pos/gen/assets.gen.dart';
+import 'package:ala_pos/shared/fields/store_name_field.dart';
 import 'package:ala_pos/shared/styles/app_spacing.dart';
 import 'package:ala_pos/shared/widget/button/button_full_component.dart';
 import 'package:ala_pos/shared/widget/form/dropdown_component.dart';
@@ -18,6 +20,7 @@ import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../router/auth_router.dart';
+import '../state/store/store_register_state.dart';
 
 class NewStoreFormScreen extends HookConsumerWidget {
   const NewStoreFormScreen({Key? key}) : super(key: key);
@@ -27,9 +30,20 @@ class NewStoreFormScreen extends HookConsumerWidget {
     var primeTheme = PrimerTheme.of(context);
 
     var listStoreCategory = ref.watch(listStoreCategoryProvider);
+    var controller = ref.read(storeRegisterProvider.notifier);
+    var state = ref.watch(storeRegisterProvider);
 
-    print(listStoreCategory.value!.length.toString());
-    // ref.refresh(listStoreCategoryProvider);
+    ref.listen<StoreRegisterState>(storeRegisterProvider, (previous, next) {
+      if (next.statusSubmission.isSubmissionFailure) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(next.message),
+          ),
+        );
+      } else if (next.statusSubmission.isSubmissionSuccess) {
+        context.router.pushNamed(AuthRouteName.RegisterLoading);
+      }
+    });
 
     return Scaffold(
       backgroundColor: primeTheme.canvas.inset,
@@ -84,12 +98,14 @@ class NewStoreFormScreen extends HookConsumerWidget {
                     // _FieldUsername(),
                     TextFieldComponent(
                       labelText: "Nama Usaha",
+                      onChange: (value) => controller.changeName(value),
                     ),
                     SizedBox(
                       height: AppSpacings.l.sp,
                     ),
                     TextFieldComponent(
                       labelText: "Nomor Handphone Toko",
+                      onChange: (value) => controller.changePhone(value),
                     ),
                     SizedBox(
                       height: AppSpacings.l.sp,
@@ -110,26 +126,27 @@ class NewStoreFormScreen extends HookConsumerWidget {
                                     ),
                                   ));
                             }).toList(),
-                      onChanged: (value) {
-                        //
-                      },
+                      onChanged: (value) => controller.changeCategory(value),
                     ),
                     SizedBox(
                       height: AppSpacings.l.sp,
                     ),
                     TextAreaComponent(
                       labelText: "Alamat Usaha",
+                      onChange: (value) => controller.changeAddress(value),
                     ),
                     SizedBox(
                       height: AppSpacings.x4l,
                     ),
                     ButtonFullText(
-                      onPress: FormzStatus.invalid == FormzStatus.invalid
+                      onPress: state.formStoreStatus == FormzStatus.valid
                           ? () {
-                              context.router.pushNamed(AuthRouteName.RegisterLoading);
+                              // context.router.pushNamed(AuthRouteName.RegisterLoading);
+                              controller.submit();
                             }
-                          : () {},
+                          : null,
                       text: "Daftar Sekarang",
+                      isLoading: state.statusSubmission == FormzStatus.submissionInProgress,
                     ),
                     SizedBox(
                       height: 16.sp,

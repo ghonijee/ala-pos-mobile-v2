@@ -1,4 +1,5 @@
 import 'package:ala_pos/feature/auth/domain/models/sign_up/sign_up_model.dart';
+import 'package:ala_pos/feature/store/domain/models/store/store_model.dart';
 import 'package:ala_pos/shared/fields/fields.dart';
 import 'package:ala_pos/shared/fields/store_category_field.dart';
 import 'package:formz/formz.dart';
@@ -20,11 +21,16 @@ class StoreRegisterState with _$StoreRegisterState {
     @Default(FormzStatus.pure) FormzStatus statusSubmission,
   }) = _StoreRegisterState;
 
-  // FormzStatus get formStoreStatus {
-  //   return Formz.validate([storeNameField, storePhoneField, storeCategoryField, storeAddressField]);
-  // }
+  FormzStatus get formStoreStatus {
+    return Formz.validate([storeNameField, storePhoneField, storeCategoryField, storeAddressField]);
+  }
 
-  // SignUpModel toSignUpModel() {
-  //   return SignUpModel(username: usernameField.value!, password: passwordField.value!, phone: phoneField.value!);
-  // }
+  StoreModel toStoreModel() {
+    return StoreModel(
+      name: storeNameField.value!,
+      storeCategoryId: storeCategoryField.value!.id,
+      phone: storePhoneField.value!,
+      address: storeAddressField.value!,
+    );
+  }
 }

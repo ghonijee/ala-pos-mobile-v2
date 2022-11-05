@@ -3,9 +3,12 @@ import 'package:ala_pos/app/app.dart';
 import 'package:ala_pos/feature/store/data/remote/store_remote_source.dart';
 import 'package:ala_pos/shared/constants/store_key.dart';
 import 'package:ala_pos/shared/utils/local_storage.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:result_type/result_type.dart';
 
 import '../models/store/store_model.dart';
+
+final storeRepositoryProvider = Provider((ref) => StoreRepository(ref.read(storeRemoteSourceProvider), ref.read(localStorageProvider)));
 
 class StoreRepository {
   StoreRemoteSource storeRemoteSource;
