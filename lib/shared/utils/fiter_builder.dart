@@ -41,7 +41,6 @@ class FilterBuilder {
 
       throw Exception("Bad Params On Filter");
     }
-
     return jsonEncode(params);
   }
 }

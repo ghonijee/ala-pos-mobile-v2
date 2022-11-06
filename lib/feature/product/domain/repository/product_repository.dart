@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:ala_pos/app/app.dart';
 import 'package:ala_pos/feature/product/domain/models/product/product_model.dart';
 import 'package:ala_pos/shared/utils/fiter_builder.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:result_type/result_type.dart';
 
 import '../../data/remote/product_remote_source.dart';
+
+final productRepositoryProvider = Provider((ref) => ProductRepository(ref.read(productRemoteSourceProvider)));
 
 class ProductRepository {
   final ProductRemoteSource remoteSource;
@@ -27,7 +32,6 @@ class ProductRepository {
             FilterData("code", searchValue, conjunction: 'contains'),
           ]));
       }
-
       var result = await remoteSource.paginate(
         page: page,
         take: take,
@@ -46,6 +50,44 @@ class ProductRepository {
         list = productFromJsonList(result.resource.data);
       }
       return Success(list);
+    } on AppException catch (e) {
+      return Failure(e);
+    }
+  }
+
+  Future<Result<String, AppException>> count({
+    int page = 1,
+    int take = 15,
+    String? searchValue,
+    String sortBy = "name",
+    bool desc = true,
+    required int storeId,
+  }) async {
+    try {
+      var filterQuery = FilterBuilder().where(FilterData("store_id", storeId));
+
+      if (searchValue != null && searchValue.isNotEmpty) {
+        filterQuery = filterQuery
+          ..where(FilterGroup.or([
+            FilterData("name", searchValue, conjunction: 'contains'),
+            FilterData("code", searchValue, conjunction: 'contains'),
+          ]));
+      }
+      var result = await remoteSource.count(
+        page: page,
+        take: take,
+        sortBy: sortBy,
+        desc: desc,
+        filter: filterQuery.build(),
+      );
+
+      if (result is APIError) {
+        throw result.exception;
+      }
+
+      result as APISuccess;
+
+      return Success(result.resource.data);
     } on AppException catch (e) {
       return Failure(e);
     }

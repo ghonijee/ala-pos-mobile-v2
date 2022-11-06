@@ -54,7 +54,7 @@ extension extensionString on String {
   }
 }
 
-extension extensionInt on int {
+extension ExtensionInt on num {
   /// Convert from int to string
   /// with formated Currency Rupiah (Rp.)
   /// ```dart

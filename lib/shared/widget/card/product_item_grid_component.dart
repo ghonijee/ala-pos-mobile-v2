@@ -1,11 +1,13 @@
+import 'package:ala_pos/feature/product/domain/models/product/product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:ala_pos/shared/utils/extension.dart';
 
 class ProductItemGridComponent extends StatefulWidget {
-  const ProductItemGridComponent({super.key});
+  const ProductItemGridComponent({super.key, required this.productModel});
+
+  final ProductModel productModel;
 
   @override
   State<ProductItemGridComponent> createState() => _ProductItemGridComponentState();
@@ -49,7 +51,7 @@ class _ProductItemGridComponentState extends State<ProductItemGridComponent> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Avocado Delight ",
+                      widget.productModel.name,
                       style: primeTheme.typography.small,
                     ),
                     Column(
@@ -58,7 +60,7 @@ class _ProductItemGridComponentState extends State<ProductItemGridComponent> {
                       children: [
                         Divider(),
                         Text(
-                          "Rp. 12.0000",
+                          widget.productModel.price.toIDR(),
                           style: primeTheme.typography.smallBold,
                         ),
                       ],

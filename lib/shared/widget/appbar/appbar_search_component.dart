@@ -17,10 +17,13 @@ class AppBarSearchComponent extends StatefulWidget {
     this.hintText,
     this.searchController,
     this.actions,
+    this.onChange,
+    this.onEditingComplete,
   });
   Icon? leadingIcon;
   Function()? leadingOnTap;
   Function(String value)? onChange;
+  Function()? onEditingComplete;
   TextEditingController? searchController;
   String? hintText;
   List<Widget>? actions;
@@ -62,6 +65,7 @@ class _AppBarSearchComponentState extends State<AppBarSearchComponent> {
               child: TextField(
                 controller: widget.searchController,
                 onChanged: widget.onChange,
+                onEditingComplete: widget.onEditingComplete,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(8),
                   prefixIcon: Icon(

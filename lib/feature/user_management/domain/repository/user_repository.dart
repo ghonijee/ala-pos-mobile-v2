@@ -34,7 +34,7 @@ class UserRepository {
   }
 
   /// Get Role and Permission for current User.
-  void rolePermissions() async {
+  Future<void> rolePermissions() async {
     var userModel = await userActive();
     var response = await userRemoteSource.rolePermission(userModel!.id.toString());
     response as APISuccess;
