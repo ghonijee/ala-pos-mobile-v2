@@ -60,6 +60,19 @@ class CartProductNotifier extends StateNotifier<CartState> {
     state = CartState.initial();
   }
 
+  deleteItem(int index) {
+    state.items.removeAt(index);
+    var items = state.items;
+    state = state.copyWith(items: items);
+  }
+
+  updateItem(TransactionItemModel cartItem, index) async {
+    var items = state.items;
+    cartItem.amount = cartItem.result * cartItem.quantity;
+    items[index] = cartItem;
+    state = state.copyWith(items: items);
+  }
+
   _increaseCartItemCount(
     TransactionItemModel item,
     int index,

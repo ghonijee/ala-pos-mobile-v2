@@ -1,3 +1,4 @@
+import 'package:ala_pos/shared/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -5,9 +6,11 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 
 import '../../../shared/styles/styles.dart';
+import '../domain/models/transaction/transaction_item_model.dart';
 
 class CartItemWidget extends StatefulWidget {
-  CartItemWidget({super.key, required this.onTap});
+  CartItemWidget({super.key, required this.onTap, required this.itemModel});
+  final TransactionItemModel itemModel;
 
   /// For naviation to detail cart item
   final Function() onTap;
@@ -39,7 +42,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  "2",
+                  widget.itemModel.quantity.toString(),
                   style: primerTheme.typography.h4,
                 ),
               ),
@@ -53,20 +56,20 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Nama Produk",
+                    widget.itemModel.productName,
                     style: primerTheme.typography.h5,
                   ),
                   Spacing.height(
                     size: 4,
                   ),
-                  true
+                  widget.itemModel.discountPercentage! > 0 || widget.itemModel.discountPrice > 0
                       ? Text.rich(
                           TextSpan(
-                            text: "Rp. 10.000",
+                            text: widget.itemModel.price.toIDR(),
                             style: primerTheme.typography.normal.copyWith(decoration: TextDecoration.lineThrough),
                             children: [
                               TextSpan(
-                                text: " " + "Rp. 5.000",
+                                text: " " + widget.itemModel.result.toIDR(),
                                 style: primerTheme.typography.normal.copyWith(
                                   decoration: TextDecoration.none,
                                 ),
@@ -75,13 +78,19 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                           ),
                         )
                       : Text(
-                          "Rp. 5.000",
+                          widget.itemModel.price.toIDR(),
                           style: Theme.of(context).textTheme.bodyText2,
                         ),
-                  Spacing.height(
-                    size: 4,
-                  ),
-                  Text("Gulanya sedikit saja"),
+                  widget.itemModel.note?.isNotEmpty ?? false
+                      ? Column(
+                          children: [
+                            Spacing.height(
+                              size: 4,
+                            ),
+                            Text(widget.itemModel.note ?? ""),
+                          ],
+                        )
+                      : SizedBox(),
                 ],
               ),
             ),

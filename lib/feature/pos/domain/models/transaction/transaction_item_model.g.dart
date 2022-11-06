@@ -16,6 +16,7 @@ _$_TransactionItemModel _$$_TransactionItemModelFromJson(
       productName: json['product_name'] as String,
       price: json['price'] as int,
       productCost: json['product_cost'] as int? ?? 0,
+      discountMode: json['discount_mode'] as String? ?? "harga",
       discountPrice: json['discount_price'] as int? ?? 0,
       discountPercentage:
           (json['discount_percentage'] as num?)?.toDouble() ?? 0.0,
@@ -34,6 +35,7 @@ Map<String, dynamic> _$$_TransactionItemModelToJson(
       'product_name': instance.productName,
       'price': instance.price,
       'product_cost': instance.productCost,
+      'discount_mode': instance.discountMode,
       'discount_price': instance.discountPrice,
       'discount_percentage': instance.discountPercentage,
       'note': instance.note,

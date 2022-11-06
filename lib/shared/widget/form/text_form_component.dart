@@ -1,6 +1,7 @@
 import 'package:ala_pos/l10n/l10n.dart';
 import 'package:ala_pos/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ionicons/ionicons.dart';
@@ -21,6 +22,7 @@ class TextFieldComponent extends StatefulWidget {
     this.isValid = true,
     this.errorText,
     this.textAlign = TextAlign.start,
+    this.inputFormatters,
   }) : super(key: key);
   final double height;
   String? labelText;
@@ -34,6 +36,7 @@ class TextFieldComponent extends StatefulWidget {
   bool? isValid;
   String? errorText;
   TextAlign textAlign;
+  List<TextInputFormatter>? inputFormatters;
 
   @override
   State<TextFieldComponent> createState() => _TextFieldComponentState();
@@ -80,6 +83,7 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
               onChanged: widget.onChange,
               style: primeTheme.typography.normal,
               obscureText: widget.isSecureText,
+              inputFormatters: widget.inputFormatters,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                 enabledBorder: InputBorder.none,

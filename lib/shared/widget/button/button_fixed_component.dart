@@ -3,10 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 
-enum ButtonType {
-  Primary,
-  Secondary,
-}
+import '../../constants/button_enum.dart';
 
 // ignore: must_be_immutable
 class ButtonFixedText extends StatefulWidget {

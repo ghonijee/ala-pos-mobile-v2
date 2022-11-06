@@ -25,6 +25,9 @@ class TransactionItemModel with _$TransactionItemModel {
     @JsonKey(name: "product_cost")
     @Default(0)
         int? productCost,
+    @JsonKey(name: "discount_mode")
+    @Default("harga")
+        String discountMode,
     @JsonKey(name: "discount_price")
     @Default(0)
         int discountPrice,
@@ -40,7 +43,15 @@ class TransactionItemModel with _$TransactionItemModel {
   }) = _TransactionItemModel;
 
   int get result {
-    return price - discountPrice;
+    if (discountMode == "harga") {
+      return price - discountPrice;
+    } else {
+      return price - (discountPercentage! / 100.0 * price.toDouble()).toInt();
+    }
+  }
+
+  bool get hasDiscount {
+    return discountPercentage! > 0 || discountPrice > 0;
   }
 
   factory TransactionItemModel.fromJson(Map<String, dynamic> json) => _$TransactionItemModelFromJson(json);
