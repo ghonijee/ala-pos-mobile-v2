@@ -8,7 +8,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../shared/widget/form/text_form_component.dart';
 
 class AddDiscountBottomSheet extends HookConsumerWidget {
   const AddDiscountBottomSheet({super.key});

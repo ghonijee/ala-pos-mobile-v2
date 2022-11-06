@@ -23,6 +23,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../side_menu/screen/side_menu_widget.dart';
 import '../provider/cart_product_provider.dart';
+import '../provider/transaction_provider.dart';
+import '../state/cart/cart_state.dart';
 
 enum ViewMode { Grid, List }
 
@@ -42,6 +44,10 @@ class PosMainScreen extends HookConsumerWidget {
 
     final searchController = useTextEditingController();
     final scrollController = useScrollController();
+
+    ref.listen<CartState>(cartProductProvider, (previous, next) {
+      ref.read(transactionProvider.notifier).init(next.items);
+    });
 
     return RefreshIndicator(
       onRefresh: () => listController.getListProduct(initialData: true),

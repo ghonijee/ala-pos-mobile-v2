@@ -1,9 +1,12 @@
 import 'package:ala_pos/feature/pos/provider/cart_product_provider.dart';
+import 'package:ala_pos/feature/pos/provider/transaction_provider.dart';
 import 'package:ala_pos/feature/pos/routes/pos_router.dart';
+import 'package:ala_pos/feature/pos/state/cart/cart_state.dart';
 import 'package:ala_pos/feature/pos/widgets/cart_item_widget.dart';
 import 'package:ala_pos/feature/pos/widgets/resume_label_value_widget.dart';
 import 'package:ala_pos/gen/assets.gen.dart';
 import 'package:ala_pos/shared/styles/app_spacing.dart';
+import 'package:ala_pos/shared/utils/extension.dart';
 import 'package:ala_pos/shared/widget/button/button_fixed_component.dart';
 import 'package:ala_pos/shared/widget/button/button_full_component.dart';
 import 'package:auto_route/auto_route.dart';
@@ -24,7 +27,12 @@ class PosCartScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var primerTheme = PrimerTheme.of(context);
-    var cartController = ref.read(cartProductProvider.notifier);
+    // var cartController = ref.read(cartProductProvider.notifier);
+    ref.listen<CartState>(cartProductProvider, (previous, next) {
+      ref.read(transactionProvider.notifier).init(next.items);
+    });
+
+    var transactionState = ref.watch(transactionProvider);
     return Scaffold(
       backgroundColor: primerTheme.canvas.dflt,
       body: SafeArea(
@@ -128,72 +136,74 @@ class PosCartScreen extends HookConsumerWidget {
                       ],
                     ),
                   )
-                : Column(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          color: primerTheme.canvas.inset,
-                          child: ListView.separated(
-                            separatorBuilder: (context, index) => Divider(
-                              height: 1,
-                            ),
-                            itemCount: ref.watch(cartProductProvider).items.length,
-                            itemBuilder: (context, index) {
-                              var item = ref.watch(cartProductProvider).items[index];
-                              return CartItemWidget(
-                                itemModel: item,
-                                onTap: () {
-                                  context.router.pushNamed(PosRouteName.PosCartDetail.replaceFirst(RegExp(r":id"), index.toString()));
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      // Bottom Action
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                        decoration: BoxDecoration(
-                          color: primerTheme.canvas.dflt,
-                          border: Border(
-                            top: BorderSide(
-                              color: primerTheme.border.dflt,
-                            ),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Column(
-                              children: [
-                                ResumeLabelValueWidget(label: "Subtotal", value: "Rp. 120.000"),
-                                Spacing.height(
-                                  size: 8,
-                                ),
-                                ResumeLabelValueWidget(label: "Diskon", value: "Rp. 20.000"),
-                              ],
-                            ),
-                            Spacing.height(
-                              size: 8,
-                            ),
-                            ResumeLabelValueWidget(
-                              label: "Total",
-                              value: "Rp. 100.000",
-                              isBold: true,
-                            ),
-                            Spacing.height(
-                              size: 20,
-                            ),
-                            ButtonFullText(
-                              text: "Bayar",
-                              onPress: () {
-                                context.router.pushNamed(PosRouteName.PosPayment);
+                : Expanded(
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            color: primerTheme.canvas.inset,
+                            child: ListView.separated(
+                              separatorBuilder: (context, index) => Divider(
+                                height: 1,
+                              ),
+                              itemCount: ref.watch(cartProductProvider).items.length,
+                              itemBuilder: (context, index) {
+                                var item = ref.watch(cartProductProvider).items[index];
+                                return CartItemWidget(
+                                  itemModel: item,
+                                  onTap: () {
+                                    context.router.pushNamed(PosRouteName.PosCartDetail.replaceFirst(RegExp(r":id"), index.toString()));
+                                  },
+                                );
                               },
-                              buttonType: ButtonType.Primary,
                             ),
-                          ],
+                          ),
                         ),
-                      )
-                    ],
+                        // Bottom Action
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          decoration: BoxDecoration(
+                            color: primerTheme.canvas.dflt,
+                            border: Border(
+                              top: BorderSide(
+                                color: primerTheme.border.dflt,
+                              ),
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Column(
+                                children: [
+                                  ResumeLabelValueWidget(label: "Subtotal", value: transactionState.model!.amount!.toIDR()),
+                                  Spacing.height(
+                                    size: 8,
+                                  ),
+                                  ResumeLabelValueWidget(label: "Diskon", value: transactionState.model!.discountPrice!.toIDR()),
+                                ],
+                              ),
+                              Spacing.height(
+                                size: 8,
+                              ),
+                              ResumeLabelValueWidget(
+                                label: "Total",
+                                value: transactionState.model!.result.toIDR(),
+                                isBold: true,
+                              ),
+                              Spacing.height(
+                                size: 20,
+                              ),
+                              ButtonFullText(
+                                text: "Bayar",
+                                onPress: () {
+                                  context.router.pushNamed(PosRouteName.PosPayment);
+                                },
+                                buttonType: ButtonType.Primary,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
           ],
         ),
