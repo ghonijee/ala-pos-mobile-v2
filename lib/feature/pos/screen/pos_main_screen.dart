@@ -22,6 +22,7 @@ import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../side_menu/screen/side_menu_widget.dart';
+import '../provider/cart_product_provider.dart';
 
 enum ViewMode { Grid, List }
 
@@ -36,6 +37,7 @@ class PosMainScreen extends HookConsumerWidget {
     var _debouncer = Debouncer(milliseconds: 1000);
 
     var listController = ref.read(listProductProvider.notifier);
+    var cartController = ref.read(cartProductProvider.notifier);
     // var listProductState = ref.watch(listProductProvider);
 
     final searchController = useTextEditingController();
@@ -177,6 +179,7 @@ class PosMainScreen extends HookConsumerWidget {
                                               mainAxisSpacing: AppSpacings.m,
                                             ),
                                             itemBuilder: (context, index) {
+                                              var item = data[index];
                                               return index >= data.length
                                                   ? Center(
                                                       child: CircularProgressIndicator(
@@ -186,17 +189,17 @@ class PosMainScreen extends HookConsumerWidget {
                                                   : InkWell(
                                                       onTap: () {
                                                         // Jika store tidak menggunakan stock opname
-                                                        // if (!item.useStockOpname) {
-                                                        //   cartCubit.add(item);
-                                                        //   return;
-                                                        // }
+                                                        if (!item.useStockOpname) {
+                                                          cartController.add(item);
+                                                          return;
+                                                        }
 
                                                         // Jika store menggunakan stock opname
-                                                        // if (item.stock! > 0) {
-                                                        //   cartCubit.add(item);
-                                                        // } else {
-                                                        //   SnackbarMessage.failed(context, "Stok product tidak tersedia");
-                                                        // }
+                                                        if (item.stock! > 0) {
+                                                          cartController.add(item);
+                                                        } else {
+                                                          // SnackbarMessage.failed(context, "Stok product tidak tersedia");
+                                                        }
                                                       },
                                                       child: ProductItemGridComponent(productModel: data[index]),
                                                     );
@@ -208,13 +211,30 @@ class PosMainScreen extends HookConsumerWidget {
                                         separatorBuilder: (_, index) => Divider(),
                                         itemCount: nextPage ? data.length + 1 : data.length,
                                         itemBuilder: (context, index) {
+                                          var item = data[index];
+
                                           return index >= data.length
                                               ? Center(
                                                   child: CircularProgressIndicator(
                                                     color: primeTheme.brand.primary,
                                                   ),
                                                 )
-                                              : ProductItemListComponent(productModel: data[index]);
+                                              : InkWell(
+                                                  onTap: () {
+                                                    // Jika store tidak menggunakan stock opname
+                                                    if (!item.useStockOpname) {
+                                                      cartController.add(item);
+                                                      return;
+                                                    }
+
+                                                    // Jika store menggunakan stock opname
+                                                    if (item.stock! > 0) {
+                                                      cartController.add(item);
+                                                    } else {
+                                                      // SnackbarMessage.failed(context, "Stok product tidak tersedia");
+                                                    }
+                                                  },
+                                                  child: ProductItemListComponent(productModel: data[index]));
                                         },
                                       ));
                               },
@@ -285,37 +305,39 @@ class PosMainScreen extends HookConsumerWidget {
                 ],
               ),
             ),
-            // GestureDetector(
-            //   onTap: () {
-            //     context.router.pushNamed(PosRouteName.PosCart);
-            //   },
-            //   child: Align(
-            //     alignment: Alignment.bottomCenter,
-            //     child: Container(
-            //       padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl),
-            //       width: 100.w,
-            //       height: 70.px,
-            //       decoration: BoxDecoration(
-            //         color: primeTheme.brand.primary,
-            //       ),
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           Row(
-            //             crossAxisAlignment: CrossAxisAlignment.center,
-            //             mainAxisAlignment: MainAxisAlignment.center,
-            //             children: [
-            //               Icon(FeatherIcons.shoppingCart, color: primeTheme.foreground.onEmphasis),
-            //               Spacing.width(),
-            //               Text("Total ", style: primeTheme.typography.bold.copyWith(color: primeTheme.foreground.onEmphasis)),
-            //             ],
-            //           ),
-            //           Text("Rp. 120.000 (10 Item)", style: primeTheme.typography.h5.copyWith(color: primeTheme.foreground.onEmphasis)),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // )
+            ref.watch(cartProductProvider).items.isEmpty
+                ? SizedBox()
+                : GestureDetector(
+                    onTap: () {
+                      context.router.pushNamed(PosRouteName.PosCart);
+                    },
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: AppSpacings.xl),
+                        width: 100.w,
+                        height: 70.px,
+                        decoration: BoxDecoration(
+                          color: primeTheme.brand.primary,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(FeatherIcons.shoppingCart, color: primeTheme.foreground.onEmphasis),
+                                Spacing.width(),
+                                Text("Total ", style: primeTheme.typography.bold.copyWith(color: primeTheme.foreground.onEmphasis)),
+                              ],
+                            ),
+                            Text("Rp. 120.000 (10 Item)", style: primeTheme.typography.h5.copyWith(color: primeTheme.foreground.onEmphasis)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
           ],
         ),
       ),
