@@ -49,4 +49,15 @@ class TransactionNotifier extends StateNotifier<TransactionState> {
   applyDiscount(TransactionModel model) {
     state = state.copyWith(model: model);
   }
+
+  setPayment(int cash) {
+    var model = state.model;
+    model?.receivedMoney = cash;
+    model?.changeMoney = cash - model.result;
+    state = state.copyWith(model: model);
+  }
+
+  paymentValid() {
+    return state.model!.result < state.model!.receivedMoney!;
+  }
 }

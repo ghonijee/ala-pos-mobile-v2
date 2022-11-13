@@ -1,7 +1,10 @@
+import 'package:ala_pos/feature/pos/provider/transaction_provider.dart';
 import 'package:ala_pos/feature/pos/routes/pos_router.dart';
 import 'package:ala_pos/feature/pos/widgets/cash_value_button.dart';
 import 'package:ala_pos/feature/pos/widgets/payment_method_bottom_sheet.dart';
 import 'package:ala_pos/shared/styles/styles.dart';
+import 'package:ala_pos/shared/utils/extension.dart';
+import 'package:ala_pos/shared/utils/snackbar_message.dart';
 import 'package:ala_pos/shared/widget/button/button_full_component.dart';
 import 'package:ala_pos/shared/widget/form/text_form_component.dart';
 import 'package:auto_route/auto_route.dart';
@@ -9,15 +12,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class PosPaymentScreen extends StatelessWidget {
+class PosPaymentScreen extends HookConsumerWidget {
   const PosPaymentScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var primerTheme = PrimerTheme.of(context);
+    var controller = ref.read(transactionProvider.notifier);
+    var state = ref.watch(transactionProvider);
+
+    var paymentReceiveField = useTextEditingController(text: state.model?.receivedMoney.toString());
+    paymentReceiveField.addListener(
+      () {
+        var value = paymentReceiveField.text.toNumber();
+        controller.setPayment(value!);
+      },
+    );
 
     return Scaffold(
       backgroundColor: primerTheme.canvas.dflt,
@@ -80,7 +95,7 @@ class PosPaymentScreen extends StatelessWidget {
                                       style: primerTheme.typography.h4,
                                     ),
                                     Text(
-                                      "Rp. 98.000",
+                                      state.model?.result.toIDR() ?? "Rp. 0",
                                       style: primerTheme.typography.h4,
                                     ),
                                   ],
@@ -138,14 +153,18 @@ class PosPaymentScreen extends StatelessWidget {
                                         ),
                                         Spacing.large(),
                                         TextFieldComponent(
+                                          controller: paymentReceiveField,
                                           hintText: "100.000",
                                           textAlign: TextAlign.center,
+                                          onChange: (value) {
+                                            print(value);
+                                          },
                                         ),
                                         Spacing.large(),
                                         RichText(
                                           text: TextSpan(text: "Kembalian: ", style: primerTheme.typography.normal, children: [
                                             TextSpan(
-                                              text: "Rp. 2.000",
+                                              text: state.model?.changeMoney?.toIDR() ?? "Rp. 0",
                                               style: primerTheme.typography.bold,
                                             )
                                           ]),
@@ -160,23 +179,59 @@ class PosPaymentScreen extends StatelessWidget {
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: AppSpacings.l, mainAxisSpacing: AppSpacings.l, childAspectRatio: 4 / 2),
                                       children: [
-                                        CashValueButton(label: "Rp. 200.000", onTap: () {}),
-                                        CashValueButton(label: "Rp. 150.000", onTap: () {}),
-                                        CashValueButton(label: "Rp. 100.000", onTap: () {}),
-                                        CashValueButton(label: "Rp. 50.000", onTap: () {}),
-                                        CashValueButton(label: "Rp. 20.000", onTap: () {}),
-                                        CashValueButton(label: "Rp. 10.000", onTap: () {}),
-                                        CashValueButton(label: "Rp. 5.000", onTap: () {}),
-                                        CashValueButton(label: "Rp. 2.000", onTap: () {}),
-                                        CashValueButton(label: "Rp. 1.000", onTap: () {}),
+                                        CashValueButton(
+                                            label: "Rp. 200.000",
+                                            onTap: () {
+                                              paymentReceiveField.text = "200.000";
+                                            }),
+                                        CashValueButton(
+                                            label: "Rp. 150.000",
+                                            onTap: () {
+                                              paymentReceiveField.text = "150.000";
+                                            }),
+                                        CashValueButton(
+                                            label: "Rp. 100.000",
+                                            onTap: () {
+                                              paymentReceiveField.text = "100.000";
+                                            }),
+                                        CashValueButton(
+                                            label: "Rp. 50.000",
+                                            onTap: () {
+                                              paymentReceiveField.text = "50.000";
+                                            }),
+                                        CashValueButton(
+                                            label: "Rp. 20.000",
+                                            onTap: () {
+                                              paymentReceiveField.text = "20.000";
+                                            }),
+                                        CashValueButton(
+                                            label: "Rp. 10.000",
+                                            onTap: () {
+                                              paymentReceiveField.text = "10.000";
+                                            }),
+                                        CashValueButton(
+                                            label: "Rp. 5.000",
+                                            onTap: () {
+                                              paymentReceiveField.text = "5.000";
+                                            }),
+                                        CashValueButton(
+                                            label: "Rp. 2.000",
+                                            onTap: () {
+                                              paymentReceiveField.text = "2.000";
+                                            }),
+                                        CashValueButton(
+                                            label: "Rp. 1.000",
+                                            onTap: () {
+                                              paymentReceiveField.text = "1.000";
+                                            }),
                                       ],
                                     ),
                                     Spacing.large(),
                                     ButtonFullText(
                                       elevation: 0,
-                                      text: "Uang Pas Rp. 98.000",
+                                      text: state.model?.result.toIDR() ?? "Rp. 0",
                                       onPress: () {
-                                        //
+                                        paymentReceiveField.text = state.model?.result.toThousandSeparator() ?? "0";
                                       },
                                       buttonType: ButtonType.Secondary,
                                     ),
@@ -195,7 +250,11 @@ class PosPaymentScreen extends StatelessWidget {
                       child: ButtonFullText(
                         text: "Bayar",
                         onPress: () {
-                          context.router.pushNamed(PosRouteName.PosResultSuccess);
+                          var check = controller.paymentValid();
+                          if (!check) {
+                            SnackbarMessage.failed(context, "Pembayaran masih kurang!");
+                          } else {}
+                          // context.router.pushNamed(PosRouteName.PosResultSuccess);
                         },
                         buttonType: ButtonType.Primary,
                       ),
