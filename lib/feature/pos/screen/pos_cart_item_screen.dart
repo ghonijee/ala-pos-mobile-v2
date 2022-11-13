@@ -45,8 +45,6 @@ class PosCartItemScreen extends HookConsumerWidget {
     var productNoteField = useTextEditingController(text: itemModel.note);
     var productQuantityField = useTextEditingController(text: itemModel.quantity.toString());
 
-    log(itemModel.toJson().toString());
-
     return Scaffold(
       backgroundColor: primerTheme.canvas.dflt,
       body: SafeArea(
@@ -231,7 +229,9 @@ class PosCartItemScreen extends HookConsumerWidget {
                           itemModel.price = productPriceField.text.toNumber()!;
                           if (discountModeState.value == "harga") {
                             itemModel.discountPrice = productDiscountField.text.toNumber()!;
+                            itemModel.discountPercentage = 0.0;
                           } else {
+                            itemModel.discountPrice = 0;
                             itemModel.discountPercentage = productDiscountField.text.toNumber()!.toDouble();
                           }
                           itemModel.discountMode = discountModeState.value;

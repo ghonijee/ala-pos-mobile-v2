@@ -1,3 +1,4 @@
+import 'package:ala_pos/feature/pos/domain/models/transaction/transaction_model.dart';
 import 'package:ala_pos/feature/user_management/domain/repository/user_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -15,7 +16,6 @@ class TransactionNotifier extends StateNotifier<TransactionState> {
   final StoreRepository storeRepository;
 
   init(List<TransactionItemModel> listItem) async {
-    print("Call");
     var store = await storeRepository.activeStore();
     var user = await userRepository.userActive();
     var amount = 0;
@@ -32,13 +32,13 @@ class TransactionNotifier extends StateNotifier<TransactionState> {
       date: DateTime.now(),
       items: listItem,
       amount: amount,
-      discountPrice: modelPrevius.discountPrice!,
+      discountPrice: modelPrevius.discountPrice,
     );
 
     state = state.copyWith(model: model);
   }
 
-  changeNameCustomer(String value) {
+  changeNameCustomer(String? value) {
     var model = state.model!.copyWith(
       customerName: value,
       customerId: 0,
@@ -46,8 +46,7 @@ class TransactionNotifier extends StateNotifier<TransactionState> {
     state = state.copyWith(model: model);
   }
 
-  applyDiscount(int? discountPrice) {
-    var model = state.model!.copyWith(discountPrice: discountPrice ?? 0);
+  applyDiscount(TransactionModel model) {
     state = state.copyWith(model: model);
   }
 }

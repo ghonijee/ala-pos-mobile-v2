@@ -62,10 +62,15 @@ class PosCartScreen extends HookConsumerWidget {
                   Spacing.width(
                     size: 24,
                   ),
-                  Text(
-                    "Keranjang",
-                    style: primerTheme.typography.h4,
-                  ),
+                  ref.watch(transactionProvider).model?.customerName == null
+                      ? Text(
+                          "Keranjang",
+                          style: primerTheme.typography.h4,
+                        )
+                      : Text(
+                          "Keranjang - ${ref.watch(transactionProvider).model?.customerName}",
+                          style: primerTheme.typography.h4,
+                        ),
                   Expanded(
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -178,7 +183,7 @@ class PosCartScreen extends HookConsumerWidget {
                                   Spacing.height(
                                     size: 8,
                                   ),
-                                  ResumeLabelValueWidget(label: "Diskon", value: transactionState.model!.discountPrice!.toIDR()),
+                                  ResumeLabelValueWidget(label: "Diskon", value: transactionState.model!.discount.toIDR()),
                                 ],
                               ),
                               Spacing.height(

@@ -30,6 +30,8 @@ abstract class $TransactionStateCopyWith<$Res> {
       _$TransactionStateCopyWithImpl<$Res, TransactionState>;
   @useResult
   $Res call({TransactionModel? model});
+
+  $TransactionModelCopyWith<$Res>? get model;
 }
 
 /// @nodoc
@@ -45,14 +47,26 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? model = null,
+    Object? model = freezed,
   }) {
     return _then(_value.copyWith(
-      model: null == model
+      model: freezed == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as TransactionModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionModelCopyWith<$Res>? get model {
+    if (_value.model == null) {
+      return null;
+    }
+
+    return $TransactionModelCopyWith<$Res>(_value.model!, (value) {
+      return _then(_value.copyWith(model: value) as $Val);
+    });
   }
 }
 
@@ -65,6 +79,9 @@ abstract class _$$_TransactionStateCopyWith<$Res>
   @override
   @useResult
   $Res call({TransactionModel? model});
+
+  @override
+  $TransactionModelCopyWith<$Res>? get model;
 }
 
 /// @nodoc
@@ -78,10 +95,10 @@ class __$$_TransactionStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? model = null,
+    Object? model = freezed,
   }) {
     return _then(_$_TransactionState(
-      model: null == model
+      model: freezed == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as TransactionModel?,
@@ -107,12 +124,11 @@ class _$_TransactionState extends _TransactionState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TransactionState &&
-            const DeepCollectionEquality().equals(other.model, model));
+            (identical(other.model, model) || other.model == model));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(model));
+  int get hashCode => Object.hash(runtimeType, model);
 
   @JsonKey(ignore: true)
   @override

@@ -56,10 +56,18 @@ mixin _$TransactionModel {
   String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: "status", required: false)
   set status(String? value) => throw _privateConstructorUsedError;
-  @JsonKey(name: "discount", required: false)
-  int? get discountPrice => throw _privateConstructorUsedError;
-  @JsonKey(name: "discount", required: false)
-  set discountPrice(int? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "discount_mode")
+  String get discountMode => throw _privateConstructorUsedError;
+  @JsonKey(name: "discount_mode")
+  set discountMode(String value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "discount_price")
+  int get discountPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: "discount_price")
+  set discountPrice(int value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "discount_percentage")
+  double? get discountPercentage => throw _privateConstructorUsedError;
+  @JsonKey(name: "discount_percentage")
+  set discountPercentage(double? value) => throw _privateConstructorUsedError;
   @JsonKey(name: "note", required: false)
   String? get note => throw _privateConstructorUsedError;
   @JsonKey(name: "note", required: false)
@@ -104,7 +112,9 @@ abstract class $TransactionModelCopyWith<$Res> {
       @JsonKey(name: "customer_id") int? customerId,
       @JsonKey(name: "date", required: true) DateTime? date,
       @JsonKey(name: "status", required: false) String? status,
-      @JsonKey(name: "discount", required: false) int? discountPrice,
+      @JsonKey(name: "discount_mode") String discountMode,
+      @JsonKey(name: "discount_price") int discountPrice,
+      @JsonKey(name: "discount_percentage") double? discountPercentage,
       @JsonKey(name: "note", required: false) String? note,
       @JsonKey(name: "amount", required: true) int? amount,
       @JsonKey(name: "received_money", required: true) int? receivedMoney,
@@ -134,7 +144,9 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
     Object? customerId = freezed,
     Object? date = freezed,
     Object? status = freezed,
-    Object? discountPrice = freezed,
+    Object? discountMode = null,
+    Object? discountPrice = null,
+    Object? discountPercentage = freezed,
     Object? note = freezed,
     Object? amount = freezed,
     Object? receivedMoney = freezed,
@@ -178,10 +190,18 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      discountPrice: freezed == discountPrice
+      discountMode: null == discountMode
+          ? _value.discountMode
+          : discountMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      discountPrice: null == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
+      discountPercentage: freezed == discountPercentage
+          ? _value.discountPercentage
+          : discountPercentage // ignore: cast_nullable_to_non_nullable
+              as double?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -224,7 +244,9 @@ abstract class _$$_TransactionModelCopyWith<$Res>
       @JsonKey(name: "customer_id") int? customerId,
       @JsonKey(name: "date", required: true) DateTime? date,
       @JsonKey(name: "status", required: false) String? status,
-      @JsonKey(name: "discount", required: false) int? discountPrice,
+      @JsonKey(name: "discount_mode") String discountMode,
+      @JsonKey(name: "discount_price") int discountPrice,
+      @JsonKey(name: "discount_percentage") double? discountPercentage,
       @JsonKey(name: "note", required: false) String? note,
       @JsonKey(name: "amount", required: true) int? amount,
       @JsonKey(name: "received_money", required: true) int? receivedMoney,
@@ -252,7 +274,9 @@ class __$$_TransactionModelCopyWithImpl<$Res>
     Object? customerId = freezed,
     Object? date = freezed,
     Object? status = freezed,
-    Object? discountPrice = freezed,
+    Object? discountMode = null,
+    Object? discountPrice = null,
+    Object? discountPercentage = freezed,
     Object? note = freezed,
     Object? amount = freezed,
     Object? receivedMoney = freezed,
@@ -296,10 +320,18 @@ class __$$_TransactionModelCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      discountPrice: freezed == discountPrice
+      discountMode: null == discountMode
+          ? _value.discountMode
+          : discountMode // ignore: cast_nullable_to_non_nullable
+              as String,
+      discountPrice: null == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
+      discountPercentage: freezed == discountPercentage
+          ? _value.discountPercentage
+          : discountPercentage // ignore: cast_nullable_to_non_nullable
+              as double?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -337,7 +369,9 @@ class _$_TransactionModel extends _TransactionModel {
       @JsonKey(name: "customer_id") this.customerId,
       @JsonKey(name: "date", required: true) this.date,
       @JsonKey(name: "status", required: false) this.status,
-      @JsonKey(name: "discount", required: false) this.discountPrice = 0,
+      @JsonKey(name: "discount_mode") this.discountMode = "harga",
+      @JsonKey(name: "discount_price") this.discountPrice = 0,
+      @JsonKey(name: "discount_percentage") this.discountPercentage = 0.0,
       @JsonKey(name: "note", required: false) this.note,
       @JsonKey(name: "amount", required: true) this.amount = 0,
       @JsonKey(name: "received_money", required: true) this.receivedMoney = 0,
@@ -376,8 +410,14 @@ class _$_TransactionModel extends _TransactionModel {
   @JsonKey(name: "status", required: false)
   String? status;
   @override
-  @JsonKey(name: "discount", required: false)
-  int? discountPrice;
+  @JsonKey(name: "discount_mode")
+  String discountMode;
+  @override
+  @JsonKey(name: "discount_price")
+  int discountPrice;
+  @override
+  @JsonKey(name: "discount_percentage")
+  double? discountPercentage;
   @override
   @JsonKey(name: "note", required: false)
   String? note;
@@ -396,7 +436,7 @@ class _$_TransactionModel extends _TransactionModel {
 
   @override
   String toString() {
-    return 'TransactionModel(id: $id, invoiceNumber: $invoiceNumber, key: $key, userId: $userId, storeId: $storeId, customerName: $customerName, customerId: $customerId, date: $date, status: $status, discountPrice: $discountPrice, note: $note, amount: $amount, receivedMoney: $receivedMoney, changeMoney: $changeMoney, items: $items)';
+    return 'TransactionModel(id: $id, invoiceNumber: $invoiceNumber, key: $key, userId: $userId, storeId: $storeId, customerName: $customerName, customerId: $customerId, date: $date, status: $status, discountMode: $discountMode, discountPrice: $discountPrice, discountPercentage: $discountPercentage, note: $note, amount: $amount, receivedMoney: $receivedMoney, changeMoney: $changeMoney, items: $items)';
   }
 
   @JsonKey(ignore: true)
@@ -433,8 +473,12 @@ abstract class _TransactionModel extends TransactionModel {
           DateTime? date,
       @JsonKey(name: "status", required: false)
           String? status,
-      @JsonKey(name: "discount", required: false)
-          int? discountPrice,
+      @JsonKey(name: "discount_mode")
+          String discountMode,
+      @JsonKey(name: "discount_price")
+          int discountPrice,
+      @JsonKey(name: "discount_percentage")
+          double? discountPercentage,
       @JsonKey(name: "note", required: false)
           String? note,
       @JsonKey(name: "amount", required: true)
@@ -496,10 +540,20 @@ abstract class _TransactionModel extends TransactionModel {
   @JsonKey(name: "status", required: false)
   set status(String? value);
   @override
-  @JsonKey(name: "discount", required: false)
-  int? get discountPrice;
-  @JsonKey(name: "discount", required: false)
-  set discountPrice(int? value);
+  @JsonKey(name: "discount_mode")
+  String get discountMode;
+  @JsonKey(name: "discount_mode")
+  set discountMode(String value);
+  @override
+  @JsonKey(name: "discount_price")
+  int get discountPrice;
+  @JsonKey(name: "discount_price")
+  set discountPrice(int value);
+  @override
+  @JsonKey(name: "discount_percentage")
+  double? get discountPercentage;
+  @JsonKey(name: "discount_percentage")
+  set discountPercentage(double? value);
   @override
   @JsonKey(name: "note", required: false)
   String? get note;

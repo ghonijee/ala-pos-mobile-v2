@@ -1,22 +1,24 @@
+import 'package:ala_pos/feature/pos/provider/transaction_provider.dart';
 import 'package:ala_pos/shared/constants/button_enum.dart';
 import 'package:ala_pos/shared/styles/styles.dart';
 import 'package:ala_pos/shared/widget/button/button_fixed_component.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:primer_flutter/primer_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../shared/widget/form/text_form_component.dart';
 
-class AddCustomerBottomSheet extends StatefulWidget {
-  const AddCustomerBottomSheet({super.key});
-
+class AddCustomerBottomSheet extends HookConsumerWidget {
   @override
-  State<AddCustomerBottomSheet> createState() => _AddCustomerBottomSheetState();
-}
-
-class _AddCustomerBottomSheetState extends State<AddCustomerBottomSheet> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     PrimerThemeData primerTheme = PrimerTheme.of(context);
+    var controller = ref.read(transactionProvider.notifier);
+    var state = ref.watch(transactionProvider);
+
+    var customerNameField = useTextEditingController(text: state.model?.customerName);
+
     return SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.only(
@@ -44,6 +46,7 @@ class _AddCustomerBottomSheetState extends State<AddCustomerBottomSheet> {
                 Text("Data Pelanggan", style: primerTheme.typography.h4),
                 Spacing.height(size: 24),
                 TextFieldComponent(
+                  controller: customerNameField,
                   hintText: "Nama Pelanggan",
                 ),
                 Spacing.height(size: 100)
@@ -54,13 +57,19 @@ class _AddCustomerBottomSheetState extends State<AddCustomerBottomSheet> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ButtonFixedText(
-                    onPress: () {},
+                    onPress: () {
+                      context.router.pop();
+                    },
                     text: "Batal",
                     size: Size(42.w, 48),
                     buttonType: ButtonType.Secondary,
                   ),
                   ButtonFixedText(
-                    onPress: () {},
+                    onPress: () {
+                      var name = customerNameField.text.isEmpty ? null : customerNameField.text;
+                      controller.changeNameCustomer(name);
+                      context.router.pop();
+                    },
                     text: "Simpan",
                     size: Size(42.w, 48),
                   ),
