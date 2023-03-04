@@ -9,7 +9,14 @@ part of 'transaction_model.dart';
 _$_TransactionModel _$$_TransactionModelFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
-    requiredKeys: const ['id', 'user_id', 'date', 'amount', 'received_money'],
+    requiredKeys: const [
+      'id',
+      'user_id',
+      'date',
+      'amount',
+      'received_money',
+      'payment_mode'
+    ],
   );
   return _$_TransactionModel(
     id: json['id'] as int?,
@@ -29,6 +36,7 @@ _$_TransactionModel _$$_TransactionModelFromJson(Map<String, dynamic> json) {
     amount: json['amount'] as int? ?? 0,
     receivedMoney: json['received_money'] as int? ?? 0,
     changeMoney: json['change_money'] as int? ?? 0,
+    paymentModeId: json['payment_mode'] as int? ?? "CASH",
     items: (json['products'] as List<dynamic>?)
         ?.map((e) => TransactionItemModel.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -53,5 +61,6 @@ Map<String, dynamic> _$$_TransactionModelToJson(_$_TransactionModel instance) =>
       'amount': instance.amount,
       'received_money': instance.receivedMoney,
       'change_money': instance.changeMoney,
+      'payment_mode': instance.paymentModeId,
       'products': instance.items?.map((e) => e.toJson()).toList(),
     };

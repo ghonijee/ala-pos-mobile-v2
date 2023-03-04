@@ -47,6 +47,10 @@ class TransactionModel with _$TransactionModel {
     @JsonKey(name: "change_money", required: false)
     @Default(0)
         int? changeMoney,
+    @Default("CASH")
+    @JsonKey(name: "payment_mode", required: true)
+    @JsonKey(name: "payment_mode_id", required: false)
+        int? paymentModeId,
     @JsonKey(
       name: "products",
     )

@@ -84,6 +84,12 @@ mixin _$TransactionModel {
   int? get changeMoney => throw _privateConstructorUsedError;
   @JsonKey(name: "change_money", required: false)
   set changeMoney(int? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "payment_mode", required: true)
+  @JsonKey(name: "payment_mode_id", required: false)
+  int? get paymentModeId => throw _privateConstructorUsedError;
+  @JsonKey(name: "payment_mode", required: true)
+  @JsonKey(name: "payment_mode_id", required: false)
+  set paymentModeId(int? value) => throw _privateConstructorUsedError;
   @JsonKey(name: "products")
   List<TransactionItemModel>? get items => throw _privateConstructorUsedError;
   @JsonKey(name: "products")
@@ -103,23 +109,43 @@ abstract class $TransactionModelCopyWith<$Res> {
       _$TransactionModelCopyWithImpl<$Res, TransactionModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id", required: true) int? id,
-      @JsonKey(name: "invoice_number", required: false) String? invoiceNumber,
-      @JsonKey(name: "key", required: false) String? key,
-      @JsonKey(name: "user_id", required: true) int? userId,
-      @JsonKey(name: "store_id") int? storeId,
-      @JsonKey(name: "customer_name") String? customerName,
-      @JsonKey(name: "customer_id") int? customerId,
-      @JsonKey(name: "date", required: true) DateTime? date,
-      @JsonKey(name: "status", required: false) String? status,
-      @JsonKey(name: "discount_mode") String discountMode,
-      @JsonKey(name: "discount_price") int discountPrice,
-      @JsonKey(name: "discount_percentage") double? discountPercentage,
-      @JsonKey(name: "note", required: false) String? note,
-      @JsonKey(name: "amount", required: true) int? amount,
-      @JsonKey(name: "received_money", required: true) int? receivedMoney,
-      @JsonKey(name: "change_money", required: false) int? changeMoney,
-      @JsonKey(name: "products") List<TransactionItemModel>? items});
+      {@JsonKey(name: "id", required: true)
+          int? id,
+      @JsonKey(name: "invoice_number", required: false)
+          String? invoiceNumber,
+      @JsonKey(name: "key", required: false)
+          String? key,
+      @JsonKey(name: "user_id", required: true)
+          int? userId,
+      @JsonKey(name: "store_id")
+          int? storeId,
+      @JsonKey(name: "customer_name")
+          String? customerName,
+      @JsonKey(name: "customer_id")
+          int? customerId,
+      @JsonKey(name: "date", required: true)
+          DateTime? date,
+      @JsonKey(name: "status", required: false)
+          String? status,
+      @JsonKey(name: "discount_mode")
+          String discountMode,
+      @JsonKey(name: "discount_price")
+          int discountPrice,
+      @JsonKey(name: "discount_percentage")
+          double? discountPercentage,
+      @JsonKey(name: "note", required: false)
+          String? note,
+      @JsonKey(name: "amount", required: true)
+          int? amount,
+      @JsonKey(name: "received_money", required: true)
+          int? receivedMoney,
+      @JsonKey(name: "change_money", required: false)
+          int? changeMoney,
+      @JsonKey(name: "payment_mode", required: true)
+      @JsonKey(name: "payment_mode_id", required: false)
+          int? paymentModeId,
+      @JsonKey(name: "products")
+          List<TransactionItemModel>? items});
 }
 
 /// @nodoc
@@ -151,6 +177,7 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
     Object? amount = freezed,
     Object? receivedMoney = freezed,
     Object? changeMoney = freezed,
+    Object? paymentModeId = freezed,
     Object? items = freezed,
   }) {
     return _then(_value.copyWith(
@@ -218,6 +245,10 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
           ? _value.changeMoney
           : changeMoney // ignore: cast_nullable_to_non_nullable
               as int?,
+      paymentModeId: freezed == paymentModeId
+          ? _value.paymentModeId
+          : paymentModeId // ignore: cast_nullable_to_non_nullable
+              as int?,
       items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -235,23 +266,43 @@ abstract class _$$_TransactionModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id", required: true) int? id,
-      @JsonKey(name: "invoice_number", required: false) String? invoiceNumber,
-      @JsonKey(name: "key", required: false) String? key,
-      @JsonKey(name: "user_id", required: true) int? userId,
-      @JsonKey(name: "store_id") int? storeId,
-      @JsonKey(name: "customer_name") String? customerName,
-      @JsonKey(name: "customer_id") int? customerId,
-      @JsonKey(name: "date", required: true) DateTime? date,
-      @JsonKey(name: "status", required: false) String? status,
-      @JsonKey(name: "discount_mode") String discountMode,
-      @JsonKey(name: "discount_price") int discountPrice,
-      @JsonKey(name: "discount_percentage") double? discountPercentage,
-      @JsonKey(name: "note", required: false) String? note,
-      @JsonKey(name: "amount", required: true) int? amount,
-      @JsonKey(name: "received_money", required: true) int? receivedMoney,
-      @JsonKey(name: "change_money", required: false) int? changeMoney,
-      @JsonKey(name: "products") List<TransactionItemModel>? items});
+      {@JsonKey(name: "id", required: true)
+          int? id,
+      @JsonKey(name: "invoice_number", required: false)
+          String? invoiceNumber,
+      @JsonKey(name: "key", required: false)
+          String? key,
+      @JsonKey(name: "user_id", required: true)
+          int? userId,
+      @JsonKey(name: "store_id")
+          int? storeId,
+      @JsonKey(name: "customer_name")
+          String? customerName,
+      @JsonKey(name: "customer_id")
+          int? customerId,
+      @JsonKey(name: "date", required: true)
+          DateTime? date,
+      @JsonKey(name: "status", required: false)
+          String? status,
+      @JsonKey(name: "discount_mode")
+          String discountMode,
+      @JsonKey(name: "discount_price")
+          int discountPrice,
+      @JsonKey(name: "discount_percentage")
+          double? discountPercentage,
+      @JsonKey(name: "note", required: false)
+          String? note,
+      @JsonKey(name: "amount", required: true)
+          int? amount,
+      @JsonKey(name: "received_money", required: true)
+          int? receivedMoney,
+      @JsonKey(name: "change_money", required: false)
+          int? changeMoney,
+      @JsonKey(name: "payment_mode", required: true)
+      @JsonKey(name: "payment_mode_id", required: false)
+          int? paymentModeId,
+      @JsonKey(name: "products")
+          List<TransactionItemModel>? items});
 }
 
 /// @nodoc
@@ -281,6 +332,7 @@ class __$$_TransactionModelCopyWithImpl<$Res>
     Object? amount = freezed,
     Object? receivedMoney = freezed,
     Object? changeMoney = freezed,
+    Object? paymentModeId = freezed,
     Object? items = freezed,
   }) {
     return _then(_$_TransactionModel(
@@ -348,6 +400,10 @@ class __$$_TransactionModelCopyWithImpl<$Res>
           ? _value.changeMoney
           : changeMoney // ignore: cast_nullable_to_non_nullable
               as int?,
+      paymentModeId: freezed == paymentModeId
+          ? _value.paymentModeId
+          : paymentModeId // ignore: cast_nullable_to_non_nullable
+              as int?,
       items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -360,23 +416,43 @@ class __$$_TransactionModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TransactionModel extends _TransactionModel {
   _$_TransactionModel(
-      {@JsonKey(name: "id", required: true) this.id,
-      @JsonKey(name: "invoice_number", required: false) this.invoiceNumber,
-      @JsonKey(name: "key", required: false) this.key,
-      @JsonKey(name: "user_id", required: true) this.userId,
-      @JsonKey(name: "store_id") this.storeId,
-      @JsonKey(name: "customer_name") this.customerName,
-      @JsonKey(name: "customer_id") this.customerId,
-      @JsonKey(name: "date", required: true) this.date,
-      @JsonKey(name: "status", required: false) this.status,
-      @JsonKey(name: "discount_mode") this.discountMode = "harga",
-      @JsonKey(name: "discount_price") this.discountPrice = 0,
-      @JsonKey(name: "discount_percentage") this.discountPercentage = 0.0,
-      @JsonKey(name: "note", required: false) this.note,
-      @JsonKey(name: "amount", required: true) this.amount = 0,
-      @JsonKey(name: "received_money", required: true) this.receivedMoney = 0,
-      @JsonKey(name: "change_money", required: false) this.changeMoney = 0,
-      @JsonKey(name: "products") this.items})
+      {@JsonKey(name: "id", required: true)
+          this.id,
+      @JsonKey(name: "invoice_number", required: false)
+          this.invoiceNumber,
+      @JsonKey(name: "key", required: false)
+          this.key,
+      @JsonKey(name: "user_id", required: true)
+          this.userId,
+      @JsonKey(name: "store_id")
+          this.storeId,
+      @JsonKey(name: "customer_name")
+          this.customerName,
+      @JsonKey(name: "customer_id")
+          this.customerId,
+      @JsonKey(name: "date", required: true)
+          this.date,
+      @JsonKey(name: "status", required: false)
+          this.status,
+      @JsonKey(name: "discount_mode")
+          this.discountMode = "harga",
+      @JsonKey(name: "discount_price")
+          this.discountPrice = 0,
+      @JsonKey(name: "discount_percentage")
+          this.discountPercentage = 0.0,
+      @JsonKey(name: "note", required: false)
+          this.note,
+      @JsonKey(name: "amount", required: true)
+          this.amount = 0,
+      @JsonKey(name: "received_money", required: true)
+          this.receivedMoney = 0,
+      @JsonKey(name: "change_money", required: false)
+          this.changeMoney = 0,
+      @JsonKey(name: "payment_mode", required: true)
+      @JsonKey(name: "payment_mode_id", required: false)
+          this.paymentModeId = "CASH",
+      @JsonKey(name: "products")
+          this.items})
       : super._();
 
   factory _$_TransactionModel.fromJson(Map<String, dynamic> json) =>
@@ -431,12 +507,16 @@ class _$_TransactionModel extends _TransactionModel {
   @JsonKey(name: "change_money", required: false)
   int? changeMoney;
   @override
+  @JsonKey(name: "payment_mode", required: true)
+  @JsonKey(name: "payment_mode_id", required: false)
+  int? paymentModeId;
+  @override
   @JsonKey(name: "products")
   List<TransactionItemModel>? items;
 
   @override
   String toString() {
-    return 'TransactionModel(id: $id, invoiceNumber: $invoiceNumber, key: $key, userId: $userId, storeId: $storeId, customerName: $customerName, customerId: $customerId, date: $date, status: $status, discountMode: $discountMode, discountPrice: $discountPrice, discountPercentage: $discountPercentage, note: $note, amount: $amount, receivedMoney: $receivedMoney, changeMoney: $changeMoney, items: $items)';
+    return 'TransactionModel(id: $id, invoiceNumber: $invoiceNumber, key: $key, userId: $userId, storeId: $storeId, customerName: $customerName, customerId: $customerId, date: $date, status: $status, discountMode: $discountMode, discountPrice: $discountPrice, discountPercentage: $discountPercentage, note: $note, amount: $amount, receivedMoney: $receivedMoney, changeMoney: $changeMoney, paymentModeId: $paymentModeId, items: $items)';
   }
 
   @JsonKey(ignore: true)
@@ -487,6 +567,9 @@ abstract class _TransactionModel extends TransactionModel {
           int? receivedMoney,
       @JsonKey(name: "change_money", required: false)
           int? changeMoney,
+      @JsonKey(name: "payment_mode", required: true)
+      @JsonKey(name: "payment_mode_id", required: false)
+          int? paymentModeId,
       @JsonKey(name: "products")
           List<TransactionItemModel>? items}) = _$_TransactionModel;
   _TransactionModel._() : super._();
@@ -574,6 +657,13 @@ abstract class _TransactionModel extends TransactionModel {
   int? get changeMoney;
   @JsonKey(name: "change_money", required: false)
   set changeMoney(int? value);
+  @override
+  @JsonKey(name: "payment_mode", required: true)
+  @JsonKey(name: "payment_mode_id", required: false)
+  int? get paymentModeId;
+  @JsonKey(name: "payment_mode", required: true)
+  @JsonKey(name: "payment_mode_id", required: false)
+  set paymentModeId(int? value);
   @override
   @JsonKey(name: "products")
   List<TransactionItemModel>? get items;
